@@ -77,8 +77,46 @@ Run `yarn format` before committing. CI will reject unformatted code.
 ### ESLint (`.eslintrc.json`)
 
 Extends `next/core-web-vitals` + `@typescript-eslint/recommended` + `prettier`. Key rules:
+
 - `@typescript-eslint/no-unused-vars: error` (prefix unused params with `_` to suppress)
 - `@typescript-eslint/no-explicit-any: warn`
+
+---
+
+## Git Hooks (Husky)
+
+Two hooks run automatically on every commit:
+
+### `pre-commit` — lint-staged
+
+Runs on staged files only (faster than full lint):
+
+| Files | Actions |
+|---|---|
+| `*.ts`, `*.tsx` | `eslint --fix` → `prettier --write` |
+| `*.json`, `*.css`, `*.md`, `*.yml`, `*.yaml` | `prettier --write` |
+
+Fixed files are re-staged automatically. If ESLint finds errors it can't auto-fix, the commit is aborted.
+
+### `commit-msg` — commitlint
+
+Enforces [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+```
+<type>(<optional scope>): <description>
+
+# Examples
+feat: add testimonials section
+fix: broken Discord link in footer
+chore: update dependencies
+docs: update CLAUDE.MD with hook setup
+style: reformat Hero component
+refactor: extract countdown logic to hook
+```
+
+**Valid types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`, `build`, `revert`
+
+Commits with messages that don't match this format will be rejected immediately.
 
 ---
 
