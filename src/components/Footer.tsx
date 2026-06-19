@@ -15,10 +15,20 @@ export default function Footer() {
             <a href="#features" className="hover:text-git-add">
               How it works
             </a>
-            <a href="https://whop.com/commitpt-709e/commit-plus/" target="_blank" rel="noreferrer" className="hover:text-git-add">
+            <a
+              href="https://whop.com/commitpt-709e/commit-plus/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-git-add"
+            >
               Whop
             </a>
-            <a href="https://discord.gg/your-invite" target="_blank" rel="noreferrer" className="hover:text-git-add">
+            <a
+              href="https://discord.gg/your-invite"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-git-add"
+            >
               Discord
             </a>
           </div>

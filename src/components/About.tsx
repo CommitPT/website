@@ -1,6 +1,12 @@
-import { CheckCircle, MessageSquare, Calendar, Trophy, BookOpen } from 'lucide-react'
+import { CheckCircle, MessageSquare, Calendar, Trophy, BookOpen, LucideIcon } from 'lucide-react'
 
-const benefits = [
+interface Benefit {
+  icon: LucideIcon
+  title: string
+  desc: string
+}
+
+const benefits: Benefit[] = [
   {
     icon: CheckCircle,
     title: 'Accountability threads',
@@ -38,7 +44,8 @@ export default function About() {
             A community built around shipping.
           </h2>
           <p className="mt-4 text-muted">
-            We don't trade motivational quotes. We trade commits, code reviews, and shipped demos.
+            We don&apos;t trade motivational quotes. We trade commits, code reviews, and shipped
+            demos.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -3,7 +3,12 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
-const navLinks = [
+interface NavLink {
+  label: string
+  href: string
+}
+
+const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
   { label: 'How it works', href: '#features' },
   { label: 'Platform', href: '#platform' },
@@ -16,7 +21,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-ink/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#hero" className="flex items-center gap-2 font-mono text-lg font-bold text-text-primary">
+        <a
+          href="#hero"
+          className="flex items-center gap-2 font-mono text-lg font-bold text-text-primary"
+        >
           <span className="text-git-add">~/</span>
           CommitPT
         </a>

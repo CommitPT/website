@@ -1,6 +1,13 @@
-import { ArrowRight, CreditCard, MessageCircle, Rocket } from 'lucide-react'
+import { ArrowRight, CreditCard, MessageCircle, Rocket, LucideIcon } from 'lucide-react'
 
-const steps = [
+interface Step {
+  number: string
+  icon: LucideIcon
+  title: string
+  desc: string
+}
+
+const steps: Step[] = [
   {
     number: '01',
     icon: CreditCard,

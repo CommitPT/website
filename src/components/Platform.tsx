@@ -1,11 +1,24 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowRight, BookOpen, Map, Newspaper, TrendingUp, GitCommit } from 'lucide-react'
+import {
+  ArrowRight,
+  BookOpen,
+  Map,
+  Newspaper,
+  TrendingUp,
+  GitCommit,
+  LucideIcon,
+} from 'lucide-react'
 
 const LAUNCH_DATE = new Date('2026-08-20T00:00:00')
 
-const features = [
+interface PlatformFeature {
+  icon: LucideIcon
+  label: string
+}
+
+const features: PlatformFeature[] = [
   { icon: Map, label: 'Interactive learning roadmaps' },
   { icon: BookOpen, label: 'Hands-on courses' },
   { icon: Newspaper, label: 'Tech news feed' },
@@ -13,12 +26,24 @@ const features = [
   { icon: GitCommit, label: 'Commit streaks' },
 ]
 
-function useCountdown(target) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+interface CountdownTime {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+}
+
+function useCountdown(target: Date): CountdownTime {
+  const [timeLeft, setTimeLeft] = useState<CountdownTime>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
 
   useEffect(() => {
     function tick() {
-      const diff = target - Date.now()
+      const diff = target.getTime() - Date.now()
       if (diff <= 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
         return
@@ -38,7 +63,12 @@ function useCountdown(target) {
   return timeLeft
 }
 
-function CountdownUnit({ value, label }) {
+interface CountdownUnitProps {
+  value: number
+  label: string
+}
+
+function CountdownUnit({ value, label }: CountdownUnitProps) {
   return (
     <div className="flex flex-col items-center gap-1">
       <span className="font-mono text-3xl font-bold tabular-nums text-text-primary sm:text-4xl">
@@ -66,16 +96,16 @@ export default function Platform() {
             </div>
 
             <h2 className="text-3xl font-bold leading-tight text-text-primary sm:text-4xl">
-              The learning platform{' '}
-              <span className="text-git-add font-mono">is being built</span>.
+              The learning platform <span className="text-git-add font-mono">is being built</span>.
             </h2>
 
             <p className="text-lg text-muted">
-              A full learning platform for developers — interactive roadmaps, hands-on courses, tech news, and progress tracking. Built on the best of boot.dev, Codedex, and roadmap.sh.
+              A full learning platform for developers — interactive roadmaps, hands-on courses, tech
+              news, and progress tracking. Built on the best of boot.dev, Codedex, and roadmap.sh.
             </p>
 
             <div className="rounded-lg border border-border bg-ink-light px-6 py-5">
-              <p className="mb-4 font-mono text-xs text-muted">// launching in</p>
+              <p className="mb-4 font-mono text-xs text-muted">{'// launching in'}</p>
               <div className="flex items-start gap-6">
                 <CountdownUnit value={days} label="days" />
                 <span className="mt-3 font-mono text-2xl font-bold text-border">:</span>
@@ -101,7 +131,7 @@ export default function Platform() {
           <div className="rounded-lg border border-border bg-ink-light p-6">
             <div className="mb-4 flex items-center justify-between">
               <span className="font-mono text-xs text-muted">app.commitpt.com</span>
-              <span className="font-mono text-xs text-git-amber">// planned features</span>
+              <span className="font-mono text-xs text-git-amber">{'// planned features'}</span>
             </div>
             <div className="space-y-3">
               {features.map((f) => (
@@ -111,7 +141,7 @@ export default function Platform() {
                 >
                   <f.icon size={15} className="shrink-0 text-git-add" />
                   <span>{f.label}</span>
-                  <span className="ml-auto font-mono text-xs text-border">// soon</span>
+                  <span className="ml-auto font-mono text-xs text-border">{'// soon'}</span>
                 </div>
               ))}
             </div>

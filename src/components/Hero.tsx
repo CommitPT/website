@@ -21,7 +21,8 @@ export default function Hero() {
               Grow together.
             </h1>
             <p className="max-w-lg text-lg text-muted">
-              CommitPT is a community for programmers who want to stop coding alone and start building in public—through weekly accountability, reviews, and real momentum.
+              CommitPT is a community for programmers who want to stop coding alone and start
+              building in public—through weekly accountability, reviews, and real momentum.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
@@ -91,7 +92,7 @@ function Terminal() {
               <span className="text-syntax-blue">CommitPT</span>
               <span className="text-text-primary">();</span>
             </div>
-            <div className="text-muted">// Stop coding alone.</div>
+            <div className="text-muted">{'// Stop coding alone.'}</div>
             <div>
               <span className="text-git-del">-</span>{' '}
               <span className="text-git-del">procrastination</span>
@@ -104,7 +105,7 @@ function Terminal() {
               <span className="text-git-add">+</span>{' '}
               <span className="text-git-add">weeklyShips</span>
             </div>
-            <div className="text-muted">// Build habits that compound.</div>
+            <div className="text-muted">{'// Build habits that compound.'}</div>
             <div>
               <span className="text-syntax-purple">await</span>{' '}
               <span className="text-syntax-blue">community</span>.
