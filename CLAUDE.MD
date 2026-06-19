@@ -91,10 +91,10 @@ Two hooks run automatically on every commit:
 
 Runs on staged files only (faster than full lint):
 
-| Files | Actions |
-|---|---|
-| `*.ts`, `*.tsx` | `eslint --fix` → `prettier --write` |
-| `*.json`, `*.css`, `*.md`, `*.yml`, `*.yaml` | `prettier --write` |
+| Files                                        | Actions                             |
+| -------------------------------------------- | ----------------------------------- |
+| `*.ts`, `*.tsx`                              | `eslint --fix` → `prettier --write` |
+| `*.json`, `*.css`, `*.md`, `*.yml`, `*.yaml` | `prettier --write`                  |
 
 Fixed files are re-staged automatically. If ESLint finds errors it can't auto-fix, the commit is aborted.
 
