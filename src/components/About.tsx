@@ -9,28 +9,28 @@ interface Benefit {
 const benefits: Benefit[] = [
   {
     icon: CheckCircle,
-    title: 'Accountability threads',
-    desc: 'Share weekly goals and check-ins so you actually finish projects.',
+    title: 'Para de abandonar projetos a meio',
+    desc: 'Publica o teu objetivo semanal à segunda-feira. O teu grupo faz check-in à sexta. Projetos que morrem em isolamento sobrevivem quando há engenheiros experientes a acompanhar.',
   },
   {
     icon: MessageSquare,
-    title: 'Code reviews & feedback',
-    desc: 'Get eyes on your PRs, architecture, and side projects.',
+    title: 'Recebe feedback de engenheiros que já fizeram ship',
+    desc: 'Partilha o teu PR ou decisão de arquitetura e recebe feedback honesto e experiente — não o silêncio do Stack Overflow nem conselhos genéricos.',
   },
   {
     icon: Calendar,
-    title: 'Co-working sessions',
-    desc: 'Show up, build together, and ship more consistently.',
+    title: 'Constrói em público, faz ship a tempo',
+    desc: 'Sessões de co-working ao vivo onde os membros constroem juntos e fazem commit antes de sair. Responsabilidade em tempo real, não apenas um canal que ninguém lê.',
   },
   {
     icon: Trophy,
-    title: 'Challenges & streaks',
-    desc: 'Gamified commitments that make habit-building stick.',
+    title: 'Constrói a consistência que te contrata',
+    desc: 'Desafios semanais e commit streaks que transformam "faço amanhã" num historial que podes mostrar a empregadores.',
   },
   {
     icon: BookOpen,
-    title: 'Curated resources',
-    desc: 'Roadmaps, templates, and workshops for your next level.',
+    title: 'Ignora o ruído, fica com o que importa',
+    desc: 'Roadmaps validados, templates usados por engenheiros na indústria, e workshops sobre as competências que fazem as carreiras avançar — não mais uma playlist do YouTube.',
   },
 ]
 
@@ -39,13 +39,13 @@ export default function About() {
     <section id="about" className="border-y border-border bg-ink-light">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-git-amber">01 // What You Get</span>
+          <span className="font-mono text-sm font-bold text-git-amber">01 // O Que Recebes</span>
           <h2 className="mt-3 text-3xl font-bold text-text-primary sm:text-4xl">
-            A community built around shipping.
+            Tudo o que precisas para parar de adiar e começar a fazer ship.
           </h2>
           <p className="mt-4 text-muted">
-            We don&apos;t trade motivational quotes. We trade commits, code reviews, and shipped
-            demos.
+            A maioria dos programadores sabe o que construir. A CommitPT resolve a parte com que
+            lutam — realmente fazê-lo, de forma consistente, com pessoas que os impulsionam.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

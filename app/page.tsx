@@ -1,8 +1,10 @@
 import Header from '@/src/components/Header'
 import Hero from '@/src/components/Hero'
+import ForWho from '@/src/components/ForWho'
 import About from '@/src/components/About'
+import SocialProof from '@/src/components/SocialProof'
 import Features from '@/src/components/Features'
-import Platform from '@/src/components/Platform'
+import Team from '@/src/components/Team'
 import Footer from '@/src/components/Footer'
 
 export default function Home() {
@@ -11,9 +13,11 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <ForWho />
         <About />
+        <SocialProof />
         <Features />
-        <Platform />
+        <Team />
       </main>
       <Footer />
     </div>

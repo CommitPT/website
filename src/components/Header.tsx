@@ -9,10 +9,9 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: 'About', href: '#about' },
-  { label: 'How it works', href: '#features' },
-  { label: 'Platform', href: '#platform' },
-  { label: 'Join', href: '#join' },
+  { label: 'Benefícios', href: '#about' },
+  { label: 'Como funciona', href: '#features' },
+  { label: 'O Fundador', href: '#team' },
 ]
 
 export default function Header() {
@@ -42,7 +41,7 @@ export default function Header() {
             href="#join"
             className="rounded-md bg-git-add px-4 py-2 text-sm font-semibold text-ink hover:bg-[#4bc45d] transition-colors"
           >
-            Join Now
+            Entrar Agora
           </a>
         </nav>
         <button
