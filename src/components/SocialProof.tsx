@@ -37,7 +37,7 @@ export default function SocialProof() {
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
           <span className="font-mono text-sm font-bold text-git-amber">
-            02 // O Que Dizem os Membros
+            05 // O Que Dizem os Membros
           </span>
           <h2 className="mt-3 text-3xl font-bold text-text-primary sm:text-4xl">
             Engenheiros reais. Resultados reais.

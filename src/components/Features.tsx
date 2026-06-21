@@ -35,11 +35,10 @@ export default function Features() {
         <div className="mb-16 max-w-2xl">
           <span className="font-mono text-sm font-bold text-git-amber">03 // Como Funciona</span>
           <h2 className="mt-3 text-3xl font-bold text-text-primary sm:text-4xl">
-            Os teus primeiros 30 dias na CommitPT.
+            Como funciona na prática.
           </h2>
           <p className="mt-4 text-muted">
-            A maioria das comunidades tem um onboarding. Nós temos um processo. É isto que acontece
-            depois de entrares.
+            Entras, escolhes as tuas áreas, conheces pessoas e começas a evoluir. Sem complicações.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">

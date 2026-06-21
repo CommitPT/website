@@ -12,6 +12,7 @@ const navLinks: NavLink[] = [
   { label: 'Benefícios', href: '#about' },
   { label: 'Como funciona', href: '#features' },
   { label: 'O Fundador', href: '#team' },
+  { label: 'FAQ', href: '#faq' },
 ]
 
 export default function Header() {
