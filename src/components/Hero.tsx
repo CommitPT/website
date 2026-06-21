@@ -11,22 +11,16 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-git-add opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-git-add"></span>
               </span>
-              200+ programadores já comprometidos
+              200+ programadores portugueses já dentro
             </div>
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
-              Para de construir
-              <br />
-              sozinho. Começa a <span className="font-mono text-git-add">fazer ship</span>
-              <br />
-              com engenheiros
-              <br />
-              que percebem.
+              A comunidade que transforma programadores em{' '}
+              <span className="font-mono text-git-add">engenheiros de topo.</span>
             </h1>
             <p className="max-w-lg text-lg text-muted">
-              A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software
-              portugueses. Grupos de responsabilidade semanais, revisões de código entre pares e
-              acesso direto a engenheiros em empresas reais — para parares de procrastinar e
-              começares a construir uma carreira da qual te orgulhas.
+              Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber
+              críticas, comunicar bem e trabalhar em equipa. A CommitPT é o ambiente mais próximo de
+              uma empresa real que vais encontrar — antes de estares numa.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
@@ -35,7 +29,7 @@ export default function Hero() {
                 rel="noreferrer"
                 className="group inline-flex items-center gap-2 rounded-md bg-git-add px-6 py-3 text-sm font-semibold text-ink hover:bg-[#4bc45d] transition-colors"
               >
-                Adere já
+                Junta-te à Comunidade
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a

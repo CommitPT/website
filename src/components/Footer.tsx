@@ -10,8 +10,7 @@ export default function Footer() {
               <span className="text-git-add">~/</span>CommitPT
             </a>
             <p className="max-w-sm text-sm text-muted">
-              Uma comunidade de crescimento de carreira para engenheiros de software portugueses que
-              levam o ship a sério.
+              A comunidade portuguesa que transforma programadores em engenheiros de topo.
             </p>
           </div>
           <div className="flex flex-wrap gap-4 lg:justify-end">
@@ -46,6 +45,9 @@ export default function Footer() {
             </a>
             <a href="#team" className="hover:text-git-add transition-colors">
               O Fundador
+            </a>
+            <a href="#faq" className="hover:text-git-add transition-colors">
+              FAQ
             </a>
           </div>
           <p className="text-xs text-muted">

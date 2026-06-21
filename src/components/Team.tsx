@@ -17,9 +17,9 @@ const members: TeamMember[] = [
     role: 'Fundador & Engenheiro de Software',
     initials: 'BM',
     bio: [
-      'O Bruno é Engenheiro de Software com mais de 4 anos de experiência a construir produtos para empresas internacionais. É licenciado em Ciências da Computação pela Universidade Autónoma de Lisboa, trabalhou em equipas distribuídas por vários países, e contribuiu para aplicações web modernas e produtos de larga escala em empresas tecnológicas em crescimento acelerado.',
-      'A par da sua carreira de engenharia, construiu uma audiência de programadores em torno de conteúdo real sobre engenharia de software e desenvolvimento de carreira — porque a distância entre "aprender a programar" e "crescer numa carreira de engenharia real" era algo que ninguém estava a abordar com honestidade.',
-      'Fundou a CommitPT porque experienciou em primeira mão o quão mais rápido os programadores crescem quando param de programar em isolamento — e o quão difícil é encontrar esse ambiente em Portugal. Tudo nesta comunidade vem do que ele desejava que existisse quando estava a começar.',
+      'Engenheiro de Software com mais de 4 anos de experiência a construir produtos para empresas internacionais. Licenciado em Ciências da Computação pela Universidade Autónoma de Lisboa, já trabalhou em equipas distribuídas por vários países e contribuiu para produtos de larga escala em empresas tecnológicas em crescimento acelerado.',
+      'Ao longo da carreira, construiu uma audiência de programadores em torno de conteúdo real sobre engenharia de software e desenvolvimento de carreira — porque a distância entre "aprender a programar" e "crescer numa carreira de engenharia real" era um problema que ninguém estava a resolver com honestidade.',
+      'Fundou a CommitPT porque experienciou em primeira mão o quão mais rápido os programadores crescem quando param de trabalhar em isolamento. Tudo o que existe nesta comunidade vem do que ele desejava ter tido acesso quando estava a começar.',
     ],
     photo: '/bruno.jpg',
     whopUrl: 'https://whop.com/commitpt-709e/commit-plus',
@@ -96,15 +96,13 @@ export default function Team() {
     <section id="team" className="border-t border-border bg-ink">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-git-amber">
-            04 // Quem Está Por Detrás Disto
-          </span>
+          <span className="font-mono text-sm font-bold text-git-amber">04 // O Fundador</span>
           <h2 className="mt-3 text-3xl font-bold text-text-primary sm:text-4xl">
-            Construído por alguém que já esteve onde estás.
+            Criado por alguém que esteve onde tu estás.
           </h2>
           <p className="mt-4 text-muted">
-            A CommitPT existe porque o Bruno não conseguiu encontrar uma comunidade que levasse o
-            crescimento dos programadores a sério. Por isso criou uma.
+            Bruno não construiu a CommitPT para ter uma audiência. Construiu-a porque precisava dela
+            — e não existia.
           </p>
         </div>
 

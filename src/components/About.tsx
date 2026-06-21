@@ -32,6 +32,11 @@ const benefits: Benefit[] = [
     title: 'Ignora o ruído, fica com o que importa',
     desc: 'Roadmaps validados, templates usados por engenheiros na indústria, e workshops sobre as competências que fazem as carreiras avançar — não mais uma playlist do YouTube.',
   },
+  {
+    icon: MessageSquare,
+    title: 'Desenvolve as soft skills que te distinguem',
+    desc: 'Comunicar ideias, dar feedback construtivo, colaborar sob pressão — treinas tudo isto aqui. É o mais próximo de um ambiente de empresa real que vais ter antes de estares numa.',
+  },
 ]
 
 export default function About() {
@@ -41,11 +46,12 @@ export default function About() {
         <div className="mb-12 max-w-2xl">
           <span className="font-mono text-sm font-bold text-git-amber">01 // O Que Recebes</span>
           <h2 className="mt-3 text-3xl font-bold text-text-primary sm:text-4xl">
-            Tudo o que precisas para parar de adiar e começar a fazer ship.
+            Competências técnicas são só metade do caminho.
           </h2>
           <p className="mt-4 text-muted">
-            A maioria dos programadores sabe o que construir. A CommitPT resolve a parte com que
-            lutam — realmente fazê-lo, de forma consistente, com pessoas que os impulsionam.
+            Os melhores engenheiros sabem colaborar, dar e receber feedback, e trabalhar bem com
+            outros. A CommitPT desenvolve as duas partes — porque é isso que o mercado realmente
+            valoriza.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -4,6 +4,7 @@ const forYou = [
   'Estás no início da carreira e queres acesso a engenheiros experientes',
   'Estás a construir em público e queres uma comunidade que realmente participa',
   'Estás farto de aprender sozinho com tutoriais que nunca acabam',
+  'Queres desenvolver soft skills — colaboração, comunicação e feedback — além das técnicas',
 ]
 
 const notForYou = [
