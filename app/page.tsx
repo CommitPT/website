@@ -7,6 +7,7 @@ import Inside from '@/src/components/Inside'
 import Features from '@/src/components/Features'
 import Team from '@/src/components/Team'
 import SocialProof from '@/src/components/SocialProof'
+import ContributorsTeaser from '@/src/components/ContributorsTeaser'
 import FAQ from '@/src/components/FAQ'
 import Footer from '@/src/components/Footer'
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Features />
         <Team />
         <SocialProof />
+        <ContributorsTeaser />
         <FAQ />
       </main>
       <Footer />

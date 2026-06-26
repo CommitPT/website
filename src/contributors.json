@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Bruno Moisão",
+    "role": "Fundador da CommitPT",
+    "bio": "Engenheiro de Software com experiência no desenvolvimento de produtos de grande escala para empresas internacionais. Fundador da CommitPT.",
+    "githubUsername": "spars57",
+    "linkedin": "https://www.linkedin.com/in/brunomoisao",
+    "github": "https://github.com/spars57",
+    "instagram": "https://www.instagram.com/brumoisao"
+  },
+  {
+    "name": "Luis Moreira",
+    "role": "Software Engineer @ FashableAI",
+    "bio": "Engenheiro de Software apaixonado por tecnologia, inovação e inteligência artificial.",
+    "githubUsername": "SWAGGATH4K1NG",
+    "linkedin": "https://www.linkedin.com/in/luis-moreira-dev",
+    "github": "https://github.com/SWAGGATH4K1NG",
+    "email": "lm.network.pt@proton.me"
+  },
+  {
+    "name": "Afonso Januário",
+    "role": "Software Engineer @ TypeableAI",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "linkedin": "https://www.linkedin.com/in/afonsojanu/",
+    "github": "https://github.com/afonsojanu",
+    "githubUsername": "afonsojanu",
+    "instagram": "https://www.instagram.com/afonsojanu.dev"
+  },
+  {
+    "name": "Luis Silva",
+    "role": "Senior Cloud Architect @ Siemens",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "github",
+    "linkedin": "https://www.linkedin.com/in/l-silva"
+  },
+  {
+    "name": "Rafael Januário",
+    "role": "Software Engineer @ RCoders",
+    "bio": "Desenvolvedor de Software especializado em Java, Spring Boot, React e PostgreSQL, com foco no desenvolvimento de aplicações backend e full-stack.",
+    "githubUsername": "RafaelJ13",
+    "linkedin": "https://www.linkedin.com/in/rafael-janu%C3%A1rio-a145bb347",
+    "github": "https://github.com/RafaelJ13"
+  },
+  {
+    "name": "Alexandra",
+    "role": "Software Engineer",
+    "bio": "Desenvolvedora focada em tecnologias web modernas, com especial interesse em React, Tailwind CSS, Next.js e TypeScript.",
+    "githubUsername": "AlexandraHockett",
+    "github": "https://github.com/AlexandraHockett"
+  }
+]
