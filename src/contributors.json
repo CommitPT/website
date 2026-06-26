@@ -28,7 +28,7 @@
   },
   {
     "name": "Luis Silva",
-    "role": "Senior Cloud Architect @ Siemens",
+    "role": "Cloud Architect @ Siemens",
     "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
     "githubUsername": "github",
     "linkedin": "https://www.linkedin.com/in/l-silva"
@@ -42,10 +42,19 @@
     "github": "https://github.com/RafaelJ13"
   },
   {
-    "name": "Alexandra",
-    "role": "Software Engineer",
-    "bio": "Desenvolvedora focada em tecnologias web modernas, com especial interesse em React, Tailwind CSS, Next.js e TypeScript.",
+    "name": "Alexandra Hockett",
+    "role": "Software Engineer @ Freelance",
+    "bio": "Desenvolvedora FullStack especializada em Next.js e integrações de AI. Antiga gestora que trocou 21 anos de operações pela programação, sem olhar para trás.",
     "githubUsername": "AlexandraHockett",
-    "github": "https://github.com/AlexandraHockett"
+    "linkedin": "https://www.linkedin.com/in/alexandra-hockett",
+    "github": "https://github.com/AlexandraHockett",
+    "website": "https://alexandrahockett.com"
+  },
+  {
+    "name": "Tomas Bernardino",
+    "role": "DevSecOps Engineer @ EMGFA",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "github",
+    "linkedin": "https://www.linkedin.com/in/tomas-mbernardino/"
   }
 ]

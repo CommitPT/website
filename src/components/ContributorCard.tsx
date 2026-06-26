@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Mail } from 'lucide-react'
+import { Mail, Globe } from 'lucide-react'
 
 interface Contributor {
   name: string
@@ -10,6 +10,7 @@ interface Contributor {
   github?: string | null
   instagram?: string | null
   email?: string | null
+  website?: string | null
 }
 
 function LinkedInIcon() {
@@ -57,7 +58,11 @@ function InstagramIcon() {
 export default function ContributorCard({ contributor }: { contributor: Contributor }) {
   const avatarUrl = `https://github.com/${contributor.githubUsername}.png`
   const hasSocials =
-    contributor.linkedin || contributor.github || contributor.instagram || contributor.email
+    contributor.linkedin ||
+    contributor.github ||
+    contributor.instagram ||
+    contributor.email ||
+    contributor.website
 
   return (
     <div className="group flex flex-col rounded-lg border border-border bg-ink-light p-6 hover:border-git-add transition-colors">
@@ -115,6 +120,17 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
               className="text-muted transition-colors hover:text-git-add"
             >
               <Mail size={16} />
+            </a>
+          )}
+          {contributor.website && (
+            <a
+              href={contributor.website}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Website de ${contributor.name}`}
+              className="text-muted transition-colors hover:text-git-add"
+            >
+              <Globe size={16} />
             </a>
           )}
         </div>
