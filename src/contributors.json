@@ -42,10 +42,12 @@
     "github": "https://github.com/RafaelJ13"
   },
   {
-    "name": "Alexandra",
-    "role": "Software Engineer",
-    "bio": "Desenvolvedora focada em tecnologias web modernas, com especial interesse em React, Tailwind CSS, Next.js e TypeScript.",
-    "githubUsername": "AlexandraHockett",
-    "github": "https://github.com/AlexandraHockett"
-  }
+  "name": "Alexandra Hockett",
+  "role": "Next.js Full Stack Developer",
+  "bio": "Full Stack Developer specialising in Next.js and AI integrations. Former business manager who traded 21 years of operations for code.",
+  "githubUsername": "AlexandraHockett",
+  "linkedin": "https://www.linkedin.com/in/alexandra-hockett",
+  "github": "https://github.com/AlexandraHockett",
+  "website": "https://alexandrahockett.com"
+ }
 ]
