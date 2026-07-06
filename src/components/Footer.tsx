@@ -1,10 +1,9 @@
-import { buttonVariants } from '@commitpt/design-system'
+import { buttonVariants, Logo, Typography } from '@commitpt/design-system'
 import { ArrowRight, MessageCircle } from 'lucide-react'
-import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-border bg-surface/50">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="space-y-4">
@@ -12,12 +11,12 @@ export default function Footer() {
               href="#hero"
               className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
             >
-              <Image src="/commit_icon.png" width={28} height={28} alt="CommitPT" />
+              <Logo size={28} />
               CommitPT
             </a>
-            <p className="max-w-sm text-sm text-muted-foreground">
+            <Typography variant="small" color="muted" className="max-w-sm">
               A comunidade portuguesa que transforma programadores em engenheiros de topo.
-            </p>
+            </Typography>
           </div>
           <div className="flex flex-wrap gap-4 lg:justify-end">
             <a
@@ -42,7 +41,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <a href="#about" className="hover:text-primary transition-colors">
               Benefícios
             </a>
@@ -73,9 +72,23 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-          <p className="text-xs text-muted-foreground">
-            © 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados
-          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="/privacy"
+              className="text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              Política de Privacidade
+            </a>
+            <a
+              href="/terms"
+              className="text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              Termos e Condições
+            </a>
+            <Typography variant="caption" color="muted">
+              © 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados
+            </Typography>
+          </div>
         </div>
       </div>
     </footer>

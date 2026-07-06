@@ -1,7 +1,6 @@
 'use client'
 
-import { Button } from '@commitpt/design-system'
-import Image from 'next/image'
+import { Button, Logo, Typography } from '@commitpt/design-system'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
@@ -22,11 +21,13 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/50 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="/" className="flex items-center gap-2">
-          <Image src="/commit_icon.png" alt="CommitPT" width={32} height={32} />
-          <span className="font-mono text-lg font-bold text-foreground">CommitPT</span>
+          <Logo size={32} />
+          <Typography variant="h6" as="span" className="font-mono">
+            CommitPT
+          </Typography>
         </a>
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

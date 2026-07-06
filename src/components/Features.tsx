@@ -9,7 +9,7 @@ import {
   MessageCircle,
   LucideIcon,
 } from 'lucide-react'
-import { buttonVariants } from '@commitpt/design-system'
+import { buttonVariants, Typography } from '@commitpt/design-system'
 
 interface Solution {
   icon: LucideIcon
@@ -52,17 +52,19 @@ const solutions: Solution[] = [
 
 export default function Features() {
   return (
-    <section id="features" className="relative bg-surface">
+    <section id="features" className="relative">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">03 // Como Funciona</span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            03 // Como Funciona
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Como a CommitPT torna isso possível.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas
             certas. É assim que o crescimento deixa de ser acidental e passa a ser inevitável.
-          </p>
+          </Typography>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s) => (
@@ -72,8 +74,12 @@ export default function Features() {
             >
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
               <s.icon className="mb-4 h-6 w-6 text-primary" />
-              <h3 className="mb-2 text-lg font-semibold text-foreground">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
+              <Typography variant="h5" className="mb-2">
+                {s.title}
+              </Typography>
+              <Typography variant="small" color="muted">
+                {s.desc}
+              </Typography>
             </div>
           ))}
         </div>
@@ -81,12 +87,12 @@ export default function Features() {
           id="join"
           className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12"
         >
-          <h3 className="text-2xl font-bold text-foreground sm:text-3xl">
+          <Typography variant="h3" className="sm:text-3xl">
             Já sabes qual é o problema. A solução está a um clique.
-          </h3>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
             Junta-te a mais de 300 programadores portugueses que pararam de aprender sozinhos.
-          </p>
+          </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="https://whop.com/commitpt-709e/commit-plus"

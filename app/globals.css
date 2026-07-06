@@ -104,7 +104,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background: var(--gradient-brand);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;

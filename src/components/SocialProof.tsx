@@ -1,5 +1,6 @@
 import reviewsData from '@/src/reviews.json'
 import { Star } from 'lucide-react'
+import { Typography } from '@commitpt/design-system'
 
 const MONTHS = [
   'janeiro',
@@ -50,10 +51,12 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <div className="flex w-80 flex-shrink-0 flex-col gap-4 rounded-xl border border-border bg-surface p-6 transition-colors hover:border-primary/40">
       <StarRating count={t.stars} />
-      <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+      <Typography variant="small" color="muted" className="flex-1 leading-relaxed">
         &ldquo;{t.review}&rdquo;
-      </p>
-      <span className="font-mono text-xs text-muted-foreground">{formatDate(t.dateOfReview)}</span>
+      </Typography>
+      <Typography variant="caption" color="muted" as="span" className="font-mono">
+        {formatDate(t.dateOfReview)}
+      </Typography>
       <div className="flex items-center gap-3 border-t border-border pt-4">
         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 font-mono text-xs font-bold text-primary">
           {initials}
@@ -71,24 +74,34 @@ export default function SocialProof() {
   const doubled = [...testimonials, ...testimonials]
 
   return (
-    <section className="border-b border-border bg-background">
+    <section className="border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             05 // O Que Dizem os Membros
-          </span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Engenheiros reais. Resultados reais.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             Não acredites só na nossa palavra. É isto que acontece quando os programadores param de
             programar sozinhos.
-          </p>
+          </Typography>
         </div>
       </div>
 
-      {/* Infinite marquee */}
-      <div className="relative overflow-hidden pb-20 lg:pb-28">
+      {/* Mobile: horizontal scroll */}
+      <div
+        className="flex gap-4 overflow-x-auto px-6 pb-6 lg:hidden"
+        style={{ scrollbarWidth: 'none' }}
+      >
+        {testimonials.map((t, i) => (
+          <TestimonialCard key={i} t={t} />
+        ))}
+      </div>
+
+      {/* Desktop: infinite marquee */}
+      <div className="relative hidden overflow-hidden pb-28 lg:block">
         {/* Edge fade overlays */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-linear-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-linear-to-l from-background to-transparent" />

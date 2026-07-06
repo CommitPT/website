@@ -7,6 +7,7 @@ import {
   Award,
   LucideIcon,
 } from 'lucide-react'
+import { Typography } from '@commitpt/design-system'
 
 interface Benefit {
   icon: LucideIcon
@@ -49,17 +50,19 @@ const benefits: Benefit[] = [
 
 export default function About() {
   return (
-    <section id="about" className="border-y border-border bg-surface">
+    <section id="about" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">02 // O Que Muda</span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            02 // O Que Muda
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             O que muda quando deixas de evoluir sozinho.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             Entrar numa comunidade certa não é só ter mais pessoas à volta. É ter acesso a contexto,
             perspetiva e estrutura que tornam o teu crescimento inevitável.
-          </p>
+          </Typography>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((b) => (
@@ -69,8 +72,12 @@ export default function About() {
             >
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
               <b.icon className="mb-4 h-6 w-6 text-primary" />
-              <h3 className="mb-2 text-lg font-semibold text-foreground">{b.title}</h3>
-              <p className="text-sm text-muted-foreground">{b.desc}</p>
+              <Typography variant="h5" className="mb-2">
+                {b.title}
+              </Typography>
+              <Typography variant="small" color="muted">
+                {b.desc}
+              </Typography>
             </div>
           ))}
         </div>

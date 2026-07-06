@@ -1,4 +1,4 @@
-import { buttonVariants } from '@commitpt/design-system'
+import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, Code, MessageCircle, Users } from 'lucide-react'
 
 export default function Hero() {
@@ -15,12 +15,15 @@ export default function Hero() {
               300+ programadores portugueses já dentro
             </div>
 
-            <h1 className="hero-enter-2 text-4xl font-bold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-[46px] mb-7">
+            <Typography
+              variant="h1"
+              className="hero-enter-2 leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
+            >
               A comunidade que transforma programadores em{' '}
               <span className="block font-mono bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
                 engenheiros de topo.
               </span>
-            </h1>
+            </Typography>
 
             <p className="hero-enter-3 max-w-[520px] text-[17px] leading-[1.65] text-muted-foreground mb-9">
               Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber

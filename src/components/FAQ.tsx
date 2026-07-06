@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { Button } from '@commitpt/design-system'
+import { Button, Typography } from '@commitpt/design-system'
 
 interface FaqItem {
   q: string
@@ -206,31 +206,31 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="border-t border-border bg-surface">
+    <section id="faq" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             07 // Perguntas Frequentes
-          </span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Tens dúvidas. Temos respostas.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.
-          </p>
+          </Typography>
         </div>
         <div className="max-w-3xl mx-0">
           {faqs.map((faq, i) => (
             <div key={i} className="border-t border-border">
               <Button
                 variant="ghost"
-                className="w-full h-auto justify-between py-4 text-left rounded-none"
+                className="w-full h-auto justify-between py-4 text-left rounded-none items-start"
                 onClick={() => setOpen(open === i ? null : i)}
               >
-                {faq.q}
+                <span className="whitespace-normal text-wrap">{faq.q}</span>
                 <ChevronDown
                   size={16}
-                  className={`ml-4 shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`}
+                  className={`ml-4 mt-0.5 shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`}
                 />
               </Button>
               {open === i && (

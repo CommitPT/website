@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/design-system'
 import { Mail, Globe } from 'lucide-react'
 
 interface Contributor {
@@ -67,16 +67,23 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
   return (
     <div className="group flex flex-col rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors">
       <div className="mb-4 flex items-center gap-4">
-        <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full border border-border">
-          <Image src={avatarUrl} alt={contributor.name} fill className="object-cover" unoptimized />
-        </div>
+        <Avatar variant="secondary" className="h-14 w-14 flex-shrink-0">
+          <AvatarImage src={avatarUrl} alt={contributor.name} />
+          <AvatarFallback>{contributor.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+        </Avatar>
         <div className="min-w-0">
-          <h3 className="truncate font-semibold text-foreground">{contributor.name}</h3>
-          <p className="font-mono text-xs text-warning">{contributor.role}</p>
+          <Typography variant="h5" className="truncate">
+            {contributor.name}
+          </Typography>
+          <Typography variant="caption" color="secondary" className="font-mono">
+            {contributor.role}
+          </Typography>
         </div>
       </div>
 
-      <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{contributor.bio}</p>
+      <Typography variant="small" color="muted" className="flex-1 leading-relaxed">
+        {contributor.bio}
+      </Typography>
 
       {hasSocials && (
         <div className="mt-5 flex items-center gap-3 border-t border-border pt-5">

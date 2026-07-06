@@ -10,6 +10,7 @@ import {
   GitCommit,
   LucideIcon,
 } from 'lucide-react'
+import { Typography } from '@commitpt/design-system'
 
 const LAUNCH_DATE = new Date('2026-08-20T00:00:00')
 
@@ -71,10 +72,12 @@ interface CountdownUnitProps {
 function CountdownUnit({ value, label }: CountdownUnitProps) {
   return (
     <div className="flex flex-col items-center gap-1">
-      <span className="font-mono text-3xl font-bold tabular-nums text-foreground sm:text-4xl">
+      <Typography variant="h3" as="span" className="font-mono tabular-nums sm:text-4xl">
         {String(value).padStart(2, '0')}
-      </span>
-      <span className="font-mono text-xs text-muted-foreground">{label}</span>
+      </Typography>
+      <Typography variant="caption" color="muted" as="span" className="font-mono">
+        {label}
+      </Typography>
     </div>
   )
 }
@@ -83,28 +86,28 @@ export default function Platform() {
   const { days, hours, minutes, seconds } = useCountdown(LAUNCH_DATE)
 
   return (
-    <section id="platform" className="border-t border-border bg-background">
+    <section id="platform" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-warning/30 bg-warning/10 px-3 py-1 font-mono text-xs text-warning">
+            <div className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 font-mono text-xs text-secondary">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-warning opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-warning"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
               </span>
               em desenvolvimento — app.commitpt.com
             </div>
 
-            <h2 className="text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+            <Typography variant="h2" className="leading-tight sm:text-4xl">
               Os membros têm <span className="font-mono text-primary">acesso antecipado</span> à
               plataforma que estamos a construir.
-            </h2>
+            </Typography>
 
-            <p className="text-lg text-muted-foreground">
+            <Typography variant="large" color="muted">
               Uma plataforma de aprendizagem dedicada a programadores — roadmaps interativos, cursos
               práticos, notícias tech e acompanhamento de progresso. Entra agora e garante o acesso
               de membro fundador antes do lançamento.
-            </p>
+            </Typography>
 
             <div className="rounded-lg border border-border bg-surface px-6 py-5">
               <p className="mb-4 font-mono text-xs text-muted-foreground">{'// lança em'}</p>
@@ -133,9 +136,9 @@ export default function Platform() {
           <div className="rounded-lg border border-border bg-surface p-6">
             <div className="mb-4 flex items-center justify-between">
               <span className="font-mono text-xs text-muted-foreground">app.commitpt.com</span>
-              <span className="font-mono text-xs text-warning">
+              <Typography variant="caption" color="secondary" as="span" className="font-mono">
                 {'// membros fundadores têm acesso'}
-              </span>
+              </Typography>
             </div>
             <div className="space-y-3">
               {features.map((f) => (

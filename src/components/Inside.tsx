@@ -1,4 +1,5 @@
 import { BookOpen, EyeOff, Clock, FolderOpen, Unlink, Compass, LucideIcon } from 'lucide-react'
+import { Typography } from '@commitpt/design-system'
 
 interface Problem {
   icon: LucideIcon
@@ -41,18 +42,20 @@ const problems: Problem[] = [
 
 export default function Inside() {
   return (
-    <section className="border-b border-border bg-background">
+    <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">01 // O Problema</span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            01 // O Problema
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Crescer como engenheiro é difícil.{' '}
             <span className="text-muted-foreground">Sozinho, é quase impossível.</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             A maioria dos programadores está presa num ciclo que não reconhece. Mais um tutorial.
             Mais um projeto a meio. Mais uma semana sem evoluir de verdade.
-          </p>
+          </Typography>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((p) => (
@@ -62,8 +65,12 @@ export default function Inside() {
             >
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-destructive opacity-0 transition-opacity group-hover:opacity-100" />
               <p.icon className="mb-4 h-6 w-6 text-destructive" />
-              <h3 className="mb-2 text-lg font-semibold text-foreground">{p.title}</h3>
-              <p className="text-sm text-muted-foreground">{p.desc}</p>
+              <Typography variant="h5" className="mb-2">
+                {p.title}
+              </Typography>
+              <Typography variant="small" color="muted">
+                {p.desc}
+              </Typography>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@commitpt/design-system'
+import { Button, Typography } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
@@ -53,7 +53,7 @@ function MemberCard({ member }: { member: TeamMember }) {
       <div className="space-y-4">
         <div>
           <div className="flex items-center gap-3">
-            <h3 className="text-2xl font-bold text-foreground">{member.name}</h3>
+            <Typography variant="h3">{member.name}</Typography>
             {member.linkedinUrl && (
               <a
                 href={member.linkedinUrl}
@@ -112,7 +112,9 @@ function MemberCard({ member }: { member: TeamMember }) {
               </a>
             )}
           </div>
-          <p className="mt-1 font-mono text-sm text-warning">{member.role}</p>
+          <Typography variant="small" color="secondary" className="mt-1 font-mono">
+            {member.role}
+          </Typography>
         </div>
 
         <div className="space-y-3 text-muted-foreground">
@@ -134,17 +136,19 @@ function MemberCard({ member }: { member: TeamMember }) {
 
 export default function Team() {
   return (
-    <section id="team" className="border-t border-border bg-background">
+    <section id="team" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">04 // O Fundador</span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            04 // O Fundador
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Criado por alguém que esteve onde tu estás.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
             Bruno não construiu a CommitPT para ter uma audiência. Construiu-a porque precisava dela
             — e não existia.
-          </p>
+          </Typography>
         </div>
 
         <div className="space-y-16">
