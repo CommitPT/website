@@ -1,6 +1,5 @@
 import Header from '@/src/components/Header'
 import Hero from '@/src/components/Hero'
-import Stats from '@/src/components/Stats'
 import ForWho from '@/src/components/ForWho'
 import About from '@/src/components/About'
 import Inside from '@/src/components/Inside'
@@ -17,7 +16,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <ForWho />
         <Inside />
         <About />

@@ -1,11 +1,70 @@
+'use client'
+
 import { buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, Code, MessageCircle, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, MessageCircle, Mic, Star, Users } from 'lucide-react'
+import { Fragment, useEffect, useState } from 'react'
+
+type Segment = { text: string; className: string }
+
+const LINES: Segment[][] = [
+  [
+    { text: 'const ', className: 'text-syntax-purple' },
+    { text: 'comunidade ', className: 'text-syntax-blue' },
+    { text: '= ', className: 'text-foreground' },
+    { text: 'new ', className: 'text-syntax-purple' },
+    { text: 'CommitPT', className: 'text-syntax-blue' },
+    { text: '();', className: 'text-foreground' },
+  ],
+  [{ text: '// Profissionais experientes.', className: 'text-muted-foreground' }],
+  [
+    { text: '+', className: 'text-primary-400' },
+    { text: ' suporte', className: 'text-primary-400' },
+  ],
+  [
+    { text: '-', className: 'text-destructive' },
+    { text: ' isolamento', className: 'text-destructive' },
+  ],
+  [
+    { text: '+', className: 'text-primary-400' },
+    { text: ' crescimento', className: 'text-primary-400' },
+  ],
+  [
+    { text: '-', className: 'text-destructive' },
+    { text: ' frustrações', className: 'text-destructive' },
+  ],
+  [
+    { text: '+', className: 'text-primary-400' },
+    { text: ' impacto', className: 'text-primary-400' },
+  ],
+  [
+    { text: '-', className: 'text-destructive' },
+    { text: ' desistência', className: 'text-destructive' },
+  ],
+  [{ text: '// Dá commit para o próximo nível.', className: 'text-muted-foreground' }],
+  [
+    { text: 'await ', className: 'text-syntax-purple' },
+    { text: 'comunidade', className: 'text-syntax-blue' },
+    { text: '.', className: 'text-foreground' },
+    { text: 'entrar', className: 'text-syntax-blue' },
+    { text: '();', className: 'text-foreground' },
+  ],
+]
+
+const LINE_ENDS: number[] = (() => {
+  let acc = 0
+  return LINES.map((line) => {
+    acc += line.reduce((s, seg) => s + seg.text.length, 0)
+    return acc
+  })
+})()
+
+const TOTAL_CHARS = LINE_ENDS[LINE_ENDS.length - 1]
 
 export default function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-15 lg:items-start">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-15 lg:items-center">
           <div>
             <div className="hero-enter-1 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-primary mb-6">
               <span className="relative flex h-2 w-2">
@@ -25,7 +84,7 @@ export default function Hero() {
               </span>
             </Typography>
 
-            <p className="hero-enter-3 max-w-[520px] text-[17px] leading-[1.65] text-muted-foreground mb-9">
+            <p className="hero-enter-3 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
               Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber
               críticas, comunicar bem e trabalhar em equipa. A CommitPT é o ambiente mais próximo de
               uma empresa real que vais encontrar — antes de estares numa.
@@ -52,21 +111,26 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="hero-enter-5 flex flex-wrap gap-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Users size={18} className="text-primary" />
-                <span>
-                  <strong className="font-mono font-semibold text-foreground">300+</strong> membros
-                  ativos
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Code size={18} className="text-warning" />
-                <span>
-                  <strong className="font-mono font-semibold text-foreground">5+</strong> anos de
-                  experiência no mercado
-                </span>
-              </div>
+            <div className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] text-muted-foreground">
+              {[
+                { icon: Users, value: '300+', label: 'membros ativos' },
+                { icon: Briefcase, value: '25+', label: 'profissionais da área' },
+                { icon: Mic, value: '4+', label: 'sessões por mês' },
+                { icon: Star, value: '5+', label: 'anos de experiência' },
+              ].map((m, i) => (
+                <Fragment key={m.label}>
+                  {i > 0 && (
+                    <span className="hidden sm:block w-px self-stretch bg-border mx-5 my-0.5" />
+                  )}
+                  <div className="flex items-center gap-1.5 w-1/2 sm:w-auto">
+                    <m.icon size={13} className="text-muted-foreground/60 shrink-0" />
+                    <span>
+                      <strong className="font-mono font-semibold text-foreground">{m.value}</strong>{' '}
+                      {m.label}
+                    </span>
+                  </div>
+                </Fragment>
+              ))}
             </div>
           </div>
 
@@ -80,64 +144,75 @@ export default function Hero() {
 }
 
 function Terminal() {
+  const [displayedChars, setDisplayedChars] = useState(0)
+  const isDone = displayedChars >= TOTAL_CHARS
+
+  useEffect(() => {
+    if (isDone) return
+
+    const isLineEnd = LINE_ENDS.includes(displayedChars)
+    const delay = isLineEnd ? 80 + Math.random() * 100 : 15 + Math.random() * 30
+
+    const timer = setTimeout(() => setDisplayedChars((prev) => prev + 1), delay)
+    return () => clearTimeout(timer)
+  }, [displayedChars, isDone])
+
+  let remaining = displayedChars
+  const renderedLines = LINES.map((line, lineIdx) => {
+    if (remaining <= 0) return null
+
+    const lineLen = line.reduce((s, seg) => s + seg.text.length, 0)
+    const isActive = remaining < lineLen
+    const charsToShow = Math.min(remaining, lineLen)
+    remaining -= charsToShow
+
+    let charCount = 0
+    const segments = line.map((seg, segIdx) => {
+      if (charCount >= charsToShow) return null
+      const shown = seg.text.slice(0, charsToShow - charCount)
+      charCount += shown.length
+      return (
+        <span key={segIdx} className={seg.className}>
+          {shown}
+        </span>
+      )
+    })
+
+    return (
+      <div key={lineIdx} className="flex">
+        <span className="w-6 shrink-0 text-right text-muted-foreground select-none mr-4">
+          {lineIdx + 1}
+        </span>
+        <span>
+          {segments}
+          {isActive && (
+            <span className="inline-block w-[2px] h-[0.9em] bg-primary animate-pulse align-middle ml-px" />
+          )}
+        </span>
+      </div>
+    )
+  })
+
   return (
     <div className="rounded-lg border border-border bg-surface shadow-2xl overflow-hidden">
       <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
         <div className="h-3 w-3 rounded-full bg-primary" />
-        <span className="ml-2 font-mono text-xs text-muted-foreground">~ sprint-2026-Q3</span>
+        <span className="ml-2 font-mono text-xs text-muted-foreground">~ index.js</span>
       </div>
       <div
-        className="p-4 text-sm leading-relaxed sm:p-6"
+        className="p-4 text-sm leading-relaxed sm:p-6 space-y-1"
         style={{ fontFamily: 'Consolas, monospace' }}
       >
-        <div className="flex gap-4">
-          <div className="flex flex-col text-right text-muted-foreground select-none">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span>7</span>
-            <span>8</span>
+        {renderedLines}
+        {isDone && (
+          <div className="flex items-center gap-2 mt-2">
+            <span className="w-6 shrink-0" />
+            <span className="text-primary">$</span>
+            <span className="inline-block w-[2px] h-[0.9em] bg-primary animate-pulse align-middle" />
           </div>
-          <div className="space-y-1">
-            <div>
-              <span className="text-syntax-purple">const</span>{' '}
-              <span className="text-syntax-blue">community</span>{' '}
-              <span className="text-foreground">=</span>{' '}
-              <span className="text-syntax-purple">new</span>{' '}
-              <span className="text-syntax-blue">CommitPT</span>
-              <span className="text-foreground">();</span>
-            </div>
-            <div className="text-muted-foreground">{'// Engenheiros reais. Feedback real.'}</div>
-            <div>
-              <span className="text-destructive">-</span>{' '}
-              <span className="text-destructive">isolation</span>
-            </div>
-            <div>
-              <span className="text-primary">+</span>{' '}
-              <span className="text-primary">weeklyShips</span>
-            </div>
-            <div>
-              <span className="text-primary">+</span>{' '}
-              <span className="text-primary">codeReviews</span>
-            </div>
-            <div>
-              <span className="text-primary">+</span>{' '}
-              <span className="text-primary">careerGrowth</span>
-            </div>
-            <div className="text-muted-foreground">{'// commit para o teu próximo nível.'}</div>
-            <div>
-              <span className="text-syntax-purple">await</span>{' '}
-              <span className="text-syntax-blue">community</span>.
-              <span className="text-syntax-blue">join</span>
-              <span className="text-foreground">();</span>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   )

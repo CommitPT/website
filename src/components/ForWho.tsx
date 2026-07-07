@@ -21,7 +21,7 @@ const notForYou = [
 export default function ForWho() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+      <div className="mx-auto max-w-6xl px-6 py-10 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="mb-4 font-mono text-xs text-primary">{'// isto é para ti se'}</p>
