@@ -25,6 +25,7 @@ export interface Project {
   tags: string[]
   status: 'active' | 'coming-soon'
   link?: string
+  storybookLink?: string
   tagline: string
   mission: ProjectMission
   features: ProjectFeature[]
@@ -42,7 +43,7 @@ export const projects: Project[] = [
       'Bot automático para gerenciar accountability, XP, invites, tickets, private chats e onboarding na comunidade CommitPT.',
     fullDescription:
       'O Discord Bot CommitPT é a ferramenta central que potencia toda a comunidade. Oferece um sistema completo de XP e levels, rastreamento de convites, seleção de roles por interesse e linguagem, sistema de tickets para suporte, criação de private chats para membros Commit+, relatórios de moderação e onboarding automático. Construído com TypeScript e discord.js v14, o bot gerencia integrações com SQLite para persistência de dados e integra alertas automáticos para staff.',
-    image: '/projects/discord-bot.svg',
+    image: '/discord-bot.png',
     icon: '🤖',
     tags: ['TypeScript', 'discord.js v14', 'SQLite'],
     status: 'active',
@@ -115,11 +116,12 @@ export const projects: Project[] = [
       'Biblioteca de componentes React com Tailwind CSS v4, TypeScript e shadcn/ui. Tema customizável via CSS custom properties.',
     fullDescription:
       'O @commitpt/design-system é a biblioteca central de componentes reutilizáveis que potencia toda a plataforma CommitPT. Construído com React, TypeScript e Tailwind CSS v4, oferece um conjunto de componentes bem documentados (Button, Typography, Avatar, etc) com suporte total a customização via CSS custom properties. Inclui Storybook para documentação interativa e usa Changesets para gestão de versioning semântico. Publicado no npm scope @commitpt e disponível para uso em qualquer projeto da comunidade.',
-    image: '/projects/design-system.svg',
+    image: '/storybook.png',
     icon: '🎨',
     tags: ['React', 'TypeScript', 'Tailwind CSS v4'],
     status: 'active',
     link: 'https://github.com/commitpt/design-system',
+    storybookLink: 'https://main--6a47d6ac8a9990bb6908d4a9.chromatic.com/',
     tagline: 'A biblioteca de componentes que unifica toda a experiência visual da CommitPT.',
     mission: {
       problem:
@@ -189,7 +191,7 @@ export const projects: Project[] = [
       'Landing page moderna e otimizada com Next.js 14, TypeScript e Tailwind CSS. Apresenta a comunidade e funciona como funil de conversão para Whop e Discord.',
     fullDescription:
       'O Website CommitPT é a porta de entrada para a comunidade. Construído com Next.js 14 (App Router), TypeScript em modo strict e Tailwind CSS v4, oferece uma experiência rápida e otimizada. O site foi desenhado como um funil de conversão com duas CTAs principais: a adesão paga via Whop e o acesso gratuito ao Discord. Inclui múltiplas seções (Hero, About, Features, Projetos, Footer) com animações suaves, design responsivo e SEO completo. Usa componentes da @commitpt/design-system, integração com CI/CD e Git hooks automáticos para garantir qualidade de código.',
-    image: '/projects/website.svg',
+    image: '/website.png',
     icon: '🌐',
     tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS v4'],
     status: 'active',

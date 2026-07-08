@@ -68,7 +68,7 @@ export default function About() {
           {benefits.map((b) => (
             <div
               key={b.title}
-              className="group relative overflow-hidden rounded-lg border border-border bg-background p-6 hover:border-primary transition-colors"
+              className="group relative overflow-hidden rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors"
             >
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
               <b.icon className="mb-4 h-6 w-6 text-primary" />

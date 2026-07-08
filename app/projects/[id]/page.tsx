@@ -5,6 +5,7 @@ import Image from 'next/image'
 import {
   ArrowLeft,
   ArrowRight,
+  BookMarked,
   Github,
   Trophy,
   Ticket,
@@ -198,7 +199,7 @@ function HeroSection({ project }: { project: Project }) {
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {project.link && (
               <a
                 href={project.link}
@@ -208,6 +209,17 @@ function HeroSection({ project }: { project: Project }) {
               >
                 <Github size={16} />
                 Ver no GitHub
+              </a>
+            )}
+            {project.storybookLink && (
+              <a
+                href={project.storybookLink}
+                target="_blank"
+                rel="noreferrer"
+                className={buttonVariants({ variant: 'outline', size: 'lg', className: 'gap-2' })}
+              >
+                <BookMarked size={16} />
+                Ver Storybook
               </a>
             )}
             <a
