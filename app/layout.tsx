@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description:
       'A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses. Grupos de responsabilidade semanais, revisões de código entre pares e acesso a profissionais da área.',
     siteName: 'CommitPT',
-    images: [{ url: '/commit_3.png', width: 512, height: 512, alt: 'CommitPT' }],
+    images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
     locale: 'pt_PT',
   },
   twitter: {
@@ -55,11 +55,11 @@ export const metadata: Metadata = {
     title: 'Comunidade CommitPT — Para de programar sozinho. Começa a fazer ship.',
     description:
       'A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses.',
-    images: ['/commit_3.png'],
+    images: ['/commit_3_512w.webp'],
   },
   icons: {
-    icon: '/commit_icon.png',
-    apple: '/commit_icon.png',
+    icon: '/commit_icon_256w.webp',
+    apple: '/commit_icon_256w.webp',
   },
   alternates: {
     canonical: BASE_URL,

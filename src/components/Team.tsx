@@ -27,7 +27,7 @@ const members: TeamMember[] = [
       'Em 2025 fundou a CommitPT, uma comunidade portuguesa dedicada à Engenharia de Software que reúne centenas de programadores de diferentes níveis de experiência. O objetivo nunca foi criar mais um servidor de Discord ou vender um curso, mas sim construir um espaço onde as pessoas possam aprender em conjunto, receber feedback, colaborar em projetos e crescer mais depressa do que cresceriam sozinhas.',
       'Hoje, a CommitPT é a materialização daquilo que sentiu faltar quando estava no início da carreira: uma comunidade ativa, com pessoas experientes, focada na prática, na colaboração e na evolução contínua.',
     ],
-    photo: '/bruno.jpg',
+    photo: '/bruno_560w.webp',
     whopUrl: 'https://whop.com/commitpt-709e/commit-plus',
     linkedinUrl: 'https://www.linkedin.com/in/brunomoisao',
     instagramUrl: 'https://www.instagram.com/brumoisao/',

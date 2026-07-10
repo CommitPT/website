@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       'Os programadores que tornam a CommitPT possível. Mais de 20 contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.',
     siteName: 'CommitPT',
-    images: [{ url: '/commit_3.png', width: 512, height: 512, alt: 'CommitPT' }],
+    images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
     locale: 'pt_PT',
   },
   twitter: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Contribuidores — CommitPT',
     description:
       'Os programadores que tornam a CommitPT possível. Mais de 20 contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.',
-    images: ['/commit_3.png'],
+    images: ['/commit_3_512w.webp'],
   },
 }
 

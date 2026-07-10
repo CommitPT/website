@@ -36,6 +36,8 @@
     "lint-staged": "^16",
     "postcss": "^8.4.49",
     "prettier": "^3.8.4",
+    "sharp": "^0.35.3",
+    "sharp-cli": "^5.2.0",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3"
   },
@@ -47,5 +49,10 @@
     "*.{json,css,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "allowScripts": {
+    "sharp@0.35.3": true,
+    "sharp@0.34.2": true,
+    "unrs-resolver@1.12.2": true
   }
 }

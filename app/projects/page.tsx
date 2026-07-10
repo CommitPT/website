@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Projetos CommitPT',
     description: 'Conheça os projetos internos desenvolvidos pela CommitPT.',
-    images: [{ url: '/commit_3.png', width: 512, height: 512, alt: 'CommitPT' }],
+    images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
   },
 }
 
