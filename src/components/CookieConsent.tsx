@@ -53,7 +53,8 @@ export default function CookieConsent() {
         <div
           role="dialog"
           aria-label="Consentimento de cookies"
-          className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-[#151922]">
+          className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-[#151922]"
+        >
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
               Usamos o Google Analytics para perceber como os visitantes utilizam o site (páginas

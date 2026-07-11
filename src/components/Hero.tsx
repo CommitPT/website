@@ -112,7 +112,10 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] font-semibold" style={{ color: '#f1f5f9' }}>
+            <div
+              className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] font-semibold"
+              style={{ color: '#f1f5f9' }}
+            >
               {[
                 { icon: Users, value: '300+', label: 'membros ativos' },
                 { icon: Briefcase, value: '25+', label: 'profissionais da área' },
@@ -205,7 +208,9 @@ function Terminal() {
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
         <div className="h-3 w-3 rounded-full bg-primary" />
-        <span className="ml-2 font-mono text-xs font-semibold" style={{ color: '#94a3b8' }}>~ index.js</span>
+        <span className="ml-2 font-mono text-xs font-semibold" style={{ color: '#94a3b8' }}>
+          ~ index.js
+        </span>
       </div>
       <div
         className="p-4 text-sm leading-relaxed sm:p-6 space-y-1 bg-surface"
