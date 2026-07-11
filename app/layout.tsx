@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import CookieConsent from '@/src/components/CookieConsent'
 import './globals.css'
 
 const BASE_URL = 'https://www.commitpt.com'
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="orb-3 absolute bottom-[-10%] left-[15%] h-[600px] w-[600px] rounded-full bg-primary/[0.045] blur-[100px]" />
         </div>
         {children}
+        <CookieConsent />
       </body>
     </html>
   )
