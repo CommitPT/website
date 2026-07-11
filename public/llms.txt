@@ -1,0 +1,29 @@
+# CommitPT
+
+> A comunidade portuguesa que transforma programadores em engenheiros de topo.
+
+CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses. Resolve o isolamento e a procrastinação de developers que trabalham sozinhos, através de grupos de responsabilidade semanais, sessões de build-in-public, revisões de código entre pares e desafios de commit streak.
+
+## Membros
+
+- Acesso via Whop (pago): https://whop.com/commitpt-709e/commit-plus
+- Acesso via Discord (grátis): https://discord.gg/yGAbprCBrT
+
+## Páginas
+
+- [Homepage](https://www.commitpt.com)
+- [Projetos](https://www.commitpt.com/projects)
+- [Contribuidores](https://www.commitpt.com/contributors)
+- [Política de Privacidade](https://www.commitpt.com/privacy)
+- [Termos e Condições](https://www.commitpt.com/terms)
+
+## Projetos da comunidade
+
+- [Discord Bot](https://www.commitpt.com/projects/discord-bot): Bot de automação que gere accountability, XP, invites e onboarding na comunidade.
+- [Design System](https://www.commitpt.com/projects/design-system): Biblioteca de componentes React (@commitpt/design-system) usada em todos os projetos.
+- [Website](https://www.commitpt.com/projects/website): Esta landing page, construída com Next.js 14, TypeScript e Tailwind CSS.
+- [Platform](https://www.commitpt.com/projects/platform): Plataforma de aprendizagem em desenvolvimento em app.commitpt.com.
+
+## Fundador
+
+Bruno Moisão — https://www.linkedin.com/in/brunomoisao
