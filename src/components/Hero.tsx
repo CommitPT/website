@@ -105,13 +105,17 @@ export default function Hero() {
                 target="_blank"
                 rel="noreferrer"
                 className={buttonVariants({ variant: 'outline', size: 'lg' })}
+                style={{ color: 'oklch(0.8 0.1 240)' }}
               >
                 <MessageCircle size={16} />
                 Experimenta o Discord Grátis
               </a>
             </div>
 
-            <div className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] text-muted-foreground">
+            <div
+              className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] font-semibold"
+              style={{ color: '#f1f5f9' }}
+            >
               {[
                 { icon: Users, value: '300+', label: 'membros ativos' },
                 { icon: Briefcase, value: '25+', label: 'profissionais da área' },
@@ -194,15 +198,22 @@ function Terminal() {
   })
 
   return (
-    <div className="rounded-lg border border-border bg-surface shadow-2xl overflow-hidden">
+    <div
+      className="rounded-lg border border-border bg-surface shadow-2xl overflow-hidden"
+      role="img"
+      aria-label="Editor de código animado: const comunidade = new CommitPT(); + suporte - isolamento + crescimento - frustrações + impacto - desistência await comunidade.entrar();"
+      data-animation-done={isDone ? 'true' : undefined}
+    >
       <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
         <div className="h-3 w-3 rounded-full bg-primary" />
-        <span className="ml-2 font-mono text-xs text-muted-foreground">~ index.js</span>
+        <span className="ml-2 font-mono text-xs font-semibold" style={{ color: '#94a3b8' }}>
+          ~ index.js
+        </span>
       </div>
       <div
-        className="p-4 text-sm leading-relaxed sm:p-6 space-y-1"
+        className="p-4 text-sm leading-relaxed sm:p-6 space-y-1 bg-surface"
         style={{ fontFamily: 'Consolas, monospace' }}
       >
         {renderedLines}

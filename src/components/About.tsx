@@ -72,7 +72,7 @@ export default function About() {
             >
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
               <b.icon className="mb-4 h-6 w-6 text-primary" />
-              <Typography variant="h5" className="mb-2">
+              <Typography variant="h5" as="h3" className="mb-2">
                 {b.title}
               </Typography>
               <Typography variant="small" color="muted">

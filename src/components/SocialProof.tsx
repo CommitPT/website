@@ -94,6 +94,7 @@ export default function SocialProof() {
       <div
         className="flex gap-4 overflow-x-auto px-6 pb-6 lg:hidden"
         style={{ scrollbarWidth: 'none' }}
+        tabIndex={0}
       >
         {testimonials.map((t, i) => (
           <TestimonialCard key={i} t={t} />

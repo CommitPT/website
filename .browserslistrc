@@ -1,0 +1,7 @@
+# Modern browsers only — no IE11, no dead browsers
+defaults
+Chrome > 90
+Firefox > 90
+Edge > 90
+Safari > 15
+not dead

@@ -75,9 +75,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://avatars.githubusercontent.com" />
+      </head>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} bg-background text-foreground antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-hidden"
+        >
+          Saltar para o conteúdo principal
+        </a>
         {/* Ambient gradient orbs — fixed, behind everything */}
         <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
           <div className="orb-1 absolute -left-64 -top-64 h-[800px] w-[800px] rounded-full bg-primary/[0.055] blur-[140px]" />

@@ -38,7 +38,7 @@ export default function ContributorsPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main>
+      <main id="main-content">
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
             <Typography variant="overline" color="secondary" as="span" className="font-mono">
@@ -64,6 +64,9 @@ export default function ContributorsPage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
+          <Typography variant="h2" className="sr-only">
+            Lista de contribuidores
+          </Typography>
           <Typography variant="small" color="muted" className="mb-8 font-mono">
             A mostrar os <span className="text-primary">top {contributors.length}</span>{' '}
             contribuidores

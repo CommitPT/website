@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { Button, Typography } from '@commitpt/design-system'
 
@@ -204,6 +204,7 @@ const faqs: FaqItem[] = [
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
+  const id = useId()
 
   return (
     <section id="faq" className="border-t border-border">
@@ -219,28 +220,49 @@ export default function FAQ() {
             Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.
           </Typography>
         </div>
-        <div className="max-w-3xl mx-0">
-          {faqs.map((faq, i) => (
-            <div key={i} className="border-t border-border">
-              <Button
-                variant="ghost"
-                className="w-full h-auto justify-between py-4 text-left rounded-none items-start"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span className="whitespace-normal text-wrap">{faq.q}</span>
-                <ChevronDown
-                  size={16}
-                  className={`ml-4 mt-0.5 shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`}
-                />
-              </Button>
-              {open === i && (
-                <div className="space-y-3 pb-5 text-sm leading-relaxed text-muted-foreground">
-                  {faq.a}
+        <div className="max-w-3xl">
+          <div className="rounded-lg border border-border bg-surface">
+            {faqs.map((faq, i) => {
+              const isOpen = open === i
+              const isFirst = i === 0
+              const isLast = i === faqs.length - 1
+              const buttonId = `${id}-faq-btn-${i}`
+              const panelId = `${id}-faq-panel-${i}`
+
+              return (
+                <div key={i} className={i > 0 ? 'border-t border-border' : ''}>
+                  <Button
+                    id={buttonId}
+                    variant="ghost"
+                    className={`group w-full h-auto justify-between px-6 py-5 text-left transition-colors items-start rounded-none ${
+                      isFirst ? 'rounded-t-lg' : ''
+                    } ${isLast && !isOpen ? 'rounded-b-lg' : ''}`}
+                    onClick={() => setOpen(open === i ? null : i)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                  >
+                    <span className="whitespace-normal text-wrap pr-4 group-hover:text-foreground transition-colors">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      size={16}
+                      className={`ml-auto mt-0.5 shrink-0 transition-transform duration-200 group-hover:text-foreground ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </Button>
+                  {isOpen && (
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className="space-y-3 px-6 pb-5 text-sm leading-relaxed text-muted-foreground"
+                    >
+                      {faq.a}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
-          <div className="border-t border-border" />
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
