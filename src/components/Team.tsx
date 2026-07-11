@@ -115,7 +115,7 @@ function MemberCard({ member }: { member: TeamMember }) {
               </a>
             )}
           </div>
-          <Typography variant="small" color="primary" className="mt-1 font-mono">
+          <Typography variant="small" color="secondary" className="mt-1 font-mono">
             {member.role}
           </Typography>
         </div>
@@ -142,7 +142,7 @@ export default function Team() {
     <section id="team" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="primary" as="span" className="font-mono">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             04 // O Fundador
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">

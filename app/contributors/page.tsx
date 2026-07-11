@@ -41,7 +41,7 @@ export default function ContributorsPage() {
       <main id="main-content">
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-            <Typography variant="overline" color="primary" as="span" className="font-mono">
+            <Typography variant="overline" color="secondary" as="span" className="font-mono">
               {'// Contribuidores'}
             </Typography>
             <Typography variant="h1" className="mt-3 sm:text-5xl">
@@ -80,7 +80,7 @@ export default function ContributorsPage() {
 
         <section className="border-t border-border">
           <div className="mx-auto max-w-6xl px-6 py-20 text-center lg:py-28">
-            <Typography variant="overline" color="primary" as="span" className="font-mono">
+            <Typography variant="overline" color="secondary" as="span" className="font-mono">
               {'// Junta-te a nós'}
             </Typography>
             <Typography variant="h2" className="mt-3 sm:text-4xl">

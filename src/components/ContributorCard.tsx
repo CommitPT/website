@@ -78,7 +78,7 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
           <Typography variant="h5" as="h3" className="truncate">
             {contributor.name}
           </Typography>
-          <Typography variant="caption" color="primary" className="font-mono">
+          <Typography variant="caption" color="secondary" className="font-mono">
             {contributor.role}
           </Typography>
         </div>

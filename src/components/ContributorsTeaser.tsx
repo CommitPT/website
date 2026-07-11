@@ -10,7 +10,7 @@ export default function ContributorsTeaser() {
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">
-          <Typography variant="overline" color="primary" as="span" className="font-mono">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             06 // Contribuidores
             </Typography>
             <Typography variant="h2" className="mt-3 sm:text-4xl">

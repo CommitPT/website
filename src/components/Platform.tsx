@@ -90,7 +90,7 @@ export default function Platform() {
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
+            <div className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 font-mono text-xs text-secondary">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
@@ -136,7 +136,7 @@ export default function Platform() {
           <div className="rounded-lg border border-border bg-surface p-6">
             <div className="mb-4 flex items-center justify-between">
               <span className="font-mono text-xs text-muted-foreground">app.commitpt.com</span>
-              <Typography variant="caption" color="primary" as="span" className="font-mono">
+              <Typography variant="caption" color="secondary" as="span" className="font-mono">
                 {'// membros fundadores têm acesso'}
               </Typography>
             </div>

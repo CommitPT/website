@@ -77,7 +77,7 @@ export default function SocialProof() {
     <section className="border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="primary" as="span" className="font-mono">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             05 // O Que Dizem os Membros
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">

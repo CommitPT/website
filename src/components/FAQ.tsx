@@ -210,7 +210,7 @@ export default function FAQ() {
     <section id="faq" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="primary" as="span" className="font-mono">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
             07 // Perguntas Frequentes
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">

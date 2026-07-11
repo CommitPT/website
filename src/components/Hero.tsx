@@ -152,7 +152,7 @@ function Terminal() {
     if (isDone) return
 
     const isLineEnd = LINE_ENDS.includes(displayedChars)
-    const delay = isLineEnd ? 30 : 5
+    const delay = isLineEnd ? 80 + Math.random() * 100 : 15 + Math.random() * 30
 
     const timer = setTimeout(() => setDisplayedChars((prev) => prev + 1), delay)
     return () => clearTimeout(timer)

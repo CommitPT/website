@@ -16,7 +16,7 @@ export default function TermsPage() {
       <main id="main-content" className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
         <div className="space-y-10">
           <header className="space-y-4">
-            <p className="font-mono text-sm font-medium text-primary">
+            <p className="font-mono text-sm font-medium text-secondary">
               Última atualização: 6 de Julho de 2026
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-foreground">

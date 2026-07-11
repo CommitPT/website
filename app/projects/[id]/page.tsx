@@ -261,7 +261,7 @@ function MissionSection({ project }: { project: Project }) {
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// A missão deste projeto'}
         </Typography>
 
@@ -287,7 +287,7 @@ function FeaturesSection({ project }: { project: Project }) {
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// Funcionalidades'}
         </Typography>
 
@@ -325,7 +325,7 @@ function LearningsSection({ project }: { project: Project }) {
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// O que vais aprender'}
         </Typography>
 
@@ -364,7 +364,7 @@ function WorkflowSection({ project }: { project: Project }) {
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// Como contribuímos'}
         </Typography>
 
@@ -398,7 +398,7 @@ function ImpactSection({ project }: { project: Project }) {
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// Impacto'}
         </Typography>
 
@@ -428,7 +428,7 @@ function OtherProjectsSection({ projects: otherProjects }: { projects: Project[]
   return (
     <section className="border-t border-border py-16 lg:py-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-        <Typography variant="overline" color="primary" as="span" className="font-mono">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
           {'// Explora outros projetos'}
         </Typography>
 
