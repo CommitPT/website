@@ -75,6 +75,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://avatars.githubusercontent.com" />
+      </head>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} bg-background text-foreground antialiased`}
       >

@@ -1,5 +1,6 @@
-import { buttonVariants, Logo, Typography } from '@commitpt/design-system'
+import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, MessageCircle } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -11,7 +12,13 @@ export default function Footer() {
               href="/#hero"
               className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
             >
-              <Logo size={28} />
+              <Image
+                src="/commit_icon_256w.webp"
+                alt=""
+                width={28}
+                height={28}
+                className="shrink-0 rounded-md object-cover"
+              />
               CommitPT
             </a>
             <Typography variant="small" color="muted" className="max-w-sm">

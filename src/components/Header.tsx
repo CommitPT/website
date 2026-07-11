@@ -1,7 +1,8 @@
 'use client'
 
-import { Button, buttonVariants, Logo, Typography } from '@commitpt/design-system'
+import { Button, buttonVariants, Typography } from '@commitpt/design-system'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 
 interface NavLink {
@@ -22,7 +23,14 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-surface/50 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="/" className="flex items-center gap-2">
-          <Logo size={32} />
+          <Image
+            src="/commit_icon_256w.webp"
+            alt=""
+            width={32}
+            height={32}
+            className="shrink-0 rounded-md object-cover"
+            priority
+          />
           <Typography variant="h6" as="span" className="font-mono">
             CommitPT
           </Typography>
