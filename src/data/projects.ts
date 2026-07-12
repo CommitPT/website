@@ -121,7 +121,7 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'Tailwind CSS v4'],
     status: 'active',
     link: 'https://github.com/commitpt/design-system',
-    storybookLink: 'https://main--6a47d6ac8a9990bb6908d4a9.chromatic.com/',
+    storybookLink: 'https://storybook.commitpt.com',
     tagline: 'A biblioteca de componentes que unifica toda a experiência visual da CommitPT.',
     mission: {
       problem:
