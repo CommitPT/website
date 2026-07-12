@@ -1,3 +1,5 @@
+import { unstable_cache } from 'next/cache'
+
 export interface WhopReview {
   id: string
   title: string | null
@@ -37,14 +39,10 @@ async function getAccessToken(): Promise<string> {
   }
 
   const apiKey = process.env.WHOP_API_KEY
-  if (!apiKey) {
-    throw new Error('WHOP_API_KEY is not set')
-  }
-
   const companyId = process.env.WHOP_COMPANY_ID
-  if (!companyId) {
-    throw new Error('WHOP_COMPANY_ID is not set')
-  }
+
+  if (!apiKey) throw new Error('WHOP_API_KEY is not set')
+  if (!companyId) throw new Error('WHOP_COMPANY_ID is not set')
 
   const expiresAt = new Date(now + TOKEN_TTL_HOURS * 60 * 60 * 1000).toISOString()
 
@@ -55,6 +53,7 @@ async function getAccessToken(): Promise<string> {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ company_id: companyId, expires_at: expiresAt }),
+    // no-store is safe inside unstable_cache — does not trigger DYNAMIC_SERVER_USAGE
     cache: 'no-store',
   })
 
@@ -72,41 +71,40 @@ async function getAccessToken(): Promise<string> {
   return tokenCache.token
 }
 
-export async function getWhopReviews(): Promise<WhopReview[]> {
+async function fetchReviews(): Promise<WhopReview[]> {
   const productId = process.env.WHOP_PRODUCT_ID
+  if (!process.env.WHOP_API_KEY || !productId) return []
 
-  if (!process.env.WHOP_API_KEY || !productId) {
-    return []
+  const token = await getAccessToken()
+
+  const res = await fetch(`https://api.whop.com/api/v1/reviews?product_id=${productId}&first=50`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    cache: 'no-store',
+  })
+
+  if (!res.ok) {
+    throw new Error(`Whop reviews error: ${res.status} ${res.statusText}`)
   }
 
+  const json: WhopReviewsResponse = await res.json()
+  return json.data.filter((r) => r.status === 'published')
+}
+
+// unstable_cache caches the result for 24h — individual no-store fetches inside are fine
+const getCachedReviews = unstable_cache(fetchReviews, ['whop-reviews'], { revalidate: 86400 })
+
+export async function getWhopReviews(): Promise<WhopReview[]> {
+  if (!process.env.WHOP_API_KEY || !process.env.WHOP_PRODUCT_ID) return []
+
   try {
-    const token = await getAccessToken()
-
-    const res = await fetch(
-      `https://api.whop.com/api/v1/reviews?product_id=${productId}&first=50`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        next: { revalidate: 86400 },
-      }
-    )
-
-    if (!res.ok) {
-      console.error(`Whop reviews error: ${res.status} ${res.statusText}`)
-      return []
-    }
-
-    const json: WhopReviewsResponse = await res.json()
-    const reviews = json.data.filter((r) => r.status === 'published')
-    lastSuccessfulReviews = reviews
+    const reviews = await getCachedReviews()
+    if (reviews.length > 0) lastSuccessfulReviews = reviews
     return reviews
   } catch (err) {
     console.error('Failed to fetch Whop reviews:', err)
-    if (lastSuccessfulReviews) {
-      return lastSuccessfulReviews
-    }
-    return []
+    return lastSuccessfulReviews ?? []
   }
 }
