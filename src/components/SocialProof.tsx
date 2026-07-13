@@ -1,7 +1,6 @@
-import fallbackReviews from '@/src/reviews.json'
 import { getWhopReviews } from '@/src/lib/whop'
-import { Star } from 'lucide-react'
-import { Typography } from '@commitpt/design-system'
+import fallbackReviews from '@/src/reviews.json'
+import { ReviewCard, Typography } from '@commitpt/design-system'
 
 const MONTHS = [
   'janeiro',
@@ -38,70 +37,46 @@ function formatDate(raw: string): string {
   return `${d} de ${MONTHS[m - 1]} de ${y}`
 }
 
-function StarRating({ count }: { count: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`h-4 w-4 ${i < count ? 'fill-warning text-warning' : 'fill-border text-border'}`}
-        />
-      ))}
-    </div>
-  )
-}
-
 function TestimonialCard({ t }: { t: ReviewItem }) {
-  const initials = t.name[0]
-
   return (
-    <div className="flex w-80 flex-shrink-0 flex-col gap-4 rounded-xl border border-border bg-surface p-6 transition-colors hover:border-primary/40">
-      <StarRating count={t.stars} />
-      <Typography variant="small" color="muted" className="flex-1 leading-relaxed">
-        &ldquo;{t.review}&rdquo;
-      </Typography>
-      <Typography variant="caption" color="muted" as="span" className="font-mono">
-        {formatDate(t.date)}
-      </Typography>
-      <div className="flex items-center gap-3 border-t border-border pt-4">
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 font-mono text-xs font-bold text-primary">
-          {initials}
-        </div>
-        <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-foreground">{t.name}</p>
-          <span className="font-mono text-xs text-primary">{t.handle}</span>
-        </div>
-      </div>
-    </div>
+    <ReviewCard
+      className="w-80 flex-shrink-0"
+      name={t.name}
+      memberSince={t.handle}
+      review={t.review}
+      rating={t.stars}
+      reviewDate={formatDate(t.date)}
+    />
   )
 }
 
 export default async function SocialProof() {
   const whopReviews = await getWhopReviews()
 
-  const testimonials: ReviewItem[] =
-    whopReviews.length > 0
-      ? whopReviews
-          .filter((r) => r.description)
-          .map((r) => ({
-            id: r.id,
-            name: r.user.name,
-            handle: `@${r.user.username}`,
-            date: r.created_at,
-            review: r.description!,
-            stars: r.stars,
-          }))
-      : fallbackReviews.map((r, i) => ({
-          id: String(i),
-          name: r.name,
-          handle: r.discordUsername,
-          date: r.dateOfReview,
-          review: r.review,
-          stars: r.stars,
-        }))
+  const whopItems: ReviewItem[] = whopReviews
+    .filter((r) => r.description)
+    .map((r) => ({
+      id: `whop-${r.id}`,
+      name: r.user.name,
+      handle: `@${r.user.username}`,
+      date: r.created_at,
+      review: r.description!,
+      stars: Math.round(r.stars),
+    }))
 
-  const unique = testimonials.filter((t, i, arr) => arr.findIndex((x) => x.id === t.id) === i)
-  const doubled = [...unique, ...unique]
+  const hardcodedItems: ReviewItem[] = fallbackReviews.map((r, i) => ({
+    id: `hardcoded-${i}`,
+    name: r.name,
+    handle: r.discordUsername,
+    date: r.dateOfReview,
+    review: r.review,
+    stars: Math.round(r.stars),
+  }))
+
+  // Whop reviews first, hardcoded reviews after
+  const testimonials: ReviewItem[] = [...whopItems, ...hardcodedItems]
+
+  const doubled = [...testimonials, ...testimonials]
 
   return (
     <section className="border-y border-border">
@@ -123,8 +98,8 @@ export default async function SocialProof() {
               className="text-primary underline-offset-2 hover:underline"
             >
               Whop
-            </a>
-            .
+            </a>{' '}
+            e Comunidade.
           </Typography>
         </div>
       </div>
@@ -135,7 +110,7 @@ export default async function SocialProof() {
         style={{ scrollbarWidth: 'none' }}
         tabIndex={0}
       >
-        {unique.map((t) => (
+        {testimonials.map((t) => (
           <TestimonialCard key={t.id} t={t} />
         ))}
       </div>
