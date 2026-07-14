@@ -76,6 +76,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt" className="scroll-smooth">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#0A0F1A" />
         <link rel="preconnect" href="https://avatars.githubusercontent.com" />
       </head>
       <body

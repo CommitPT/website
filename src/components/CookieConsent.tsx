@@ -10,12 +10,10 @@ const STORAGE_KEY = 'cookie_consent'
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>(null)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as ConsentState | null
-    setConsent(stored)
-    setMounted(true)
+    if (stored) setConsent(stored)
   }, [])
 
   function handleAccept() {
@@ -27,8 +25,6 @@ export default function CookieConsent() {
     localStorage.setItem(STORAGE_KEY, 'declined')
     setConsent('declined')
   }
-
-  if (!mounted) return null
 
   return (
     <>

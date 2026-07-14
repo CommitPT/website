@@ -19,7 +19,6 @@ const nextConfig = {
 
   experimental: {
     optimizePackageImports: ['lucide-react', '@commitpt/design-system'],
-    // Inline small font CSS to eliminate render-blocking external stylesheets
   },
 
   async headers() {

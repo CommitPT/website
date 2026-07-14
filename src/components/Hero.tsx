@@ -123,7 +123,11 @@ export default function Hero() {
                     <span className="hidden sm:block w-px self-stretch bg-border mx-5 my-0.5" />
                   )}
                   <div className="flex items-center gap-1.5 w-1/2 sm:w-auto">
-                    <m.icon size={13} className="text-muted-foreground/60 shrink-0" />
+                    <m.icon
+                      size={13}
+                      className="text-muted-foreground/60 shrink-0"
+                      aria-hidden="true"
+                    />
                     <span>
                       <strong className="font-mono font-semibold text-foreground">{m.value}</strong>{' '}
                       {m.label}
@@ -195,7 +199,7 @@ function Terminal() {
 
   return (
     <div
-      className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden"
+      className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden min-h-[300px]"
       role="img"
       aria-label="Editor de código animado: const comunidade = new CommitPT(); + suporte - isolamento + crescimento - frustrações + impacto - desistência await comunidade.entrar();"
       data-animation-done={isDone ? 'true' : undefined}

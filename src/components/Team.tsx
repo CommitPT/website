@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Typography } from '@commitpt/design-system'
+import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
@@ -41,7 +41,13 @@ function MemberCard({ member }: { member: TeamMember }) {
       <div className="mx-auto w-full max-w-[280px] lg:mx-0">
         {member.photo ? (
           <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border">
-            <Image src={member.photo} alt={member.name} fill className="object-cover rotate-90" />
+            <Image
+              src={member.photo}
+              alt={member.name}
+              fill
+              sizes="(max-width: 1024px) 280px, 280px"
+              className="object-cover rotate-90"
+            />
           </div>
         ) : (
           <div className="flex aspect-square w-full items-center justify-center rounded-lg border border-border bg-surface">
@@ -127,10 +133,10 @@ function MemberCard({ member }: { member: TeamMember }) {
         </div>
 
         <div className="flex justify-center lg:justify-start pt-2">
-          <Button onClick={() => window.open(member.whopUrl, '_blank')}>
+          <a href={member.whopUrl} target="_blank" rel="noreferrer" className={buttonVariants({})}>
             Entra na comunidade que o Bruno construiu
             <ArrowRight size={14} />
-          </Button>
+          </a>
         </div>
       </div>
     </div>

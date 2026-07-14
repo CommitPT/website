@@ -140,7 +140,7 @@ export default function Platform() {
                   key={f.label}
                   className="flex items-center gap-3 rounded-md border border-border bg-background px-4 py-3 text-sm text-muted-foreground"
                 >
-                  <f.icon size={15} className="shrink-0 text-primary" />
+                  <f.icon size={15} className="shrink-0 text-primary" aria-hidden="true" />
                   <span>{f.label}</span>
                   <span className="ml-auto font-mono text-xs text-border">{'// em breve'}</span>
                 </div>

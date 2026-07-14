@@ -101,8 +101,7 @@ export async function getWhopReviews(): Promise<WhopReview[]> {
     const reviews = await getCachedReviews()
     if (reviews.length > 0) lastSuccessfulReviews = reviews
     return reviews
-  } catch (err) {
-    console.error('Failed to fetch Whop reviews:', err)
+  } catch {
     return lastSuccessfulReviews ?? []
   }
 }

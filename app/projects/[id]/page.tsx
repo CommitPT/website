@@ -241,6 +241,7 @@ function HeroSection({ project }: { project: Project }) {
             alt={project.title}
             width={600}
             height={400}
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="w-full h-auto rounded-xl border border-border bg-surface object-cover shadow-2xl"
           />
         </div>
@@ -445,6 +446,7 @@ function OtherProjectsSection({ projects: otherProjects }: { projects: Project[]
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
