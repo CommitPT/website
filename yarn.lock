@@ -170,7 +170,7 @@
     conventional-commits-parser "^7.0.0"
     picocolors "^1.1.1"
 
-"@commitpt/design-system@^0.2.0":
+"@commitpt/design-system@^0.3.0":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@commitpt/design-system/-/design-system-0.2.1.tgz#e6c887ec856552dcdf98127adbc6bbed91eabc2b"
   integrity sha512-W2AnfVVwR/JFbOxXQJZd+Qn8yqZcWQiJKhmW+oJ/eB7DI6xlsHY5rRm3xeuO1LPGZIo/lIU538FLzKTe6AKJIg==
