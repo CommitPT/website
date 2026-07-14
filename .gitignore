@@ -34,6 +34,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.windsurf/
 *.suo
 *.ntvs*
 *.njsproj
@@ -43,3 +44,12 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Temp / scratch files
+tmp-parse-whop.mjs
+whop-page.html
+whop-products.txt
+LIGHTHOUSE_REPORT.md
+
+# Lock files (project uses yarn)
+package-lock.json
