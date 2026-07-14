@@ -1,6 +1,6 @@
 'use client'
 
-import { buttonVariants, Typography } from '@commitpt/design-system'
+import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, Briefcase, MessageCircle, Mic, Star, Users } from 'lucide-react'
 import { Fragment, useEffect, useState } from 'react'
 
@@ -66,13 +66,9 @@ export default function Hero() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-15 lg:items-center">
           <div>
-            <div className="hero-enter-1 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-primary mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-              </span>
-              300+ programadores portugueses já dentro
-            </div>
+            <Badge variant="primary" className="hero-enter-1 mb-6">
+              350+ programadores portugueses já dentro
+            </Badge>
 
             <Typography
               variant="h1"
@@ -117,7 +113,7 @@ export default function Hero() {
               style={{ color: '#f1f5f9' }}
             >
               {[
-                { icon: Users, value: '300+', label: 'membros ativos' },
+                { icon: Users, value: '350+', label: 'membros ativos' },
                 { icon: Briefcase, value: '25+', label: 'profissionais da área' },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
                 { icon: Star, value: '5+', label: 'anos de experiência' },
@@ -199,7 +195,7 @@ function Terminal() {
 
   return (
     <div
-      className="rounded-lg border border-border bg-surface shadow-2xl overflow-hidden"
+      className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden"
       role="img"
       aria-label="Editor de código animado: const comunidade = new CommitPT(); + suporte - isolamento + crescimento - frustrações + impacto - desistência await comunidade.entrar();"
       data-animation-done={isDone ? 'true' : undefined}

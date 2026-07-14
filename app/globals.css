@@ -80,6 +80,14 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 
+  /* ── Icon scale ─────────────────────────────────────────────────── */
+  --icon-xxs: 0.75rem;
+  --icon-xs: 1rem;
+  --icon-sm: 1.25rem;
+  --icon-md: 1.5rem;
+  --icon-lg: 2rem;
+  --icon-xl: 2.5rem;
+
   /* ── Syntax highlight colors (no design system equivalent) ──────── */
   --color-syntax-purple: #dbb8ff;
   --color-syntax-green: #8af29a;
@@ -96,6 +104,60 @@
       transform: translateX(-50%);
     }
   }
+}
+
+@utility icon-xxs {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+}
+
+@utility icon-xs {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+@utility icon-sm {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+@utility icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+@utility icon-md {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+@utility icon-lg {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+@utility icon-xl {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+/* ── ReviewCard star fill override ───────────────────────────────────────
+   StarRating uses url(#star-gradient) as an inline style, which doesn't
+   reliably resolve cross-SVG. !important beats the inline style. */
+[data-slot='review-card'] svg.lucide-star {
+  fill: oklch(0.771 0.162 79) !important;
+  stroke: oklch(0.771 0.162 79) !important;
+}
+[data-slot='review-card'] svg.lucide-star.fill-transparent {
+  fill: transparent !important;
+  stroke: oklch(0.679 0.024 247 / 30%) !important;
 }
 
 @layer base {

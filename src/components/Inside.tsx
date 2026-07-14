@@ -1,5 +1,5 @@
 import { BookOpen, EyeOff, Clock, FolderOpen, Unlink, Compass, LucideIcon } from 'lucide-react'
-import { Typography } from '@commitpt/design-system'
+import { FeatureCard, Typography } from '@commitpt/design-system'
 
 interface Problem {
   icon: LucideIcon
@@ -59,19 +59,13 @@ export default function Inside() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((p) => (
-            <div
+            <FeatureCard
               key={p.title}
-              className="group relative overflow-hidden rounded-lg border border-border bg-surface p-6 hover:border-destructive transition-colors"
-            >
-              <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-destructive opacity-0 transition-opacity group-hover:opacity-100" />
-              <p.icon className="mb-4 h-6 w-6 text-destructive" />
-              <Typography variant="h5" as="h3" className="mb-2">
-                {p.title}
-              </Typography>
-              <Typography variant="small" color="muted">
-                {p.desc}
-              </Typography>
-            </div>
+              variant="destructive"
+              icon={<p.icon className="icon" aria-hidden="true" />}
+              title={p.title}
+              description={p.desc}
+            />
           ))}
         </div>
       </div>

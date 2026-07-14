@@ -1,15 +1,15 @@
+import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
 import {
   ArrowRight,
-  Video,
-  Target,
-  GitPullRequest,
-  MessageSquare,
-  GitBranch,
   BookMarked,
-  MessageCircle,
+  GitBranch,
+  GitPullRequest,
   LucideIcon,
+  MessageCircle,
+  MessageSquare,
+  Target,
+  Video,
 } from 'lucide-react'
-import { buttonVariants, Typography } from '@commitpt/design-system'
 
 interface Solution {
   icon: LucideIcon
@@ -68,30 +68,23 @@ export default function Features() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s) => (
-            <div
+            <FeatureCard
               key={s.title}
-              className="group relative overflow-hidden rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors"
-            >
-              <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
-              <s.icon className="mb-4 h-6 w-6 text-primary" />
-              <Typography variant="h5" as="h3" className="mb-2">
-                {s.title}
-              </Typography>
-              <Typography variant="small" color="muted">
-                {s.desc}
-              </Typography>
-            </div>
+              icon={<s.icon className="icon" aria-hidden="true" />}
+              title={s.title}
+              description={s.desc}
+            />
           ))}
         </div>
         <div
           id="join"
-          className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12"
+          className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12 shadow-xl shadow-black/40"
         >
           <Typography variant="h3" className="sm:text-3xl">
             Já sabes qual é o problema. A solução está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Junta-te a mais de 300 programadores portugueses que pararam de aprender sozinhos.
+            Junta-te a mais de 350 programadores portugueses que pararam de aprender sozinhos.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a

@@ -221,7 +221,7 @@ export default function FAQ() {
           </Typography>
         </div>
         <div className="max-w-3xl">
-          <div className="rounded-lg border border-border bg-surface">
+          <div className="rounded-lg border border-border bg-elevated shadow-xl shadow-black/40">
             {faqs.map((faq, i) => {
               const isOpen = open === i
               const isFirst = i === 0

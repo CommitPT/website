@@ -103,7 +103,7 @@ export const projects: Project[] = [
     ],
     workflow: ['Ideias', 'Planeamento', 'Issues', 'Implementação', 'Code Review', 'Deploy'],
     impact: [
-      { value: '300+', label: 'membros servidos' },
+      { value: '350+', label: 'membros servidos' },
       { value: '20+', label: 'funcionalidades ativas' },
       { value: '6', label: 'módulos independentes' },
       { value: '100%', label: 'automatizado' },

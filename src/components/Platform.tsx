@@ -10,7 +10,7 @@ import {
   GitCommit,
   LucideIcon,
 } from 'lucide-react'
-import { Typography } from '@commitpt/design-system'
+import { Badge, Typography } from '@commitpt/design-system'
 
 const LAUNCH_DATE = new Date('2026-08-20T00:00:00')
 
@@ -90,13 +90,7 @@ export default function Platform() {
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 font-mono text-xs text-secondary">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
-              </span>
-              em desenvolvimento — app.commitpt.com
-            </div>
+            <Badge variant="secondary">em desenvolvimento — app.commitpt.com</Badge>
 
             <Typography variant="h2" className="leading-tight sm:text-4xl">
               Os membros têm <span className="font-mono text-primary">acesso antecipado</span> à

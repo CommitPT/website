@@ -1,4 +1,4 @@
-import { Typography } from '@commitpt/design-system'
+import { FeatureCard, Typography } from '@commitpt/design-system'
 import {
   Award,
   BarChart2,
@@ -66,19 +66,12 @@ export default function About() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((b) => (
-            <div
+            <FeatureCard
               key={b.title}
-              className="group relative overflow-hidden rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors"
-            >
-              <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
-              <b.icon className="mb-4 h-6 w-6 text-primary" />
-              <Typography variant="h5" as="h3" className="mb-2">
-                {b.title}
-              </Typography>
-              <Typography variant="small" color="muted">
-                {b.desc}
-              </Typography>
-            </div>
+              icon={<b.icon className="icon" aria-hidden="true" />}
+              title={b.title}
+              description={b.desc}
+            />
           ))}
         </div>
       </div>
