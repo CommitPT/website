@@ -1,5 +1,6 @@
 import { getWhopReviews } from '@/src/lib/whop'
 import fallbackReviews from '@/src/reviews.json'
+import { ExpandableText } from '@/src/components/ExpandableText'
 import {
   Avatar,
   AvatarFallback,
@@ -58,7 +59,7 @@ function TestimonialCard({ t }: { t: ReviewItem }) {
 
   return (
     <Card data-slot="review-card" className={`${reviewCardVariants()} w-80 flex-shrink-0`}>
-      <CardHeader className="flex flex-col gap-2 space-y-0 p-4 pb-3 @[20rem]:flex-row @[20rem]:items-center @[20rem]:justify-between">
+      <CardHeader className="flex flex-row items-start justify-between gap-2 space-y-0 p-4 pb-3">
         <div className="flex min-w-0 items-center gap-3">
           <Avatar size="default" variant="secondary">
             <AvatarFallback>{getInitials(t.name)}</AvatarFallback>
@@ -67,19 +68,10 @@ function TestimonialCard({ t }: { t: ReviewItem }) {
             <span className="truncate text-sm font-medium leading-none text-foreground">
               {t.name}
             </span>
-            <div className="flex items-center gap-1">
-              <span className="text-xs text-muted-foreground">{t.handle}</span>
-              {/* Mobile: compact "★ 4/5" after handle, pushed right */}
-              <div className="ml-auto flex items-center gap-1 sm:hidden">
-                <Star className="icon-xs" />
-                <span className="text-xs font-medium text-foreground">{clamped}/5</span>
-              </div>
-            </div>
+            <span className="text-xs text-muted-foreground">{t.handle}</span>
           </div>
         </div>
-
-        {/* Desktop: full 5-star display */}
-        <div className="hidden justify-end sm:flex">
+        <div className="flex shrink-0 items-center gap-1">
           {Array.from({ length: 5 }, (_, i) =>
             i < clamped ? (
               <Star key={i} className="icon-xs" />
@@ -87,11 +79,12 @@ function TestimonialCard({ t }: { t: ReviewItem }) {
               <Star key={i} className="icon-xs fill-transparent" />
             )
           )}
+          <span className="ml-1 text-xs font-medium text-foreground">{clamped}/5</span>
         </div>
       </CardHeader>
 
       <CardContent className="flex-1 px-4 pb-3 pt-0">
-        <p className="text-xs leading-5 text-gray-50">{t.review}</p>
+        <ExpandableText text={t.review} lines={3} />
       </CardContent>
 
       <CardFooter className="px-4 pb-4 pt-0">
