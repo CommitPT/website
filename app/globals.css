@@ -193,6 +193,10 @@
   background: var(--color-primary);
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Background gradient orb animations ─────────────────────────────── */
 
 @keyframes orb-drift-1 {

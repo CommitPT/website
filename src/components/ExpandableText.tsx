@@ -41,10 +41,7 @@ export function ExpandableText({
       <p className={`text-xs leading-5 text-gray-50 ${expanded ? '' : clampClass}`}>{text}</p>
       <button
         type="button"
-        onClick={(e) => {
-          e.stopPropagation()
-          setExpanded(!expanded)
-        }}
+        onClick={() => setExpanded(!expanded)}
         className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-primary transition-colors hover:text-primary/80"
         aria-expanded={expanded}
       >
