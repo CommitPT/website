@@ -9,16 +9,6 @@
     "email": "lm.network.pt@proton.me"
   },
   {
-    "name": "Afonso Januário",
-    "role": "Software Engineer @ TypeableAI",
-    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
-    "linkedin": "https://www.linkedin.com/in/afonsojanu/",
-    "github": "https://github.com/afonsojanu",
-    "githubUsername": "afonsojanu",
-    "instagram": "https://www.instagram.com/afonsojanu.dev"
-  },
-
-  {
     "name": "Rafael Januário",
     "role": "Software Engineer @ RCoders",
     "bio": "Desenvolvedor de Software especializado em Java, Spring Boot, React e PostgreSQL, com foco no desenvolvimento de aplicações backend e full-stack.",
@@ -50,5 +40,14 @@
     "github": "https://git.vortexia.wiki/explore/repos",
     "website": "https://vortexia.wiki",
     "email": "sandro@vortexia.wiki"
+  },
+  {
+    "name": "Luis Silva",
+    "role": "Senior Cloud Architect @ Siemens",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "LuiSilvaPT",
+    "github": "https://github.com/LuiSilvaPT",
+    "linkedin": "https://www.linkedin.com/in/l-silva",
+    "website": "https://steamreport.net"
   }
 ]
