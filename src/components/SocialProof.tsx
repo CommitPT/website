@@ -3,6 +3,8 @@ import fallbackReviews from '@/src/reviews.json'
 import ReviewScroll from '@/src/components/ReviewScroll'
 import { Typography } from '@commitpt/design-system'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface ReviewItem {
   id: string
   name: string
@@ -12,9 +14,13 @@ interface ReviewItem {
   stars: number
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default async function SocialProof() {
+  // Fetch Whop reviews dynamically
   const whopReviews = await getWhopReviews()
 
+  // Format Whop reviews to match standard structure
   const whopItems: ReviewItem[] = whopReviews
     .filter((r) => r.description)
     .map((r) => ({
@@ -26,6 +32,7 @@ export default async function SocialProof() {
       stars: Math.round(r.stars),
     }))
 
+  // Format fallback local reviews
   const hardcodedItems: ReviewItem[] = fallbackReviews.map((r, i) => ({
     id: `hardcoded-${i}`,
     name: r.name,
@@ -35,11 +42,13 @@ export default async function SocialProof() {
     stars: Math.round(r.stars),
   }))
 
+  // Combine dynamic and static items
   const items: ReviewItem[] = [...whopItems, ...hardcodedItems]
 
   return (
     <section className="border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             05 // O Que Dizem os Membros
@@ -63,6 +72,7 @@ export default async function SocialProof() {
         </div>
       </div>
 
+      {/* Reviews Marquee / Scroll Component */}
       <ReviewScroll items={items} />
     </section>
   )

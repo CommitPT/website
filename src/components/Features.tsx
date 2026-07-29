@@ -11,11 +11,15 @@ import {
   Video,
 } from 'lucide-react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Solution {
   icon: LucideIcon
   title: string
   desc: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const solutions: Solution[] = [
   {
@@ -50,10 +54,13 @@ const solutions: Solution[] = [
   },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Features() {
   return (
     <section id="features" className="relative">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             03 // Como Funciona
@@ -66,6 +73,8 @@ export default function Features() {
             certas. É assim que o crescimento deixa de ser acidental e passa a ser inevitável.
           </Typography>
         </div>
+
+        {/* Feature Cards Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s) => (
             <FeatureCard
@@ -76,6 +85,8 @@ export default function Features() {
             />
           ))}
         </div>
+
+        {/* Call to Action Box */}
         <div
           id="join"
           className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12 shadow-xl shadow-black/40"
