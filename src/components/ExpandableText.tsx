@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface ExpandableTextProps {
   text: string
   lines?: number
@@ -12,6 +14,8 @@ interface ExpandableTextProps {
   onExpandedChange?: (expanded: boolean) => void
 }
 
+// ── Constants ─────────────────────────────────────────────────────────────────
+
 const lineClampClasses: Record<number, string> = {
   1: 'line-clamp-1',
   2: 'line-clamp-2',
@@ -20,6 +24,8 @@ const lineClampClasses: Record<number, string> = {
   5: 'line-clamp-5',
   6: 'line-clamp-6',
 }
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export function ExpandableText({
   text,
@@ -38,7 +44,10 @@ export function ExpandableText({
 
   return (
     <div className={className}>
+      {/* Text Content */}
       <p className={`text-xs leading-5 text-gray-50 ${expanded ? '' : clampClass}`}>{text}</p>
+
+      {/* Toggle Button */}
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}

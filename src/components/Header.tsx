@@ -5,10 +5,14 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface NavLink {
   label: string
   href: string
 }
+
+// ── Constants ─────────────────────────────────────────────────────────────────
 
 const navLinks: NavLink[] = [
   { label: 'Início', href: '/' },
@@ -16,12 +20,15 @@ const navLinks: NavLink[] = [
   { label: 'Contribuidores', href: '/contributors' },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Header() {
   const [open, setOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/50 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Brand Logo & Name */}
         <a href="/" className="flex items-center gap-2">
           <Image
             src="/commit_icon_256w.webp"
@@ -35,6 +42,8 @@ export default function Header() {
             CommitPT
           </Typography>
         </a>
+
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -54,6 +63,8 @@ export default function Header() {
             Entrar Agora
           </a>
         </nav>
+
+        {/* Mobile Menu Toggle Button */}
         <Button
           variant="ghost"
           size="icon"
@@ -64,6 +75,8 @@ export default function Header() {
           {open ? <X size={24} /> : <Menu size={24} />}
         </Button>
       </div>
+
+      {/* Mobile Navigation Menu */}
       {open && (
         <div className="md:hidden border-t border-border px-6 py-4">
           <div className="flex flex-col gap-4">

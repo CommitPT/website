@@ -13,6 +13,8 @@ import {
 } from '@commitpt/design-system'
 import { Star } from 'lucide-react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface ReviewItem {
   id: string
   name: string
@@ -21,6 +23,8 @@ interface ReviewItem {
   review: string
   stars: number
 }
+
+// ── Constants ─────────────────────────────────────────────────────────────────
 
 const MONTHS = [
   'janeiro',
@@ -37,6 +41,8 @@ const MONTHS = [
   'dezembro',
 ]
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 function formatDate(raw: string): string {
   if (raw.includes('T') || (raw.includes('-') && raw.length > 10)) {
     const d = new Date(raw)
@@ -51,6 +57,8 @@ function getInitials(name: string): string {
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
 }
+
+// ── Sub-components ────────────────────────────────────────────────────────────
 
 function TestimonialCard({
   t,
@@ -72,6 +80,7 @@ function TestimonialCard({
         onExpand?.()
       }}
     >
+      {/* Author Header & Rating */}
       <CardHeader className="flex flex-row items-start justify-between gap-2 space-y-0 p-4 pb-3">
         <div className="flex min-w-0 items-center gap-3">
           <Avatar size="default" variant="secondary">
@@ -96,16 +105,20 @@ function TestimonialCard({
         </div>
       </CardHeader>
 
+      {/* Review Content */}
       <CardContent className="flex-1 px-4 pb-3 pt-0">
         <ExpandableText text={t.review} lines={3} expanded={expanded} />
       </CardContent>
 
+      {/* Review Date Footer */}
       <CardFooter className="px-4 pb-4 pt-0">
         <span className="text-xs text-muted-foreground">{formatDate(t.date)}</span>
       </CardFooter>
     </Card>
   )
 }
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null)

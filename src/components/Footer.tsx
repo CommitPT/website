@@ -2,11 +2,15 @@ import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface/50">
       <div className="mx-auto max-w-6xl px-6 py-16">
+        {/* Top Header & CTA Row */}
         <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:items-center">
+          {/* Brand & Description */}
           <div className="space-y-4">
             <a
               href="/#hero"
@@ -25,6 +29,8 @@ export default function Footer() {
               A comunidade portuguesa que transforma programadores em engenheiros de topo.
             </Typography>
           </div>
+
+          {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 lg:justify-end">
             <a
               href="https://whop.com/commitpt-709e/commit-plus"
@@ -48,7 +54,9 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Navigation & Legal Footer */}
         <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
+          {/* Nav Links & Socials */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <a href="/#about" className="hover:text-primary transition-colors">
               Benefícios
@@ -81,6 +89,8 @@ export default function Footer() {
               </svg>
             </a>
           </div>
+
+          {/* Legal Links & Copyright */}
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="/privacy"

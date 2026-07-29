@@ -8,12 +8,16 @@ import {
   type FAQItem as FAQAccordionItem,
 } from '@commitpt/design-system'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 type Block = { type: 'p'; text: string } | { type: 'list'; items: string[] }
 
 interface FaqItem {
   q: string
   blocks: Block[]
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const faqs: FaqItem[] = [
   {
@@ -181,6 +185,8 @@ const faqs: FaqItem[] = [
   },
 ]
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 function renderInline(text: string): React.ReactNode {
   return text
     .split(/\*\*(.+?)\*\*/g)
@@ -214,6 +220,8 @@ function blocksToPlainText(blocks: Block[]): string {
     .join('\n\n')
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function FAQ() {
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -235,12 +243,15 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="border-t border-border">
+      {/* Schema Markup */}
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             07 // Perguntas Frequentes
@@ -252,7 +263,11 @@ export default function FAQ() {
             Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.
           </Typography>
         </div>
+
+        {/* FAQ Accordion */}
         <FAQAccordion items={items} />
+
+        {/* Discord CTA Box */}
         <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">
           <Typography variant="h3" className="sm:text-3xl">
             Não encontraste a tua resposta?

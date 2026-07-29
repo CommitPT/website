@@ -2,13 +2,18 @@ import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/desig
 import { ArrowRight } from 'lucide-react'
 import contributorsData from '@/src/contributors.json'
 
+// ── Data ──────────────────────────────────────────────────────────────────────
+
 const preview = contributorsData.slice(0, 5)
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function ContributorsTeaser() {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
+          {/* Content Left */}
           <div className="max-w-xl">
             <Typography variant="overline" color="secondary" as="span" className="font-mono">
               06 // Contribuidores
@@ -29,6 +34,7 @@ export default function ContributorsTeaser() {
             </a>
           </div>
 
+          {/* Avatars Right */}
           <div className="flex flex-wrap gap-3 lg:justify-end">
             {preview.map((c) => (
               <div key={c.githubUsername} className="group relative">

@@ -1,6 +1,8 @@
 import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/design-system'
 import { Mail, Globe } from 'lucide-react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Contributor {
   name: string
   role: string
@@ -12,6 +14,8 @@ interface Contributor {
   email?: string | null
   website?: string | null
 }
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
 
 function LinkedInIcon() {
   return (
@@ -58,6 +62,8 @@ function InstagramIcon() {
   )
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function ContributorCard({ contributor }: { contributor: Contributor }) {
   const avatarUrl = `https://github.com/${contributor.githubUsername}.png`
   const hasSocials =
@@ -69,6 +75,7 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
 
   return (
     <div className="group flex flex-col rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors">
+      {/* Header / Avatar */}
       <div className="mb-4 flex items-center gap-4">
         <Avatar variant="secondary" className="h-14 w-14 flex-shrink-0">
           <AvatarImage src={avatarUrl} alt={contributor.name} />
@@ -84,10 +91,12 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
         </div>
       </div>
 
+      {/* Bio */}
       <Typography variant="small" color="muted" className="flex-1 leading-relaxed">
         {contributor.bio}
       </Typography>
 
+      {/* Social Links */}
       {hasSocials && (
         <div className="mt-5 flex items-center gap-3 border-t border-border pt-5">
           {contributor.linkedin && (

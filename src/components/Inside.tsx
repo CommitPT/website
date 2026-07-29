@@ -1,11 +1,15 @@
 import { BookOpen, EyeOff, Clock, FolderOpen, Unlink, Compass, LucideIcon } from 'lucide-react'
 import { FeatureCard, Typography } from '@commitpt/design-system'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Problem {
   icon: LucideIcon
   title: string
   desc: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const problems: Problem[] = [
   {
@@ -40,10 +44,13 @@ const problems: Problem[] = [
   },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Inside() {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             01 // O Problema
@@ -57,6 +64,8 @@ export default function Inside() {
             Mais um projeto a meio. Mais uma semana sem evoluir de verdade.
           </Typography>
         </div>
+
+        {/* Problem Cards Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((p) => (
             <FeatureCard

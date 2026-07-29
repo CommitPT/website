@@ -12,12 +12,18 @@ import {
 } from 'lucide-react'
 import { Badge, Typography } from '@commitpt/design-system'
 
+// ── Constants ─────────────────────────────────────────────────────────────────
+
 const LAUNCH_DATE = new Date('2026-08-20T00:00:00')
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 interface PlatformFeature {
   icon: LucideIcon
   label: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const features: PlatformFeature[] = [
   { icon: Map, label: 'Roadmaps de aprendizagem interativos' },
@@ -27,12 +33,16 @@ const features: PlatformFeature[] = [
   { icon: GitCommit, label: 'Commit streaks' },
 ]
 
+// ── Types (Countdown) ─────────────────────────────────────────────────────────
+
 interface CountdownTime {
   days: number
   hours: number
   minutes: number
   seconds: number
 }
+
+// ── Hooks ─────────────────────────────────────────────────────────────────────
 
 function useCountdown(target: Date): CountdownTime {
   const [timeLeft, setTimeLeft] = useState<CountdownTime>({
@@ -64,6 +74,8 @@ function useCountdown(target: Date): CountdownTime {
   return timeLeft
 }
 
+// ── Sub-components ────────────────────────────────────────────────────────────
+
 interface CountdownUnitProps {
   value: number
   label: string
@@ -82,6 +94,8 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
   )
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Platform() {
   const { days, hours, minutes, seconds } = useCountdown(LAUNCH_DATE)
 
@@ -89,6 +103,7 @@ export default function Platform() {
     <section id="platform" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          {/* Main Info Column & Countdown */}
           <div className="space-y-6">
             <Badge variant="secondary">em desenvolvimento — app.commitpt.com</Badge>
 
@@ -103,6 +118,7 @@ export default function Platform() {
               de membro fundador antes do lançamento.
             </Typography>
 
+            {/* Launch Countdown */}
             <div className="rounded-lg border border-border bg-surface px-6 py-5">
               <p className="mb-4 font-mono text-xs text-muted-foreground">{'// lança em'}</p>
               <div className="flex items-start gap-6">
@@ -116,6 +132,7 @@ export default function Platform() {
               </div>
             </div>
 
+            {/* Community Link Button */}
             <a
               href="https://discord.gg/yGAbprCBrT"
               target="_blank"
@@ -127,6 +144,7 @@ export default function Platform() {
             </a>
           </div>
 
+          {/* Features Preview Box */}
           <div className="rounded-lg border border-border bg-surface p-6">
             <div className="mb-4 flex items-center justify-between">
               <span className="font-mono text-xs text-muted-foreground">app.commitpt.com</span>
@@ -134,6 +152,7 @@ export default function Platform() {
                 {'// membros fundadores têm acesso'}
               </Typography>
             </div>
+            {/* Feature List */}
             <div className="space-y-3">
               {features.map((f) => (
                 <div
@@ -146,6 +165,7 @@ export default function Platform() {
                 </div>
               ))}
             </div>
+            {/* Interactive Note */}
             <div className="mt-4 rounded-md border border-dashed border-border px-4 py-3 text-center font-mono text-xs text-muted-foreground">
               + mais — os membros influenciam o que é construído
             </div>

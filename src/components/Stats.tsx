@@ -1,9 +1,13 @@
 import { Typography } from '@commitpt/design-system'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Stat {
   value: string
   label: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const stats: Stat[] = [
   { value: '350+', label: 'membros ativos' },
@@ -12,10 +16,13 @@ const stats: Stat[] = [
   { value: '5+', label: 'anos de experiência' },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Stats() {
   return (
     <div className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-10">
+        {/* Statistics Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 sm:divide-x sm:divide-border">
           {stats.map((s, i) => (
             <div

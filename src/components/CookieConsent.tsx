@@ -4,9 +4,15 @@ import { useState, useEffect } from 'react'
 import Script from 'next/script'
 import { buttonVariants } from '@commitpt/design-system'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 type ConsentState = 'accepted' | 'declined' | null
 
+// ── Constants ─────────────────────────────────────────────────────────────────
+
 const STORAGE_KEY = 'cookie_consent'
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>(null)
@@ -28,6 +34,7 @@ export default function CookieConsent() {
 
   return (
     <>
+      {/* Google Analytics Scripts */}
       {consent === 'accepted' && (
         <>
           <Script
@@ -45,6 +52,7 @@ export default function CookieConsent() {
         </>
       )}
 
+      {/* Cookie Banner Dialog */}
       {consent === null && (
         <div
           role="dialog"

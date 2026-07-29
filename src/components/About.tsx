@@ -9,11 +9,15 @@ import {
   TrendingUp,
 } from 'lucide-react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Benefit {
   icon: LucideIcon
   title: string
   desc: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const benefits: Benefit[] = [
   {
@@ -48,10 +52,13 @@ const benefits: Benefit[] = [
   },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function About() {
   return (
     <section id="about" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             02 // O Que Muda
@@ -64,6 +71,8 @@ export default function About() {
             perspetiva e estrutura que tornam o teu crescimento inevitável.
           </Typography>
         </div>
+
+        {/* Benefits Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((b) => (
             <FeatureCard
