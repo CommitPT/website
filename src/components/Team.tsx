@@ -4,6 +4,8 @@ import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface TeamMember {
   name: string
   role: string
@@ -15,6 +17,8 @@ interface TeamMember {
   instagramUrl?: string
   tiktokUrl?: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const members: TeamMember[] = [
   {
@@ -35,9 +39,12 @@ const members: TeamMember[] = [
   },
 ]
 
+// ── Sub-components ────────────────────────────────────────────────────────────
+
 function MemberCard({ member }: { member: TeamMember }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-center">
+      {/* Member Photo / Avatar */}
       <div className="mx-auto w-full max-w-[280px] lg:mx-0">
         {member.photo ? (
           <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border">
@@ -56,7 +63,9 @@ function MemberCard({ member }: { member: TeamMember }) {
         )}
       </div>
 
+      {/* Member Details */}
       <div className="space-y-4">
+        {/* Name, Role & Social Links */}
         <div>
           <div className="flex items-center gap-3">
             <Typography variant="h3">{member.name}</Typography>
@@ -126,12 +135,14 @@ function MemberCard({ member }: { member: TeamMember }) {
           </Typography>
         </div>
 
+        {/* Bio Paragraphs */}
         <div className="space-y-3 text-muted-foreground">
           {member.bio.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
         </div>
 
+        {/* CTA Button */}
         <div className="flex justify-center lg:justify-start pt-2">
           <a href={member.whopUrl} target="_blank" rel="noreferrer" className={buttonVariants({})}>
             Entra na comunidade que o Bruno construiu
@@ -143,10 +154,13 @@ function MemberCard({ member }: { member: TeamMember }) {
   )
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Team() {
   return (
     <section id="team" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
             04 // O Fundador
@@ -160,6 +174,7 @@ export default function Team() {
           </Typography>
         </div>
 
+        {/* Team Members Grid */}
         <div className="space-y-16">
           {members.map((member) => (
             <MemberCard key={member.name} member={member} />

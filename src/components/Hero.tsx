@@ -4,7 +4,11 @@ import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, Briefcase, MessageCircle, Mic, Star, Users } from 'lucide-react'
 import { Fragment, useEffect, useState } from 'react'
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 type Segment = { text: string; className: string }
+
+// ── Constants ─────────────────────────────────────────────────────────────────
 
 const LINES: Segment[][] = [
   [
@@ -60,16 +64,21 @@ const LINE_ENDS: number[] = (() => {
 
 const TOTAL_CHARS = LINE_ENDS[LINE_ENDS.length - 1]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-15 lg:items-center">
+          {/* Main Content Area */}
           <div>
+            {/* Badge */}
             <Badge variant="primary" className="hero-enter-1 mb-6">
               350+ programadores portugueses já dentro
             </Badge>
 
+            {/* Headline */}
             <Typography
               variant="h1"
               className="hero-enter-2 leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
@@ -80,12 +89,14 @@ export default function Hero() {
               </span>
             </Typography>
 
+            {/* Description */}
             <p className="hero-enter-3 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
               Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber
               críticas, comunicar bem e trabalhar em equipa. A CommitPT é o ambiente mais próximo de
               uma empresa real que vais encontrar — antes de estares numa.
             </p>
 
+            {/* Action Buttons */}
             <div className="hero-enter-4 flex flex-col gap-4 sm:flex-row mb-8">
               <a
                 href="https://whop.com/commitpt-709e/commit-plus"
@@ -108,6 +119,7 @@ export default function Hero() {
               </a>
             </div>
 
+            {/* Metrics Grid */}
             <div
               className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] font-semibold"
               style={{ color: '#f1f5f9' }}
@@ -138,6 +150,7 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Terminal Container */}
           <div className="hero-enter-6">
             <Terminal />
           </div>
@@ -146,6 +159,8 @@ export default function Hero() {
     </section>
   )
 }
+
+// ── Sub-components ────────────────────────────────────────────────────────────
 
 function Terminal() {
   const [displayedChars, setDisplayedChars] = useState(0)
@@ -204,6 +219,7 @@ function Terminal() {
       aria-label="Editor de código animado: const comunidade = new CommitPT(); + suporte - isolamento + crescimento - frustrações + impacto - desistência await comunidade.entrar();"
       data-animation-done={isDone ? 'true' : undefined}
     >
+      {/* Window Controls & Bar */}
       <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
@@ -212,6 +228,8 @@ function Terminal() {
           ~ index.js
         </span>
       </div>
+
+      {/* Editor Body */}
       <div
         className="p-4 text-sm leading-relaxed sm:p-6 space-y-1 bg-surface"
         style={{ fontFamily: 'Consolas, monospace' }}

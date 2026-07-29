@@ -1,5 +1,7 @@
 import { Typography } from '@commitpt/design-system'
 
+// ── Data ──────────────────────────────────────────────────────────────────────
+
 const forYou = [
   'Queres evoluir como engenheiro de software e procuras um ambiente que te desafie a crescer',
   'Estás no início da carreira e gostavas de aprender diretamente com engenheiros experientes',
@@ -18,11 +20,14 @@ const notForYou = [
   'Não tens interesse em colaborar ou contribuir quando puderes',
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function ForWho() {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-10 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+          {/* "For You" Column */}
           <div>
             <p className="mb-4 font-mono text-xs text-primary">{'// isto é para ti se'}</p>
             <ul className="">
@@ -36,6 +41,8 @@ export default function ForWho() {
               ))}
             </ul>
           </div>
+
+          {/* "Not For You" Column */}
           <div>
             <p className="mb-4 font-mono text-xs text-destructive">{'// não é para ti se'}</p>
             <ul className="">
