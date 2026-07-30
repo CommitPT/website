@@ -1,14 +1,11 @@
 import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
-import contributorsData from '@/src/contributors.json'
-
-// ── Data ──────────────────────────────────────────────────────────────────────
-
-const preview = contributorsData.slice(0, 5)
+import { getContributors } from '@/src/lib/contributors'
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function ContributorsTeaser() {
+export default async function ContributorsTeaser() {
+  const preview = (await getContributors()).slice(0, 5)
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">

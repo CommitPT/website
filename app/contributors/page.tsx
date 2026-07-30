@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
-import ContributorCard, { type Contributor } from '@/src/components/ContributorCard'
-import contributorsData from '@/src/contributors.json'
+import ContributorCard from '@/src/components/ContributorCard'
 import { ArrowRight } from 'lucide-react'
 import { buttonVariants, Typography } from '@commitpt/design-system'
+import { getContributors } from '@/src/lib/contributors'
 
 export const metadata: Metadata = {
   title: 'Contribuidores — CommitPT',
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   },
 }
 
-const contributors: Contributor[] = contributorsData
+export default async function ContributorsPage() {
+  const contributors = await getContributors()
 
-export default function ContributorsPage() {
   return (
     <div className="min-h-screen">
       <Header />
