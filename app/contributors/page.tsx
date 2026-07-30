@@ -1,40 +1,42 @@
 import type { Metadata } from 'next'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
-import ContributorCard, { type Contributor } from '@/src/components/ContributorCard'
-import contributorsData from '@/src/contributors.json'
+import ContributorCard from '@/src/components/ContributorCard'
 import { ArrowRight } from 'lucide-react'
 import { buttonVariants, Typography } from '@commitpt/design-system'
+import { getContributors } from '@/src/lib/contributors'
 
-export const metadata: Metadata = {
-  title: 'Contribuidores — CommitPT',
-  description:
-    'Os programadores que tornam a CommitPT possível. Mais de 20 contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.',
-  alternates: {
-    canonical: 'https://www.commitpt.com/contributors',
-  },
-  openGraph: {
-    type: 'website',
-    url: 'https://www.commitpt.com/contributors',
+export async function generateMetadata(): Promise<Metadata> {
+  const contributors = await getContributors()
+  const description = `Os programadores que tornam a CommitPT possível. Mais de ${contributors.length} contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.`
+
+  return {
     title: 'Contribuidores — CommitPT',
-    description:
-      'Os programadores que tornam a CommitPT possível. Mais de 20 contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.',
-    siteName: 'CommitPT',
-    images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
-    locale: 'pt_PT',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Contribuidores — CommitPT',
-    description:
-      'Os programadores que tornam a CommitPT possível. Mais de 20 contribuidores ativos a partilhar conhecimento, fazer code reviews e construir em público.',
-    images: ['/commit_3_512w.webp'],
-  },
+    description,
+    alternates: {
+      canonical: 'https://www.commitpt.com/contributors',
+    },
+    openGraph: {
+      type: 'website',
+      url: 'https://www.commitpt.com/contributors',
+      title: 'Contribuidores — CommitPT',
+      description,
+      siteName: 'CommitPT',
+      images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
+      locale: 'pt_PT',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Contribuidores — CommitPT',
+      description,
+      images: ['/commit_3_512w.webp'],
+    },
+  }
 }
 
-const contributors: Contributor[] = contributorsData
+export default async function ContributorsPage() {
+  const contributors = await getContributors()
 
-export default function ContributorsPage() {
   return (
     <div className="min-h-screen">
       <Header />
@@ -48,9 +50,9 @@ export default function ContributorsPage() {
               As pessoas por trás da CommitPT.
             </Typography>
             <Typography variant="large" color="muted" className="mt-5 max-w-2xl">
-              Mais de 20 programadores que contribuem ativamente — com code reviews, workshops,
-              sessões de co-working e muito mais. Aqui podes conhecê-los, ver o seu trabalho e
-              contactá-los diretamente.
+              Mais de {contributors.length} programadores que contribuem ativamente — com code
+              reviews, workshops, sessões de co-working e muito mais. Aqui podes conhecê-los, ver o
+              seu trabalho e contactá-los diretamente.
             </Typography>
 
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-muted-foreground">
@@ -58,7 +60,7 @@ export default function ContributorsPage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
               </span>
-              20+ contribuidores ativos
+              {contributors.length}+ contribuidores ativos
             </div>
           </div>
         </section>
