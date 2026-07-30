@@ -277,7 +277,7 @@ export default function FAQ() {
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.gg/yGAbprCBrT"
+              href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ variant: 'outline', size: 'lg' })}
