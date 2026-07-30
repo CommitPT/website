@@ -37,8 +37,10 @@ function createHeaders() {
 }
 
 async function fetchGitHubContributors(): Promise<Contributor[]> {
+  const repos = ['website', 'discord-bot', 'design-system', 'platform-web', 'platform-api', 'docs']
+
   const endpoints = [
-    'https://api.github.com/repos/commitpt/website/contributors',
+    ...repos.map((repo) => `https://api.github.com/repos/commitpt/${repo}/contributors`),
     'https://api.github.com/orgs/commitpt/public_members',
   ]
 

@@ -5,7 +5,9 @@ import { getContributors } from '@/src/lib/contributors'
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default async function ContributorsTeaser() {
-  const preview = (await getContributors()).slice(0, 5)
+  const contributors = await getContributors()
+  const preview = contributors.slice(0, 5)
+  const remaining = contributors.length - preview.length
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
@@ -41,9 +43,11 @@ export default async function ContributorsTeaser() {
                 </Avatar>
               </div>
             ))}
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-border bg-surface font-mono text-xs font-bold text-muted-foreground">
-              +20
-            </div>
+            {remaining > 0 && (
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-border bg-surface font-mono text-xs font-bold text-muted-foreground">
+                +{remaining}
+              </div>
+            )}
           </div>
         </div>
       </div>
