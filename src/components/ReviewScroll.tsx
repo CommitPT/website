@@ -2,7 +2,14 @@
 
 import { useState } from 'react'
 import { ExpandableText } from '@/src/components/ExpandableText'
-import { Avatar, AvatarFallback, Card, CardContent, CardFooter, CardHeader } from '@commitpt/design-system'
+import {
+  Avatar,
+  AvatarFallback,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@commitpt/design-system'
 import { Star } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────

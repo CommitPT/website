@@ -101,7 +101,11 @@ export function Typography({
   ...props
 }: TypographyProps) {
   const Component = (as ?? getTypographyTag(variant)) as ElementType
-  return createElement(Component, { className: cn(getTypographyClasses(variant, color), className), ...props }, children)
+  return createElement(
+    Component,
+    { className: cn(getTypographyClasses(variant, color), className), ...props },
+    children
+  )
 }
 
 export function buttonVariants({
@@ -109,11 +113,14 @@ export function buttonVariants({
   size = 'md',
   className,
 }: { variant?: string; size?: string; className?: string } = {}) {
-  const base = 'group inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors'
+  const base =
+    'group inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors'
   const variantClasses = {
     default: 'border border-git-add bg-git-add text-ink hover:bg-git-add/90',
-    secondary: 'border border-border bg-ink-light text-text-primary hover:border-git-add hover:text-git-add',
-    outline: 'border border-border bg-transparent text-text-primary hover:border-git-add hover:text-git-add',
+    secondary:
+      'border border-border bg-ink-light text-text-primary hover:border-git-add hover:text-git-add',
+    outline:
+      'border border-border bg-transparent text-text-primary hover:border-git-add hover:text-git-add',
     ghost: 'border border-transparent bg-transparent text-text-primary hover:bg-ink-light',
     destructive: 'border border-git-del bg-git-del text-ink hover:bg-git-del/90',
     premium: 'border border-git-amber/20 bg-git-amber/10 text-git-amber hover:bg-git-amber/20',
@@ -133,7 +140,13 @@ export function buttonVariants({
   )
 }
 
-export function Button({ variant = 'default', size = 'md', className, children, ...props }: ButtonProps) {
+export function Button({
+  variant = 'default',
+  size = 'md',
+  className,
+  children,
+  ...props
+}: ButtonProps) {
   return (
     <button className={cn(buttonVariants({ variant, size }), className)} {...props}>
       {children}
@@ -152,7 +165,14 @@ export function Badge({ variant = 'default', className, children, ...props }: Ba
   }
 
   return (
-    <span className={cn('inline-flex items-center rounded-full px-3 py-1 text-xs font-medium', variantClasses[variant as keyof typeof variantClasses] ?? variantClasses.default, className)} {...props}>
+    <span
+      className={cn(
+        'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium',
+        variantClasses[variant as keyof typeof variantClasses] ?? variantClasses.default,
+        className
+      )}
+      {...props}
+    >
       {children}
     </span>
   )
@@ -160,7 +180,13 @@ export function Badge({ variant = 'default', className, children, ...props }: Ba
 
 export function Avatar({ className, children, ...props }: AvatarProps) {
   return (
-    <div className={cn('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-ink-light', className)} {...props}>
+    <div
+      className={cn(
+        'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-ink-light',
+        className
+      )}
+      {...props}
+    >
       {children}
     </div>
   )
@@ -172,7 +198,13 @@ export function AvatarImage({ className, ...props }: AvatarImageProps) {
 
 export function AvatarFallback({ className, children, ...props }: AvatarFallbackProps) {
   return (
-    <span className={cn('flex h-full w-full items-center justify-center text-sm font-medium text-muted', className)} {...props}>
+    <span
+      className={cn(
+        'flex h-full w-full items-center justify-center text-sm font-medium text-muted',
+        className
+      )}
+      {...props}
+    >
       {children}
     </span>
   )
@@ -180,7 +212,10 @@ export function AvatarFallback({ className, children, ...props }: AvatarFallback
 
 export function Card({ className, children, ...props }: CardProps) {
   return (
-    <div className={cn('rounded-lg border border-border bg-ink-light shadow-sm', className)} {...props}>
+    <div
+      className={cn('rounded-lg border border-border bg-ink-light shadow-sm', className)}
+      {...props}
+    >
       {children}
     </div>
   )
