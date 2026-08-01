@@ -1,5 +1,14 @@
 import { ArrowRight, Check, MessageCircle, Sparkles, ShieldCheck, Users, Zap } from 'lucide-react'
-import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
+import {
+  buttonVariants,
+  FeatureCard,
+  Typography,
+  Badge,
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from '@commitpt/design-system'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 import FaqAccordion from '@/src/components/FaqAccordion'
@@ -15,13 +24,13 @@ const benefits = [
     icon: Users,
     title: 'Um grupo pequeno onde não desapareces',
     description:
-      'Feedback direto de quem já passou pelo que estás a passar — sem te perderes no ruído de um servidor com milhares de pessoas.',
+      'Feedback direto de quem já passou pelo que estás a passar, sem te perderes no ruído de um servidor com milhares de pessoas.',
   },
   {
     icon: ShieldCheck,
     title: 'Templates que poupam as tuas horas',
     description:
-      'Roadmaps e materiais prontos a usar. Não perdes tempo a decidir por onde começar — começas.',
+      'Roadmaps e materiais prontos a usar. Não perdes tempo a decidir por onde começar, começas.',
   },
   {
     icon: Zap,
@@ -51,7 +60,7 @@ const commitPlusBadges = ['Workshops semanais', 'Recursos premium', 'Feedback di
 
 const testimonial = {
   quote:
-    'Entrei só para acompanhar as conversas. Um dia fiz uma pergunta, a forma como fui ajudado mostrou-me que estava no sítio certo — decidi aderir ao Commit+ e não me arrependo.',
+    'Entrei só para acompanhar as conversas. Um dia fiz uma pergunta, a forma como fui ajudado mostrou-me que estava no sítio certo. Decidi aderir ao Commit+ e não me arrependo.',
   author: 'Duarte Marques',
   handle: '@9duarte',
 }
@@ -91,17 +100,17 @@ const faqs = [
   {
     question: 'O Discord grátis já não chega?',
     answer:
-      'Chega para veres o que os outros estão a fazer. Não chega para teres feedback direto no teu projeto nem workshops ao vivo — isso é só Commit+. Se só queres observar, o Free serve. Se queres avançar, não serve.',
+      'Chega para veres o que os outros estão a fazer. Não chega para teres feedback direto no teu projeto nem workshops ao vivo, isso é só Commit+. Se só queres observar, o Free serve. Se queres avançar, não serve.',
   },
   {
     question: 'E se eu entrar e não for para mim?',
     answer:
-      'Cancelas a qualquer momento, sem burocracia, sem perguntas. Não há contrato nem fidelização — se não estiver a fazer diferença, sais no mesmo mês.',
+      'Cancelas a qualquer momento, sem burocracia, sem perguntas. Não há contrato nem fidelização. Se não estiver a fazer diferença, sais no mesmo mês.',
   },
   {
     question: 'Quanto tempo até eu ver resultado?',
     answer:
-      'Depende do que trouxeres, mas a estrutura é semanal: entras esta semana, tens workshop e feedback esta semana. Não é uma promessa de resultado — é acesso a um ritmo que a maioria não consegue sozinha.',
+      'Depende do que trouxeres, mas a estrutura é semanal: entras esta semana, tens workshop e feedback esta semana. Não é uma promessa de resultado, é acesso a um ritmo que a maioria não consegue sozinha.',
   },
 ]
 
@@ -116,33 +125,27 @@ export default function CommitPlusPage() {
               <Typography variant="overline" color="secondary" as="span" className="font-mono">
                 01 // Commit+
               </Typography>
-              <Typography variant="h1" className="mt-4 text-4xl sm:text-5xl lg:text-6xl">
-                Já sabes o que tens de fazer.
-                <span className="mt-2 block bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
-                  O que te falta é quem te obrigue a fazer.
+              <Typography variant="h1" className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
+                Sabes o que queres construir.
+                <span className="mt-1 block text-lg font-medium text-primary sm:text-xl lg:text-2xl">
+                  O Commit+ ajuda-te a chegar lá.
                 </span>
               </Typography>
-              <Typography variant="p" color="muted" className="mt-5 max-w-xl text-lg">
+              <Typography variant="p" className="mt-5 max-w-xl text-lg" style={{ color: '#ffffff' }}>
                 O Commit+ é a diferença entre "estou a aprender a programar" e ter um projeto
                 lançado com pessoas a acompanhar-te de perto, toda a semana.
               </Typography>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {freeTierBadges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-muted-foreground"
-                  >
+                  <Badge key={badge} variant="outline" className="font-mono">
                     {badge}
-                  </span>
+                  </Badge>
                 ))}
                 {commitPlusBadges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary"
-                  >
+                  <Badge key={badge} variant="primary" className="font-mono">
                     {badge}
-                  </span>
+                  </Badge>
                 ))}
               </div>
 
@@ -180,13 +183,12 @@ export default function CommitPlusPage() {
                   target="_blank"
                   rel="noreferrer"
                   className={buttonVariants({ variant: 'outline', size: 'lg' })}
-                  style={{ color: 'oklch(0.8 0.1 240)' }}
                 >
                   <MessageCircle size={16} />
                   Ver o Discord primeiro
                 </a>
               </div>
-              <Typography variant="p" color="muted" className="mt-3 text-xs">
+              <Typography variant="p" className="mt-3 text-xs" style={{ color: '#ffffff' }}>
                 Cancela quando quiseres. Sem contrato, sem letras pequenas.
               </Typography>
             </div>
@@ -312,60 +314,62 @@ export default function CommitPlusPage() {
                 04 // Planos
               </Typography>
               <Typography variant="h2" className="mt-3 sm:text-4xl">
-                Escolhe. Mas escolhe hoje — não daqui a "quando tiver mais tempo".
+                Escolhe. Mas escolhe hoje, não daqui a "quando tiver mais tempo".
               </Typography>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-2">
               {plans.map((plan) => (
-                <div
+                <Card
                   key={plan.name}
-                  className={`rounded-2xl border p-8 transition-colors hover:border-primary ${plan.highlight ? 'border-primary bg-primary/10 shadow-xl shadow-black/20' : 'border-border bg-surface hover:bg-surface/90'}`}
+                  className={`transition-colors hover:border-primary ${plan.highlight ? 'border-primary bg-primary/10 shadow-xl shadow-black/20' : 'hover:bg-surface/90'}`}
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
                     <div>
-                      <Typography variant="h3">{plan.name}</Typography>
-                      <Typography variant="p" color="muted" className="mt-3">
+                      <Typography variant="h3" className="text-2xl">
+                        {plan.name}
+                      </Typography>
+                      <Typography variant="p" className="mt-3 text-sm" style={{ color: '#ffffff' }}>
                         {plan.description}
                       </Typography>
                     </div>
-                    {plan.highlight ? (
-                      <span className="rounded-full border border-primary/30 bg-primary/20 px-3 py-1 text-xs font-mono text-primary">
-                        Escolha da maioria
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="mt-8 flex items-end gap-2">
-                    <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
-                    {plan.name === 'Commit+' ? (
-                      <span className="pb-1 text-sm text-muted-foreground">/mês · cancela quando quiseres</span>
-                    ) : null}
-                  </div>
-                  <ul className="mt-8 space-y-3">
-                    {plan.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-start gap-3 text-sm text-muted-foreground"
-                      >
-                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={
-                      plan.name === 'Commit+'
-                        ? 'https://whop.com/commitpt-709e/commit-plus'
-                        : 'https://whop.com/joined/commitpt-709e/products/acesso-commitpt/'
-                    }
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`mt-8 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium transition-colors ${plan.highlight ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'border border-border text-foreground hover:border-primary hover:text-primary'}`}
-                  >
-                    {plan.name === 'Commit+' ? 'Quero o Commit+ agora' : 'Ficar no Free por agora'}
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
+                    {plan.highlight ? <Badge variant="primary">Escolha da maioria</Badge> : null}
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-end gap-2">
+                      <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
+                      {plan.name === 'Commit+' ? (
+                        <span className="pb-1 text-sm text-muted-foreground">/mês · cancela quando quiseres</span>
+                      ) : null}
+                    </div>
+                    <ul className="mt-8 space-y-3">
+                      {plan.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-3 text-sm text-muted-foreground"
+                        >
+                          <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <a
+                      href={
+                        plan.name === 'Commit+'
+                          ? 'https://whop.com/commitpt-709e/commit-plus'
+                          : 'https://whop.com/joined/commitpt-709e/products/acesso-commitpt/'
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      className={buttonVariants({ variant: plan.highlight ? 'default' : 'outline', size: 'lg' })}
+                    >
+                      {plan.name === 'Commit+' ? 'Quero o Commit+ agora' : 'Ficar no Free por agora'}
+                      <ArrowRight size={16} />
+                    </a>
+                  </CardFooter>
+                </Card>
               ))}
             </div>
           </div>
@@ -391,11 +395,10 @@ export default function CommitPlusPage() {
           <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
             <div className="rounded-2xl border border-border bg-surface p-10 text-center shadow-xl shadow-black/30">
               <Typography variant="h3" className="sm:text-3xl">
-                Daqui a um mês vais estar exatamente onde estás agora — ou não.
+                Pronto para dar o próximo passo?
               </Typography>
-              <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-2xl">
-                A diferença é se decides hoje entrar num ritmo com pessoas a puxar por ti, ou se
-                voltas a esta página daqui a três meses no mesmo sítio.
+              <Typography variant="p" className="mx-auto mt-3 max-w-2xl" style={{ color: '#ffffff' }}>
+                Entra num ritmo com pessoas a acompanhar o teu progresso, toda a semana.
               </Typography>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <a
@@ -415,13 +418,12 @@ export default function CommitPlusPage() {
                   target="_blank"
                   rel="noreferrer"
                   className={buttonVariants({ variant: 'outline', size: 'lg' })}
-                  style={{ color: 'oklch(0.8 0.1 240)' }}
                 >
                   <MessageCircle size={16} />
                   Entrar no Discord primeiro
                 </a>
               </div>
-              <Typography variant="p" color="muted" className="mt-3 text-xs">
+              <Typography variant="p" className="mt-3 text-xs" style={{ color: '#ffffff' }}>
                 Cancela quando quiseres. Sem contrato, sem letras pequenas.
               </Typography>
             </div>
