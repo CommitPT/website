@@ -20,7 +20,7 @@ const DESCRIPTION =
   'Workshops e calls ao vivo exclusivas, revisões de código, projetos internos e acesso antecipado à plataforma. A comunidade gratuita no Discord continua gratuita.'
 
 export const metadata: Metadata = {
-  title: 'Commit+ — O plano premium da CommitPT',
+  title: 'Commit+  O plano premium da CommitPT',
   description: DESCRIPTION,
   alternates: {
     canonical: 'https://www.commitpt.com/commit-plus',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://www.commitpt.com/commit-plus',
-    title: 'Commit+ — O plano premium da CommitPT',
+    title: 'Commit+ O plano premium da CommitPT',
     description: DESCRIPTION,
     siteName: 'CommitPT',
     images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Commit+ — O plano premium da CommitPT',
+    title: 'Commit+ O plano premium da CommitPT',
     description: DESCRIPTION,
     images: ['/commit_3_512w.webp'],
   },
@@ -120,7 +120,7 @@ function HeroSection() {
 
         <Typography variant="h1" className="mt-3 text-5xl sm:text-6xl">
           Commit
-          <span className="font-mono text-success">+</span>
+          <span className="font-mono text-primary-300">+</span>
         </Typography>
 
         <Typography variant="lead" color="muted" className="mt-5 max-w-2xl">
@@ -129,7 +129,7 @@ function HeroSection() {
         </Typography>
 
         <Typography variant="p" color="muted" className="mt-4 max-w-2xl">
-          Não pagas para entrar numa comunidade — pagas para ajudar a construir algo que beneficia
+          Não pagas para entrar numa comunidade, pagas para ajudar a construir algo que beneficia
           toda a gente, incluindo tu. Workshops, calls ao vivo, projetos internos e contacto direto
           com quem já passou por onde estás.
         </Typography>
@@ -151,7 +151,7 @@ const BENEFITS = [
   {
     icon: GitPullRequest,
     title: 'Revisões de código a sério',
-    desc: 'Há hábitos de código que cultivas há meses e que ninguém te apontou. Aqui alguém aponta — antes de ser numa entrevista.',
+    desc: 'Há hábitos de código que cultivas há meses e que ninguém te apontou. Aqui alguém aponta antes de ser numa entrevista.',
   },
   {
     icon: BookMarked,
@@ -208,33 +208,85 @@ function BenefitsSection() {
 
 // ── Diff signature ────────────────────────────────────────────────────────────
 
-type DiffLineType = 'meta' | 'context' | 'add'
+// A decorative terminal. The point is the shape of a git workflow, not a
+// faithful simulation — the session shows branch, diff, commit and push, and
+// the prompt carries the branch so it flips to commit-plus after the checkout.
+// Deliberately no diff body: it made the block long without earning it.
 
-interface DiffLine {
-  type: DiffLineType
+const CMD = 'text-syntax-purple' // git itself
+const SUB = 'text-syntax-blue' // subcommand
+const FLAG = 'text-foreground' // flags and plain args
+const REF = 'text-syntax-green' // refs, paths, quoted strings
+
+type Tone = 'meta' | 'info'
+
+interface Segment {
   text: string
+  className: string
 }
 
-const DIFF_LINES: DiffLine[] = [
-  { type: 'meta', text: 'diff --git a/gratuito.md b/commit-plus.md' },
-  { type: 'meta', text: '--- a/gratuito.md' },
-  { type: 'meta', text: '+++ b/commit-plus.md' },
-  { type: 'meta', text: '@@ -1,3 +1,9 @@' },
-  { type: 'context', text: '  perguntas sem julgamentos' },
-  { type: 'context', text: '  discussões técnicas e de arquitetura' },
-  { type: 'context', text: '  uma comunidade ativa em português' },
-  { type: 'add', text: '+ workshops práticos e calls ao vivo exclusivas' },
-  { type: 'add', text: '+ revisões de código em projetos reais' },
-  { type: 'add', text: '+ recursos e materiais premium' },
-  { type: 'add', text: '+ projetos internos da comunidade' },
-  { type: 'add', text: '+ contacto próximo com a equipa e seniores' },
-  { type: 'add', text: '+ acesso antecipado ao app.commitpt.com' },
+type TerminalLine =
+  | { kind: 'blank' }
+  | { kind: 'command'; branch: string; segments: Segment[] }
+  | { kind: 'output'; tone: Tone; text: string }
+
+const SESSION: TerminalLine[] = [
+  {
+    kind: 'command',
+    branch: 'master',
+    segments: [
+      { text: 'git', className: CMD },
+      { text: ' checkout', className: SUB },
+      { text: ' -b', className: FLAG },
+      { text: ' commit-plus', className: REF },
+    ],
+  },
+  { kind: 'output', tone: 'info', text: "Switched to a new branch 'commit-plus'" },
+  { kind: 'blank' },
+
+  {
+    kind: 'command',
+    branch: 'commit-plus',
+    segments: [
+      { text: 'git', className: CMD },
+      { text: ' diff', className: SUB },
+      { text: ' --no-index', className: FLAG },
+      { text: ' gratuito.md commit-plus.md', className: REF },
+    ],
+  },
+  { kind: 'blank' },
+
+  {
+    kind: 'command',
+    branch: 'commit-plus',
+    segments: [
+      { text: 'git', className: CMD },
+      { text: ' commit', className: SUB },
+      { text: ' -am', className: FLAG },
+      { text: ' "feat: investir na carreira"', className: REF },
+    ],
+  },
+  { kind: 'output', tone: 'info', text: '[commit-plus 9e21b0c] feat: investir na carreira' },
+  { kind: 'output', tone: 'info', text: ' 1 file changed, 6 insertions(+)' },
+  { kind: 'blank' },
+
+  {
+    kind: 'command',
+    branch: 'commit-plus',
+    segments: [
+      { text: 'git', className: CMD },
+      { text: ' push', className: SUB },
+      { text: ' origin', className: FLAG },
+      { text: ' commit-plus', className: REF },
+    ],
+  },
+  { kind: 'output', tone: 'meta', text: 'To github.com:commitpt/carreira.git' },
+  { kind: 'output', tone: 'info', text: '   7c4a1f2..9e21b0c  commit-plus -> commit-plus' },
 ]
 
-const DIFF_LINE_STYLES: Record<DiffLineType, string> = {
-  meta: 'text-muted-foreground/70',
-  context: 'text-muted-foreground',
-  add: 'text-success bg-success/[0.06]',
+const TONE_STYLES: Record<Tone, string> = {
+  meta: 'text-muted-foreground/50',
+  info: 'text-muted-foreground/80',
 }
 
 function DiffSection() {
@@ -249,48 +301,104 @@ function DiffSection() {
             A diferença, em diff.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            As linhas de contexto são o que já tens de graça. As linhas a verde são o que o Commit+
-            acrescenta.
+            Um branch, um commit, um push. É assim que se passa do plano gratuito para o Commit+ sem
+            perder nada do que já tinhas.
           </Typography>
         </div>
 
-        <UpgradeDiff />
+        <UpgradeTerminal />
 
-        <Typography variant="caption" color="muted" className="mt-6 block font-mono">
-          {'// A comunidade gratuita não perde nada. O Commit+ só adiciona.'}
-        </Typography>
+        {/* The CTA lands right where the metaphor closes, on the push. */}
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <a
+            href={WHOP_COMMIT_PLUS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({ size: 'lg', className: 'gap-2' })}
+          >
+            Faz o teu push para o Commit+
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </a>
+
+          <Typography variant="caption" color="muted" className="font-mono">
+            {'// A comunidade gratuita não perde nada. O Commit+ só adiciona.'}
+          </Typography>
+        </div>
       </div>
     </section>
   )
 }
 
-function UpgradeDiff() {
+function Prompt({ branch }: { branch: string }) {
+  return (
+    <span className="select-none">
+      <span className="text-primary-300">~/commitpt</span>{' '}
+      <span className="text-muted-foreground/50">git:(</span>
+      <span className="text-warning">{branch}</span>
+      <span className="text-muted-foreground/50">)</span>{' '}
+      <span className="text-success">$</span>{' '}
+    </span>
+  )
+}
+
+function TerminalRow({ line }: { line: TerminalLine }) {
+  if (line.kind === 'blank') return <div className="h-3" />
+
+  if (line.kind === 'command') {
+    return (
+      <div className="whitespace-pre px-4 sm:px-6">
+        <Prompt branch={line.branch} />
+        {line.segments.map((segment, i) => (
+          <span key={i} className={segment.className}>
+            {segment.text}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  return <div className={`whitespace-pre px-4 sm:px-6 ${TONE_STYLES[line.tone]}`}>{line.text}</div>
+}
+
+function UpgradeTerminal() {
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-surface shadow-2xl shadow-black/40">
       <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
-        <div className="h-3 w-3 rounded-full bg-primary" />
+        <div className="h-3 w-3 rounded-full bg-success" />
         <span className="ml-2 font-mono text-xs font-semibold text-muted-foreground">
-          ~ commit-plus.diff
+          ~/commitpt — git
         </span>
       </div>
 
-      {/* tabIndex so keyboard users can scroll the overflow on narrow viewports */}
+      {/*
+        role="img" + aria-label: read out line by line this is punctuation soup,
+        and every benefit in it is already announced by the cards above and the
+        plan list below. tabIndex so keyboard users can still scroll the
+        overflow on narrow viewports.
+      */}
       <div
-        className="overflow-x-auto p-4 sm:p-6"
+        className="overflow-x-auto py-4 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset focus-visible:outline-none"
         tabIndex={0}
         role="img"
-        aria-label="Diff entre o plano gratuito e o Commit+: as linhas adicionadas aparecem a verde."
+        aria-label="Sessão de terminal: cria o branch commit-plus, corre git diff entre o plano gratuito e o Commit+ — as seis linhas que o Commit+ acrescenta aparecem a verde — e depois faz commit e push."
       >
-        {DIFF_LINES.map((line) => (
-          <div
-            key={line.text}
-            className={`whitespace-pre font-mono text-sm leading-6 ${DIFF_LINE_STYLES[line.type]}`}
-          >
-            {line.text}
+        {/* min-w-max so the highlighted rows keep their background across the
+            full scroll width, not just the visible box. */}
+        <div className="min-w-max font-mono text-sm leading-6">
+          {SESSION.map((line, i) => (
+            <TerminalRow key={i} line={line} />
+          ))}
+
+          <div className="h-3" />
+
+          {/* Idle prompt, waiting for the next command */}
+          <div className="flex items-center px-4 sm:px-6">
+            <Prompt branch="commit-plus" />
+            <span className="inline-block h-4 w-[2px] animate-pulse bg-primary" />
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )
@@ -357,7 +465,7 @@ function PricingCard({ plan }: { plan: Plan }) {
       <span
         className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs ${
           featured
-            ? 'border-success/30 bg-success/10 text-success'
+            ? 'border-primary-300/30 bg-primary-300/10 text-primary-300'
             : 'border-border bg-surface text-muted-foreground'
         }`}
       >
@@ -382,7 +490,9 @@ function PricingCard({ plan }: { plan: Plan }) {
       <ul className="flex-grow space-y-3">
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-3 text-sm text-foreground">
-            <span className={`font-mono ${featured ? 'text-success' : 'text-muted-foreground'}`}>
+            <span
+              className={`font-mono ${featured ? 'text-primary-300' : 'text-muted-foreground'}`}
+            >
               {featured ? '+' : '·'}
             </span>
             <span>{feature}</span>
@@ -419,8 +529,8 @@ function PricingSection() {
             Escolhe por onde entras.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            Podes começar pelo Discord gratuito e subir quando fizer sentido. Sem contratos —
-            cancelas quando quiseres.
+            Podes começar pelo Discord gratuito e subir quando fizer sentido. Sem contratos cancelas
+            quando quiseres.
           </Typography>
         </div>
 
