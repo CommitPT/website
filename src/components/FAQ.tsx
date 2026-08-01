@@ -7,203 +7,27 @@ import {
   buttonVariants,
   type FAQItem as FAQAccordionItem,
 } from '@commitpt/design-system'
+import { blocksToPlainText, type Block, type FaqItem } from '@/src/data/faqs'
+import { WHOP_FREE_DISCORD_URL } from '@/src/lib/links'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type Block = { type: 'p'; text: string } | { type: 'list'; items: string[] }
-
-interface FaqItem {
-  q: string
-  blocks: Block[]
-}
-
 interface FaqSectionProps {
-  /** Section eyebrow label. Defaults to the home page label. */
-  eyebrow?: string
-  /** Section heading. Defaults to the home page heading. */
-  heading?: string
-  /** Section description. Defaults to the home page description. */
-  description?: string
-  /** FAQ items. When omitted, uses the home page FAQ content. */
-  items?: FAQAccordionItem[]
-  /** Emit FAQPage JSON-LD schema. Keep enabled for real content only. */
+  /** Section eyebrow label, including the page's own section number. */
+  eyebrow: string
+  heading: string
+  description: string
+  /**
+   * FAQ entries to show. The accordion and the JSON-LD both derive from this
+   * one list, so the structured data always describes what is on the page.
+   */
+  items: FaqItem[]
+  /**
+   * Emit FAQPage JSON-LD. Turn off on pages that reuse questions already
+   * claimed elsewhere — the same Q&A should only be marked up once per site.
+   */
   withSchema?: boolean
 }
-
-// ── Defaults ──────────────────────────────────────────────────────────────────
-
-const DEFAULT_EYEBROW = '07 // Perguntas Frequentes'
-const DEFAULT_HEADING = 'Tens dúvidas. Temos respostas.'
-const DEFAULT_DESCRIPTION =
-  'Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.'
-
-// ── Data ──────────────────────────────────────────────────────────────────────
-
-const faqs: FaqItem[] = [
-  {
-    q: 'A comunidade é só para programadores experientes?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'Não. A CommitPT tem membros em todos os níveis — desde estudantes e programadores em início de carreira até engenheiros com anos de experiência em empresas internacionais.',
-      },
-      {
-        type: 'p',
-        text: 'Isso é precisamente o que torna a comunidade útil. Quando tens dúvidas, há alguém que já passou pelo mesmo. Quando já sabes alguma coisa, partilhares esse conhecimento também te faz crescer.',
-      },
-      {
-        type: 'p',
-        text: 'O único requisito é teres vontade de aprender e de contribuir para o crescimento dos outros.',
-      },
-    ],
-  },
-  {
-    q: 'O que encontro dentro da comunidade?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'A CommitPT não é um curso. É um ambiente onde o crescimento acontece através da interação, da colaboração e de projetos reais.',
-      },
-      { type: 'p', text: 'Dentro da comunidade encontras, entre outras coisas:' },
-      {
-        type: 'list',
-        items: [
-          'Workshops práticos sobre temas técnicos e de carreira',
-          'Calls semanais ao vivo com outros membros',
-          'Revisões de código e feedback honesto',
-          'Discussões técnicas sobre arquitetura, ferramentas e boas práticas',
-          'Projetos internos onde podes colaborar com outros membros',
-          'Recursos e materiais curados por profissionais da área',
-          'Contacto direto com engenheiros experientes',
-          'Uma comunidade ativa onde podes fazer perguntas sem julgamentos',
-        ],
-      },
-    ],
-  },
-  {
-    q: 'Quanto tempo preciso de dedicar por semana?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'Não há um mínimo obrigatório. Cada pessoa participa ao seu próprio ritmo.',
-      },
-      {
-        type: 'p',
-        text: 'Há membros que entram todos os dias, outros que aparecem algumas vezes por semana. O que retiras da comunidade está diretamente relacionado com o que investes — mas essa decisão é sempre tua.',
-      },
-      {
-        type: 'p',
-        text: 'O importante é que quando precisares de feedback, de uma perspetiva diferente ou apenas de ver o que outros estão a construir, a comunidade está lá.',
-      },
-    ],
-  },
-  {
-    q: 'Como funcionam as calls e workshops?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'São sessões ao vivo, com foco em temas práticos. Não há apresentações genéricas — o objetivo é sempre aprender algo que possas aplicar.',
-      },
-      { type: 'p', text: 'Os temas variam consoante o que a comunidade precisa naquele momento:' },
-      {
-        type: 'list',
-        items: [
-          'Discussões técnicas e de arquitetura',
-          'Revisões de código em projetos reais',
-          'Temas de carreira — entrevistas, negociação, progressão',
-          'Sessões de Q&A com engenheiros experientes',
-          'Walkthroughs de projetos dos próprios membros',
-        ],
-      },
-      {
-        type: 'p',
-        text: 'A participação é sempre opcional. As sessões ficam gravadas para quem não conseguir estar presente.',
-      },
-    ],
-  },
-  {
-    q: 'Como sei se esta comunidade é para mim?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'A CommitPT não é para toda a gente — e isso é intencional. É para pessoas que gostam de aprender, de construir coisas, de fazer perguntas e de partilhar o que sabem.',
-      },
-      {
-        type: 'p',
-        text: 'Se tens curiosidade genuína, se queres crescer como engenheiro a longo prazo, e se estás disposto a contribuir para o crescimento dos outros, vais sentir-te em casa.',
-      },
-      {
-        type: 'p',
-        text: 'Se procuras motivação rápida ou conteúdo para consumir passivamente, provavelmente não é o sítio certo.',
-      },
-    ],
-  },
-  {
-    q: 'Qual é a diferença entre a comunidade gratuita e o Commit+?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'A comunidade gratuita no Discord **vai continuar a existir sempre**. Podes entrar, fazer perguntas, conhecer pessoas e participar nas discussões sem pagar nada.',
-      },
-      { type: 'p', text: 'O Commit+ adiciona uma camada extra para quem quer ir mais fundo:' },
-      {
-        type: 'list',
-        items: [
-          'Workshops práticos e calls ao vivo exclusivas',
-          'Acesso a recursos e materiais premium',
-          'Participação em projetos internos da comunidade',
-          'Interação mais próxima com a equipa e membros seniores',
-          'Mais oportunidades de aprender com outros membros',
-          'Acesso antecipado à plataforma que estamos a construir',
-        ],
-      },
-    ],
-  },
-  {
-    q: 'Porque é que o Commit+ é pago?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'O objetivo não é monetizar o acesso à comunidade. O objetivo é **tornar o projeto sustentável** para que possa continuar a crescer.',
-      },
-      {
-        type: 'p',
-        text: 'Organizar workshops com qualidade, manter recursos atualizados, desenvolver a plataforma e investir em iniciativas para a comunidade tem custos reais. O Commit+ é o que torna isso possível.',
-      },
-      {
-        type: 'p',
-        text: 'Nenhum membro paga para ter acesso a uma comunidade — paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
-      },
-    ],
-  },
-  {
-    q: 'Posso cancelar quando quiser?',
-    blocks: [
-      { type: 'p', text: 'Sim. Sem contratos, sem compromissos a longo prazo.' },
-      {
-        type: 'p',
-        text: 'O Commit+ funciona como uma **subscrição mensal simples**. Podes cancelar a qualquer momento, diretamente na plataforma, sem precisares de falar com ninguém.',
-      },
-    ],
-  },
-  {
-    q: 'E se não gostar?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'Podes experimentar e sair quando quiseres. Não há pressão nem complicações.',
-      },
-      {
-        type: 'p',
-        text: 'Se entras, participas durante um mês e decides que não é para ti, cancelas e pronto. Não te pedimos justificações nem tentamos convencer-te a ficar.',
-      },
-      {
-        type: 'p',
-        text: 'O que esperamos é que proves a ti próprio que vale a pena — e que fiques porque sentes valor, não porque te esqueceste de cancelar.',
-      },
-    ],
-  },
-]
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -230,38 +54,11 @@ function renderBlocks(blocks: Block[]) {
   )
 }
 
-function buildItems(source: FaqItem[]): FAQAccordionItem[] {
-  return source.map((faq) => ({
-    question: faq.q,
-    answer: <div className="space-y-3">{renderBlocks(faq.blocks)}</div>,
-  }))
-}
-
-function blocksToPlainText(blocks: Block[]): string {
-  return blocks
-    .map((block) =>
-      block.type === 'list'
-        ? block.items.map((item) => `- ${item.replace(/\*\*/g, '')}`).join('\n')
-        : block.text.replace(/\*\*/g, '')
-    )
-    .join('\n\n')
-}
-
-// ── Component ─────────────────────────────────────────────────────────────────
-
-export default function FAQ({
-  eyebrow = DEFAULT_EYEBROW,
-  heading = DEFAULT_HEADING,
-  description = DEFAULT_DESCRIPTION,
-  items,
-  withSchema = true,
-}: FaqSectionProps) {
-  const resolvedItems = items ?? buildItems(faqs)
-  const schemaSource = withSchema ? faqs : []
-  const faqSchema = {
+function buildSchema(items: FaqItem[]) {
+  return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: schemaSource.map((faq) => ({
+    mainEntity: items.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
       acceptedAnswer: {
@@ -270,6 +67,21 @@ export default function FAQ({
       },
     })),
   }
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export default function FAQ({
+  eyebrow,
+  heading,
+  description,
+  items,
+  withSchema = true,
+}: FaqSectionProps) {
+  const accordionItems: FAQAccordionItem[] = items.map((faq) => ({
+    question: faq.q,
+    answer: <div className="space-y-3">{renderBlocks(faq.blocks)}</div>,
+  }))
 
   return (
     <section id="faq" className="border-t border-border">
@@ -278,7 +90,7 @@ export default function FAQ({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(items)) }}
         />
       )}
 
@@ -297,7 +109,7 @@ export default function FAQ({
         </div>
 
         {/* FAQ Accordion */}
-        <FAQAccordion items={resolvedItems} />
+        <FAQAccordion items={accordionItems} />
 
         {/* Discord CTA Box */}
         <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">
@@ -309,11 +121,14 @@ export default function FAQ({
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.gg/yGAbprCBrT"
+              href={WHOP_FREE_DISCORD_URL}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ variant: 'outline', size: 'lg' })}
-              style={{ color: 'oklch(0.8 0.1 240)' }}
+              className={buttonVariants({
+                variant: 'outline',
+                size: 'lg',
+                className: 'gap-2 text-primary-300',
+              })}
             >
               <MessageCircle size={16} />
               Perguntar no Discord

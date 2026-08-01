@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { faqs } from '@/src/data/faqs'
 import Header from '@/src/components/Header'
 import Hero from '@/src/components/Hero'
 import ForWho from '@/src/components/ForWho'
@@ -25,7 +26,12 @@ export default function Home() {
         <Team />
         <SocialProof />
         <ContributorsTeaser />
-        <FAQ />
+        <FAQ
+          eyebrow="07 // Perguntas Frequentes"
+          heading="Tens dúvidas. Temos respostas."
+          description="Se ainda tens alguma questão antes de entrares, é provável que esteja aqui."
+          items={faqs}
+        />
       </main>
       <Footer />
     </div>
