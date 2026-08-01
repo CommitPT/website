@@ -154,7 +154,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'Nenhum membro paga para ter acesso a uma comunidade — paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
+        text: 'Nenhum membro paga para ter acesso a uma comunidade  paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
       },
     ],
   },
@@ -183,7 +183,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'O que esperamos é que proves a ti próprio que vale a pena — e que fiques porque sentes valor, não porque te esqueceste de cancelar.',
+        text: 'O que esperamos é que proves a ti próprio que vale a pena e que fiques porque sentes valor, não porque te esqueceste de cancelar.',
       },
     ],
   },

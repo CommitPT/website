@@ -117,7 +117,7 @@ export default function FAQ({
             Não encontraste a tua resposta?
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Entra no Discord e pergunta diretamente à comunidade — respondemos rápido.
+            Entra no Discord e pergunta diretamente à comunidade respondemos rápido.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
