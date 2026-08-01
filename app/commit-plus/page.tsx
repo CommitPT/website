@@ -1,16 +1,5 @@
 import { ArrowRight, Check, MessageCircle, Sparkles, ShieldCheck, Users, Zap } from 'lucide-react'
-import {
-  buttonVariants,
-  FeatureCard,
-  Typography,
-  Badge,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from '@commitpt/design-system'
+import { buttonVariants, FeatureCard, Typography, Badge } from '@commitpt/design-system'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 import FaqAccordion from '@/src/components/FaqAccordion'
@@ -330,61 +319,52 @@ export default function CommitPlusPage() {
 
             <div className="grid gap-6 lg:grid-cols-2">
               {plans.map((plan) => (
-                <Card
+                <div
                   key={plan.name}
-                  className={`transition-colors hover:border-primary ${plan.highlight ? 'border-primary bg-primary/10 shadow-xl shadow-black/20' : 'hover:bg-surface/90'}`}
+                  className={`rounded-2xl border p-8 transition-colors hover:border-primary ${plan.highlight ? 'border-primary bg-primary/10 shadow-xl shadow-black/20' : 'border-border bg-surface hover:bg-surface/90'}`}
                 >
-                  <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+                  <div className="flex items-start justify-between gap-4">
                     <div>
-                      <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                      <CardDescription className="mt-3 text-sm" style={{ color: '#ffffff' }}>
+                      <Typography variant="h3">{plan.name}</Typography>
+                      <Typography variant="p" className="mt-3" style={{ color: '#ffffff' }}>
                         {plan.description}
-                      </CardDescription>
+                      </Typography>
                     </div>
                     {plan.highlight ? <Badge variant="primary">Escolha da maioria</Badge> : null}
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-end gap-2">
-                      <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
-                      {plan.name === 'Commit+' ? (
-                        <span className="pb-1 text-sm text-muted-foreground">
-                          /mês · cancela quando quiseres
-                        </span>
-                      ) : null}
-                    </div>
-                    <ul className="mt-8 space-y-3">
-                      {plan.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-start gap-3 text-sm text-muted-foreground"
-                        >
-                          <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                  <CardFooter>
-                    <a
-                      href={
-                        plan.name === 'Commit+'
-                          ? 'https://whop.com/commitpt-709e/commit-plus'
-                          : 'https://whop.com/joined/commitpt-709e/products/acesso-commitpt/'
-                      }
-                      target="_blank"
-                      rel="noreferrer"
-                      className={buttonVariants({
-                        variant: plan.highlight ? 'default' : 'outline',
-                        size: 'lg',
-                      })}
-                    >
-                      {plan.name === 'Commit+'
-                        ? 'Quero o Commit+ agora'
-                        : 'Ficar no Free por agora'}
-                      <ArrowRight size={16} />
-                    </a>
-                  </CardFooter>
-                </Card>
+                  </div>
+                  <div className="mt-8 flex items-end gap-2">
+                    <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
+                    {plan.name === 'Commit+' ? (
+                      <span className="pb-1 text-sm text-muted-foreground">
+                        /mês · cancela quando quiseres
+                      </span>
+                    ) : null}
+                  </div>
+                  <ul className="mt-8 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-start gap-3 text-sm text-muted-foreground"
+                      >
+                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={
+                      plan.name === 'Commit+'
+                        ? 'https://whop.com/commitpt-709e/commit-plus'
+                        : 'https://whop.com/joined/commitpt-709e/products/acesso-commitpt/'
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`mt-8 inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium transition-colors ${plan.highlight ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'border border-border text-foreground hover:border-primary hover:text-primary'}`}
+                  >
+                    {plan.name === 'Commit+' ? 'Quero o Commit+ agora' : 'Ficar no Free por agora'}
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
               ))}
             </div>
           </div>
