@@ -17,6 +17,26 @@ interface FaqItem {
   blocks: Block[]
 }
 
+interface FaqSectionProps {
+  /** Section eyebrow label. Defaults to the home page label. */
+  eyebrow?: string
+  /** Section heading. Defaults to the home page heading. */
+  heading?: string
+  /** Section description. Defaults to the home page description. */
+  description?: string
+  /** FAQ items. When omitted, uses the home page FAQ content. */
+  items?: FAQAccordionItem[]
+  /** Emit FAQPage JSON-LD schema. Keep enabled for real content only. */
+  withSchema?: boolean
+}
+
+// ── Defaults ──────────────────────────────────────────────────────────────────
+
+const DEFAULT_EYEBROW = '07 // Perguntas Frequentes'
+const DEFAULT_HEADING = 'Tens dúvidas. Temos respostas.'
+const DEFAULT_DESCRIPTION =
+  'Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.'
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const faqs: FaqItem[] = [
@@ -207,6 +227,13 @@ function renderBlocks(blocks: Block[]) {
   )
 }
 
+function buildItems(source: FaqItem[]): FAQAccordionItem[] {
+  return source.map((faq) => ({
+    question: faq.q,
+    answer: <div className="space-y-3">{renderBlocks(faq.blocks)}</div>,
+  }))
+}
+
 function blocksToPlainText(blocks: Block[]): string {
   return blocks
     .map((block) =>
@@ -219,11 +246,19 @@ function blocksToPlainText(blocks: Block[]): string {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function FAQ() {
+export default function FAQ({
+  eyebrow = DEFAULT_EYEBROW,
+  heading = DEFAULT_HEADING,
+  description = DEFAULT_DESCRIPTION,
+  items,
+  withSchema = true,
+}: FaqSectionProps) {
+  const resolvedItems = items ?? buildItems(faqs)
+  const schemaSource = withSchema ? faqs : []
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: schemaSource.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
       acceptedAnswer: {
@@ -233,36 +268,33 @@ export default function FAQ() {
     })),
   }
 
-  const items: FAQAccordionItem[] = faqs.map((faq) => ({
-    question: faq.q,
-    answer: <div className="space-y-3">{renderBlocks(faq.blocks)}</div>,
-  }))
-
   return (
     <section id="faq" className="border-t border-border">
       {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {withSchema && (
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            07 // Perguntas Frequentes
+            {eyebrow}
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
-            Tens dúvidas. Temos respostas.
+            {heading}
           </Typography>
           <Typography variant="p" color="muted" className="mt-5">
-            Se ainda tens alguma questão antes de entrares, é provável que esteja aqui.
+            {description}
           </Typography>
         </div>
 
         {/* FAQ Accordion */}
-        <FAQAccordion items={items} />
+        <FAQAccordion items={resolvedItems} />
 
         {/* Discord CTA Box */}
         <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">
