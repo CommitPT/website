@@ -2,15 +2,7 @@
 
 import { useState } from 'react'
 import { ExpandableText } from '@/src/components/ExpandableText'
-import {
-  Avatar,
-  AvatarFallback,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  reviewCardVariants,
-} from '@commitpt/design-system'
+import { Avatar, AvatarFallback, Card, CardContent, CardFooter, CardHeader } from '@commitpt/design-system'
 import { Star } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -74,7 +66,7 @@ function TestimonialCard({
   return (
     <Card
       data-slot="review-card"
-      className={`${reviewCardVariants()} w-80 flex-shrink-0 lg:cursor-default`}
+      className="w-80 flex-shrink-0 lg:cursor-default"
       onClick={() => {
         // pony: tap anywhere on mobile to expand/collapse; desktop only via button
         onExpand?.()

@@ -166,7 +166,7 @@
   }
 
   body {
-    background: var(--gradient-brand);
+    background: linear-gradient(135deg, #050816 0%, #0b1220 50%, #111827 100%);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
