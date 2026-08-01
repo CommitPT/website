@@ -12,7 +12,7 @@ import {
 import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
-import FaqAccordion from '@/src/components/FaqAccordion'
+import FAQ from '@/src/components/FAQ'
 
 export const metadata: Metadata = {
   title: 'Commit+ — O plano premium da CommitPT',
@@ -136,7 +136,13 @@ export default function CommitPlusPage() {
         <BenefitsSection />
         <DiffSection />
         <PricingSection />
-        <FaqSection />
+        <FAQ
+          eyebrow="// FAQ"
+          heading={LOREM.heading}
+          description={LOREM.body}
+          items={faqItems}
+          withSchema={false}
+        />
         <CtaSection />
       </main>
       <Footer />
@@ -399,30 +405,6 @@ function PricingSection() {
             </a>
           </div>
         </div>
-      </div>
-    </section>
-  )
-}
-
-// ── FAQ ───────────────────────────────────────────────────────────────────────
-
-function FaqSection() {
-  return (
-    <section className="border-t border-border py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'// FAQ'}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
-            {LOREM.heading}
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            {LOREM.body}
-          </Typography>
-        </div>
-
-        <FaqAccordion items={faqItems} />
       </div>
     </section>
   )
