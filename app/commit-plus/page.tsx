@@ -6,6 +6,8 @@ import {
   Badge,
   Card,
   CardHeader,
+  CardTitle,
+  CardDescription,
   CardContent,
   CardFooter,
 } from '@commitpt/design-system'
@@ -131,9 +133,13 @@ export default function CommitPlusPage() {
                   O Commit+ ajuda-te a chegar lá.
                 </span>
               </Typography>
-              <Typography variant="p" className="mt-5 max-w-xl text-lg" style={{ color: '#ffffff' }}>
-                O Commit+ é a diferença entre "estou a aprender a programar" e ter um projeto
-                lançado com pessoas a acompanhar-te de perto, toda a semana.
+              <Typography
+                variant="p"
+                className="mt-5 max-w-xl text-lg"
+                style={{ color: '#ffffff' }}
+              >
+                O Commit+ é a diferença entre &quot;estou a aprender a programar&quot; e ter um
+                projeto lançado com pessoas a acompanhar-te de perto, toda a semana.
               </Typography>
 
               <div className="mt-6 flex flex-wrap gap-2">
@@ -196,8 +202,8 @@ export default function CommitPlusPage() {
             <div className="relative w-full max-w-xl rounded-2xl border border-primary/40 bg-[linear-gradient(180deg,rgba(17,24,39,0.92),rgba(10,15,26,0.96))] p-8 shadow-2xl shadow-black/30 ring-1 ring-primary/10">
               <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-primary/70 to-transparent" />
               <div className="flex items-center gap-2 text-sm font-mono text-primary">
-                <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
-                O que muda a partir do dia 1
+                <span className="inline-flex h-2 w-2 rounded-full bg-primary" />O que muda a partir
+                do dia 1
               </div>
               <div className="mt-6 space-y-4">
                 {[
@@ -233,7 +239,11 @@ export default function CommitPlusPage() {
                 <Typography variant="p" className="text-sm" style={{ color: '#ffffff' }}>
                   &ldquo;{testimonial.quote}&rdquo;
                 </Typography>
-                <Typography variant="p" className="mt-3 text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                <Typography
+                  variant="p"
+                  className="mt-3 text-xs"
+                  style={{ color: 'rgba(255,255,255,0.7)' }}
+                >
                   {testimonial.author} · {testimonial.handle}
                 </Typography>
               </div>
@@ -314,7 +324,7 @@ export default function CommitPlusPage() {
                 04 // Planos
               </Typography>
               <Typography variant="h2" className="mt-3 sm:text-4xl">
-                Escolhe. Mas escolhe hoje, não daqui a "quando tiver mais tempo".
+                Escolhe. Mas escolhe hoje, não daqui a &quot;quando tiver mais tempo&quot;.
               </Typography>
             </div>
 
@@ -326,12 +336,10 @@ export default function CommitPlusPage() {
                 >
                   <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
                     <div>
-                      <Typography variant="h3" className="text-2xl">
-                        {plan.name}
-                      </Typography>
-                      <Typography variant="p" className="mt-3 text-sm" style={{ color: '#ffffff' }}>
+                      <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                      <CardDescription className="mt-3 text-sm" style={{ color: '#ffffff' }}>
                         {plan.description}
-                      </Typography>
+                      </CardDescription>
                     </div>
                     {plan.highlight ? <Badge variant="primary">Escolha da maioria</Badge> : null}
                   </CardHeader>
@@ -339,7 +347,9 @@ export default function CommitPlusPage() {
                     <div className="flex items-end gap-2">
                       <span className="text-4xl font-semibold text-foreground">{plan.price}</span>
                       {plan.name === 'Commit+' ? (
-                        <span className="pb-1 text-sm text-muted-foreground">/mês · cancela quando quiseres</span>
+                        <span className="pb-1 text-sm text-muted-foreground">
+                          /mês · cancela quando quiseres
+                        </span>
                       ) : null}
                     </div>
                     <ul className="mt-8 space-y-3">
@@ -363,9 +373,14 @@ export default function CommitPlusPage() {
                       }
                       target="_blank"
                       rel="noreferrer"
-                      className={buttonVariants({ variant: plan.highlight ? 'default' : 'outline', size: 'lg' })}
+                      className={buttonVariants({
+                        variant: plan.highlight ? 'default' : 'outline',
+                        size: 'lg',
+                      })}
                     >
-                      {plan.name === 'Commit+' ? 'Quero o Commit+ agora' : 'Ficar no Free por agora'}
+                      {plan.name === 'Commit+'
+                        ? 'Quero o Commit+ agora'
+                        : 'Ficar no Free por agora'}
                       <ArrowRight size={16} />
                     </a>
                   </CardFooter>
@@ -397,7 +412,11 @@ export default function CommitPlusPage() {
               <Typography variant="h3" className="sm:text-3xl">
                 Pronto para dar o próximo passo?
               </Typography>
-              <Typography variant="p" className="mx-auto mt-3 max-w-2xl" style={{ color: '#ffffff' }}>
+              <Typography
+                variant="p"
+                className="mx-auto mt-3 max-w-2xl"
+                style={{ color: '#ffffff' }}
+              >
                 Entra num ritmo com pessoas a acompanhar o teu progresso, toda a semana.
               </Typography>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
