@@ -108,7 +108,7 @@ export default function Hero() {
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
+                href="https://discord.gg/yGAbprCBrT"
                 target="_blank"
                 rel="noreferrer"
                 className={buttonVariants({ variant: 'outline', size: 'lg' })}

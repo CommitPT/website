@@ -102,7 +102,7 @@ export default async function ContributorsPage() {
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
+                href="https://discord.gg/yGAbprCBrT"
                 target="_blank"
                 rel="noreferrer"
                 className={
