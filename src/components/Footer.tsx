@@ -36,7 +36,7 @@ export default function Footer() {
               href="https://whop.com/commitpt-709e/commit-plus"
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({})}
+              className={buttonVariants({}) + ' group'}
             >
               Adere já
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
