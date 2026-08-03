@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "name": "Luis Moreira",
+    "role": "Software Engineer @ FashableAI",
+    "bio": "Engenheiro de Software apaixonado por tecnologia, inovação e inteligência artificial.",
+    "githubUsername": "SWAGGATH4K1NG",
+    "linkedin": "https://www.linkedin.com/in/luis-moreira-dev",
+    "github": "https://github.com/SWAGGATH4K1NG",
+    "email": "lm.network.pt@proton.me"
+  },
+  {
+    "name": "Rafael Januário",
+    "role": "Software Engineer @ RCoders",
+    "bio": "Desenvolvedor de Software especializado em Java, Spring Boot, React e PostgreSQL, com foco no desenvolvimento de aplicações backend e full-stack.",
+    "githubUsername": "RafaelJ13",
+    "linkedin": "https://www.linkedin.com/in/rafael-janu%C3%A1rio-a145bb347",
+    "github": "https://github.com/RafaelJ13"
+  },
+  {
+    "name": "Alexandra Hockett",
+    "role": "Software Engineer @ Freelance",
+    "bio": "Desenvolvedora FullStack especializada em Next.js e integrações de AI. Antiga gestora que trocou 21 anos de operações pela programação, sem olhar para trás.",
+    "githubUsername": "AlexandraHockett",
+    "linkedin": "https://www.linkedin.com/in/alexandra-hockett",
+    "github": "https://github.com/AlexandraHockett",
+    "website": "https://alexandrahockett.com"
+  },
+  {
+    "name": "Tomas Bernardino",
+    "role": "DevSecOps Engineer @ EMGFA",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "github",
+    "linkedin": "https://www.linkedin.com/in/tomas-mbernardino/"
+  },
+  {
+    "name": "Sandro Alves",
+    "role": "Software Developer",
+    "bio": "Desenvolvedor de software com um grande interesse por programação, administração de sistemas e inteligência artificial.",
+    "githubUsername": "mrpotato5555",
+    "github": "https://git.vortexia.wiki/explore/repos",
+    "website": "https://vortexia.wiki",
+    "email": "sandro@vortexia.wiki"
+  },
+  {
+    "name": "Luis Silva",
+    "role": "Senior Cloud Architect @ Siemens",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "LuiSilvaPT",
+    "github": "https://github.com/LuiSilvaPT",
+    "linkedin": "https://www.linkedin.com/in/l-silva",
+    "website": "https://steamreport.net"
+  }
+]

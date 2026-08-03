@@ -134,7 +134,7 @@ export default function Platform() {
 
             {/* Community Link Button */}
             <a
-              href="https://discord.gg/yGAbprCBrT"
+              href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-2 rounded-md border border-primary px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"

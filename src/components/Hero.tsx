@@ -102,13 +102,13 @@ export default function Hero() {
                 href="https://whop.com/commitpt-709e/commit-plus"
                 target="_blank"
                 rel="noreferrer"
-                className={buttonVariants({ size: 'lg' })}
+                className={buttonVariants({ size: 'lg' }) + ' group'}
               >
                 Junta-te à Comunidade
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://discord.gg/yGAbprCBrT"
+                href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
                 target="_blank"
                 rel="noreferrer"
                 className={buttonVariants({ variant: 'outline', size: 'lg' })}
