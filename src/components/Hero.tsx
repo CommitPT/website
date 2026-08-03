@@ -103,7 +103,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
                 href="https://whop.com/commitpt-709e/commit-plus"
                 target="_blank"
                 rel="noreferrer"
-                className={buttonVariants({ size: 'lg' })}
+                className={buttonVariants({ size: 'lg' }) + ' group'}
               >
                 Junta-te à Comunidade
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

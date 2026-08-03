@@ -96,7 +96,7 @@ export default function Features() {
               href="https://whop.com/commitpt-709e/commit-plus"
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ size: 'lg' })}
+              className={buttonVariants({ size: 'lg' }) + ' group'}
             >
               Adere já
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

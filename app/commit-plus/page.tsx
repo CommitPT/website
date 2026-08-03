@@ -86,7 +86,7 @@ function CtaButtons({ className = '' }: { className?: string }) {
         href={WHOP_COMMIT_PLUS_URL}
         target="_blank"
         rel="noreferrer"
-        className={buttonVariants({ size: 'lg', className: 'gap-2' })}
+        className={buttonVariants({ size: 'lg', className: 'gap-2 group' })}
       >
         Adere ao Commit+
         <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -314,7 +314,7 @@ function DiffSection() {
             href={WHOP_COMMIT_PLUS_URL}
             target="_blank"
             rel="noreferrer"
-            className={buttonVariants({ size: 'lg', className: 'gap-2' })}
+            className={buttonVariants({ size: 'lg', className: 'gap-2 group' })}
           >
             Faz o teu push para o Commit+
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -507,7 +507,7 @@ function PricingCard({ plan }: { plan: Plan }) {
         className={buttonVariants({
           ...(featured ? {} : { variant: 'outline' }),
           size: 'lg',
-          className: 'mt-8 w-full gap-2',
+          className: 'mt-8 w-full gap-2 group',
         })}
       >
         {plan.ctaLabel}
