@@ -1,12 +1,7 @@
 'use client'
 
 import { MessageCircle } from 'lucide-react'
-import {
-  FAQ as FAQAccordion,
-  Typography,
-  buttonVariants,
-  type FAQItem as FAQAccordionItem,
-} from '@commitpt/design-system'
+import { Typography, buttonVariants } from '@commitpt/design-system'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -236,7 +231,7 @@ export default function FAQ() {
     })),
   }
 
-  const items: FAQAccordionItem[] = faqs.map((faq) => ({
+  const items = faqs.map((faq) => ({
     question: faq.q,
     answer: <div className="space-y-3">{renderBlocks(faq.blocks)}</div>,
   }))
@@ -265,7 +260,25 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Accordion */}
-        <FAQAccordion items={items} />
+        <div className="space-y-3">
+          {items.map((item, index) => {
+            const isOpen = index === 0
+            return (
+              <div key={item.question} className="rounded-lg border border-border bg-surface">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  onClick={() => {}}
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-medium text-foreground">{item.question}</span>
+                  <span className="text-sm text-muted-foreground">+</span>
+                </button>
+                {isOpen && <div className="border-t border-border px-5 py-4">{item.answer}</div>}
+              </div>
+            )
+          })}
+        </div>
 
         {/* Discord CTA Box */}
         <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">

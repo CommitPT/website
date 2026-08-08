@@ -16,6 +16,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: 'Início', href: '/' },
+  { label: 'Commit+', href: '/commit-plus' },
   { label: 'Projetos', href: '/projects' },
   { label: 'Contribuidores', href: '/contributors' },
 ]
