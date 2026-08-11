@@ -37,8 +37,9 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 O responsável pelo tratamento dos teus dados pessoais é{' '}
-                <strong className="text-foreground">Bruno Moisão</strong>, operador da CommitPT,
-                contactável através do email{' '}
+                <strong className="text-foreground">Bruno Moisão</strong>, pessoa singular que
+                exerce a atividade em nome individual sob a designação CommitPT, titular do NIF{' '}
+                <strong className="text-foreground">254799221</strong>, contactável através do email{' '}
                 <strong className="text-foreground">brunomoisao@commitpt.com</strong>.
               </p>
             </section>
