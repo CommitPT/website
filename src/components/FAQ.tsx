@@ -149,7 +149,7 @@ const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'Nenhum membro paga para ter acesso a uma comunidade — paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
+        text: 'A comunidade base é e continuará a ser gratuita. O Commit+ é uma subscrição opcional: quem adere recebe benefícios e experiências adicionais, e essa receita ajuda a financiar o desenvolvimento e a operação da CommitPT.',
       },
     ],
   },

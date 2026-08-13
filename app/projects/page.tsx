@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
 }
 
+const visibleProjects = projects.filter((project) => project.id !== 'platform')
+
 export default function ProjectsPage() {
   return (
     <div className="relative overflow-hidden">
@@ -42,7 +44,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <Link href={`/projects/${project.id}`} key={project.id}>
               <div className="group h-full border border-border bg-surface rounded-xl overflow-hidden hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-pointer flex flex-col">
                 <div className="relative h-48 w-full bg-muted overflow-hidden">

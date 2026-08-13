@@ -64,16 +64,19 @@ function TestimonialCard({
   t,
   expanded,
   onExpand,
+  'aria-hidden': ariaHidden,
 }: {
   t: ReviewItem
   expanded?: boolean
   onExpand?: () => void
+  'aria-hidden'?: boolean
 }) {
   const clamped = Math.min(5, Math.max(0, Math.round(t.stars)))
 
   return (
     <Card
       data-slot="review-card"
+      aria-hidden={ariaHidden}
       className={`${reviewCardVariants()} w-80 flex-shrink-0 lg:cursor-default`}
       onClick={() => {
         // pony: tap anywhere on mobile to expand/collapse; desktop only via button
@@ -146,7 +149,7 @@ export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
       {/* Desktop: infinite marquee */}
       <div className="animate-marquee pause-on-hover hidden w-max gap-4 px-6 lg:flex lg:gap-6">
         {doubled.map((t, i) => (
-          <TestimonialCard key={`${t.id}-${i}`} t={t} />
+          <TestimonialCard key={`${t.id}-${i}`} t={t} aria-hidden={i >= items.length} />
         ))}
       </div>
     </div>
