@@ -1,7 +1,6 @@
 import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
 import {
   ArrowRight,
-  BookMarked,
   GitBranch,
   GitPullRequest,
   LucideIcon,
@@ -47,11 +46,6 @@ const solutions: Solution[] = [
     title: 'Projetos Colaborativos',
     desc: 'Trabalhas em projetos internos com outros membros: defines tarefas, colaboras em código, iteras e entregas. A dinâmica mais próxima de uma equipa de engenharia real que vais encontrar antes de estares numa.',
   },
-  {
-    icon: BookMarked,
-    title: 'Recursos e Roadmaps Curados',
-    desc: 'Materiais selecionados por profissionais da área — sem o ruído das playlists infinitas. Roadmaps validados, templates e referências que podes usar de imediato.',
-  },
 ]
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -95,7 +89,7 @@ export default function Features() {
             Já sabes qual é o problema. A solução está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Junta-te a mais de 350 programadores portugueses que pararam de aprender sozinhos.
+            Junta-te a mais de 450 programadores portugueses que pararam de aprender sozinhos.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a

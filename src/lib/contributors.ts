@@ -187,12 +187,20 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
   return contributorsFallback as Contributor[]
 }
 
+const HIDDEN_CONTRIBUTORS = ['mrpotato5555']
+
+function isVisible(contributor: Contributor): boolean {
+  return !HIDDEN_CONTRIBUTORS.includes(contributor.githubUsername.toLowerCase())
+}
+
 export async function getContributors(): Promise<Contributor[]> {
   try {
     const contributors = await fetchGitHubContributors()
 
-    return contributors.length > 0 ? contributors : (contributorsFallback as Contributor[])
+    return (
+      contributors.length > 0 ? contributors : (contributorsFallback as Contributor[])
+    ).filter(isVisible)
   } catch {
-    return contributorsFallback as Contributor[]
+    return (contributorsFallback as Contributor[]).filter(isVisible)
   }
 }

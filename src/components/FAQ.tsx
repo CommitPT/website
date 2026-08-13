@@ -53,7 +53,6 @@ const faqs: FaqItem[] = [
           'Revisões de código e feedback honesto',
           'Discussões técnicas sobre arquitetura, ferramentas e boas práticas',
           'Projetos internos onde podes colaborar com outros membros',
-          'Recursos e materiais curados por profissionais da área',
           'Contacto direto com engenheiros experientes',
           'Uma comunidade ativa onde podes fazer perguntas sem julgamentos',
         ],
@@ -97,7 +96,7 @@ const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'A participação é sempre opcional. As sessões ficam gravadas para quem não conseguir estar presente.',
+        text: 'A participação é sempre opcional.',
       },
     ],
   },
@@ -123,18 +122,16 @@ const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A comunidade gratuita no Discord **vai continuar a existir sempre**. Podes entrar, fazer perguntas, conhecer pessoas e participar nas discussões sem pagar nada.',
+        text: 'A comunidade gratuita no Discord está aberta a todos. Podes entrar, fazer perguntas, conhecer pessoas e participar nas discussões sem pagar nada.',
       },
       { type: 'p', text: 'O Commit+ adiciona uma camada extra para quem quer ir mais fundo:' },
       {
         type: 'list',
         items: [
           'Workshops práticos e calls ao vivo exclusivas',
-          'Acesso a recursos e materiais premium',
           'Participação em projetos internos da comunidade',
           'Interação mais próxima com a equipa e membros seniores',
           'Mais oportunidades de aprender com outros membros',
-          'Acesso antecipado à plataforma que estamos a construir',
         ],
       },
     ],

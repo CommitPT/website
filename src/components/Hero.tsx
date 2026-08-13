@@ -1,7 +1,7 @@
 'use client'
 
 import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, Briefcase, MessageCircle, Mic, Star, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, MessageCircle, MessageSquare, Mic, Users } from 'lucide-react'
 import { Fragment, useEffect, useState } from 'react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ export default function Hero() {
           <div>
             {/* Badge */}
             <Badge variant="primary" className="hero-enter-1 mb-6">
-              350+ programadores portugueses já dentro
+              450+ programadores portugueses já dentro
             </Badge>
 
             {/* Headline */}
@@ -125,10 +125,10 @@ export default function Hero() {
               style={{ color: '#f1f5f9' }}
             >
               {[
-                { icon: Users, value: '350+', label: 'membros ativos' },
+                { icon: Users, value: '450+', label: 'membros ativos' },
                 { icon: Briefcase, value: '25+', label: 'profissionais da área' },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
-                { icon: Star, value: '5+', label: 'anos de experiência' },
+                { icon: MessageSquare, value: '80 mil+', label: 'mensagens enviadas' },
               ].map((m, i) => (
                 <Fragment key={m.label}>
                   {i > 0 && (
