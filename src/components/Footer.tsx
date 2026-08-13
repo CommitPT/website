@@ -67,6 +67,12 @@ export default function Footer() {
             <a href="/#team" className="hover:text-primary transition-colors">
               O Fundador
             </a>
+            <a href="/#testimonials" className="hover:text-primary transition-colors">
+              Testemunhos
+            </a>
+            <a href="/contributors" className="hover:text-primary transition-colors">
+              Contribuidores
+            </a>
             <a href="/#faq" className="hover:text-primary transition-colors">
               FAQ
             </a>
@@ -91,22 +97,14 @@ export default function Footer() {
           </div>
 
           {/* Legal Links & Copyright */}
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="/privacy"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
+          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+            <a href="/privacy" className="hover:text-primary transition-colors">
               Política de Privacidade
             </a>
-            <a
-              href="/terms"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="/terms" className="hover:text-primary transition-colors">
               Termos e Condições
             </a>
-            <Typography variant="caption" color="muted">
-              © 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados
-            </Typography>
+            <span>© 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados</span>
           </div>
         </div>
       </div>

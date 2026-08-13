@@ -46,7 +46,7 @@ export default async function SocialProof() {
   const items: ReviewItem[] = [...whopItems, ...hardcodedItems]
 
   return (
-    <section className="border-y border-border">
+    <section id="testimonials" className="border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">

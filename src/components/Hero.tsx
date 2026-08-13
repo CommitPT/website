@@ -1,7 +1,7 @@
 'use client'
 
 import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, Briefcase, MessageCircle, MessageSquare, Mic, Users } from 'lucide-react'
+import { ArrowRight, GitBranch, MessageCircle, MessageSquare, Mic, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ export default function Hero() {
             >
               {[
                 { icon: Users, value: '450+', label: 'membros na comunidade' },
-                { icon: Briefcase, value: '25+', label: 'profissionais da área' },
+                { icon: GitBranch, value: '6+', label: 'contribuidores de projetos' },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
                 { icon: MessageSquare, value: '80 mil+', label: 'mensagens enviadas' },
               ].map((m) => (
