@@ -6,7 +6,8 @@
     "githubUsername": "SWAGGATH4K1NG",
     "linkedin": "https://www.linkedin.com/in/luis-moreira-dev",
     "github": "https://github.com/SWAGGATH4K1NG",
-    "email": "lm.network.pt@proton.me"
+    "email": "lm.network.pt@proton.me",
+    "website": "https://swaggadev.me/"
   },
   {
     "name": "Rafael Januário",
@@ -49,5 +50,47 @@
     "github": "https://github.com/LuiSilvaPT",
     "linkedin": "https://www.linkedin.com/in/l-silva",
     "website": "https://steamreport.net"
+  },
+  {
+    "name": "Bruno Moisão",
+    "role": "Software Engineer @ Pixelmatters",
+    "bio": "Engenheiro de Software na Pixelmatters, contribuidor ativo da CommitPT com 38 commits no repositório do website.",
+    "githubUsername": "spars57",
+    "github": "https://github.com/spars57"
+  },
+  {
+    "name": "CodedbyCruz",
+    "role": "IT Specialist & Web Developer",
+    "bio": "Especialista em IT e administração de sistemas, com forte interesse em desenvolvimento web.",
+    "githubUsername": "hohops",
+    "github": "https://github.com/hohops"
+  },
+  {
+    "name": "Gonçalo Coimbra",
+    "role": "Full-Stack Developer",
+    "bio": "Full-Stack Developer especializado em React, TypeScript e NestJS, focado em construir soluções empresariais escaláveis.",
+    "githubUsername": "GoncaloCoimbra",
+    "github": "https://github.com/GoncaloCoimbra"
+  },
+  {
+    "name": "gongas251",
+    "role": "Contributor",
+    "bio": "Biografia em atualização. Em breve poderás conhecer melhor o seu percurso e experiência.",
+    "githubUsername": "gongas251",
+    "github": "https://github.com/gongas251"
+  },
+  {
+    "name": "Rodrigo Rocha",
+    "role": "Computer Systems & Management Student",
+    "bio": "🎓 Estudante de Sistemas Informáticos e Gestão | 💻 Entusiasta de Tecnologia | 📍 Portugal",
+    "githubUsername": "azunieee",
+    "github": "https://github.com/azunieee"
+  },
+  {
+    "name": "Vexy",
+    "role": "Contributor",
+    "bio": "⭐ 20 anos | 📍 Portugal. Contribuidor ativo da comunidade CommitPT.",
+    "githubUsername": "vexypt",
+    "github": "https://github.com/vexypt"
   }
 ]

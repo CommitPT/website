@@ -1,4 +1,6 @@
 import contributorsFallback from '@/src/contributors.json'
+import fs from 'fs'
+import path from 'path'
 
 export interface Contributor {
   name: string
@@ -111,25 +113,41 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
               }
 
               const fallback = fallbackByUsername.get(username)
+
+              if (fallback) {
+                return {
+                  username,
+                  contributorData: {
+                    name: fallback.name || contributor.login,
+                    role: fallback.role || 'Contributor',
+                    bio: fallback.bio || `Contribuidor ativo...`,
+                    githubUsername: contributor.login,
+                    github: fallback.github || contributor.html_url || null,
+                    linkedin: fallback.linkedin ?? null,
+                    instagram: fallback.instagram ?? null,
+                    email: fallback.email ?? null,
+                    website: fallback.website ?? null,
+                  } satisfies Contributor,
+                }
+              }
+
+              // só chega aqui se não houver fallback no JSON
               const profile = await getProfile(contributor.login)
               const company = profile?.company?.trim()
-              const bio = profile?.bio?.trim() || fallback?.bio || ''
-              const website =
-                fallback?.website || (profile?.blog?.trim() ? profile.blog.trim() : null)
+              const bio = profile?.bio?.trim() || ''
+              const website = profile?.blog?.trim() ? profile.blog.trim() : null
 
               return {
                 username,
                 contributorData: {
-                  name: profile?.name?.trim() || fallback?.name || contributor.login,
-                  role: company || fallback?.role || 'Contributor',
-                  bio:
-                    bio ||
-                    `Contribuidor ativo no GitHub com ${contributor.contributions ?? 0} contribuições.`,
+                  name: profile?.name?.trim() || contributor.login,
+                  role: company || 'Contributor',
+                  bio: bio || `Contribuidor ativo...`,
                   githubUsername: contributor.login,
                   github: profile?.html_url || contributor.html_url || null,
-                  linkedin: fallback?.linkedin ?? null,
-                  instagram: fallback?.instagram ?? null,
-                  email: fallback?.email ?? null,
+                  linkedin: null,
+                  instagram: null,
+                  email: null,
                   website,
                 } satisfies Contributor,
               }
@@ -155,17 +173,32 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
     }
   }
 
+  // garantir que todos os contributors do JSON estão na lista caso nao esteja ele vai buscar a API do github
+  // caso a API nao retorne o contributor ele vai usar o do JSON
+  for (const fallbackContributor of contributorsFallback as Contributor[]) {
+    const username = fallbackContributor.githubUsername.toLowerCase()
+    if (!contributorsByLogin.has(username)) {
+      contributorsByLogin.set(username, fallbackContributor)
+    }
+  }
+
   if (contributorsByLogin.size > 0) {
     const all = Array.from(contributorsByLogin.values())
 
     // Preferred ordering for top contributors (lowercase github usernames)
     const preferredOrder = [
+      'spars57',
       'swaggath4k1ng',
       'rafaelj13',
       'alexandrahockett',
       'github',
-      'mrpotato5555',
       'luisilvapt',
+      'hohops',
+      'goncalocoimbra',
+      'gongas251',
+      'azunieee',
+      'vexypt',
+      'mrpotato5555',
     ]
 
     const byUsername = new Map(all.map((c) => [c.githubUsername.toLowerCase(), c]))
@@ -181,7 +214,28 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
 
     const remaining = Array.from(byUsername.values()).sort((a, b) => a.name.localeCompare(b.name))
 
-    return ordered.concat(remaining)
+    const finalContributors = ordered.concat(remaining)
+
+    // Sincroniza com o ficheiro JSON caso existam novos users no github
+    try {
+      const filePath = path.join(process.cwd(), 'src', 'contributors.json')
+
+      const existingUsernames = new Set(
+        (contributorsFallback as Contributor[]).map((c) => c.githubUsername.toLowerCase())
+      )
+      const hasNew = finalContributors.some(
+        (c) => !existingUsernames.has(c.githubUsername.toLowerCase())
+      )
+
+      if (hasNew) {
+        fs.writeFileSync(filePath, JSON.stringify(finalContributors, null, 2))
+        console.log('contributors.json sincronizado com novos contribuidores!')
+      }
+    } catch (err) {
+      // Ignorar erros na produção (onde o sistema de ficheiros é read-only)
+    }
+
+    return finalContributors
   }
 
   return contributorsFallback as Contributor[]
