@@ -89,7 +89,7 @@ export default function Features() {
             Já sabes qual é o problema. A solução está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Junta-te a mais de 450 membros da comunidade que deixaram de aprender sozinhos.
+            Junta-te a mais de 490 membros da comunidade que deixaram de aprender sozinhos.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a

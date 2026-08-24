@@ -218,35 +218,9 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
     return curatedContributors()
   }
 
-  // Preferred ordering for top contributors (lowercase github usernames)
-  const preferredOrder = [
-    'spars57',
-    'swaggath4k1ng',
-    'rafaelj13',
-    'alexandrahockett',
-    'github',
-    'luisilvapt',
-    'hohops',
-    'goncalocoimbra',
-    'gongas251',
-    'azunieee',
-    'vexypt',
-  ]
-
-  const byUsername = new Map(contributorsByLogin)
-
-  const ordered: Contributor[] = []
-  for (const username of preferredOrder) {
-    const item = byUsername.get(username)
-    if (item) {
-      ordered.push(item)
-      byUsername.delete(username)
-    }
-  }
-
-  const remaining = Array.from(byUsername.values()).sort((a, b) => a.name.localeCompare(b.name))
-
-  return ordered.concat(remaining)
+  return Array.from(contributorsByLogin.values()).sort(
+    (a, b) => (b.contributions ?? 0) - (a.contributions ?? 0)
+  )
 }
 
 export async function getContributors(): Promise<Contributor[]> {

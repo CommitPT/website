@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { ExpandableText } from '@/src/components/ExpandableText'
 import {
   Avatar,
@@ -122,19 +122,13 @@ function TestimonialCard({
  * Wrapper para a metade duplicada do marquee. `aria-hidden` evita que os
  * leitores de ecrã leiam cada testemunho duas vezes; `inert` garante que os
  * botões "Ver mais" dessa metade também saem da ordem de tabulação — sem isso,
- * o utilizador de teclado navegava para dentro de conteúdo escondido.
+ * o utilizador de teclado navegava para dentro de conteúdo escondido. `inert`
+ * é passado como prop JSX (em vez de via ref + useEffect) para já sair
+ * presente no HTML gerado no servidor, sem depender da hidratação no cliente.
  */
 function MarqueeClone({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.inert = true
-    }
-  }, [])
-
   return (
-    <div ref={ref} aria-hidden="true" className="flex gap-4 lg:gap-6">
+    <div inert aria-hidden="true" className="flex gap-4 lg:gap-6">
       {children}
     </div>
   )
