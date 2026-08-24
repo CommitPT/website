@@ -201,7 +201,7 @@ Sections use `01 //`, `02 //`, etc. as monospaced labels above the heading.
 ### CTA rules
 
 - Whop link: `https://whop.com/commitpt-709e/commit-plus`
-- Discord link: `https://whop.com/joined/commitpt-709e/products/acesso-commitpt/`
+- Discord link: `https://discord.gg/yGAbprCBrT`
 - Never remove or hide Whop as the primary CTA; it's the revenue conversion point
 - `target="_blank" rel="noreferrer"` on all external links
 

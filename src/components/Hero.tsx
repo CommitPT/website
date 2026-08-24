@@ -1,8 +1,8 @@
 'use client'
 
 import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, Briefcase, MessageCircle, Mic, Star, Users } from 'lucide-react'
-import { Fragment, useEffect, useState } from 'react'
+import { ArrowRight, GitBranch, MessageCircle, MessageSquare, Mic, Users } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -66,7 +66,7 @@ const TOTAL_CHARS = LINE_ENDS[LINE_ENDS.length - 1]
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Hero() {
+export default function Hero({ contributorsCount }: { contributorsCount: number }) {
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
@@ -75,7 +75,7 @@ export default function Hero() {
           <div>
             {/* Badge */}
             <Badge variant="primary" className="hero-enter-1 mb-6">
-              350+ programadores portugueses já dentro
+              490+ membros na comunidade
             </Badge>
 
             {/* Headline */}
@@ -92,8 +92,9 @@ export default function Hero() {
             {/* Description */}
             <p className="hero-enter-3 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
               Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber
-              críticas, comunicar bem e trabalhar em equipa. A CommitPT é o ambiente mais próximo de
-              uma empresa real que vais encontrar — antes de estares numa.
+              críticas, comunicar bem e trabalhar em equipa. Criamos um ambiente que procura
+              aproximar-se das dinâmicas de uma equipa de Engenharia de Software — antes de estares
+              numa.
             </p>
 
             {/* Action Buttons */}
@@ -108,7 +109,7 @@ export default function Hero() {
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://whop.com/joined/commitpt-709e/products/acesso-commitpt/"
+                href="https://discord.gg/yGAbprCBrT"
                 target="_blank"
                 rel="noreferrer"
                 className={buttonVariants({ variant: 'outline', size: 'lg' })}
@@ -121,31 +122,30 @@ export default function Hero() {
 
             {/* Metrics Grid */}
             <div
-              className="hero-enter-5 flex flex-wrap gap-y-3 text-[13px] font-semibold"
+              className="hero-enter-5 grid grid-cols-2 gap-x-6 gap-y-3 text-[13px] font-semibold"
               style={{ color: '#f1f5f9' }}
             >
               {[
-                { icon: Users, value: '350+', label: 'membros ativos' },
-                { icon: Briefcase, value: '25+', label: 'profissionais da área' },
+                { icon: Users, value: '490+', label: 'membros na comunidade' },
+                {
+                  icon: GitBranch,
+                  value: `${contributorsCount}+`,
+                  label: 'contribuidores de projetos',
+                },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
-                { icon: Star, value: '5+', label: 'anos de experiência' },
-              ].map((m, i) => (
-                <Fragment key={m.label}>
-                  {i > 0 && (
-                    <span className="hidden sm:block w-px self-stretch bg-border mx-5 my-0.5" />
-                  )}
-                  <div className="flex items-center gap-1.5 w-1/2 sm:w-auto">
-                    <m.icon
-                      size={13}
-                      className="text-muted-foreground/60 shrink-0"
-                      aria-hidden="true"
-                    />
-                    <span>
-                      <strong className="font-mono font-semibold text-foreground">{m.value}</strong>{' '}
-                      {m.label}
-                    </span>
-                  </div>
-                </Fragment>
+                { icon: MessageSquare, value: '80 mil+', label: 'mensagens enviadas' },
+              ].map((m) => (
+                <div key={m.label} className="flex items-center gap-1.5">
+                  <m.icon
+                    size={13}
+                    className="text-muted-foreground/60 shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <strong className="font-mono font-semibold text-foreground">{m.value}</strong>{' '}
+                    {m.label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
