@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ExpandableText } from '@/src/components/ExpandableText'
 import {
   Avatar,
@@ -64,19 +64,16 @@ function TestimonialCard({
   t,
   expanded,
   onExpand,
-  'aria-hidden': ariaHidden,
 }: {
   t: ReviewItem
   expanded?: boolean
   onExpand?: () => void
-  'aria-hidden'?: boolean
 }) {
   const clamped = Math.min(5, Math.max(0, Math.round(t.stars)))
 
   return (
     <Card
       data-slot="review-card"
-      aria-hidden={ariaHidden}
       className={`${reviewCardVariants()} w-80 flex-shrink-0 lg:cursor-default`}
       onClick={() => {
         // pony: tap anywhere on mobile to expand/collapse; desktop only via button
@@ -121,12 +118,32 @@ function TestimonialCard({
   )
 }
 
+/**
+ * Wrapper para a metade duplicada do marquee. `aria-hidden` evita que os
+ * leitores de ecrã leiam cada testemunho duas vezes; `inert` garante que os
+ * botões "Ver mais" dessa metade também saem da ordem de tabulação — sem isso,
+ * o utilizador de teclado navegava para dentro de conteúdo escondido.
+ */
+function MarqueeClone({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.inert = true
+    }
+  }, [])
+
+  return (
+    <div ref={ref} aria-hidden="true" className="flex gap-4 lg:gap-6">
+      {children}
+    </div>
+  )
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
-
-  const doubled = [...items, ...items]
 
   return (
     <div className="relative overflow-hidden pb-16 lg:pb-28">
@@ -148,9 +165,15 @@ export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
 
       {/* Desktop: infinite marquee */}
       <div className="animate-marquee pause-on-hover hidden w-max gap-4 px-6 lg:flex lg:gap-6">
-        {doubled.map((t, i) => (
-          <TestimonialCard key={`${t.id}-${i}`} t={t} aria-hidden={i >= items.length} />
+        {items.map((t) => (
+          <TestimonialCard key={t.id} t={t} />
         ))}
+        {/* Segunda metade só existe para o loop visual. */}
+        <MarqueeClone>
+          {items.map((t) => (
+            <TestimonialCard key={`clone-${t.id}`} t={t} />
+          ))}
+        </MarqueeClone>
       </div>
     </div>
   )

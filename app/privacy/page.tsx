@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <div className="space-y-10">
           <header className="space-y-4">
             <p className="font-mono text-sm font-medium text-secondary">
-              Última atualização: 11 de Julho de 2026
+              Última atualização: 14 de Agosto de 2026
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-foreground">
               Política de Privacidade
