@@ -8,7 +8,7 @@ import {
   type FAQItem as FAQAccordionItem,
 } from '@commitpt/design-system'
 import { blocksToPlainText, type Block, type FaqItem } from '@/src/data/faqs'
-import { WHOP_FREE_DISCORD_URL } from '@/src/lib/links'
+import { DISCORD_URL } from '@/src/lib/links'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -121,7 +121,7 @@ export default function FAQ({
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href={WHOP_FREE_DISCORD_URL}
+              href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({

@@ -14,7 +14,7 @@ import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 import FAQ from '@/src/components/FAQ'
 import { selectFaqs } from '@/src/data/faqs'
-import { WHOP_COMMIT_PLUS_URL, WHOP_FREE_DISCORD_URL } from '@/src/lib/links'
+import { WHOP_COMMIT_PLUS_URL, DISCORD_URL } from '@/src/lib/links'
 
 const DESCRIPTION =
   'Workshops e calls ao vivo exclusivas, revisões de código, projetos internos e acesso antecipado à plataforma. A comunidade gratuita no Discord continua gratuita.'
@@ -75,9 +75,6 @@ export default function CommitPlusPage() {
 }
 
 // ── Shared CTAs ───────────────────────────────────────────────────────────────
-//
-// Both entry points go to Whop — see src/lib/links.ts for why the free tier
-// does too.
 
 function CtaButtons({ className = '' }: { className?: string }) {
   return (
@@ -92,7 +89,7 @@ function CtaButtons({ className = '' }: { className?: string }) {
         <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
       </a>
       <a
-        href={WHOP_FREE_DISCORD_URL}
+        href={DISCORD_URL}
         target="_blank"
         rel="noreferrer"
         className={buttonVariants({
@@ -431,7 +428,7 @@ const PLANS: Plan[] = [
       'anúncios e eventos abertos',
     ],
     ctaLabel: 'Entrar no Discord',
-    ctaHref: WHOP_FREE_DISCORD_URL,
+    ctaHref: DISCORD_URL,
     featured: false,
   },
   {
