@@ -96,7 +96,9 @@ export default async function ContributorsPage() {
                 href="https://whop.com/commitpt-709e/commit-plus"
                 target="_blank"
                 rel="noreferrer"
-                className={buttonVariants({ size: 'lg' }) + ' w-full sm:w-auto justify-center'}
+                className={
+                  buttonVariants({ size: 'lg' }) + ' w-full sm:w-auto justify-center group'
+                }
               >
                 Adere ao Commit+
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />

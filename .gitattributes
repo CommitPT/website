@@ -1,0 +1,10 @@
+# Lockfile
+#
+# merge=binary tells git to never line-merge this file. A lockfile that git
+# stitched together from two sides is not a valid lockfile — it just looks like
+# one. On conflict git now stops and keeps our side, so the resolution has to be
+# a deliberate `yarn install`, not a silent guess.
+#
+# linguist-generated collapses it in GitHub diffs, so a 4000-line lockfile churn
+# stops burying the actual review.
+yarn.lock merge=binary linguist-generated=true
