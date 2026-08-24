@@ -1,19 +1,6 @@
 import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/design-system'
-import { Mail, Globe } from 'lucide-react'
-
-// ── Types ─────────────────────────────────────────────────────────────────────
-
-interface Contributor {
-  name: string
-  role: string
-  bio: string
-  githubUsername: string
-  linkedin?: string | null
-  github?: string | null
-  instagram?: string | null
-  email?: string | null
-  website?: string | null
-}
+import { Mail, Globe, GitCommitHorizontal } from 'lucide-react'
+import type { Contributor } from '@/src/lib/contributors'
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -92,9 +79,22 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
       </div>
 
       {/* Bio */}
-      <Typography variant="small" color="muted" className="flex-1 leading-relaxed">
-        {contributor.bio}
-      </Typography>
+      <div className="flex-1">
+        {contributor.bio && (
+          <Typography variant="small" color="muted" className="leading-relaxed">
+            {contributor.bio}
+          </Typography>
+        )}
+      </div>
+
+      {/* Contributions */}
+      {typeof contributor.contributions === 'number' && contributor.contributions > 0 && (
+        <div className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted-foreground">
+          <GitCommitHorizontal size={13} aria-hidden="true" />
+          {contributor.contributions}{' '}
+          {contributor.contributions === 1 ? 'contribuição' : 'contribuições'}
+        </div>
+      )}
 
       {/* Social Links */}
       {hasSocials && (

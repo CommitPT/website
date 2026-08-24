@@ -97,14 +97,16 @@ export default function Footer() {
           </div>
 
           {/* Legal Links & Copyright */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <a href="/privacy" className="hover:text-primary transition-colors">
               Política de Privacidade
             </a>
             <a href="/terms" className="hover:text-primary transition-colors">
               Termos e Condições
             </a>
-            <span>© 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados</span>
+            <Typography variant="caption" color="muted">
+              © 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados
+            </Typography>
           </div>
         </div>
       </div>

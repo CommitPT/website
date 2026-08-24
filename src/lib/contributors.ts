@@ -5,6 +5,8 @@ export interface Contributor {
   role: string
   bio: string
   githubUsername: string
+  /** Nº de contribuições somadas em todos os repositórios da organização. */
+  contributions?: number
   linkedin?: string | null
   github?: string | null
   instagram?: string | null
@@ -28,12 +30,70 @@ type GitHubUserProfile = {
   twitter_username?: string | null
 }
 
+type RawContributor = {
+  login: string
+  htmlUrl?: string
+  contributions: number
+}
+
+/**
+ * Logins que nunca devem aparecer na página, mesmo que a API do GitHub os
+ * devolva (bots e contas que pediram para sair).
+ */
+const EXCLUDED_USERNAMES = new Set(['mrpotato5555'])
+
+function profileUrl(username: string): string {
+  return `https://github.com/${username}`
+}
+
+function isExcluded(login: string): boolean {
+  const username = login.toLowerCase()
+  return EXCLUDED_USERNAMES.has(username) || username.endsWith('[bot]')
+}
+
 function createHeaders() {
   const token = process.env.GITHUB_TOKEN
   return {
     Accept: 'application/vnd.github+json',
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   }
+}
+
+/**
+ * O perfil do GitHub é a base; `src/contributors.json` é a camada de correção.
+ * Cada campo curado no JSON ganha ao valor equivalente do GitHub, campo a
+ * campo — quem tiver o perfil bem preenchido não precisa de entrada no JSON, e
+ * quem o tiver errado/vazio só precisa de corrigir os campos em causa.
+ */
+function mergeContributor(
+  raw: RawContributor,
+  profile: GitHubUserProfile | null,
+  curated: Contributor | undefined
+): Contributor {
+  const githubRole = profile?.company?.trim().replace(/^@/, '') || ''
+
+  return {
+    name: curated?.name || profile?.name?.trim() || raw.login,
+    role: curated?.role || githubRole || 'Contributor',
+    bio: curated?.bio || profile?.bio?.trim() || '',
+    githubUsername: raw.login,
+    contributions: raw.contributions,
+    github: curated?.github || profile?.html_url || raw.htmlUrl || profileUrl(raw.login),
+    linkedin: curated?.linkedin ?? null,
+    instagram: curated?.instagram ?? null,
+    email: curated?.email ?? null,
+    website: curated?.website || profile?.blog?.trim() || null,
+  }
+}
+
+/**
+ * O `github` não precisa de estar no JSON — é sempre derivável do
+ * `githubUsername`. Só é preciso lá quando for mesmo diferente do padrão.
+ */
+function curatedContributors(): Contributor[] {
+  return (contributorsFallback as Contributor[])
+    .filter((c) => !isExcluded(c.githubUsername))
+    .map((c) => ({ ...c, github: c.github || profileUrl(c.githubUsername) }))
 }
 
 async function fetchGitHubContributors(): Promise<Contributor[]> {
@@ -44,14 +104,12 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
     'https://api.github.com/orgs/commitpt/public_members',
   ]
 
-  const fallbackByUsername = new Map(
+  const curatedByUsername = new Map(
     (contributorsFallback as Contributor[]).map((contributor) => [
       contributor.githubUsername.toLowerCase(),
       contributor,
     ])
   )
-
-  const contributorsByLogin = new Map<string, Contributor>()
 
   const getProfile = async (username: string): Promise<GitHubUserProfile | null> => {
     try {
@@ -69,6 +127,10 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
       return null
     }
   }
+
+  // 1. Recolher os logins de todos os repositórios, somando as contribuições
+  //    de quem aparece em mais do que um.
+  const rawByLogin = new Map<string, RawContributor>()
 
   for (const endpoint of endpoints) {
     try {
@@ -101,48 +163,25 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
           break
         }
 
-        const profileResults = await Promise.all(
-          contributors
-            .filter((contributor): contributor is GitHubContributor => Boolean(contributor?.login))
-            .map(async (contributor) => {
-              const username = contributor.login.toLowerCase()
-              if (contributorsByLogin.has(username)) {
-                return null
-              }
-
-              const fallback = fallbackByUsername.get(username)
-              const profile = await getProfile(contributor.login)
-              const company = profile?.company?.trim()
-              const bio = profile?.bio?.trim() || fallback?.bio || ''
-              const website =
-                fallback?.website || (profile?.blog?.trim() ? profile.blog.trim() : null)
-
-              return {
-                username,
-                contributorData: {
-                  name: profile?.name?.trim() || fallback?.name || contributor.login,
-                  role: company || fallback?.role || 'Contributor',
-                  bio:
-                    bio ||
-                    `Contribuidor ativo no GitHub com ${contributor.contributions ?? 0} contribuições.`,
-                  githubUsername: contributor.login,
-                  github: profile?.html_url || contributor.html_url || null,
-                  linkedin: fallback?.linkedin ?? null,
-                  instagram: fallback?.instagram ?? null,
-                  email: fallback?.email ?? null,
-                  website,
-                } satisfies Contributor,
-              }
-            })
-        )
-
-        profileResults.forEach((result) => {
-          if (!result) {
-            return
+        for (const contributor of contributors) {
+          if (!contributor?.login || isExcluded(contributor.login)) {
+            continue
           }
 
-          contributorsByLogin.set(result.username, result.contributorData)
-        })
+          const username = contributor.login.toLowerCase()
+          const existing = rawByLogin.get(username)
+
+          if (existing) {
+            existing.contributions += contributor.contributions ?? 0
+            existing.htmlUrl = existing.htmlUrl || contributor.html_url
+          } else {
+            rawByLogin.set(username, {
+              login: contributor.login,
+              htmlUrl: contributor.html_url,
+              contributions: contributor.contributions ?? 0,
+            })
+          }
+        }
 
         if (contributors.length < 100) {
           break
@@ -155,52 +194,41 @@ async function fetchGitHubContributors(): Promise<Contributor[]> {
     }
   }
 
-  if (contributorsByLogin.size > 0) {
-    const all = Array.from(contributorsByLogin.values())
+  // 2. Enriquecer com o perfil público e aplicar por cima as correções do JSON.
+  const merged = await Promise.all(
+    Array.from(rawByLogin.entries()).map(async ([username, raw]) => {
+      const profile = await getProfile(raw.login)
+      return [username, mergeContributor(raw, profile, curatedByUsername.get(username))] as const
+    })
+  )
 
-    // Preferred ordering for top contributors (lowercase github usernames)
-    const preferredOrder = [
-      'swaggath4k1ng',
-      'rafaelj13',
-      'alexandrahockett',
-      'github',
-      'mrpotato5555',
-      'luisilvapt',
-    ]
+  const contributorsByLogin = new Map<string, Contributor>(merged)
 
-    const byUsername = new Map(all.map((c) => [c.githubUsername.toLowerCase(), c]))
+  // 3. Quem está curado no JSON mas a API não devolveu (contribuições fora do
+  //    GitHub, repositórios privados, API em baixo) entra na mesma.
+  for (const curated of curatedContributors()) {
+    const username = curated.githubUsername.toLowerCase()
 
-    const ordered: Contributor[] = []
-    for (const u of preferredOrder) {
-      const item = byUsername.get(u)
-      if (item) {
-        ordered.push(item)
-        byUsername.delete(u)
-      }
+    if (!contributorsByLogin.has(username)) {
+      contributorsByLogin.set(username, curated)
     }
-
-    const remaining = Array.from(byUsername.values()).sort((a, b) => a.name.localeCompare(b.name))
-
-    return ordered.concat(remaining)
   }
 
-  return contributorsFallback as Contributor[]
-}
+  if (contributorsByLogin.size === 0) {
+    return curatedContributors()
+  }
 
-const HIDDEN_CONTRIBUTORS = ['mrpotato5555']
-
-function isVisible(contributor: Contributor): boolean {
-  return !HIDDEN_CONTRIBUTORS.includes(contributor.githubUsername.toLowerCase())
+  return Array.from(contributorsByLogin.values()).sort(
+    (a, b) => (b.contributions ?? 0) - (a.contributions ?? 0)
+  )
 }
 
 export async function getContributors(): Promise<Contributor[]> {
   try {
     const contributors = await fetchGitHubContributors()
 
-    return (
-      contributors.length > 0 ? contributors : (contributorsFallback as Contributor[])
-    ).filter(isVisible)
+    return contributors.length > 0 ? contributors : curatedContributors()
   } catch {
-    return (contributorsFallback as Contributor[]).filter(isVisible)
+    return curatedContributors()
   }
 }

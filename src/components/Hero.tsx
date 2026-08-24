@@ -66,7 +66,7 @@ const TOTAL_CHARS = LINE_ENDS[LINE_ENDS.length - 1]
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Hero() {
+export default function Hero({ contributorsCount }: { contributorsCount: number }) {
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
@@ -75,7 +75,7 @@ export default function Hero() {
           <div>
             {/* Badge */}
             <Badge variant="primary" className="hero-enter-1 mb-6">
-              450+ membros na comunidade
+              490+ membros na comunidade
             </Badge>
 
             {/* Headline */}
@@ -126,8 +126,12 @@ export default function Hero() {
               style={{ color: '#f1f5f9' }}
             >
               {[
-                { icon: Users, value: '450+', label: 'membros na comunidade' },
-                { icon: GitBranch, value: '6+', label: 'contribuidores de projetos' },
+                { icon: Users, value: '490+', label: 'membros na comunidade' },
+                {
+                  icon: GitBranch,
+                  value: `${contributorsCount}+`,
+                  label: 'contribuidores de projetos',
+                },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
                 { icon: MessageSquare, value: '80 mil+', label: 'mensagens enviadas' },
               ].map((m) => (
