@@ -118,12 +118,26 @@ function TestimonialCard({
   )
 }
 
+/**
+ * Wrapper para a metade duplicada do marquee. `aria-hidden` evita que os
+ * leitores de ecrã leiam cada testemunho duas vezes; `inert` garante que os
+ * botões "Ver mais" dessa metade também saem da ordem de tabulação — sem isso,
+ * o utilizador de teclado navegava para dentro de conteúdo escondido. `inert`
+ * é passado como prop JSX (em vez de via ref + useEffect) para já sair
+ * presente no HTML gerado no servidor, sem depender da hidratação no cliente.
+ */
+function MarqueeClone({ children }: { children: React.ReactNode }) {
+  return (
+    <div inert aria-hidden="true" className="flex gap-4 lg:gap-6">
+      {children}
+    </div>
+  )
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
-
-  const doubled = [...items, ...items]
 
   return (
     <div className="relative overflow-hidden pb-16 lg:pb-28">
@@ -145,9 +159,15 @@ export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
 
       {/* Desktop: infinite marquee */}
       <div className="animate-marquee pause-on-hover hidden w-max gap-4 px-6 lg:flex lg:gap-6">
-        {doubled.map((t, i) => (
-          <TestimonialCard key={`${t.id}-${i}`} t={t} />
+        {items.map((t) => (
+          <TestimonialCard key={t.id} t={t} />
         ))}
+        {/* Segunda metade só existe para o loop visual. */}
+        <MarqueeClone>
+          {items.map((t) => (
+            <TestimonialCard key={`clone-${t.id}`} t={t} />
+          ))}
+        </MarqueeClone>
       </div>
     </div>
   )

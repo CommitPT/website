@@ -18,6 +18,7 @@ const navLinks: NavLink[] = [
   { label: 'Início', href: '/' },
   { label: 'Projetos', href: '/projects' },
   { label: 'Contribuidores', href: '/contributors' },
+  { label: 'Commit+', href: '/commit-plus' },
 ]
 
 // ── Component ─────────────────────────────────────────────────────────────────

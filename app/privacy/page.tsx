@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <div className="space-y-10">
           <header className="space-y-4">
             <p className="font-mono text-sm font-medium text-secondary">
-              Última atualização: 11 de Julho de 2026
+              Última atualização: 14 de Agosto de 2026
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-foreground">
               Política de Privacidade
@@ -37,8 +37,9 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 O responsável pelo tratamento dos teus dados pessoais é{' '}
-                <strong className="text-foreground">Bruno Moisão</strong>, operador da CommitPT,
-                contactável através do email{' '}
+                <strong className="text-foreground">Bruno Moisão</strong>, pessoa singular que
+                exerce a atividade em nome individual sob a designação CommitPT, titular do NIF{' '}
+                <strong className="text-foreground">254799221</strong>, contactável através do email{' '}
                 <strong className="text-foreground">brunomoisao@commitpt.com</strong>.
               </p>
             </section>

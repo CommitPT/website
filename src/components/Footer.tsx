@@ -36,7 +36,7 @@ export default function Footer() {
               href="https://whop.com/commitpt-709e/commit-plus"
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({})}
+              className={buttonVariants({}) + ' group'}
             >
               Adere já
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
@@ -67,6 +67,12 @@ export default function Footer() {
             <a href="/#team" className="hover:text-primary transition-colors">
               O Fundador
             </a>
+            <a href="/#testimonials" className="hover:text-primary transition-colors">
+              Testemunhos
+            </a>
+            <a href="/contributors" className="hover:text-primary transition-colors">
+              Contribuidores
+            </a>
             <a href="/#faq" className="hover:text-primary transition-colors">
               FAQ
             </a>
@@ -91,17 +97,11 @@ export default function Footer() {
           </div>
 
           {/* Legal Links & Copyright */}
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="/privacy"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
+          <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+            <a href="/privacy" className="hover:text-primary transition-colors">
               Política de Privacidade
             </a>
-            <a
-              href="/terms"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="/terms" className="hover:text-primary transition-colors">
               Termos e Condições
             </a>
             <Typography variant="caption" color="muted">

@@ -137,7 +137,9 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
     notFound()
   }
 
-  const otherProjects = projects.filter((p) => p.id !== project.id).slice(0, 3)
+  const otherProjects = projects
+    .filter((p) => p.id !== project.id && p.id !== 'platform')
+    .slice(0, 3)
 
   return (
     <div className="relative overflow-hidden">

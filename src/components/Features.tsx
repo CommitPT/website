@@ -1,7 +1,6 @@
 import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
 import {
   ArrowRight,
-  BookMarked,
   GitBranch,
   GitPullRequest,
   LucideIcon,
@@ -45,12 +44,7 @@ const solutions: Solution[] = [
   {
     icon: GitBranch,
     title: 'Projetos Colaborativos',
-    desc: 'Trabalhas em projetos internos com outros membros: defines tarefas, colaboras em código, iteras e entregas. A dinâmica mais próxima de uma equipa de engenharia real que vais encontrar antes de estares numa.',
-  },
-  {
-    icon: BookMarked,
-    title: 'Recursos e Roadmaps Curados',
-    desc: 'Materiais selecionados por profissionais da área — sem o ruído das playlists infinitas. Roadmaps validados, templates e referências que podes usar de imediato.',
+    desc: 'Trabalhas em projetos internos com outros membros: defines tarefas, colaboras em código, iteras e entregas. Uma dinâmica que procura aproximar-se da de uma equipa de engenharia real, antes de estares numa.',
   },
 ]
 
@@ -70,7 +64,7 @@ export default function Features() {
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
             Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas
-            certas. É assim que o crescimento deixa de ser acidental e passa a ser inevitável.
+            certas. É assim que o crescimento deixa de ser acidental e passa a ser consistente.
           </Typography>
         </div>
 
@@ -95,14 +89,14 @@ export default function Features() {
             Já sabes qual é o problema. A solução está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Junta-te a mais de 350 programadores portugueses que pararam de aprender sozinhos.
+            Junta-te a mais de 490 membros da comunidade que deixaram de aprender sozinhos.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="https://whop.com/commitpt-709e/commit-plus"
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ size: 'lg' })}
+              className={buttonVariants({ size: 'lg' }) + ' group'}
             >
               Adere já
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

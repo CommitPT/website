@@ -35,7 +35,7 @@ const problems: Problem[] = [
   {
     icon: Unlink,
     title: 'Soft skills não se treinam em tutoriais',
-    desc: 'Comunicar uma decisão técnica, dar feedback útil, trabalhar em equipa sob pressão — são as competências que mais distinguem quem evolui. E não há curso que as ensine.',
+    desc: 'Comunicar uma decisão técnica, dar feedback útil, trabalhar em equipa sob pressão — são as competências que mais distinguem quem evolui. E dificilmente se desenvolvem só com conteúdo teórico — pedem prática real.',
   },
   {
     icon: Compass,

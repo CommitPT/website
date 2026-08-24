@@ -33,7 +33,7 @@ const benefits: Benefit[] = [
   {
     icon: BarChart2,
     title: 'Constróis uma consistência visível',
-    desc: 'Em vez de picos de produtividade seguidos de semanas em branco, desenvolves um ritmo sustentável — um historial de evolução contínua que qualquer empregador pode ver e valorizar.',
+    desc: 'Em vez de picos de produtividade seguidos de semanas em branco, desenvolves um ritmo sustentável — um historial de evolução que podes demonstrar a potenciais empregadores.',
   },
   {
     icon: MessageCircle,
@@ -48,7 +48,7 @@ const benefits: Benefit[] = [
   {
     icon: Award,
     title: 'Constróis provas reais de evolução',
-    desc: 'Projetos em produção, código revisto por profissionais, participação em iniciativas reais. Não um certificado — um percurso que fala por si a qualquer empresa.',
+    desc: 'Projetos em produção, código revisto por profissionais, participação em iniciativas reais. Não um certificado — um percurso concreto que podes mostrar a quem quer que seja.',
   },
 ]
 
@@ -68,7 +68,7 @@ export default function About() {
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
             Entrar numa comunidade certa não é só ter mais pessoas à volta. É ter acesso a contexto,
-            perspetiva e estrutura que tornam o teu crescimento inevitável.
+            perspetiva e estrutura que facilitam o teu crescimento.
           </Typography>
         </div>
 
