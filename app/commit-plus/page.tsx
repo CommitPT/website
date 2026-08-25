@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ArrowRight, GitPullRequest, MessageCircle, Trophy, Users } from 'lucide-react'
+import { ArrowRight, Calendar, GitPullRequest, MessageCircle, Users } from 'lucide-react'
 import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
@@ -142,9 +142,9 @@ const BENEFITS = [
     desc: 'Colaboras em projetos reais com outros membros. A pasta de projetos a meio deixa de crescer.',
   },
   {
-    icon: Trophy,
-    title: 'Contacto próximo com seniores',
-    desc: 'Acesso direto à equipa e a engenheiros com anos de experiência. O mercado deixa de ser uma caixa negra.',
+    icon: Calendar,
+    title: 'Eventos exclusivos da comunidade',
+    desc: 'Sessões sobre carreira, programação e construção de projetos — incluindo conteúdo pensado para quem está a começar.',
   },
 ]
 
@@ -415,7 +415,7 @@ const PLANS: Plan[] = [
     features: [
       'revisões de código em projetos reais',
       'projetos internos da comunidade',
-      'contacto próximo com seniores',
+      'eventos exclusivos sobre carreira e programação',
     ],
     ctaLabel: 'Adere ao Commit+',
     ctaHref: WHOP_COMMIT_PLUS_URL,

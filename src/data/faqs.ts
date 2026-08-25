@@ -132,7 +132,7 @@ export const faqs: FaqItem[] = [
         items: [
           'Revisões de código em projetos reais',
           'Participação em projetos internos da comunidade',
-          'Interação mais próxima com a equipa e membros seniores',
+          'Eventos exclusivos sobre carreira, programação e construção de projetos',
         ],
       },
     ],
