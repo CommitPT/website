@@ -26,7 +26,7 @@ export default function Footer() {
               CommitPT
             </a>
             <Typography variant="small" color="muted" className="max-w-sm">
-              A comunidade portuguesa que transforma programadores em engenheiros de topo.
+              A comunidade portuguesa para programadores que querem tornar-se engenheiros de topo.
             </Typography>
           </div>
 

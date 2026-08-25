@@ -57,7 +57,7 @@ export default function Inside() {
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
             Crescer como engenheiro é difícil.{' '}
-            <span className="text-muted-foreground">Sozinho, é quase impossível.</span>
+            <span className="text-muted-foreground">Sozinho, é ainda mais difícil.</span>
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
             A maioria dos programadores está presa num ciclo que não reconhece. Mais um tutorial.

@@ -83,7 +83,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
               variant="h1"
               className="hero-enter-2 leading-[1.4] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
             >
-              A comunidade que transforma programadores em{' '}
+              A comunidade para programadores que querem tornar-se{' '}
               <span className="block font-mono bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
                 engenheiros de topo.
               </span>

@@ -1,14 +1,5 @@
 import type { Metadata } from 'next'
-import {
-  ArrowRight,
-  BookMarked,
-  GitPullRequest,
-  MessageCircle,
-  Trophy,
-  Users,
-  Video,
-  Zap,
-} from 'lucide-react'
+import { ArrowRight, GitPullRequest, MessageCircle, Trophy, Users } from 'lucide-react'
 import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
@@ -17,7 +8,7 @@ import { selectFaqs } from '@/src/data/faqs'
 import { WHOP_COMMIT_PLUS_URL, DISCORD_URL } from '@/src/lib/links'
 
 const DESCRIPTION =
-  'Workshops e calls ao vivo exclusivas, revisões de código, projetos internos e acesso antecipado à plataforma. A comunidade gratuita no Discord continua gratuita.'
+  'Revisões de código, projetos internos da comunidade e contacto próximo com a equipa. A comunidade gratuita no Discord continua gratuita.'
 
 export const metadata: Metadata = {
   title: 'Commit+  O plano premium da CommitPT',
@@ -127,8 +118,8 @@ function HeroSection() {
 
         <Typography variant="p" color="muted" className="mt-4 max-w-2xl">
           Não pagas para entrar numa comunidade, pagas para ajudar a construir algo que beneficia
-          toda a gente, incluindo tu. Workshops, calls ao vivo, projetos internos e contacto direto
-          com quem já passou por onde estás.
+          toda a gente, incluindo tu. Revisões de código, projetos internos e contacto direto com
+          quem já passou por onde estás.
         </Typography>
 
         <CtaButtons className="mt-8" />
@@ -141,19 +132,9 @@ function HeroSection() {
 
 const BENEFITS = [
   {
-    icon: Video,
-    title: 'Workshops e calls exclusivas',
-    desc: 'Sessões ao vivo sobre temas práticos, não apresentações genéricas. Ficam gravadas para quem não puder estar presente.',
-  },
-  {
     icon: GitPullRequest,
     title: 'Revisões de código a sério',
     desc: 'Há hábitos de código que cultivas há meses e que ninguém te apontou. Aqui alguém aponta antes de ser numa entrevista.',
-  },
-  {
-    icon: BookMarked,
-    title: 'Recursos e materiais premium',
-    desc: 'Curados por profissionais da área e mantidos atualizados. Não é uma lista de links que ninguém revê há dois anos.',
   },
   {
     icon: Users,
@@ -164,11 +145,6 @@ const BENEFITS = [
     icon: Trophy,
     title: 'Contacto próximo com seniores',
     desc: 'Acesso direto à equipa e a engenheiros com anos de experiência. O mercado deixa de ser uma caixa negra.',
-  },
-  {
-    icon: Zap,
-    title: 'Acesso antecipado à plataforma',
-    desc: 'Entras no app.commitpt.com antes do lançamento público.',
   },
 ]
 
@@ -437,12 +413,9 @@ const PLANS: Plan[] = [
     description:
       'A camada extra para quem quer ir mais fundo. Subscrição mensal, cancelas quando quiseres.',
     features: [
-      'workshops e calls ao vivo exclusivas',
       'revisões de código em projetos reais',
-      'recursos e materiais premium',
       'projetos internos da comunidade',
       'contacto próximo com seniores',
-      'acesso antecipado à plataforma',
     ],
     ctaLabel: 'Adere ao Commit+',
     ctaHref: WHOP_COMMIT_PLUS_URL,

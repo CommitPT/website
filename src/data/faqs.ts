@@ -130,12 +130,9 @@ export const faqs: FaqItem[] = [
       {
         type: 'list',
         items: [
-          'Workshops práticos e calls ao vivo exclusivas',
-          'Acesso a recursos e materiais premium',
+          'Revisões de código em projetos reais',
           'Participação em projetos internos da comunidade',
           'Interação mais próxima com a equipa e membros seniores',
-          'Mais oportunidades de aprender com outros membros',
-          'Acesso antecipado à plataforma que estamos a construir',
         ],
       },
     ],

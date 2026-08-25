@@ -27,7 +27,7 @@ const members: TeamMember[] = [
     initials: 'BM',
     bio: [
       'Engenheiro de Software com mais de 4 anos de experiência a desenvolver produtos utilizados por milhares de utilizadores em empresas internacionais. Licenciado em Engenharia Informática pela Universidade Autónoma de Lisboa, trabalhou em equipas distribuídas por vários países e participou no desenvolvimento de produtos tecnológicos em ambientes de elevada exigência.',
-      'Ao longo dos últimos anos, partilhou conhecimento sobre Engenharia de Software e desenvolvimento de carreira nas redes sociais, reunindo uma comunidade com mais de 18.000 seguidores. Através dos seus conteúdos, aborda regularmente temas como preparação para entrevistas, evolução técnica e decisões de carreira.',
+      'Ao longo dos últimos anos, partilhou conhecimento sobre Engenharia de Software e desenvolvimento de carreira nas redes sociais, reunindo mais de 18.000 seguidores. Através dos seus conteúdos, aborda regularmente temas como preparação para entrevistas, evolução técnica e decisões de carreira.',
       'Em 2025 fundou a CommitPT, uma comunidade portuguesa dedicada à Engenharia de Software que reúne centenas de programadores de diferentes níveis de experiência. O objetivo nunca foi criar mais um servidor de Discord ou vender um curso, mas sim construir um espaço onde as pessoas possam aprender em conjunto, receber feedback, colaborar em projetos e crescer mais depressa do que cresceriam sozinhas.',
       'Hoje, a CommitPT é a materialização daquilo que sentiu faltar quando estava no início da carreira: uma comunidade ativa, com pessoas experientes, focada na prática, na colaboração e na evolução contínua.',
     ],

@@ -23,7 +23,7 @@ const benefits: Benefit[] = [
   {
     icon: TrendingUp,
     title: 'Transformas intenção em progresso concreto',
-    desc: 'Deixas de acumular planos e começas a acumular resultados. A diferença não é motivação — é ter contexto, estrutura e as pessoas certas à volta no momento certo.',
+    desc: 'Criamos estrutura para te ajudar a transformar planos em resultados — contexto, apoio e as pessoas certas à volta no momento certo.',
   },
   {
     icon: Lightbulb,
@@ -33,7 +33,7 @@ const benefits: Benefit[] = [
   {
     icon: BarChart2,
     title: 'Constróis uma consistência visível',
-    desc: 'Em vez de picos de produtividade seguidos de semanas em branco, desenvolves um ritmo sustentável — um historial de evolução que podes demonstrar a potenciais empregadores.',
+    desc: 'Em vez de picos de produtividade seguidos de semanas em branco, tens um ambiente que te incentiva a construir um ritmo sustentável — um historial de evolução que podes demonstrar a potenciais empregadores.',
   },
   {
     icon: MessageCircle,
@@ -48,7 +48,7 @@ const benefits: Benefit[] = [
   {
     icon: Award,
     title: 'Constróis provas reais de evolução',
-    desc: 'Projetos em produção, código revisto por profissionais, participação em iniciativas reais. Não um certificado — um percurso concreto que podes mostrar a quem quer que seja.',
+    desc: 'A oportunidade de contribuir para projetos, submeter código a revisão e participar em iniciativas da comunidade. Não te damos apenas um certificado — criamos oportunidades para construíres provas concretas daquilo que sabes fazer.',
   },
 ]
 

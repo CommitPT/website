@@ -57,7 +57,7 @@ export default async function SocialProof() {
             Engenheiros reais. Resultados reais.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            Não acredites só na nossa palavra. É isto que acontece quando os programadores param de
+            Não acredites só na nossa palavra. Isto é o que os membros dizem depois de deixarem de
             programar sozinhos. Avaliações recolhidas via{' '}
             <a
               href="https://whop.com/commitpt-709e/commit-plus"

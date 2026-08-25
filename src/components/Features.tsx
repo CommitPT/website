@@ -29,12 +29,12 @@ const solutions: Solution[] = [
   {
     icon: Target,
     title: 'Check-ins de Projetos',
-    desc: 'Cada membro partilha o que comprometeu para a semana e o que entregou. Um ciclo simples e repetido que transforma intenção em hábito — e em resultados visíveis semana após semana.',
+    desc: 'Cada membro partilha o que comprometeu para a semana e o que entregou. Um ciclo simples e repetido, pensado para ajudar a transformar intenção em hábito — e em progresso visível semana após semana.',
   },
   {
     icon: GitPullRequest,
     title: 'Revisões de Código e Arquitectura',
-    desc: 'Submetes o teu trabalho e recebes análise de profissionais com experiência real no mercado. Feedback específico e accionável — não opiniões genéricas nem o silêncio do Stack Overflow.',
+    desc: 'Podes submeter o teu trabalho e receber feedback de profissionais com experiência real no mercado — específico e acionável, não opiniões genéricas nem o silêncio do Stack Overflow.',
   },
   {
     icon: MessageSquare,
@@ -63,8 +63,8 @@ export default function Features() {
             Como a CommitPT torna isso possível.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas
-            certas. É assim que o crescimento deixa de ser acidental e passa a ser consistente.
+            Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas certas
+            — pensados para tornar o crescimento menos acidental e mais consistente.
           </Typography>
         </div>
 
@@ -86,7 +86,7 @@ export default function Features() {
           className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12 shadow-xl shadow-black/40"
         >
           <Typography variant="h3" className="sm:text-3xl">
-            Já sabes qual é o problema. A solução está a um clique.
+            Já sabes qual é o problema. A comunidade está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
             Junta-te a mais de 490 membros da comunidade que deixaram de aprender sozinhos.
