@@ -1,23 +1,29 @@
-import Image from 'next/image'
+import { Avatar, AvatarImage, AvatarFallback, Typography } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
-import contributorsData from '@/src/contributors.json'
+import { getContributors } from '@/src/lib/contributors'
 
-const preview = contributorsData.slice(0, 5)
+// ── Component ─────────────────────────────────────────────────────────────────
 
-export default function ContributorsTeaser() {
+export default async function ContributorsTeaser() {
+  const contributors = await getContributors()
+  const preview = contributors.slice(0, 5)
+  const remaining = contributors.length - preview.length
   return (
-    <section className="border-t border-border bg-background">
+    <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
+          {/* Content Left */}
           <div className="max-w-xl">
-            <span className="font-mono text-sm font-bold text-warning">06 // Contribuidores</span>
-            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+            <Typography variant="overline" color="secondary" as="span" className="font-mono">
+              06 // Contribuidores
+            </Typography>
+            <Typography variant="h2" className="mt-3 sm:text-4xl">
               Pessoas reais a construir em público.
-            </h2>
-            <p className="mt-4 text-muted-foreground">
+            </Typography>
+            <Typography variant="p" color="muted" className="mt-4">
               A CommitPT é feita pelas pessoas que nela participam. Conhece quem está por trás dos
               projetos, das revisões de código e das sessões de co-working.
-            </p>
+            </Typography>
             <a
               href="/contributors"
               className="group mt-8 inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
@@ -27,26 +33,19 @@ export default function ContributorsTeaser() {
             </a>
           </div>
 
+          {/* Avatars Right */}
           <div className="flex flex-wrap gap-3 lg:justify-end">
             {preview.map((c) => (
               <div key={c.githubUsername} className="group relative">
-                <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-border transition-colors group-hover:border-primary">
-                  <Image
-                    src={`https://github.com/${c.githubUsername}.png`}
-                    alt={c.name}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-                <div className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-elevated px-2 py-1 font-mono text-xs text-foreground opacity-0 transition-opacity group-hover:opacity-100">
-                  {c.name}
-                </div>
+                <Avatar variant="secondary" className="h-14 w-14" tooltip={c.name}>
+                  <AvatarImage src={`https://github.com/${c.githubUsername}.png`} alt={c.name} />
+                  <AvatarFallback>{c.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
               </div>
             ))}
-            {contributorsData.length > preview.length && (
+            {remaining > 0 && (
               <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-border bg-surface font-mono text-xs font-bold text-muted-foreground">
-                +{contributorsData.length - preview.length}
+                +{remaining}
               </div>
             )}
           </div>

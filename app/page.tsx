@@ -1,23 +1,29 @@
+import dynamic from 'next/dynamic'
+import { faqs } from '@/src/data/faqs'
 import Header from '@/src/components/Header'
 import Hero from '@/src/components/Hero'
-import Stats from '@/src/components/Stats'
 import ForWho from '@/src/components/ForWho'
 import About from '@/src/components/About'
 import Inside from '@/src/components/Inside'
 import Features from '@/src/components/Features'
-import Team from '@/src/components/Team'
-import SocialProof from '@/src/components/SocialProof'
-import ContributorsTeaser from '@/src/components/ContributorsTeaser'
-import FAQ from '@/src/components/FAQ'
 import Footer from '@/src/components/Footer'
+import { getContributors } from '@/src/lib/contributors'
 
-export default function Home() {
+const Team = dynamic(() => import('@/src/components/Team'))
+const SocialProof = dynamic(() => import('@/src/components/SocialProof'))
+const ContributorsTeaser = dynamic(() => import('@/src/components/ContributorsTeaser'))
+const FAQ = dynamic(() => import('@/src/components/FAQ'))
+
+export default async function Home() {
+  // Fonte única para a contagem de contribuidores — o Hero e a página
+  // /contributors passam a mostrar sempre o mesmo número.
+  const contributors = await getContributors()
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
-      <main>
-        <Hero />
-        <Stats />
+      <main id="main-content">
+        <Hero contributorsCount={contributors.length} />
         <ForWho />
         <Inside />
         <About />
@@ -25,7 +31,12 @@ export default function Home() {
         <Team />
         <SocialProof />
         <ContributorsTeaser />
-        <FAQ />
+        <FAQ
+          eyebrow="07 // Perguntas Frequentes"
+          heading="Tens dúvidas. Temos respostas."
+          description="Se ainda tens alguma questão antes de entrares, é provável que esteja aqui."
+          items={faqs}
+        />
       </main>
       <Footer />
     </div>

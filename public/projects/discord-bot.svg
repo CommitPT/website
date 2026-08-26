@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0E14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151922;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#07ecec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#79C0FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative orbs -->
+  <circle cx="100" cy="100" r="150" fill="#07ecec" opacity="0.1" filter="blur(60px)"/>
+  <circle cx="1100" cy="500" r="200" fill="#79C0FF" opacity="0.08" filter="blur(80px)"/>
+
+  <!-- Content -->
+  <g>
+    <!-- Title -->
+    <text x="600" y="150" font-family="'Courier New', monospace" font-size="48" font-weight="bold" text-anchor="middle" fill="#F0F4F8">
+      Discord Bot CommitPT
+    </text>
+
+    <!-- Subtitle -->
+    <text x="600" y="220" font-family="'Courier New', monospace" font-size="24" text-anchor="middle" fill="#8B949E">
+      Gerenciar accountability na comunidade
+    </text>
+
+    <!-- Discord icon representation -->
+    <g transform="translate(500, 320)">
+      <!-- Bot icon -->
+      <rect x="0" y="0" width="200" height="200" rx="16" fill="none" stroke="url(#accentGradient)" stroke-width="3"/>
+      <circle cx="60" cy="80" r="15" fill="#07ecec"/>
+      <circle cx="140" cy="80" r="15" fill="#07ecec"/>
+      <path d="M 60 120 Q 100 140 140 120" stroke="#07ecec" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Features list -->
+    <g>
+      <text x="100" y="580" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ Accountability tracking</text>
+      <text x="400" y="580" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ Streak management</text>
+      <text x="750" y="580" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ Community engagement</text>
+    </g>
+  </g>
+</svg>

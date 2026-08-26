@@ -1,0 +1,75 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0E14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151922;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#07ecec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#79C0FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative orbs -->
+  <circle cx="200" cy="100" r="180" fill="#07ecec" opacity="0.1" filter="blur(90px)"/>
+  <circle cx="1000" cy="550" r="250" fill="#79C0FF" opacity="0.08" filter="blur(110px)"/>
+
+  <!-- Content -->
+  <g>
+    <!-- Title -->
+    <text x="600" y="150" font-family="'Courier New', monospace" font-size="48" font-weight="bold" text-anchor="middle" fill="#F0F4F8">
+      Website CommitPT
+    </text>
+
+    <!-- Subtitle -->
+    <text x="600" y="220" font-family="'Courier New', monospace" font-size="24" text-anchor="middle" fill="#8B949E">
+      Landing page e funil de conversão
+    </text>
+
+    <!-- Website mockup -->
+    <g transform="translate(300, 270)">
+      <!-- Browser frame -->
+      <rect x="0" y="0" width="600" height="320" rx="12" fill="none" stroke="url(#accentGradient)" stroke-width="2"/>
+
+      <!-- Browser header -->
+      <rect x="0" y="0" width="600" height="40" rx="12" ry="12" fill="#151922" stroke="url(#accentGradient)" stroke-width="2"/>
+      <circle cx="15" cy="20" r="4" fill="#F85149" opacity="0.8"/>
+      <circle cx="30" cy="20" r="4" fill="#F0883E" opacity="0.8"/>
+      <circle cx="45" cy="20" r="4" fill="#07ecec" opacity="0.8"/>
+
+      <!-- Browser content -->
+      <rect x="0" y="40" width="600" height="280" fill="#0B0E14"/>
+
+      <!-- Header bar -->
+      <rect x="20" y="60" width="560" height="8" rx="2" fill="#07ecec" opacity="0.3"/>
+
+      <!-- Content sections -->
+      <rect x="20" y="80" width="560" height="6" rx="1" fill="#07ecec" opacity="0.2"/>
+      <rect x="20" y="92" width="560" height="6" rx="1" fill="#07ecec" opacity="0.2"/>
+      <rect x="20" y="104" width="560" height="6" rx="1" fill="#07ecec" opacity="0.2"/>
+
+      <!-- Sections -->
+      <rect x="20" y="125" width="120" height="6" rx="1" fill="#79C0FF" opacity="0.4"/>
+      <rect x="160" y="125" width="120" height="6" rx="1" fill="#79C0FF" opacity="0.3"/>
+      <rect x="300" y="125" width="120" height="6" rx="1" fill="#79C0FF" opacity="0.3"/>
+
+      <!-- Buttons -->
+      <rect x="20" y="210" width="140" height="35" rx="6" fill="url(#accentGradient)" opacity="0.7"/>
+      <text x="90" y="233" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#0B0E14" font-weight="bold">Entrar</text>
+
+      <rect x="180" y="210" width="140" height="35" rx="6" fill="none" stroke="#07ecec" stroke-width="2" opacity="0.6"/>
+      <text x="250" y="233" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#07ecec" font-weight="bold">Discord</text>
+    </g>
+
+    <!-- Features list -->
+    <g>
+      <text x="100" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ Conversion funnel</text>
+      <text x="380" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ SEO optimized</text>
+      <text x="720" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ Responsive design</text>
+    </g>
+  </g>
+</svg>

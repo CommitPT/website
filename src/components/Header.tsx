@@ -1,34 +1,55 @@
 'use client'
 
-import { Button } from '@commitpt/design-system'
-import Image from 'next/image'
+import { Button, buttonVariants, Typography } from '@commitpt/design-system'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 interface NavLink {
   label: string
   href: string
 }
 
+// ── Constants ─────────────────────────────────────────────────────────────────
+
 const navLinks: NavLink[] = [
+  { label: 'Início', href: '/' },
   { label: 'Benefícios', href: '/#about' },
   { label: 'Como funciona', href: '/#features' },
   { label: 'Eventos', href: '/events' },
   { label: 'O Fundador', href: '/#team' },
   { label: 'FAQ', href: '/#faq' },
+  { label: 'Projetos', href: '/projects' },
   { label: 'Contribuidores', href: '/contributors' },
+  { label: 'Commit+', href: '/commit-plus' },
 ]
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/50 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Brand Logo & Name */}
         <a href="/" className="flex items-center gap-2">
-          <Image src="/commit_icon.png" alt="CommitPT" width={32} height={32} />
-          <span className="font-mono text-lg font-bold text-foreground">CommitPT</span>
+          <Image
+            src="/commit_icon_256w.webp"
+            alt=""
+            width={32}
+            height={32}
+            className="shrink-0 rounded-md object-cover"
+            priority
+          />
+          <Typography variant="h6" as="span" className="font-mono">
+            CommitPT
+          </Typography>
         </a>
+
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -39,16 +60,17 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <Button
-            variant="default"
-            onClick={() => {
-              const url = 'https://whop.com/commitpt-709e/commit-plus'
-              window.open(url, '_blank')
-            }}
+          <a
+            href="https://whop.com/commitpt-709e/commit-plus"
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({})}
           >
             Entrar Agora
-          </Button>
+          </a>
         </nav>
+
+        {/* Mobile Menu Toggle Button */}
         <Button
           variant="ghost"
           size="icon"
@@ -59,6 +81,8 @@ export default function Header() {
           {open ? <X size={24} /> : <Menu size={24} />}
         </Button>
       </div>
+
+      {/* Mobile Navigation Menu */}
       {open && (
         <div className="md:hidden border-t border-border px-6 py-4">
           <div className="flex flex-col gap-4">

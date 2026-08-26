@@ -1,0 +1,59 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0E14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151922;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#07ecec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#79C0FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative orbs -->
+  <circle cx="150" cy="150" r="200" fill="#07ecec" opacity="0.1" filter="blur(80px)"/>
+  <circle cx="1050" cy="480" r="220" fill="#79C0FF" opacity="0.08" filter="blur(100px)"/>
+
+  <!-- Content -->
+  <g>
+    <!-- Title -->
+    <text x="600" y="150" font-family="'Courier New', monospace" font-size="48" font-weight="bold" text-anchor="middle" fill="#F0F4F8">
+      @commitpt/design-system
+    </text>
+
+    <!-- Subtitle -->
+    <text x="600" y="220" font-family="'Courier New', monospace" font-size="24" text-anchor="middle" fill="#8B949E">
+      Biblioteca de componentes React
+    </text>
+
+    <!-- Component grid visualization -->
+    <g transform="translate(250, 280)">
+      <!-- Button variant -->
+      <rect x="0" y="0" width="80" height="40" rx="6" fill="url(#accentGradient)" opacity="0.8"/>
+      <text x="40" y="25" font-family="'Courier New', monospace" font-size="12" text-anchor="middle" fill="#0B0E14" font-weight="bold">Button</text>
+
+      <!-- Input field -->
+      <rect x="100" y="0" width="80" height="40" rx="6" fill="none" stroke="#07ecec" stroke-width="2"/>
+      <text x="140" y="25" font-family="'Courier New', monospace" font-size="12" text-anchor="middle" fill="#8B949E">Input</text>
+
+      <!-- Card -->
+      <rect x="200" y="0" width="80" height="40" rx="6" fill="none" stroke="url(#accentGradient)" stroke-width="2"/>
+      <text x="240" y="25" font-family="'Courier New', monospace" font-size="12" text-anchor="middle" fill="#8B949E">Card</text>
+
+      <!-- Avatar -->
+      <circle cx="320" cy="20" r="20" fill="url(#accentGradient)" opacity="0.6"/>
+      <text x="320" y="28" font-family="'Courier New', monospace" font-size="14" text-anchor="middle" fill="#0B0E14" font-weight="bold">A</text>
+    </g>
+
+    <!-- Features list -->
+    <g>
+      <text x="100" y="570" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ React + TypeScript</text>
+      <text x="400" y="570" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ Tailwind CSS v4</text>
+      <text x="750" y="570" font-family="'Courier New', monospace" font-size="16" fill="#07ecec">✓ shadcn/ui</text>
+    </g>
+  </g>
+</svg>

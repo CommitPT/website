@@ -38,11 +38,11 @@
   --color-secondary-800: oklch(0.247 0.105 292.8);
   --color-secondary-700: oklch(0.301 0.14 294.6);
   --color-secondary-600: oklch(0.406 0.191 294.5);
-  --color-secondary-500: oklch(0.541 0.247 293);
-  --color-secondary-400: oklch(0.635 0.204 296.7);
-  --color-secondary-300: oklch(0.673 0.209 305.7);
-  --color-secondary-200: oklch(0.818 0.105 303);
-  --color-secondary-100: oklch(0.908 0.052 302.6);
+  --color-secondary-500: oklch(0.75 0.12 293);
+  --color-secondary-400: oklch(0.78 0.1 296.7);
+  --color-secondary-300: oklch(0.82 0.08 305.7);
+  --color-secondary-200: oklch(0.88 0.05 303);
+  --color-secondary-100: oklch(0.93 0.03 302.6);
 
   --color-secondary: var(--color-secondary-500);
   --color-secondary-foreground: oklch(0.983 0.004 247);
@@ -80,10 +80,18 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 
+  /* ── Icon scale ─────────────────────────────────────────────────── */
+  --icon-xxs: 0.75rem;
+  --icon-xs: 1rem;
+  --icon-sm: 1.25rem;
+  --icon-md: 1.5rem;
+  --icon-lg: 2rem;
+  --icon-xl: 2.5rem;
+
   /* ── Syntax highlight colors (no design system equivalent) ──────── */
-  --color-syntax-purple: #d2a8ff;
-  --color-syntax-green: #7ee787;
-  --color-syntax-blue: #79c0ff;
+  --color-syntax-purple: #dbb8ff;
+  --color-syntax-green: #8af29a;
+  --color-syntax-blue: #93d5ff;
 
   /* ── Marquee animation ───────────────────────────────────────────── */
   --animate-marquee: marquee 45s linear infinite;
@@ -98,13 +106,67 @@
   }
 }
 
+@utility icon-xxs {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+}
+
+@utility icon-xs {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+@utility icon-sm {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+@utility icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+@utility icon-md {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+@utility icon-lg {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+@utility icon-xl {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+/* ── ReviewCard star fill override ───────────────────────────────────────
+   StarRating uses url(#star-gradient) as an inline style, which doesn't
+   reliably resolve cross-SVG. !important beats the inline style. */
+[data-slot='review-card'] svg.lucide-star {
+  fill: oklch(0.771 0.162 79) !important;
+  stroke: oklch(0.771 0.162 79) !important;
+}
+[data-slot='review-card'] svg.lucide-star.fill-transparent {
+  fill: transparent !important;
+  stroke: oklch(0.679 0.024 247 / 30%) !important;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
   }
 
   body {
-    background-color: var(--color-background);
+    background: var(--gradient-brand);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -129,6 +191,10 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Background gradient orb animations ─────────────────────────────── */
@@ -236,5 +302,13 @@
 
   .pause-on-hover {
     animation-play-state: paused !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+
+  .animate-ping {
+    animation: none !important;
   }
 }

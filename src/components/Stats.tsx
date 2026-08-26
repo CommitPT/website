@@ -1,27 +1,40 @@
+import { Typography } from '@commitpt/design-system'
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 interface Stat {
   value: string
   label: string
 }
 
+// ── Data ──────────────────────────────────────────────────────────────────────
+
 const stats: Stat[] = [
-  { value: '300+', label: 'membros ativos' },
-  { value: '25+', label: 'profissionais da área' },
+  { value: '490+', label: 'membros na comunidade' },
+  { value: '6+', label: 'contribuidores de projetos' },
   { value: '4+', label: 'sessões ao vivo por mês' },
-  { value: '5+', label: 'anos de experiência' },
+  { value: '80 mil+', label: 'mensagens enviadas' },
 ]
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function Stats() {
   return (
-    <div className="border-b border-border bg-background">
+    <div className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-10">
+        {/* Statistics Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 sm:divide-x sm:divide-border">
           {stats.map((s, i) => (
             <div
               key={s.label}
               className={`px-6 py-4 text-center ${i >= 2 ? 'border-t border-border sm:border-t-0' : ''}`}
             >
-              <p className="font-mono text-3xl font-bold text-primary">{s.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+              <Typography variant="h3" className="font-mono" color="primary" as="p">
+                {s.value}
+              </Typography>
+              <Typography variant="small" color="muted" className="mt-1">
+                {s.label}
+              </Typography>
             </div>
           ))}
         </div>

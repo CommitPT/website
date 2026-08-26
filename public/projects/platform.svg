@@ -1,0 +1,72 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0E14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#151922;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#07ecec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#79C0FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative orbs -->
+  <circle cx="100" cy="80" r="200" fill="#07ecec" opacity="0.1" filter="blur(100px)"/>
+  <circle cx="1100" cy="550" r="220" fill="#79C0FF" opacity="0.08" filter="blur(110px)"/>
+
+  <!-- Content -->
+  <g>
+    <!-- Title -->
+    <text x="600" y="150" font-family="'Courier New', monospace" font-size="48" font-weight="bold" text-anchor="middle" fill="#F0F4F8">
+      Plataforma CommitPT
+    </text>
+
+    <!-- Subtitle -->
+    <text x="600" y="220" font-family="'Courier New', monospace" font-size="24" text-anchor="middle" fill="#8B949E">
+      Plataforma didática de aprendizado
+    </text>
+
+    <!-- Platform architecture -->
+    <g transform="translate(200, 280)">
+      <!-- Frontend box -->
+      <rect x="0" y="0" width="150" height="100" rx="8" fill="none" stroke="#07ecec" stroke-width="2"/>
+      <text x="75" y="25" font-family="'Courier New', monospace" font-size="14" text-anchor="middle" fill="#07ecec" font-weight="bold">Frontend</text>
+      <text x="75" y="45" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Next.js 15</text>
+      <text x="75" y="60" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Auth.js</text>
+      <text x="75" y="75" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Tailwind</text>
+
+      <!-- Arrow -->
+      <line x1="160" y1="50" x2="210" y2="50" stroke="url(#accentGradient)" stroke-width="2"/>
+      <polygon points="220,50 210,45 210,55" fill="url(#accentGradient)"/>
+
+      <!-- API box -->
+      <rect x="230" y="0" width="150" height="100" rx="8" fill="none" stroke="#79C0FF" stroke-width="2"/>
+      <text x="305" y="25" font-family="'Courier New', monospace" font-size="14" text-anchor="middle" fill="#79C0FF" font-weight="bold">API REST</text>
+      <text x="305" y="45" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">NestJS</text>
+      <text x="305" y="60" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Swagger</text>
+      <text x="305" y="75" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Zod</text>
+
+      <!-- Arrow -->
+      <line x1="390" y1="50" x2="440" y2="50" stroke="url(#accentGradient)" stroke-width="2"/>
+      <polygon points="450,50 440,45 440,55" fill="url(#accentGradient)"/>
+
+      <!-- Database box -->
+      <rect x="460" y="0" width="150" height="100" rx="8" fill="none" stroke="#7EE787" stroke-width="2"/>
+      <text x="535" y="25" font-family="'Courier New', monospace" font-size="14" text-anchor="middle" fill="#7EE787" font-weight="bold">Database</text>
+      <text x="535" y="45" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">PostgreSQL</text>
+      <text x="535" y="60" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Prisma</text>
+      <text x="535" y="75" font-family="'Courier New', monospace" font-size="11" text-anchor="middle" fill="#8B949E">Neon</text>
+    </g>
+
+    <!-- Features list -->
+    <g>
+      <text x="100" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ Discord OAuth</text>
+      <text x="350" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ Learning path</text>
+      <text x="650" y="580" font-family="'Courier New', monospace" font-size="14" fill="#07ecec">✓ Premium system</text>
+    </g>
+  </g>
+</svg>

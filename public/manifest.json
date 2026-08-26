@@ -1,0 +1,21 @@
+{
+  "name": "CommitPT",
+  "short_name": "CommitPT",
+  "description": "Comunidade portuguesa de crescimento de carreira para engenheiros de software.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F1A",
+  "theme_color": "#0A0F1A",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,21 +1,24 @@
+import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
 import {
   ArrowRight,
-  Video,
-  Target,
-  GitPullRequest,
-  MessageSquare,
   GitBranch,
-  BookMarked,
-  MessageCircle,
+  GitPullRequest,
   LucideIcon,
+  MessageCircle,
+  MessageSquare,
+  Target,
+  Video,
 } from 'lucide-react'
-import { buttonVariants } from '@commitpt/design-system'
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 interface Solution {
   icon: LucideIcon
   title: string
   desc: string
 }
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const solutions: Solution[] = [
   {
@@ -26,12 +29,12 @@ const solutions: Solution[] = [
   {
     icon: Target,
     title: 'Check-ins de Projetos',
-    desc: 'Cada membro partilha o que comprometeu para a semana e o que entregou. Um ciclo simples e repetido que transforma intenção em hábito — e em resultados visíveis semana após semana.',
+    desc: 'Cada membro partilha o que comprometeu para a semana e o que entregou. Um ciclo simples e repetido, pensado para ajudar a transformar intenção em hábito — e em progresso visível semana após semana.',
   },
   {
     icon: GitPullRequest,
     title: 'Revisões de Código e Arquitectura',
-    desc: 'Submetes o teu trabalho e recebes análise de profissionais com experiência real no mercado. Feedback específico e accionável — não opiniões genéricas nem o silêncio do Stack Overflow.',
+    desc: 'Podes submeter o teu trabalho e receber feedback de profissionais com experiência real no mercado — específico e acionável, não opiniões genéricas nem o silêncio do Stack Overflow.',
   },
   {
     icon: MessageSquare,
@@ -41,58 +44,59 @@ const solutions: Solution[] = [
   {
     icon: GitBranch,
     title: 'Projetos Colaborativos',
-    desc: 'Trabalhas em projetos internos com outros membros: defines tarefas, colaboras em código, iteras e entregas. A dinâmica mais próxima de uma equipa de engenharia real que vais encontrar antes de estares numa.',
-  },
-  {
-    icon: BookMarked,
-    title: 'Recursos e Roadmaps Curados',
-    desc: 'Materiais selecionados por profissionais da área — sem o ruído das playlists infinitas. Roadmaps validados, templates e referências que podes usar de imediato.',
+    desc: 'Trabalhas em projetos internos com outros membros: defines tarefas, colaboras em código, iteras e entregas. Uma dinâmica que procura aproximar-se da de uma equipa de engenharia real, antes de estares numa.',
   },
 ]
 
+// ── Component ─────────────────────────────────────────────────────────────────
+
 export default function Features() {
   return (
-    <section id="features" className="relative bg-surface">
+    <section id="features" className="relative">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        {/* Section Header */}
         <div className="mb-12 max-w-2xl">
-          <span className="font-mono text-sm font-bold text-warning">03 // Como Funciona</span>
-          <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            03 // Como Funciona
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
             Como a CommitPT torna isso possível.
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas
-            certas. É assim que o crescimento deixa de ser acidental e passa a ser inevitável.
-          </p>
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
+            Não é magia. São mecanismos concretos, repetidos todas as semanas, com as pessoas certas
+            — pensados para tornar o crescimento menos acidental e mais consistente.
+          </Typography>
         </div>
+
+        {/* Feature Cards Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s) => (
-            <div
+            <FeatureCard
               key={s.title}
-              className="group relative rounded-lg border border-border bg-background p-6 hover:border-primary transition-colors"
-            >
-              <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
-              <s.icon className="mb-4 h-6 w-6 text-primary" />
-              <h3 className="mb-2 text-lg font-semibold text-foreground">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
-            </div>
+              icon={<s.icon className="icon" aria-hidden="true" />}
+              title={s.title}
+              description={s.desc}
+            />
           ))}
         </div>
+
+        {/* Call to Action Box */}
         <div
           id="join"
-          className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12"
+          className="mt-20 rounded-lg border border-border bg-surface p-8 text-center lg:p-12 shadow-xl shadow-black/40"
         >
-          <h3 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Já sabes qual é o problema. A solução está a um clique.
-          </h3>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Junta-te a mais de 300 programadores portugueses que pararam de aprender sozinhos.
-          </p>
+          <Typography variant="h3" className="sm:text-3xl">
+            Já sabes qual é o problema. A comunidade está a um clique.
+          </Typography>
+          <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
+            Junta-te a mais de 490 membros da comunidade que deixaram de aprender sozinhos.
+          </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="https://whop.com/commitpt-709e/commit-plus"
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ size: 'lg' })}
+              className={buttonVariants({ size: 'lg' }) + ' group'}
             >
               Adere já
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -102,6 +106,7 @@ export default function Features() {
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ variant: 'outline', size: 'lg' })}
+              style={{ color: 'oklch(0.8 0.1 240)' }}
             >
               <MessageCircle size={16} />
               Experimenta o Discord Grátis

@@ -2,6 +2,11 @@
   "name": "commitpt-landing",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=24.0.0 <25.0.0",
+    "yarn": ">=1.22.0 <2.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +18,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@commitpt/design-system": "0.1.1",
+    "@commitpt/design-system": "^0.3.3",
     "geist": "^1.7.2",
     "lucide-react": "^0.460.0",
     "next": "^14.2.5",
@@ -24,8 +29,8 @@
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
     "@tailwindcss/postcss": "^4.3.2",
-    "@types/node": "^26.0.0",
-    "@types/react": "^19.2.17",
+    "@types/node": "26.1.2",
+    "@types/react": "19.2.18",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
@@ -36,8 +41,10 @@
     "lint-staged": "^16",
     "postcss": "^8.4.49",
     "prettier": "^3.8.4",
+    "sharp": "^0.35.3",
+    "sharp-cli": "^5.2.0",
     "tailwindcss": "^4.3.2",
-    "typescript": "^6.0.3"
+    "typescript": "5.9.3"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -47,5 +54,10 @@
     "*.{json,css,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "allowScripts": {
+    "sharp@0.35.3": true,
+    "sharp@0.34.2": true,
+    "unrs-resolver@1.12.2": true
   }
 }
