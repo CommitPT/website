@@ -46,7 +46,7 @@ export default function EventsPage() {
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
               <CalendarDays className="icon-xs text-primary" aria-hidden="true" />
-              <span>{events.length} formatos recorrentes</span>
+              <span>{events.length} eventos recorrentes</span>
             </div>
           </div>
 
