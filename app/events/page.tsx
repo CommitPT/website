@@ -62,7 +62,7 @@ export default function EventsPage() {
                 >
                   <div>
                     <div className="mb-8 flex items-center justify-between gap-4 font-mono text-xs text-muted-foreground">
-                      <span className="text-primary">0{index + 1} //</span>
+                      <span className="text-primary">{`0${index + 1} //`}</span>
                       <span
                         className={
                           isCommitPlus
