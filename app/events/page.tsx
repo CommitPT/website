@@ -23,7 +23,7 @@ export default function EventsPage() {
       <main id="main-content">
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-            <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            <Typography variant="small" color="secondary" as="span" className="font-mono">
               {'// Eventos'}
             </Typography>
             <Typography variant="h1" className="mt-3 max-w-3xl sm:text-5xl">
@@ -107,7 +107,7 @@ export default function EventsPage() {
         <section className="border-t border-border">
           <div className="mx-auto max-w-6xl px-6 py-20 lg:py-24">
             <div className="border border-primary/30 bg-primary/[0.06] p-8 sm:p-10">
-              <Typography variant="overline" color="secondary" as="span" className="font-mono">
+              <Typography variant="small" color="secondary" as="span" className="font-mono">
                 {'// Próximo passo'}
               </Typography>
               <Typography variant="h2" className="mt-3 max-w-2xl">
