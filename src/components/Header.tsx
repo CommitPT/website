@@ -13,6 +13,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: 'Benefícios', href: '/#about' },
   { label: 'Como funciona', href: '/#features' },
+  { label: 'Eventos', href: '/events' },
   { label: 'O Fundador', href: '/#team' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'Contribuidores', href: '/contributors' },
