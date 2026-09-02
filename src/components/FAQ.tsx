@@ -109,7 +109,7 @@ export default function FAQ({
         </div>
 
         {/* FAQ Accordion */}
-        <FAQAccordion items={accordionItems} />
+        <FAQAccordion items={accordionItems} className="overflow-hidden" />
 
         {/* Discord CTA Box */}
         <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">
