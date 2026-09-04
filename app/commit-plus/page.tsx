@@ -1,30 +1,57 @@
+import ContributorsTeaser from '@/src/components/ContributorsTeaser'
 import FAQ from '@/src/components/FAQ'
 import Footer from '@/src/components/Footer'
 import Header from '@/src/components/Header'
 import { selectFaqs } from '@/src/data/faqs'
+import { getContributors } from '@/src/lib/contributors'
 import { DISCORD_URL, WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
-import { getWhopCustomerCount, getWhopMonthlyPrice } from '@/src/lib/whop'
-import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
-import { ArrowRight, Calendar, GitPullRequest, MessageCircle, Users } from 'lucide-react'
+import {
+  getWhopCustomerCount,
+  getWhopMonthlyPrice,
+  getWhopReviews,
+  type WhopReview,
+} from '@/src/lib/whop'
+import {
+  Avatar,
+  AvatarFallback,
+  buttonVariants,
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+} from '@commitpt/design-system'
+import {
+  ArrowRight,
+  Briefcase,
+  Check,
+  GitBranch,
+  GitPullRequest,
+  Mic,
+  MessageSquare,
+  Presentation,
+  type LucideIcon,
+} from 'lucide-react'
 import type { Metadata } from 'next'
+
+const BASE_URL = 'https://www.commitpt.com'
 
 // Preço de fallback caso a API do Whop esteja indisponível — manter alinhado com o plano em
 // https://whop.com/checkout/plan_LcwR053laq0aV
 const FALLBACK_MONTHLY_PRICE = 9.99
 
 const DESCRIPTION =
-  'Revisões de código, projetos internos da comunidade e contacto próximo com a equipa. A comunidade gratuita no Discord continua gratuita.'
+  'Aprende diretamente com profissionais da indústria, participa em sessões técnicas, recebe feedback e constrói projetos com outras pessoas. A comunidade gratuita no Discord continua gratuita.'
 
 export const metadata: Metadata = {
-  title: 'Commit+  O plano premium da CommitPT',
+  title: 'Commit+ — O plano premium da CommitPT',
   description: DESCRIPTION,
   alternates: {
-    canonical: 'https://www.commitpt.com/commit-plus',
+    canonical: `${BASE_URL}/commit-plus`,
   },
   openGraph: {
     type: 'website',
-    url: 'https://www.commitpt.com/commit-plus',
-    title: 'Commit+ O plano premium da CommitPT',
+    url: `${BASE_URL}/commit-plus`,
+    title: 'Commit+ — O plano premium da CommitPT',
     description: DESCRIPTION,
     siteName: 'CommitPT',
     images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
@@ -32,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Commit+ O plano premium da CommitPT',
+    title: 'Commit+ — O plano premium da CommitPT',
     description: DESCRIPTION,
     images: ['/commit_3_512w.webp'],
   },
@@ -46,10 +73,13 @@ export const metadata: Metadata = {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function CommitPlusPage() {
-  const [whopPrice, customerCount] = await Promise.all([
+  const [whopPrice, customerCount, contributors, reviews] = await Promise.all([
     getWhopMonthlyPrice(),
     getWhopCustomerCount(),
+    getContributors(),
+    getWhopReviews(),
   ])
+
   const monthlyPrice = new Intl.NumberFormat('pt-PT', {
     style: 'currency',
     currency: 'EUR',
@@ -59,15 +89,29 @@ export default async function CommitPlusPage() {
     <div className="min-h-screen">
       <Header />
       <main id="main-content">
-        <HeroSection />
-        <BenefitsSection />
-        <DiffSection />
+        <HeroSection monthlyPrice={monthlyPrice} />
+        <ProofSection contributorsCount={contributors.length} reviews={reviews} />
+        <TransformationSection />
+        <ExperiencesSection />
+        <MonthSection />
+        <ContributorsTeaser eyebrow="06 // Comunidade em ação" />
+        <ComparisonSection />
+        <FitSection />
         <PricingSection monthlyPrice={monthlyPrice} customerCount={customerCount} />
         <FAQ
-          eyebrow="05 // Perguntas Frequentes"
+          eyebrow="10 // Perguntas Frequentes"
           heading="Antes de decidires."
           description="As perguntas que costumam aparecer sobre o Commit+."
-          items={selectFaqs(['diferenca-gratuito', 'porque-pago', 'cancelar', 'e-se-nao-gostar'])}
+          items={selectFaqs([
+            'passou-a-ser-paga',
+            'pago-discord',
+            'garante-emprego',
+            'acompanhamento-individual',
+            'cancelar',
+            'diferenca-gratuito',
+            'porque-pago',
+            'e-se-nao-gostar',
+          ])}
           // These questions are already marked up on the home page. Emitting the
           // same FAQPage schema on a second URL would just duplicate it.
           withSchema={false}
@@ -90,7 +134,7 @@ function CtaButtons({ className = '' }: { className?: string }) {
         rel="noreferrer"
         className={buttonVariants({ size: 'lg', className: 'gap-2 group' })}
       >
-        Adere ao Commit+
+        Experimentar Commit+
         <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
       </a>
       <a
@@ -103,8 +147,8 @@ function CtaButtons({ className = '' }: { className?: string }) {
           className: 'gap-2 text-primary-300',
         })}
       >
-        <MessageCircle size={16} />
-        Experimenta o Discord Grátis
+        <MessageSquare size={16} />
+        Conhecer a comunidade gratuita
       </a>
     </div>
   )
@@ -112,7 +156,7 @@ function CtaButtons({ className = '' }: { className?: string }) {
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
-function HeroSection() {
+function HeroSection({ monthlyPrice }: { monthlyPrice: string }) {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
@@ -120,72 +164,218 @@ function HeroSection() {
           {'01 // Commit+'}
         </Typography>
 
-        <Typography variant="h1" className="mt-3 text-5xl sm:text-6xl">
-          Commit
-          <span className="font-mono text-primary-300">+</span>
+        <Typography variant="h1" className="mt-3 max-w-3xl text-5xl sm:text-6xl">
+          Vai mais longe na tua carreira em Engenharia de Software.
         </Typography>
 
         <Typography variant="lead" color="muted" className="mt-5 max-w-2xl">
-          A comunidade gratuita no Discord vai continuar a existir sempre. O Commit+ é para quem
-          quer ir mais fundo.
+          Aprende diretamente com profissionais da indústria, participa em sessões técnicas, recebe
+          feedback e constrói projetos com outras pessoas.
         </Typography>
 
-        <Typography variant="p" color="muted" className="mt-4 max-w-2xl">
-          Não pagas para entrar numa comunidade, pagas para ajudar a construir algo que beneficia
-          toda a gente, incluindo tu. Revisões de código, projetos internos e contacto direto com
-          quem já passou por onde estás.
-        </Typography>
+        <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <Typography variant="h2" className="font-mono text-primary-300">
+            {monthlyPrice}
+            <span className="text-2xl text-muted-foreground">/mês</span>
+          </Typography>
+          <Typography variant="p" color="muted">
+            Cancela quando quiseres.
+          </Typography>
+        </div>
 
         <CtaButtons className="mt-8" />
+
+        <Typography variant="small" color="muted" className="mt-6 block">
+          A comunidade CommitPT continua gratuita.
+        </Typography>
       </div>
     </section>
   )
 }
 
-// ── Benefits ──────────────────────────────────────────────────────────────────
+// ── Prova imediata ────────────────────────────────────────────────────────────
 
-const BENEFITS = [
+const COMMUNITY_STATS = [
+  { value: '550+', label: 'membros na comunidade' },
+  { value: '90 mil+', label: 'mensagens enviadas' },
+]
+
+function ProofSection({
+  contributorsCount,
+  reviews,
+}: {
+  contributorsCount: number
+  reviews: WhopReview[]
+}) {
+  const topReviews = reviews.filter((r) => r.description).slice(0, 2)
+
+  return (
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+        <div className="grid grid-cols-3 divide-x divide-border border-y border-border">
+          {[...COMMUNITY_STATS, { value: `${contributorsCount}+`, label: 'contribuidores' }].map(
+            (stat) => (
+              <div key={stat.label} className="px-4 py-6 text-center">
+                <Typography variant="h3" className="font-mono" color="primary" as="p">
+                  {stat.value}
+                </Typography>
+                <Typography variant="small" color="muted" className="mt-1">
+                  {stat.label}
+                </Typography>
+              </div>
+            )
+          )}
+        </div>
+
+        {topReviews.length > 0 && (
+          <>
+            <Typography variant="small" color="muted" className="mt-10 block font-mono">
+              Avaliações recolhidas via{' '}
+              <a
+                href={WHOP_COMMIT_PLUS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline underline-offset-2"
+              >
+                Whop
+              </a>
+              .
+            </Typography>
+
+            <div className="mt-4 grid gap-6 sm:grid-cols-2">
+              {topReviews.map((r) => (
+                <Card key={r.id}>
+                  <CardContent className="pt-6">
+                    <Typography variant="p" className="leading-relaxed">
+                      &ldquo;{r.description}&rdquo;
+                    </Typography>
+                    <div className="mt-5 flex items-center gap-3">
+                      <Avatar variant="secondary">
+                        <AvatarFallback>{r.user.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <Typography variant="small" className="font-semibold">
+                          {r.user.name}
+                        </Typography>
+                        <Typography variant="small" color="muted" className="font-mono">
+                          @{r.user.username}
+                        </Typography>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  )
+}
+
+// ── O que muda ────────────────────────────────────────────────────────────────
+
+const TRANSFORMATIONS = [
+  { from: 'Consumir conteúdo sozinho', to: 'Discutir diretamente com profissionais da indústria' },
+  { from: 'Projetos individuais', to: 'Colaborar com outras pessoas em projetos reais' },
+  { from: 'Dúvidas de carreira sem resposta', to: 'Falar com quem conhece o mercado por dentro' },
+  { from: 'Aprender sozinho', to: 'Ter feedback técnico e accountability' },
+]
+
+function TransformationSection() {
+  return (
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+        <div className="mb-12 max-w-2xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            {'02 // O Que Muda'}
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
+            O que muda com o Commit+.
+          </Typography>
+        </div>
+
+        <div className="space-y-3">
+          {TRANSFORMATIONS.map((t) => (
+            <div
+              key={t.from}
+              className="grid gap-2 rounded-lg border border-border bg-surface p-5 font-mono text-sm sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-4 sm:text-base"
+            >
+              <span className="text-destructive">- {t.from}</span>
+              <ArrowRight size={16} className="hidden text-muted-foreground sm:block" />
+              <span className="text-primary">+ {t.to}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ── Experiências ──────────────────────────────────────────────────────────────
+
+interface Experience {
+  icon: LucideIcon
+  title: string
+  desc: string
+}
+
+const EXPERIENCES: Experience[] = [
+  {
+    icon: Mic,
+    title: 'Commit Talks',
+    desc: 'Conversas e Q&A com pessoas da indústria — recrutadores técnicos, engenheiros e especialistas de diferentes áreas. A oportunidade de perguntar diretamente a quem conhece o mercado por dentro.',
+  },
+  {
+    icon: Presentation,
+    title: 'Commit Sessions',
+    desc: 'Sessões técnicas conduzidas por pessoas com experiência numa área específica — frontend, backend, cloud, cybersecurity, AI, system design, entre outras. A programação varia consoante quem está disponível e o que a comunidade precisa.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Commit Career',
+    desc: 'Conteúdo e iniciativas sobre desenvolvimento profissional — CV, mercado, progressão de carreira — com perspetivas de pessoas que já passaram pelo processo. Sem promessas de emprego ou resultados garantidos.',
+  },
+  {
+    icon: GitBranch,
+    title: 'Projetos',
+    desc: 'Colabora em projetos internos da comunidade com outros membros: issues, pull requests, code reviews e discussão de soluções. Experiência prática de trabalho em equipa, não experiência profissional certificada.',
+  },
   {
     icon: GitPullRequest,
-    title: 'Revisões de código a sério',
-    desc: 'Há hábitos de código que cultivas há meses e que ninguém te apontou. Aqui alguém aponta antes de ser numa entrevista.',
-  },
-  {
-    icon: Users,
-    title: 'Projetos internos da comunidade',
-    desc: 'Colaboras em projetos reais com outros membros. A pasta de projetos a meio deixa de crescer.',
-  },
-  {
-    icon: Calendar,
-    title: 'Eventos exclusivos da comunidade',
-    desc: 'Sessões sobre carreira, programação e construção de projetos — incluindo conteúdo pensado para quem está a começar.',
+    title: 'Feedback técnico',
+    desc: 'Discute código, arquitetura e decisões técnicas com outros membros e profissionais mais experientes. Nem todo o código submetido tem garantia de revisão individual, mas há espaço regular para pedir e dar feedback.',
   },
 ]
 
-function BenefitsSection() {
+function ExperiencesSection() {
   return (
-    <section className="border-t border-border">
+    <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'02 // Benefícios'}
+            {'03 // Experiências Commit+'}
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
-            O que o Commit+ acrescenta.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Tudo o que está na comunidade gratuita continua lá. Isto é a camada extra.
+            O que acontece dentro do Commit+.
           </Typography>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {BENEFITS.map((benefit) => (
-            <FeatureCard
-              key={benefit.title}
-              icon={<benefit.icon className="icon" aria-hidden="true" />}
-              title={benefit.title}
-              description={benefit.desc}
-            />
+          {EXPERIENCES.map((exp) => (
+            <Card key={exp.title}>
+              <CardHeader>
+                <exp.icon size={22} className="mb-2 text-primary-300" aria-hidden="true" />
+                <Typography variant="h3" className="text-lg">
+                  {exp.title}
+                </Typography>
+              </CardHeader>
+              <CardContent>
+                <Typography variant="p" color="muted">
+                  {exp.desc}
+                </Typography>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
@@ -193,331 +383,197 @@ function BenefitsSection() {
   )
 }
 
-// ── Diff signature ────────────────────────────────────────────────────────────
+// ── Como é um mês ─────────────────────────────────────────────────────────────
 
-// A decorative terminal. The point is the shape of a git workflow, not a
-// faithful simulation — the session shows branch, diff, commit and push, and
-// the prompt carries the branch so it flips to commit-plus after the checkout.
-// Deliberately no diff body: it made the block long without earning it.
-
-const CMD = 'text-syntax-purple' // git itself
-const SUB = 'text-syntax-blue' // subcommand
-const FLAG = 'text-foreground' // flags and plain args
-const REF = 'text-syntax-green' // refs, paths, quoted strings
-
-type Tone = 'meta' | 'info'
-
-interface Segment {
-  text: string
-  className: string
-}
-
-type TerminalLine =
-  | { kind: 'blank' }
-  | { kind: 'command'; branch: string; segments: Segment[] }
-  | { kind: 'output'; tone: Tone; text: string }
-
-const SESSION: TerminalLine[] = [
-  {
-    kind: 'command',
-    branch: 'master',
-    segments: [
-      { text: 'git', className: CMD },
-      { text: ' checkout', className: SUB },
-      { text: ' -b', className: FLAG },
-      { text: ' commit-plus', className: REF },
-    ],
-  },
-  { kind: 'output', tone: 'info', text: "Switched to a new branch 'commit-plus'" },
-  { kind: 'blank' },
-
-  {
-    kind: 'command',
-    branch: 'commit-plus',
-    segments: [
-      { text: 'git', className: CMD },
-      { text: ' diff', className: SUB },
-      { text: ' --no-index', className: FLAG },
-      { text: ' gratuito.md commit-plus.md', className: REF },
-    ],
-  },
-  { kind: 'blank' },
-
-  {
-    kind: 'command',
-    branch: 'commit-plus',
-    segments: [
-      { text: 'git', className: CMD },
-      { text: ' commit', className: SUB },
-      { text: ' -am', className: FLAG },
-      { text: ' "feat: investir na carreira"', className: REF },
-    ],
-  },
-  { kind: 'output', tone: 'info', text: '[commit-plus 9e21b0c] feat: investir na carreira' },
-  { kind: 'output', tone: 'info', text: ' 1 file changed, 6 insertions(+)' },
-  { kind: 'blank' },
-
-  {
-    kind: 'command',
-    branch: 'commit-plus',
-    segments: [
-      { text: 'git', className: CMD },
-      { text: ' push', className: SUB },
-      { text: ' origin', className: FLAG },
-      { text: ' commit-plus', className: REF },
-    ],
-  },
-  { kind: 'output', tone: 'meta', text: 'To github.com:commitpt/carreira.git' },
-  { kind: 'output', tone: 'info', text: '   7c4a1f2..9e21b0c  commit-plus -> commit-plus' },
+const MONTH_EXAMPLES = [
+  'Tipicamente encontras pelo menos uma Commit Session sobre um tema técnico específico',
+  'Podes participar num Commit Talk com alguém da indústria',
+  'Há espaço para colaborar num projeto interno em curso — abrir uma issue, submeter um pull request',
+  'Podes pedir feedback sobre o teu código ou arquitetura e discuti-lo com outros membros',
+  'Surgem discussões e iniciativas pontuais consoante o que a comunidade está a construir naquele momento',
 ]
 
-const TONE_STYLES: Record<Tone, string> = {
-  meta: 'text-muted-foreground/50',
-  info: 'text-muted-foreground/80',
-}
-
-function DiffSection() {
+function MonthSection() {
   return (
-    <section className="border-t border-border py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 max-w-2xl">
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-3xl px-6 py-16 lg:py-24">
+        <div className="mb-8 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'03 // A diferença'}
+            {'04 // Um Mês No Commit+'}
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
-            A diferença, em diff.
+            Como é um mês no Commit+?
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            Um branch, um commit, um push. É assim que se passa do plano gratuito para o Commit+ sem
-            perder nada do que já tinhas.
+            Um exemplo realista — não uma agenda fixa. A frequência e os temas variam de mês para
+            mês, consoante a disponibilidade de quem participa.
           </Typography>
         </div>
 
-        <UpgradeTerminal />
+        <ul className="space-y-3">
+          {MONTH_EXAMPLES.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-3 rounded-lg border border-border bg-surface p-4"
+            >
+              <Check size={18} className="mt-0.5 shrink-0 text-primary-300" aria-hidden="true" />
+              <Typography variant="p" color="muted">
+                {item}
+              </Typography>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
 
-        {/* The CTA lands right where the metaphor closes, on the push. */}
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-          <a
-            href={WHOP_COMMIT_PLUS_URL}
-            target="_blank"
-            rel="noreferrer"
-            className={buttonVariants({ size: 'lg', className: 'gap-2 group' })}
-          >
-            Faz o teu push para o Commit+
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </a>
+// ── Gratuito vs Commit+ ───────────────────────────────────────────────────────
 
-          <Typography variant="caption" color="muted" className="font-mono">
-            {'// A comunidade gratuita não perde nada. O Commit+ só adiciona.'}
+const FREE_FEATURES = [
+  'Comunidade no Discord',
+  'Perguntas e discussões técnicas',
+  'Networking com outros membros',
+  'Ajuda entre membros',
+  'Eventos e iniciativas abertas',
+]
+
+const PLUS_FEATURES = [
+  'Commit Talks',
+  'Commit Sessions',
+  'Commit Career',
+  'Participação em projetos internos',
+  'Feedback técnico e revisões de código',
+  'Iniciativas exclusivas para membros Commit+',
+]
+
+function ComparisonSection() {
+  return (
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+        <div className="mb-12 max-w-2xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            {'07 // Gratuito vs Commit+'}
           </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
+            Não tornámos a comunidade paga.
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-4">
+            Adicionámos uma camada extra para quem quer ir mais fundo. Tudo o que já existia
+            continua gratuito.
+          </Typography>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <Typography variant="h3">Gratuito</Typography>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                {FREE_FEATURES.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-foreground">
+                    <Check
+                      size={16}
+                      className="shrink-0 text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card className="border-primary/40">
+            <CardHeader>
+              <Typography variant="h3">Commit+</Typography>
+              <Typography variant="small" color="muted">
+                Tudo do gratuito, mais:
+              </Typography>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                {PLUS_FEATURES.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-foreground">
+                    <Check size={16} className="shrink-0 text-primary-300" aria-hidden="true" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
   )
 }
 
-function Prompt({ branch }: { branch: string }) {
+// ── Para quem é / não é ───────────────────────────────────────────────────────
+
+const FIT_FOR = [
+  'Queres participar ativamente, não só observar',
+  'Queres aprender com outras pessoas, não sozinho',
+  'Queres receber feedback sobre o teu trabalho',
+  'Queres conhecer profissionais da indústria',
+  'Queres colaborar em projetos com outras pessoas',
+  'Estás disposto a contribuir também, não só a receber',
+]
+
+const FIT_AGAINST = [
+  'Esperas uma garantia de emprego',
+  'Procuras acompanhamento individual permanente',
+  'Não tens intenção de participar ativamente',
+]
+
+function FitSection() {
   return (
-    <span className="select-none">
-      <span className="text-primary-300">~/commitpt</span>{' '}
-      <span className="text-muted-foreground/50">git:(</span>
-      <span className="text-warning">{branch}</span>
-      <span className="text-muted-foreground/50">)</span>{' '}
-      <span className="text-success">$</span>{' '}
-    </span>
-  )
-}
+    <section className="border-b border-border">
+      <div className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
+        <div className="mb-12 max-w-2xl">
+          <Typography variant="overline" color="secondary" as="span" className="font-mono">
+            {'08 // Para Quem É'}
+          </Typography>
+          <Typography variant="h2" className="mt-3 sm:text-4xl">
+            É para ti se... e não é se...
+          </Typography>
+        </div>
 
-function TerminalRow({ line }: { line: TerminalLine }) {
-  if (line.kind === 'blank') return <div className="h-3" />
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-lg border border-border bg-surface p-6">
+            <Typography variant="h3" className="text-lg text-primary-300">
+              É para ti se:
+            </Typography>
+            <ul className="mt-4 space-y-3 font-mono text-sm">
+              {FIT_FOR.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-foreground">
+                  <span className="text-primary-300">+</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-  if (line.kind === 'command') {
-    return (
-      <div className="whitespace-pre px-4 sm:px-6">
-        <Prompt branch={line.branch} />
-        {line.segments.map((segment, i) => (
-          <span key={i} className={segment.className}>
-            {segment.text}
-          </span>
-        ))}
-      </div>
-    )
-  }
-
-  return <div className={`whitespace-pre px-4 sm:px-6 ${TONE_STYLES[line.tone]}`}>{line.text}</div>
-}
-
-function UpgradeTerminal() {
-  return (
-    <div className="overflow-hidden rounded-lg border border-border bg-surface shadow-2xl shadow-black/40">
-      <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
-        <div className="h-3 w-3 rounded-full bg-destructive" />
-        <div className="h-3 w-3 rounded-full bg-warning" />
-        <div className="h-3 w-3 rounded-full bg-success" />
-        <span className="ml-2 font-mono text-xs font-semibold text-muted-foreground">
-          ~/commitpt — git
-        </span>
-      </div>
-
-      {/*
-        role="img" + aria-label: read out line by line this is punctuation soup,
-        and every benefit in it is already announced by the cards above and the
-        plan list below. tabIndex so keyboard users can still scroll the
-        overflow on narrow viewports.
-      */}
-      <div
-        className="overflow-x-auto py-4 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset focus-visible:outline-none"
-        tabIndex={0}
-        role="img"
-        aria-label="Sessão de terminal: cria o branch commit-plus, corre git diff entre o plano gratuito e o Commit+ — as seis linhas que o Commit+ acrescenta aparecem a verde — e depois faz commit e push."
-      >
-        {/* min-w-max so the highlighted rows keep their background across the
-            full scroll width, not just the visible box. */}
-        <div className="min-w-max font-mono text-sm leading-6">
-          {SESSION.map((line, i) => (
-            <TerminalRow key={i} line={line} />
-          ))}
-
-          <div className="h-3" />
-
-          {/* Idle prompt, waiting for the next command */}
-          <div className="flex items-center px-4 sm:px-6">
-            <Prompt branch="commit-plus" />
-            <span className="inline-block h-4 w-[2px] animate-pulse bg-primary" />
+          <div className="rounded-lg border border-border bg-surface p-6">
+            <Typography variant="h3" className="text-lg text-destructive">
+              Não é para ti se:
+            </Typography>
+            <ul className="mt-4 space-y-3 font-mono text-sm">
+              {FIT_AGAINST.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-foreground">
+                  <span className="text-destructive">-</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-// ── Pricing ───────────────────────────────────────────────────────────────────
-//
-interface Plan {
-  badge: string
-  title: string
-  price: string | null
-  memberCount: number | null
-  description: string
-  features: string[]
-  ctaLabel: string
-  ctaHref: string
-  featured: boolean
-}
-
-function buildPlans(monthlyPrice: string, customerCount: number | null): Plan[] {
-  return [
-    {
-      badge: 'Gratuito',
-      title: 'Discord Grátis',
-      price: null,
-      memberCount: null,
-      description:
-        'Entra, faz perguntas, conhece pessoas e participa nas discussões. Sem pagar nada, para sempre.',
-      features: [
-        'perguntas sem julgamentos',
-        'discussões técnicas e de arquitetura',
-        'contacto com a comunidade',
-        'anúncios e eventos abertos',
-      ],
-      ctaLabel: 'Entrar no Discord',
-      ctaHref: DISCORD_URL,
-      featured: false,
-    },
-    {
-      badge: 'Commit+',
-      title: 'Commit+',
-      price: `${monthlyPrice}/mês`,
-      memberCount: customerCount,
-      description:
-        'A camada extra para quem quer ir mais fundo. Subscrição mensal, cancelas quando quiseres.',
-      features: [
-        'revisões de código em projetos reais',
-        'projetos internos da comunidade',
-        'eventos exclusivos sobre carreira e programação',
-      ],
-      ctaLabel: 'Adere ao Commit+',
-      ctaHref: WHOP_COMMIT_PLUS_URL,
-      featured: true,
-    },
-  ]
-}
-
-function PricingCard({ plan }: { plan: Plan }) {
-  const { featured } = plan
-
-  return (
-    <div
-      className={`flex flex-col rounded-2xl border bg-surface p-8 lg:p-10 ${
-        featured ? 'border-primary/40' : 'border-border'
-      }`}
-    >
-      <span
-        className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs ${
-          featured
-            ? 'border-primary-300/30 bg-primary-300/10 text-primary-300'
-            : 'border-border bg-surface text-muted-foreground'
-        }`}
-      >
-        <span
-          className={`relative inline-flex h-2 w-2 rounded-full ${
-            featured ? 'bg-success' : 'bg-muted-foreground'
-          }`}
-        />
-        {plan.badge}
-      </span>
-
-      <Typography variant="h3" className="mt-6">
-        {plan.title}
-      </Typography>
-
-      {plan.price && (
-        <Typography variant="h3" className="mt-2 font-mono text-primary-300">
-          {plan.price}
-        </Typography>
-      )}
-
-      <Typography variant="p" color="muted" className="mt-4">
-        {plan.description}
-      </Typography>
-
-      {plan.memberCount !== null && (
-        <Typography variant="small" color="muted" className="mt-3 font-mono">
-          {plan.memberCount}+ membros já fazem parte do Commit+
-        </Typography>
-      )}
-
-      <div className="my-8 border-t border-border" />
-
-      <ul className="flex-grow space-y-3">
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-3 text-sm text-foreground">
-            <span
-              className={`font-mono ${featured ? 'text-primary-300' : 'text-muted-foreground'}`}
-            >
-              {featured ? '+' : '·'}
-            </span>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      <a
-        href={plan.ctaHref}
-        target="_blank"
-        rel="noreferrer"
-        className={buttonVariants({
-          ...(featured ? {} : { variant: 'outline' }),
-          size: 'lg',
-          className: 'mt-8 w-full gap-2 group',
-        })}
-      >
-        {plan.ctaLabel}
-        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-      </a>
-    </div>
-  )
-}
+// ── Preço ─────────────────────────────────────────────────────────────────────
 
 function PricingSection({
   monthlyPrice,
@@ -526,28 +582,41 @@ function PricingSection({
   monthlyPrice: string
   customerCount: number | null
 }) {
-  const plans = buildPlans(monthlyPrice, customerCount)
-
   return (
-    <section className="border-t border-border py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'04 // Planos'}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
-            Escolhe por onde entras.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Podes começar pelo Discord gratuito e subir quando fizer sentido. Sem contratos cancelas
-            quando quiseres.
-          </Typography>
-        </div>
+    <section className="border-b border-border py-16 lg:py-24">
+      <div className="mx-auto max-w-2xl px-6 text-center">
+        <Typography variant="overline" color="secondary" as="span" className="font-mono">
+          {'09 // Preço'}
+        </Typography>
+        <Typography variant="h2" className="mt-3 sm:text-4xl">
+          Um preço. Sem contratos.
+        </Typography>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {plans.map((plan) => (
-            <PricingCard key={plan.badge} plan={plan} />
-          ))}
+        <div className="mx-auto mt-8 max-w-md rounded-2xl border border-primary/40 bg-surface p-8 lg:p-10">
+          <Typography variant="h1" className="font-mono text-primary-300">
+            {monthlyPrice}
+            <span className="text-xl text-muted-foreground">/mês</span>
+          </Typography>
+          <Typography variant="p" color="muted" className="mt-3">
+            Acesso a Commit Talks, Commit Sessions, Commit Career, projetos internos e feedback
+            técnico. Cancelas quando quiseres, diretamente na plataforma.
+          </Typography>
+
+          <a
+            href={WHOP_COMMIT_PLUS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({ size: 'lg', className: 'mt-8 w-full gap-2 group' })}
+          >
+            Experimentar Commit+
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </a>
+
+          {customerCount !== null && (
+            <Typography variant="small" color="muted" className="mt-4 font-mono">
+              {customerCount}+ membros já fazem parte do Commit+
+            </Typography>
+          )}
         </div>
       </div>
     </section>
@@ -558,17 +627,17 @@ function PricingSection({
 
 function CtaSection() {
   return (
-    <section className="border-t border-border">
+    <section>
       <div className="mx-auto max-w-6xl px-6 py-20 text-center lg:py-28">
         <Typography variant="overline" color="secondary" as="span" className="font-mono">
-          {'06 // Junta-te a nós'}
+          {'11 // Junta-te a nós'}
         </Typography>
         <Typography variant="h2" className="mt-3 sm:text-4xl">
-          Prova a ti próprio que vale a pena.
+          Construímos algo que já tem pessoas, atividade e resultados.
         </Typography>
         <Typography variant="p" color="muted" className="mx-auto mt-4 max-w-xl">
-          Se entras, participas durante um mês e decides que não é para ti, cancelas e pronto. Não
-          te pedimos justificações nem tentamos convencer-te a ficar.
+          Existe uma comunidade gratuita. Para quem quer envolver-se mais e ter acesso a
+          experiências adicionais, existe o Commit+.
         </Typography>
         <CtaButtons className="mt-8 items-center justify-center" />
       </div>

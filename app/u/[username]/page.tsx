@@ -5,6 +5,7 @@ import { getPublicProfile, type PublicProfileLink } from '@/src/lib/usm'
 import {
   Avatar,
   AvatarFallback,
+  AvatarImage,
   Badge,
   buttonVariants,
   Card,
@@ -136,6 +137,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <div className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
             <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-left">
               <Avatar size="xl">
+                {profile.githubUsername && (
+                  <AvatarImage
+                    src={`https://github.com/${profile.githubUsername}.png`}
+                    alt={displayName}
+                  />
+                )}
                 <AvatarFallback>{initials(displayName)}</AvatarFallback>
               </Avatar>
 

@@ -151,7 +151,70 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'Nenhum membro paga para ter acesso a uma comunidade  paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
+        text: 'Nenhum membro paga para ter acesso a uma comunidade — paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
+      },
+    ],
+  },
+  {
+    id: 'passou-a-ser-paga',
+    q: 'A CommitPT passou a ser paga?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Não. A comunidade no Discord continua — e vai continuar — completamente gratuita. Entrar, fazer perguntas, participar em discussões e fazer networking nunca teve nem vai ter custo.',
+      },
+      {
+        type: 'p',
+        text: 'O Commit+ não é uma versão "desbloqueada" da comunidade gratuita nem uma forma de cobrar por algo que antes era de graça. É uma camada adicional, opcional, para quem quer investir mais ativamente no seu desenvolvimento técnico e profissional.',
+      },
+    ],
+  },
+  {
+    id: 'pago-discord',
+    q: 'Estou a pagar para usar o Discord?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Não. O acesso ao Discord da comunidade é e continua gratuito, com ou sem Commit+.',
+      },
+      { type: 'p', text: 'Os 9,99€/mês não dão acesso a um "Discord privado". Dão acesso a:' },
+      {
+        type: 'list',
+        items: [
+          'Commit Talks — conversas e Q&A com pessoas da indústria',
+          'Commit Sessions — sessões técnicas em áreas específicas de Engenharia de Software',
+          'Commit Career — conteúdo e iniciativas de desenvolvimento profissional',
+          'Participação em projetos internos da comunidade',
+          'Feedback técnico sobre código, arquitetura e decisões de projeto',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'garante-emprego',
+    q: 'Vou conseguir emprego através do Commit+?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Não existe qualquer garantia de emprego, entrevistas ou progressão profissional. Nenhuma comunidade pode prometer isso honestamente, e nós não o fazemos.',
+      },
+      {
+        type: 'p',
+        text: 'O que o Commit+ oferece é contacto direto com profissionais da indústria, contexto real sobre o mercado e oportunidades de participar, contribuir e aprender. O que fazes com isso depende de ti.',
+      },
+    ],
+  },
+  {
+    id: 'acompanhamento-individual',
+    q: 'Tenho acompanhamento individual (mentoria 1:1)?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Não. O Commit+ é um modelo comunitário, não um serviço de mentoria individual permanente.',
+      },
+      {
+        type: 'p',
+        text: 'Isso significa feedback e discussão em grupo, sessões abertas a todos os membros, e contacto com várias pessoas em vez de um único mentor. Nem todo o código submetido tem garantia de revisão individual — mas há espaço regular para pedir e receber feedback.',
       },
     ],
   },
@@ -180,7 +243,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'O que esperamos é que proves a ti próprio que vale a pena e que fiques porque sentes valor, não porque te esqueceste de cancelar.',
+        text: 'Experimenta durante um mês. Fica se fizer sentido para ti.',
       },
     ],
   },

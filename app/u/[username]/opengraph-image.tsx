@@ -22,6 +22,9 @@ export default async function Image({ params }: Props) {
 
   const displayName = shortName(profile?.fullName ?? null) ?? profile?.username ?? params.username
   const username = profile?.username ?? params.username
+  const avatarUrl = profile?.githubUsername
+    ? `https://github.com/${profile.githubUsername}.png`
+    : null
 
   const stats = [
     profile?.stats && { label: 'XP', value: profile.stats.experience },
@@ -107,57 +110,78 @@ export default async function Image({ params }: Props) {
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
+          alignItems: 'center',
+          gap: '40px',
           flex: 1,
-          justifyContent: 'center',
         }}
       >
-        <div
-          style={{
-            fontSize: '68px',
-            fontWeight: 800,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.05,
-            color: '#F0F4F8',
-          }}
-        >
-          {displayName}
-        </div>
-
-        <div
-          style={{
-            fontSize: '26px',
-            color: '#07ecec',
-            fontFamily: 'monospace',
-          }}
-        >
-          {`@${username}`}
-        </div>
-
-        {stats.length > 0 && (
-          <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: '8px',
-                  border: '1px solid rgba(48,54,61,0.8)',
-                  borderRadius: '12px',
-                  padding: '10px 20px',
-                  background: 'rgba(21,25,34,0.8)',
-                }}
-              >
-                <span style={{ fontFamily: 'monospace', fontSize: '28px', color: '#07ecec' }}>
-                  {stat.value}
-                </span>
-                <span style={{ fontSize: '16px', color: '#8B949E' }}>{stat.label}</span>
-              </div>
-            ))}
-          </div>
+        {avatarUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={avatarUrl}
+            width={160}
+            height={160}
+            alt=""
+            style={{
+              borderRadius: '50%',
+              border: '3px solid rgba(7,236,236,0.4)',
+            }}
+          />
         )}
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <div
+            style={{
+              fontSize: '68px',
+              fontWeight: 800,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              color: '#F0F4F8',
+            }}
+          >
+            {displayName}
+          </div>
+
+          <div
+            style={{
+              fontSize: '26px',
+              color: '#07ecec',
+              fontFamily: 'monospace',
+            }}
+          >
+            {`@${username}`}
+          </div>
+
+          {stats.length > 0 && (
+            <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '8px',
+                    border: '1px solid rgba(48,54,61,0.8)',
+                    borderRadius: '12px',
+                    padding: '10px 20px',
+                    background: 'rgba(21,25,34,0.8)',
+                  }}
+                >
+                  <span style={{ fontFamily: 'monospace', fontSize: '28px', color: '#07ecec' }}>
+                    {stat.value}
+                  </span>
+                  <span style={{ fontSize: '16px', color: '#8B949E' }}>{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Bottom bar */}

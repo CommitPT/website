@@ -64,9 +64,6 @@ export default function Footer() {
             <a href="/#features" className="hover:text-primary transition-colors">
               Como funciona
             </a>
-            <a href="/#team" className="hover:text-primary transition-colors">
-              O Fundador
-            </a>
             <a href="/#testimonials" className="hover:text-primary transition-colors">
               Testemunhos
             </a>

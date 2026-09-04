@@ -4,7 +4,11 @@ import { getContributors } from '@/src/lib/contributors'
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default async function ContributorsTeaser() {
+export default async function ContributorsTeaser({
+  eyebrow = '05 // Contribuidores',
+}: {
+  eyebrow?: string
+}) {
   const contributors = await getContributors()
   const preview = contributors.slice(0, 5)
   const remaining = contributors.length - preview.length
@@ -15,7 +19,7 @@ export default async function ContributorsTeaser() {
           {/* Content Left */}
           <div className="max-w-xl">
             <Typography variant="overline" color="secondary" as="span" className="font-mono">
-              05 // Contribuidores
+              {eyebrow}
             </Typography>
             <Typography variant="h2" className="mt-3 sm:text-4xl">
               Pessoas reais a construir em público.

@@ -133,7 +133,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
                   label: 'contribuidores de projetos',
                 },
                 { icon: Mic, value: '4+', label: 'sessões por mês' },
-                { icon: MessageSquare, value: '80 mil+', label: 'mensagens enviadas' },
+                { icon: MessageSquare, value: '90 mil+', label: 'mensagens enviadas' },
               ].map((m) => (
                 <div key={m.label} className="flex items-center gap-1.5">
                   <m.icon
