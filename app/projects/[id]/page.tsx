@@ -1,38 +1,38 @@
-import type { Metadata } from 'next'
-import { buttonVariants, Typography } from '@commitpt/design-system'
-import Link from 'next/link'
-import Image from 'next/image'
-import {
-  ArrowLeft,
-  ArrowRight,
-  BookMarked,
-  Github,
-  Trophy,
-  Ticket,
-  UserPlus,
-  Lock,
-  ShieldAlert,
-  DoorOpen,
-  Layers,
-  Palette,
-  BookOpen,
-  Package,
-  GitMerge,
-  Zap,
-  Filter,
-  Smartphone,
-  Search,
-  Rocket,
-  Code2,
-  GitBranch,
-  GraduationCap,
-  Map,
-  Shield,
-  Database,
-  Server,
-  type LucideIcon,
-} from 'lucide-react'
 import { projects, type Project } from '@/src/data/projects'
+import { buttonVariants, Typography } from '@commitpt/design-system'
+import {
+    ArrowLeft,
+    ArrowRight,
+    BookMarked,
+    BookOpen,
+    Code2,
+    Database,
+    DoorOpen,
+    Filter,
+    GitBranch,
+    Github,
+    GitMerge,
+    GraduationCap,
+    Layers,
+    Lock,
+    Map,
+    Package,
+    Palette,
+    Rocket,
+    Search,
+    Server,
+    Shield,
+    ShieldAlert,
+    Smartphone,
+    Ticket,
+    Trophy,
+    UserPlus,
+    Zap,
+    type LucideIcon,
+} from 'lucide-react'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 // ── Icon registry ─────────────────────────────────────────────────────────────
@@ -225,7 +225,7 @@ function HeroSection({ project }: { project: Project }) {
               </a>
             )}
             <a
-              href="https://whop.com/commitpt-709e/commit-plus"
+              href="https://whop.com/checkout/plan_LcwR053laq0aV"
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ variant: 'outline', size: 'lg', className: 'gap-2' })}
@@ -511,7 +511,7 @@ function CtaSection() {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
-              href="https://whop.com/commitpt-709e/commit-plus"
+              href="https://whop.com/checkout/plan_LcwR053laq0aV"
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ size: 'lg', className: 'gap-2' })}

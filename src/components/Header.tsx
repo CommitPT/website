@@ -56,7 +56,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="https://whop.com/commitpt-709e/commit-plus"
+            href="https://whop.com/checkout/plan_LcwR053laq0aV"
             target="_blank"
             rel="noreferrer"
             className={buttonVariants({})}

@@ -15,7 +15,7 @@ export default async function ContributorsTeaser() {
           {/* Content Left */}
           <div className="max-w-xl">
             <Typography variant="overline" color="secondary" as="span" className="font-mono">
-              06 // Contribuidores
+              05 // Contribuidores
             </Typography>
             <Typography variant="h2" className="mt-3 sm:text-4xl">
               Pessoas reais a construir em público.

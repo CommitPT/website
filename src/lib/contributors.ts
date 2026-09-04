@@ -40,7 +40,7 @@ type RawContributor = {
  * Logins que nunca devem aparecer na página, mesmo que a API do GitHub os
  * devolva (bots e contas que pediram para sair).
  */
-const EXCLUDED_USERNAMES = new Set(['mrpotato5555'])
+const EXCLUDED_USERNAMES = new Set(['mrpotato5555', 'spars57'])
 
 function profileUrl(username: string): string {
   return `https://github.com/${username}`

@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
-import Header from '@/src/components/Header'
-import Footer from '@/src/components/Footer'
 import ContributorCard from '@/src/components/ContributorCard'
-import { ArrowRight } from 'lucide-react'
-import { buttonVariants, Typography } from '@commitpt/design-system'
+import Footer from '@/src/components/Footer'
+import Header from '@/src/components/Header'
 import { getContributors } from '@/src/lib/contributors'
+import { buttonVariants, Typography } from '@commitpt/design-system'
+import { ArrowRight } from 'lucide-react'
+import type { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   const contributors = await getContributors()
@@ -93,7 +93,7 @@ export default async function ContributorsPage() {
             </Typography>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="https://whop.com/commitpt-709e/commit-plus"
+                href="https://whop.com/checkout/plan_LcwR053laq0aV"
                 target="_blank"
                 rel="noreferrer"
                 className={

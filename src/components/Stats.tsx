@@ -10,7 +10,7 @@ interface Stat {
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const stats: Stat[] = [
-  { value: '490+', label: 'membros na comunidade' },
+  { value: '550+', label: 'membros na comunidade' },
   { value: '6+', label: 'contribuidores de projetos' },
   { value: '4+', label: 'sessões ao vivo por mês' },
   { value: '80 mil+', label: 'mensagens enviadas' },

@@ -75,7 +75,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
           <div>
             {/* Badge */}
             <Badge variant="primary" className="hero-enter-1 mb-6">
-              490+ membros na comunidade
+              550+ membros na comunidade
             </Badge>
 
             {/* Headline */}
@@ -100,7 +100,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
             {/* Action Buttons */}
             <div className="hero-enter-4 flex flex-col gap-4 sm:flex-row mb-8">
               <a
-                href="https://whop.com/commitpt-709e/commit-plus"
+                href="https://whop.com/checkout/plan_LcwR053laq0aV"
                 target="_blank"
                 rel="noreferrer"
                 className={buttonVariants({ size: 'lg' }) + ' group'}
@@ -126,7 +126,7 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
               style={{ color: '#f1f5f9' }}
             >
               {[
-                { icon: Users, value: '490+', label: 'membros na comunidade' },
+                { icon: Users, value: '550+', label: 'membros na comunidade' },
                 {
                   icon: GitBranch,
                   value: `${contributorsCount}+`,

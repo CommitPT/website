@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     'comunidade tech portugal',
     'discord programadores',
   ],
-  authors: [{ name: 'Bruno Moisão', url: 'https://www.linkedin.com/in/brunomoisao' }],
-  creator: 'Bruno Moisão',
+  authors: [{ name: 'CommitPT', url: BASE_URL }],
+  creator: 'CommitPT',
   openGraph: {
     type: 'website',
     url: BASE_URL,

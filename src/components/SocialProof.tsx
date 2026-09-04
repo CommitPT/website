@@ -1,6 +1,6 @@
+import ReviewScroll from '@/src/components/ReviewScroll'
 import { getWhopReviews } from '@/src/lib/whop'
 import fallbackReviews from '@/src/reviews.json'
-import ReviewScroll from '@/src/components/ReviewScroll'
 import { Typography } from '@commitpt/design-system'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -51,7 +51,7 @@ export default async function SocialProof() {
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            05 // O Que Dizem os Membros
+            04 // O Que Dizem os Membros
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
             Engenheiros reais. Resultados reais.
@@ -60,7 +60,7 @@ export default async function SocialProof() {
             Não acredites só na nossa palavra. Isto é o que os membros dizem depois de deixarem de
             programar sozinhos. Avaliações recolhidas via{' '}
             <a
-              href="https://whop.com/commitpt-709e/commit-plus"
+              href="https://whop.com/checkout/plan_LcwR053laq0aV"
               target="_blank"
               rel="noreferrer"
               className="text-primary underline underline-offset-2"

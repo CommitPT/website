@@ -1,3 +1,4 @@
+import { getWhopCustomerCount, getWhopMonthlyPrice } from '@/src/lib/whop'
 import { buttonVariants, FeatureCard, Typography } from '@commitpt/design-system'
 import {
   ArrowRight,
@@ -9,6 +10,10 @@ import {
   Target,
   Video,
 } from 'lucide-react'
+
+// Preço de fallback caso a API do Whop esteja indisponível — manter alinhado com o plano em
+// https://whop.com/checkout/plan_LcwR053laq0aV
+const FALLBACK_MONTHLY_PRICE = 9.99
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -50,7 +55,17 @@ const solutions: Solution[] = [
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Features() {
+export default async function Features() {
+  const [whopPrice, customerCount] = await Promise.all([
+    getWhopMonthlyPrice(),
+    getWhopCustomerCount(),
+  ])
+
+  const monthlyPrice = new Intl.NumberFormat('pt-PT', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(whopPrice ?? FALLBACK_MONTHLY_PRICE)
+
   return (
     <section id="features" className="relative">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
@@ -89,16 +104,16 @@ export default function Features() {
             Já sabes qual é o problema. A comunidade está a um clique.
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Junta-te a mais de 490 membros da comunidade que deixaram de aprender sozinhos.
+            Junta-te a 550+ membros da comunidade que deixaram de aprender sozinhos.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://whop.com/commitpt-709e/commit-plus"
+              href="https://whop.com/checkout/plan_LcwR053laq0aV"
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ size: 'lg' }) + ' group'}
             >
-              Adere já
+              Adere já — {monthlyPrice}/mês
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
@@ -112,6 +127,11 @@ export default function Features() {
               Experimenta o Discord Grátis
             </a>
           </div>
+          {customerCount !== null && (
+            <Typography variant="small" color="muted" className="mt-4">
+              {customerCount}+ membros já fazem parte do Commit+.
+            </Typography>
+          )}
         </div>
       </div>
     </section>

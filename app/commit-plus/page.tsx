@@ -1,11 +1,16 @@
-import type { Metadata } from 'next'
-import { ArrowRight, Calendar, GitPullRequest, MessageCircle, Users } from 'lucide-react'
-import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
-import Header from '@/src/components/Header'
-import Footer from '@/src/components/Footer'
 import FAQ from '@/src/components/FAQ'
+import Footer from '@/src/components/Footer'
+import Header from '@/src/components/Header'
 import { selectFaqs } from '@/src/data/faqs'
-import { WHOP_COMMIT_PLUS_URL, DISCORD_URL } from '@/src/lib/links'
+import { DISCORD_URL, WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
+import { getWhopCustomerCount, getWhopMonthlyPrice } from '@/src/lib/whop'
+import { FeatureCard, Typography, buttonVariants } from '@commitpt/design-system'
+import { ArrowRight, Calendar, GitPullRequest, MessageCircle, Users } from 'lucide-react'
+import type { Metadata } from 'next'
+
+// Preço de fallback caso a API do Whop esteja indisponível — manter alinhado com o plano em
+// https://whop.com/checkout/plan_LcwR053laq0aV
+const FALLBACK_MONTHLY_PRICE = 9.99
 
 const DESCRIPTION =
   'Revisões de código, projetos internos da comunidade e contacto próximo com a equipa. A comunidade gratuita no Discord continua gratuita.'
@@ -40,7 +45,16 @@ export const metadata: Metadata = {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function CommitPlusPage() {
+export default async function CommitPlusPage() {
+  const [whopPrice, customerCount] = await Promise.all([
+    getWhopMonthlyPrice(),
+    getWhopCustomerCount(),
+  ])
+  const monthlyPrice = new Intl.NumberFormat('pt-PT', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(whopPrice ?? FALLBACK_MONTHLY_PRICE)
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -48,7 +62,7 @@ export default function CommitPlusPage() {
         <HeroSection />
         <BenefitsSection />
         <DiffSection />
-        <PricingSection />
+        <PricingSection monthlyPrice={monthlyPrice} customerCount={customerCount} />
         <FAQ
           eyebrow="05 // Perguntas Frequentes"
           heading="Antes de decidires."
@@ -379,11 +393,11 @@ function UpgradeTerminal() {
 
 // ── Pricing ───────────────────────────────────────────────────────────────────
 //
-// No prices here on purpose. The price lives on Whop so the click is measured.
-
 interface Plan {
   badge: string
   title: string
+  price: string | null
+  memberCount: number | null
   description: string
   features: string[]
   ctaLabel: string
@@ -391,37 +405,43 @@ interface Plan {
   featured: boolean
 }
 
-const PLANS: Plan[] = [
-  {
-    badge: 'Gratuito',
-    title: 'Discord Grátis',
-    description:
-      'Entra, faz perguntas, conhece pessoas e participa nas discussões. Sem pagar nada, para sempre.',
-    features: [
-      'perguntas sem julgamentos',
-      'discussões técnicas e de arquitetura',
-      'contacto com a comunidade',
-      'anúncios e eventos abertos',
-    ],
-    ctaLabel: 'Entrar no Discord',
-    ctaHref: DISCORD_URL,
-    featured: false,
-  },
-  {
-    badge: 'Commit+',
-    title: 'Commit+',
-    description:
-      'A camada extra para quem quer ir mais fundo. Subscrição mensal, cancelas quando quiseres.',
-    features: [
-      'revisões de código em projetos reais',
-      'projetos internos da comunidade',
-      'eventos exclusivos sobre carreira e programação',
-    ],
-    ctaLabel: 'Adere ao Commit+',
-    ctaHref: WHOP_COMMIT_PLUS_URL,
-    featured: true,
-  },
-]
+function buildPlans(monthlyPrice: string, customerCount: number | null): Plan[] {
+  return [
+    {
+      badge: 'Gratuito',
+      title: 'Discord Grátis',
+      price: null,
+      memberCount: null,
+      description:
+        'Entra, faz perguntas, conhece pessoas e participa nas discussões. Sem pagar nada, para sempre.',
+      features: [
+        'perguntas sem julgamentos',
+        'discussões técnicas e de arquitetura',
+        'contacto com a comunidade',
+        'anúncios e eventos abertos',
+      ],
+      ctaLabel: 'Entrar no Discord',
+      ctaHref: DISCORD_URL,
+      featured: false,
+    },
+    {
+      badge: 'Commit+',
+      title: 'Commit+',
+      price: `${monthlyPrice}/mês`,
+      memberCount: customerCount,
+      description:
+        'A camada extra para quem quer ir mais fundo. Subscrição mensal, cancelas quando quiseres.',
+      features: [
+        'revisões de código em projetos reais',
+        'projetos internos da comunidade',
+        'eventos exclusivos sobre carreira e programação',
+      ],
+      ctaLabel: 'Adere ao Commit+',
+      ctaHref: WHOP_COMMIT_PLUS_URL,
+      featured: true,
+    },
+  ]
+}
 
 function PricingCard({ plan }: { plan: Plan }) {
   const { featured } = plan
@@ -451,9 +471,21 @@ function PricingCard({ plan }: { plan: Plan }) {
         {plan.title}
       </Typography>
 
+      {plan.price && (
+        <Typography variant="h3" className="mt-2 font-mono text-primary-300">
+          {plan.price}
+        </Typography>
+      )}
+
       <Typography variant="p" color="muted" className="mt-4">
         {plan.description}
       </Typography>
+
+      {plan.memberCount !== null && (
+        <Typography variant="small" color="muted" className="mt-3 font-mono">
+          {plan.memberCount}+ membros já fazem parte do Commit+
+        </Typography>
+      )}
 
       <div className="my-8 border-t border-border" />
 
@@ -487,7 +519,15 @@ function PricingCard({ plan }: { plan: Plan }) {
   )
 }
 
-function PricingSection() {
+function PricingSection({
+  monthlyPrice,
+  customerCount,
+}: {
+  monthlyPrice: string
+  customerCount: number | null
+}) {
+  const plans = buildPlans(monthlyPrice, customerCount)
+
   return (
     <section className="border-t border-border py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -505,7 +545,7 @@ function PricingSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {PLANS.map((plan) => (
+          {plans.map((plan) => (
             <PricingCard key={plan.badge} plan={plan} />
           ))}
         </div>

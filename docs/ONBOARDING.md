@@ -157,7 +157,7 @@ Existem dois destinos de conversão no website:
 
 | CTA | Destino | Estilo |
 |---|---|---|
-| **Primário** | `https://whop.com/commitpt-709e/commit-plus` | `bg-git-add text-ink` (azul sólido) |
+| **Primário** | `https://whop.com/checkout/plan_LcwR053laq0aV` | `bg-git-add text-ink` (azul sólido) |
 | **Secundário** | `https://discord.gg/yGAbprCBrT` | `border-border` (outlined) |
 
 **Regras:**

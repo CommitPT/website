@@ -122,5 +122,5 @@ cp .env.example .env.local
 
 ## Links
 
-- **Community (Whop):** https://whop.com/commitpt-709e/commit-plus/
+- **Community (Whop):** https://whop.com/checkout/plan_LcwR053laq0aV/
 - **Discord:** _(invite pending)_
