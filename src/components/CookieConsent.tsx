@@ -34,7 +34,7 @@ export default function CookieConsent() {
 
   return (
     <>
-      {/* Google Analytics Scripts */}
+      {/* Google Analytics & Whop Analytics Scripts */}
       {consent === 'accepted' && (
         <>
           <Script
@@ -49,6 +49,13 @@ export default function CookieConsent() {
               gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
             `}
           </Script>
+          <Script id="whop-analytics" strategy="afterInteractive">
+            {`
+              !function(w,d,s,u,n,a,b){if(w[n])return;a=w[n]={q:[],t:+new Date,s:[],o:u,track:function(){a.q.push([+new Date].concat([].slice.call(arguments)))},setScope:function(){a.s=[].slice.call(arguments).filter(function(x){return typeof x==="string"});a.q.push([+new Date,"setScope"].concat(a.s))},scope:function(){var c=[].slice.call(arguments);return{track:function(){a.q.push([+new Date].concat([].slice.call(arguments)).concat([{__scope:c}]))}}}};b=d.createElement(s);b.async=1;b.src=u+"/s.js";d.getElementsByTagName(s)[0].parentNode.insertBefore(b,d.getElementsByTagName(s)[0])}(window,document,"script","https://t.whop.tw","whop");
+              whop.setScope("biz_Vy9fmtrjBri4HX");
+              whop.track("page");
+            `}
+          </Script>
         </>
       )}
 
@@ -61,8 +68,8 @@ export default function CookieConsent() {
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
-              Usamos o Google Analytics para perceber como os visitantes utilizam o site (páginas
-              visitadas, duração e origem do tráfego). Nenhum dado é recolhido sem o teu
+              Usamos o Google Analytics e a Whop para perceber como os visitantes utilizam o site
+              (páginas visitadas, duração e origem do tráfego). Nenhum dado é recolhido sem o teu
               consentimento e os cookies não são usados para publicidade.{' '}
               <a
                 href="/privacy"

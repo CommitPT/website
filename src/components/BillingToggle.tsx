@@ -22,7 +22,7 @@ export default function BillingToggle({ billing, onChange, className = '' }: Bil
         onClick={() => onChange('monthly')}
         className={`rounded-full px-4 py-1.5 transition-colors ${
           billing === 'monthly'
-            ? 'bg-primary-300 text-background'
+            ? 'bg-gradient-to-b from-primary-500 to-primary-600 text-white'
             : 'text-muted-foreground hover:text-foreground'
         }`}
       >
@@ -35,14 +35,14 @@ export default function BillingToggle({ billing, onChange, className = '' }: Bil
         onClick={() => onChange('annual')}
         className={`flex items-center gap-2 rounded-full px-4 py-1.5 transition-colors ${
           billing === 'annual'
-            ? 'bg-primary-300 text-background'
+            ? 'bg-gradient-to-b from-primary-500 to-primary-600 text-white'
             : 'text-muted-foreground hover:text-foreground'
         }`}
       >
         Anual
         <span
           className={`rounded-full px-1.5 py-0.5 text-xs ${
-            billing === 'annual' ? 'bg-background/20' : 'bg-primary-300/10 text-primary-300'
+            billing === 'annual' ? 'bg-background/20' : 'bg-primary-500/10 text-primary-500'
           }`}
         >
           Poupa 50%

@@ -116,7 +116,8 @@ export default function PrivacyPage() {
                 <li>
                   <strong className="text-foreground">Whop</strong> — plataforma de gestão de
                   membros e processamento de pagamentos, sujeita à sua própria política de
-                  privacidade.
+                  privacidade. Também usada para análise de tráfego do website, apenas quando
+                  aceitas cookies de análise.
                 </li>
                 <li>
                   <strong className="text-foreground">Discord</strong> — plataforma de comunicação
@@ -192,7 +193,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground">7. Cookies</h2>
               <p>
                 O website não utiliza cookies sem o teu consentimento. Quando aceitas cookies de
-                análise, o Google Analytics instala os seguintes cookies:
+                análise, o Google Analytics e a Whop instalam os seguintes cookies:
               </p>
               <ul className="list-disc space-y-2 pl-6">
                 <li>
@@ -203,6 +204,11 @@ export default function PrivacyPage() {
                   <strong className="text-foreground">_ga_*</strong> — mantém o estado da sessão
                   para o Google Analytics 4. Duração: 2 anos.
                 </li>
+                <li>
+                  <strong className="text-foreground">Cookies de análise da Whop</strong> —
+                  identificam de forma agregada as páginas visitadas, para efeitos de análise de
+                  tráfego.
+                </li>
               </ul>
               <p>
                 Estes cookies recolhem informação de forma agregada e anónima sobre como os
@@ -211,8 +217,8 @@ export default function PrivacyPage() {
               </p>
               <p>
                 Podes retirar o teu consentimento a qualquer momento limpando os cookies do browser
-                ou recusando na próxima visita. Ao recusares, o Google Analytics não é carregado e
-                nenhum cookie é instalado.
+                ou recusando na próxima visita. Ao recusares, o Google Analytics e a Whop não são
+                carregados e nenhum destes cookies é instalado.
               </p>
             </section>
 
