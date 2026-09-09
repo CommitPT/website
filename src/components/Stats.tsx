@@ -7,20 +7,18 @@ interface Stat {
   label: string
 }
 
-// ── Data ──────────────────────────────────────────────────────────────────────
-
-const stats: Stat[] = [
-  { value: '550+', label: 'membros na comunidade' },
-  { value: '6+', label: 'contribuidores de projetos' },
-  { value: '4+', label: 'sessões ao vivo por mês' },
-  { value: '80 mil+', label: 'mensagens enviadas' },
-]
-
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Stats() {
+export default function Stats({ contributorsCount }: { contributorsCount: number }) {
+  const stats: Stat[] = [
+    { value: '550+', label: 'membros na comunidade' },
+    { value: `${contributorsCount}+`, label: 'contribuidores de projetos' },
+    { value: '4+', label: 'sessões ao vivo por mês' },
+    { value: '90 mil+', label: 'mensagens enviadas' },
+  ]
+
   return (
-    <div className="border-b border-border">
+    <div>
       <div className="mx-auto max-w-6xl px-6 py-10">
         {/* Statistics Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 sm:divide-x sm:divide-border">

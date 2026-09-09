@@ -1,4 +1,8 @@
 import { unstable_cache } from 'next/cache'
+import { WHOP_COMMIT_PLUS_ANNUAL_URL, WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
+
+const MONTHLY_PLAN_ID = WHOP_COMMIT_PLUS_URL.split('/').pop()
+const ANNUAL_PLAN_ID = WHOP_COMMIT_PLUS_ANNUAL_URL.split('/').pop()
 
 export interface WhopReview {
   id: string
@@ -47,10 +51,15 @@ interface WhopMembershipsResponse {
   }
 }
 
+export interface WhopPlanPrices {
+  monthly: number | null
+  annual: number | null
+}
+
 // Module-level caches — survive across requests within the same server instance
 let tokenCache: TokenCache | null = null
 let lastSuccessfulReviews: WhopReview[] | null = null
-let lastSuccessfulPrice: number | null = null
+let lastSuccessfulPlanPrices: WhopPlanPrices | null = null
 let lastSuccessfulCustomerCount: number | null = null
 
 // Refresh 5 minutes before actual expiry to avoid using a token that expires mid-request
@@ -132,9 +141,9 @@ export async function getWhopReviews(): Promise<WhopReview[]> {
   }
 }
 
-async function fetchMonthlyPrice(): Promise<number | null> {
+async function fetchPlanPrices(): Promise<WhopPlanPrices> {
   const productId = process.env.WHOP_PRODUCT_ID
-  if (!process.env.WHOP_API_KEY || !productId) return null
+  if (!process.env.WHOP_API_KEY || !productId) return { monthly: null, annual: null }
 
   const token = await getAccessToken()
 
@@ -150,25 +159,31 @@ async function fetchMonthlyPrice(): Promise<number | null> {
   }
 
   const json: WhopPlansResponse = await res.json()
-  const plan = json.data[0]
-  return plan ? plan.renewal_price : null
+  const monthlyPlan = json.data.find((p) => p.id === MONTHLY_PLAN_ID)
+  const annualPlan = json.data.find((p) => p.id === ANNUAL_PLAN_ID)
+
+  return {
+    monthly: monthlyPlan ? monthlyPlan.renewal_price : null,
+    annual: annualPlan ? annualPlan.renewal_price : null,
+  }
 }
 
 // unstable_cache caches the result for 24h — individual no-store fetches inside are fine
-const getCachedMonthlyPrice = unstable_cache(fetchMonthlyPrice, ['whop-price'], {
+const getCachedPlanPrices = unstable_cache(fetchPlanPrices, ['whop-plan-prices'], {
   revalidate: 86400,
 })
 
-/** Preço mensal do plano Commit+, em euros (ex.: 9.99). `null` se indisponível. */
-export async function getWhopMonthlyPrice(): Promise<number | null> {
-  if (!process.env.WHOP_API_KEY || !process.env.WHOP_PRODUCT_ID) return null
+/** Preços mensal e anual (total cobrado/ano) do Commit+, em euros. `null` por plano se indisponível. */
+export async function getWhopPlanPrices(): Promise<WhopPlanPrices> {
+  if (!process.env.WHOP_API_KEY || !process.env.WHOP_PRODUCT_ID)
+    return { monthly: null, annual: null }
 
   try {
-    const price = await getCachedMonthlyPrice()
-    if (price !== null) lastSuccessfulPrice = price
-    return price
+    const prices = await getCachedPlanPrices()
+    if (prices.monthly !== null || prices.annual !== null) lastSuccessfulPlanPrices = prices
+    return prices
   } catch {
-    return lastSuccessfulPrice
+    return lastSuccessfulPlanPrices ?? { monthly: null, annual: null }
   }
 }
 

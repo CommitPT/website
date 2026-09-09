@@ -40,9 +40,9 @@ export const projects: Project[] = [
     id: 'discord-bot',
     title: 'Discord Bot',
     description:
-      'Bot automático para gerenciar accountability, XP, invites, tickets, private chats e onboarding na comunidade CommitPT.',
+      'O principal motor operacional da comunidade — automatiza accountability, XP, invites, tickets, private chats e onboarding com automatismos pouco comuns em comunidades de Discord.',
     fullDescription:
-      'O Discord Bot CommitPT é a ferramenta central que potencia toda a comunidade. Oferece um sistema completo de XP e levels, rastreamento de convites, seleção de roles por interesse e linguagem, sistema de tickets para suporte, criação de private chats para membros Commit+, relatórios de moderação e onboarding automático. Construído com TypeScript e discord.js v14, o bot gerencia integrações com SQLite para persistência de dados e integra alertas automáticos para staff.',
+      'O Discord Bot CommitPT é o principal motor operacional da comunidade, com automatismos pouco comuns em comunidades de Discord. Oferece um sistema completo de XP e levels, rastreamento de convites, seleção de roles por interesse e linguagem, sistema de tickets para suporte, criação de private chats para membros Commit+, relatórios de moderação e onboarding automático. Construído com TypeScript e discord.js v14, o bot gerencia integrações com SQLite para persistência de dados e integra alertas automáticos para staff.',
     image: '/discord-bot_800w.webp',
     icon: '🤖',
     tags: ['TypeScript', 'discord.js v14', 'SQLite'],
@@ -53,9 +53,9 @@ export const projects: Project[] = [
       problem:
         'Gerir uma comunidade ativa no Discord manualmente é impossível. Sem automação, o staff perde horas em tarefas repetitivas e os membros têm uma experiência inconsistente.',
       importance:
-        'O bot é a espinha dorsal da CommitPT. É ele que garante que cada membro é bem recebido, que o XP é registado, que os tickets são geridos e que os membros Commit+ têm acesso privilegiado — automaticamente.',
+        'O bot é o principal motor da comunidade em termos operacionais, com automatismos pouco comuns em comunidades de Discord. É ele que garante que cada membro é bem recebido, que o XP é registado, que os tickets são geridos e que os membros Commit+ têm acesso privilegiado — automaticamente.',
       impact:
-        'Hoje, o bot serve centenas de membros em tempo real, sem intervenção manual. Liberta o staff para o que realmente importa: criar valor para a comunidade.',
+        'Hoje, o bot serve mais de 550 membros em tempo real, sem intervenção manual. É o principal motor operacional da comunidade e liberta o staff para o que realmente importa: criar valor para a comunidade.',
     },
     features: [
       {
@@ -103,15 +103,15 @@ export const projects: Project[] = [
     ],
     workflow: ['Ideias', 'Planeamento', 'Issues', 'Implementação', 'Code Review', 'Deploy'],
     impact: [
-      { value: '350+', label: 'membros servidos' },
-      { value: '20+', label: 'funcionalidades ativas' },
+      { value: '550+', label: 'membros servidos' },
+      { value: '30+', label: 'funcionalidades ativas' },
       { value: '6', label: 'módulos independentes' },
       { value: '100%', label: 'automatizado' },
     ],
   },
   {
     id: 'design-system',
-    title: '@commitpt/design-system',
+    title: 'Design System (UI/UX)',
     description:
       'Biblioteca de componentes React com Tailwind CSS v4, TypeScript e shadcn/ui. Tema customizável via CSS custom properties.',
     fullDescription:
@@ -186,7 +186,7 @@ export const projects: Project[] = [
   },
   {
     id: 'website',
-    title: 'Website CommitPT',
+    title: 'Website',
     description:
       'Landing page moderna e otimizada com Next.js 14, TypeScript e Tailwind CSS. Apresenta a comunidade e funciona como funil de conversão para Whop e Discord.',
     fullDescription:

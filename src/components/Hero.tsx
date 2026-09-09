@@ -1,7 +1,9 @@
 'use client'
 
+import { DISCORD_URL } from '@/src/lib/links'
+import { trackEvent } from '@/src/lib/analytics'
 import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, GitBranch, MessageCircle, MessageSquare, Mic, Users } from 'lucide-react'
+import { ArrowRight, ChevronDown, GitBranch, MessageSquare, Mic, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -19,10 +21,15 @@ const LINES: Segment[][] = [
     { text: 'CommitPT', className: 'text-syntax-blue' },
     { text: '();', className: 'text-foreground' },
   ],
-  [{ text: '// Profissionais experientes.', className: 'text-muted-foreground' }],
+  [
+    {
+      text: '// Uma comunidade portuguesa de Engenharia de Software.',
+      className: 'text-muted-foreground',
+    },
+  ],
   [
     { text: '+', className: 'text-primary-400' },
-    { text: ' suporte', className: 'text-primary-400' },
+    { text: ' comunidade', className: 'text-primary-400' },
   ],
   [
     { text: '-', className: 'text-destructive' },
@@ -30,21 +37,17 @@ const LINES: Segment[][] = [
   ],
   [
     { text: '+', className: 'text-primary-400' },
-    { text: ' crescimento', className: 'text-primary-400' },
+    { text: ' projetos', className: 'text-primary-400' },
   ],
   [
     { text: '-', className: 'text-destructive' },
-    { text: ' frustrações', className: 'text-destructive' },
+    { text: ' procrastinação', className: 'text-destructive' },
   ],
   [
     { text: '+', className: 'text-primary-400' },
-    { text: ' impacto', className: 'text-primary-400' },
+    { text: ' evolução', className: 'text-primary-400' },
   ],
-  [
-    { text: '-', className: 'text-destructive' },
-    { text: ' desistência', className: 'text-destructive' },
-  ],
-  [{ text: '// Dá commit para o próximo nível.', className: 'text-muted-foreground' }],
+  [{ text: '// Entra na comunidade. É grátis.', className: 'text-muted-foreground' }],
   [
     { text: 'await ', className: 'text-syntax-purple' },
     { text: 'comunidade', className: 'text-syntax-blue' },
@@ -81,42 +84,42 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
             {/* Headline */}
             <Typography
               variant="h1"
-              className="hero-enter-2 leading-[1.4] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
+              className="hero-enter-2 leading-[1.15] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
             >
-              A comunidade para programadores que querem tornar-se{' '}
-              <span className="block font-mono bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
-                engenheiros de topo.
-              </span>
+              Junta-te à{' '}
+              <span className="font-mono bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
+                melhor comunidade de programação
+              </span>{' '}
+              de Portugal.
             </Typography>
 
             {/* Description */}
             <p className="hero-enter-3 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
-              Ser um engenheiro de topo não é só ser bom tecnicamente. É saber colaborar, receber
-              críticas, comunicar bem e trabalhar em equipa. Criamos um ambiente que procura
-              aproximar-se das dinâmicas de uma equipa de Engenharia de Software — antes de estares
-              numa.
+              Junta-te a uma comunidade portuguesa de Engenharia de Software onde podes aprender com
+              outros developers, participar em eventos, construir projetos e evoluir em conjunto.
             </p>
 
             {/* Action Buttons */}
-            <div className="hero-enter-4 flex flex-col gap-4 sm:flex-row mb-8">
+            <div className="hero-enter-4 flex flex-col items-center gap-4 sm:flex-row sm:items-center mb-8">
               <a
-                href="https://whop.com/checkout/plan_LcwR053laq0aV"
+                href={DISCORD_URL}
                 target="_blank"
                 rel="noreferrer"
-                className={buttonVariants({ size: 'lg' }) + ' group'}
+                className={buttonVariants({ size: 'lg', className: 'w-full sm:w-auto' }) + ' group'}
+                onClick={() => trackEvent('hero_join_click', { destination: 'discord' })}
               >
-                Junta-te à Comunidade
+                Entrar Gratuitamente
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://discord.gg/yGAbprCBrT"
-                target="_blank"
-                rel="noreferrer"
-                className={buttonVariants({ variant: 'outline', size: 'lg' })}
-                style={{ color: 'oklch(0.8 0.1 240)' }}
+                href="#happens"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                <MessageCircle size={16} />
-                Experimenta o Discord Grátis
+                Explorar a comunidade
+                <ChevronDown
+                  size={15}
+                  className="transition-transform group-hover:translate-y-0.5"
+                />
               </a>
             </div>
 
@@ -148,6 +151,19 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
                 </div>
               ))}
             </div>
+
+            {/* Commit+ mention — secondary, low emphasis */}
+            <p className="hero-enter-5 mt-6 text-sm text-muted-foreground">
+              Queres ir mais longe?{' '}
+              <a
+                href="#commit-plus"
+                className="text-primary underline underline-offset-2 hover:text-primary/80"
+                onClick={() => trackEvent('commit_plus_view', { location: 'hero' })}
+              >
+                Conhece o Commit+
+              </a>
+              , a experiência premium opcional.
+            </p>
           </div>
 
           {/* Terminal Container */}
@@ -216,7 +232,7 @@ function Terminal() {
     <div
       className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden min-h-[300px]"
       role="img"
-      aria-label="Editor de código animado: const comunidade = new CommitPT(); + suporte - isolamento + crescimento - frustrações + impacto - desistência await comunidade.entrar();"
+      aria-label="Editor de código animado: const comunidade = new CommitPT(); + comunidade - isolamento + projetos - procrastinação + evolução await comunidade.entrar();"
       data-animation-done={isDone ? 'true' : undefined}
     >
       {/* Window Controls & Bar */}

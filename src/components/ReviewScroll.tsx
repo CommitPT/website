@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ExpandableText } from '@/src/components/ExpandableText'
+import { trackEvent } from '@/src/lib/analytics'
 import {
   Avatar,
   AvatarFallback,
@@ -12,6 +13,15 @@ import {
   reviewCardVariants,
 } from '@commitpt/design-system'
 import { Star } from 'lucide-react'
+
+/**
+ * @types/react tipa `inert` como `boolean`, mas o React 18 instalado (que ainda
+ * não tem suporte nativo ao atributo) só o escreve no DOM quando recebe uma
+ * string — passar `true` fica silenciosamente sem efeito e avisa no console.
+ * Este cast restringe-se a esta única prop para contornar o desfasamento de
+ * tipos sem recorrer a `any` no resto do componente.
+ */
+const INERT_TRUE = { inert: 'true' } as unknown as { inert?: boolean }
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -128,7 +138,7 @@ function TestimonialCard({
  */
 function MarqueeClone({ children }: { children: React.ReactNode }) {
   return (
-    <div inert aria-hidden="true" className="flex gap-4 lg:gap-6">
+    <div {...INERT_TRUE} aria-hidden="true" className="flex gap-4 lg:gap-6">
       {children}
     </div>
   )
@@ -152,7 +162,11 @@ export default function ReviewScroll({ items }: { items: ReviewItem[] }) {
             key={t.id}
             t={t}
             expanded={expandedId === t.id}
-            onExpand={() => setExpandedId(expandedId === t.id ? null : t.id)}
+            onExpand={() => {
+              const next = expandedId === t.id ? null : t.id
+              setExpandedId(next)
+              if (next) trackEvent('testimonial_interaction', { review: t.id })
+            }}
           />
         ))}
       </div>

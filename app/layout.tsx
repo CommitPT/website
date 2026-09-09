@@ -8,9 +8,9 @@ const BASE_URL = 'https://www.commitpt.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Comunidade CommitPT — Para de programar sozinho. Começa a fazer ship.',
+  title: 'CommitPT — A comunidade portuguesa de Engenharia de Software',
   description:
-    'A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses. Grupos de responsabilidade semanais, revisões de código entre pares e acesso a profissionais da área.',
+    'A CommitPT é uma comunidade portuguesa de Engenharia de Software, gratuita para qualquer pessoa. Aprende com outros developers, participa em eventos, constrói projetos e evolui em conjunto. Commit+ é uma experiência premium opcional.',
   keywords: [
     'commitpt',
     'bruno moisao',
@@ -44,18 +44,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: BASE_URL,
-    title: 'Comunidade CommitPT — Para de programar sozinho. Começa a fazer ship.',
+    title: 'CommitPT — A comunidade portuguesa de Engenharia de Software',
     description:
-      'A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses. Grupos de responsabilidade semanais, revisões de código entre pares e acesso a profissionais da área.',
+      'A CommitPT é uma comunidade portuguesa de Engenharia de Software, gratuita para qualquer pessoa. Aprende com outros developers, participa em eventos, constrói projetos e evolui em conjunto. Commit+ é uma experiência premium opcional.',
     siteName: 'CommitPT',
     images: [{ url: '/commit_3_512w.webp', width: 512, height: 512, alt: 'CommitPT' }],
     locale: 'pt_PT',
   },
   twitter: {
     card: 'summary',
-    title: 'Comunidade CommitPT — Para de programar sozinho. Começa a fazer ship.',
+    title: 'CommitPT — A comunidade portuguesa de Engenharia de Software',
     description:
-      'A CommitPT é uma comunidade de crescimento de carreira para engenheiros de software portugueses.',
+      'A CommitPT é uma comunidade portuguesa de Engenharia de Software, gratuita para qualquer pessoa.',
     images: ['/commit_3_512w.webp'],
   },
   icons: {

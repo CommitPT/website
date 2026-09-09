@@ -18,25 +18,44 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['lucide-react', '@commitpt/design-system'],
+    // '@commitpt/design-system' removed: combined with its barrel-style dist/index.js,
+    // this experimental optimization causes a dev-only RSC client-reference bug
+    // ("Cannot read properties of undefined (reading 'call')") when new client
+    // components pull in new combinations of its exports. Production builds are
+    // unaffected either way; this only controls how aggressively dev tree-shakes it.
+    optimizePackageImports: ['lucide-react'],
+  },
+
+  async redirects() {
+    return [
+      { source: '/projects', destination: '/#projects', permanent: true },
+      { source: '/projects/:id', destination: '/#projects', permanent: true },
+      { source: '/contributors', destination: '/#people', permanent: true },
+      { source: '/pricing', destination: '/#commit-plus', permanent: true },
+      { source: '/commit-plus', destination: '/#commit-plus', permanent: true },
+    ]
   },
 
   async headers() {
+    const immutableCache = [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
+
     return [
       {
         source: '/:all*(woff2|woff|ttf|otf|eot)',
         locale: false,
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+        headers: immutableCache,
       },
       {
         source: '/:all*(webp|avif|png|jpg|jpeg|gif|svg|ico)',
         locale: false,
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+        headers: immutableCache,
       },
-      {
-        source: '/_next/static/:all*',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-      },
+      // Dev chunk filenames under /_next/static aren't content-hashed the same
+      // way prod build output is — caching them as immutable in dev makes the
+      // browser keep serving pre-restart JS forever. Only safe in production.
+      ...(process.env.NODE_ENV === 'production'
+        ? [{ source: '/_next/static/:all*', headers: immutableCache }]
+        : []),
     ]
   },
 }

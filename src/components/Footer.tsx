@@ -1,3 +1,7 @@
+'use client'
+
+import { trackEvent } from '@/src/lib/analytics'
+import { DISCORD_URL, WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
 import { buttonVariants, Typography } from '@commitpt/design-system'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
@@ -7,68 +11,80 @@ import Image from 'next/image'
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface/50">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        {/* Top Header & CTA Row */}
-        <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:items-center">
-          {/* Brand & Description */}
-          <div className="space-y-4">
+      {/* Final CTA */}
+      <div className="border-b border-border">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:py-28">
+          <Typography variant="h2" className="sm:text-4xl">
+            Não evoluas sozinho.
+          </Typography>
+          <Typography variant="p" color="muted" className="mx-auto mt-4 max-w-xl">
+            Faz parte de uma comunidade portuguesa de developers que aprendem, constroem e evoluem
+            juntos.
+          </Typography>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="/#hero"
-              className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
-            >
-              <Image
-                src="/commit_icon_256w.webp"
-                alt=""
-                width={28}
-                height={28}
-                className="shrink-0 rounded-md object-cover"
-              />
-              CommitPT
-            </a>
-            <Typography variant="small" color="muted" className="max-w-sm">
-              A comunidade portuguesa para programadores que querem tornar-se engenheiros de topo.
-            </Typography>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4 lg:justify-end">
-            <a
-              href="https://whop.com/checkout/plan_LcwR053laq0aV"
+              href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({}) + ' group'}
+              className={buttonVariants({ size: 'lg' }) + ' group w-full sm:w-auto justify-center'}
+              onClick={() => trackEvent('community_join_click', { location: 'footer' })}
             >
-              Adere já
+              <MessageCircle size={16} />
+              Entrar Gratuitamente
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="https://discord.gg/yGAbprCBrT"
+              href={WHOP_COMMIT_PLUS_URL}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ variant: 'outline' })}
-              style={{ color: 'oklch(0.8 0.1 240)' }}
+              className={
+                buttonVariants({ variant: 'outline', size: 'lg' }) +
+                ' w-full sm:w-auto justify-center'
+              }
+              onClick={() => trackEvent('commit_plus_checkout', { location: 'footer' })}
             >
-              <MessageCircle size={15} />
-              Experimenta o Discord Grátis
+              Conhecer o Commit+
             </a>
           </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        {/* Brand */}
+        <div className="mb-12">
+          <a
+            href="/#hero"
+            className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
+          >
+            <Image
+              src="/commit_icon_256w.webp"
+              alt=""
+              width={28}
+              height={28}
+              className="shrink-0 rounded-md object-cover"
+            />
+            CommitPT
+          </a>
+          <Typography variant="small" color="muted" className="mt-4 max-w-sm">
+            A comunidade portuguesa de Engenharia de Software.
+          </Typography>
         </div>
 
         {/* Navigation & Legal Footer */}
         <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
           {/* Nav Links & Socials */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <a href="/#about" className="hover:text-primary transition-colors">
-              Benefícios
+            <a href="/#community" className="hover:text-primary transition-colors">
+              Comunidade
             </a>
-            <a href="/#features" className="hover:text-primary transition-colors">
-              Como funciona
+            <a href="/#projects" className="hover:text-primary transition-colors">
+              Projetos
             </a>
-            <a href="/#testimonials" className="hover:text-primary transition-colors">
-              Testemunhos
+            <a href="/#events" className="hover:text-primary transition-colors">
+              Eventos
             </a>
-            <a href="/contributors" className="hover:text-primary transition-colors">
-              Contribuidores
+            <a href="/#commit-plus" className="hover:text-primary transition-colors">
+              Commit+
             </a>
             <a href="/#faq" className="hover:text-primary transition-colors">
               FAQ

@@ -387,6 +387,13 @@ export default function TermsPage() {
                 plataformas, websites, bots ou outras iniciativas nas quais os membros podem
                 participar de forma voluntária como Colaboradores.
               </p>
+              <p>
+                A participação em Projetos está sujeita às condições específicas de cada Projeto,
+                incluindo disponibilidade, competências necessárias, atividade na comunidade,
+                aprovação ou convite da Core Team. A qualidade de Membro ou Subscritor não confere
+                automaticamente acesso a qualquer Projeto, repositório, documentação ou sistema
+                interno.
+              </p>
               <ul className="list-disc space-y-2 pl-6">
                 <li>
                   ser Subscritor ou Membro da comunidade não obriga ninguém a contribuir para

@@ -17,19 +17,19 @@ export interface FaqItem {
 export const faqs: FaqItem[] = [
   {
     id: 'niveis',
-    q: 'A comunidade é só para programadores experientes?',
+    q: 'Preciso de ser um programador experiente para entrar?',
     blocks: [
       {
         type: 'p',
-        text: 'Não. A CommitPT tem membros em todos os níveis — desde estudantes e programadores em início de carreira até engenheiros com anos de experiência em empresas internacionais.',
+        text: 'Não. A CommitPT tem membros em todos os níveis — de estudantes e programadores em início de carreira a engenheiros com anos de experiência em empresas internacionais.',
       },
       {
         type: 'p',
-        text: 'Isso é precisamente o que torna a comunidade útil. Quando tens dúvidas, há alguém que já passou pelo mesmo. Quando já sabes alguma coisa, partilhares esse conhecimento também te faz crescer.',
+        text: 'É precisamente essa mistura que torna a comunidade útil: quando tens uma dúvida, há sempre alguém que já passou por ela; quando já sabes alguma coisa, partilhá-la também te ajuda a crescer.',
       },
       {
         type: 'p',
-        text: 'O único requisito é teres vontade de aprender e de contribuir para o crescimento dos outros.',
+        text: 'O único requisito real é vontade de aprender e de contribuir para o crescimento dos outros.',
       },
     ],
   },
@@ -130,10 +130,52 @@ export const faqs: FaqItem[] = [
       {
         type: 'list',
         items: [
-          'Revisões de código em projetos reais',
-          'Participação em projetos internos da comunidade',
-          'Eventos exclusivos sobre carreira, programação e construção de projetos',
+          'Commit Talks — conversas e Q&A com profissionais da indústria',
+          'Commit Sessions — sessões técnicas de Engenharia de Software',
+          'Commit Career — iniciativas de carreira, recrutamento e desenvolvimento profissional',
+          'Oportunidades de participação em projetos da comunidade',
+          'Feedback técnico sobre código e decisões de arquitetura',
         ],
+      },
+      {
+        type: 'p',
+        text: 'Como funciona exatamente a participação nos projetos explicamos na pergunta seguinte.',
+      },
+    ],
+  },
+  {
+    id: 'participacao-projetos',
+    q: 'Como funciona a participação nos projetos?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'O Commit+ dá acesso às oportunidades de participação nos projetos da comunidade — não a todos os projetos, e não de forma automática.',
+      },
+      {
+        type: 'p',
+        text: 'Alguns projetos têm adesão direta. Outros funcionam exclusivamente por convite da Core Team, consoante a natureza do projeto, a dimensão da equipa, as necessidades existentes ou os requisitos técnicos em cada momento.',
+      },
+      {
+        type: 'p',
+        text: 'Ter uma subscrição Commit+ ativa pode ser um requisito para participar nalguns projetos, mas não garante convite, participação ou acesso a todos eles. As condições específicas são sempre apresentadas em cada projeto.',
+      },
+    ],
+  },
+  {
+    id: 'depois-de-aderir',
+    q: 'O que acontece depois de aderir ao Commit+?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'A subscrição é processada pelo Whop. Assim que o pagamento é confirmado, o teu acesso Commit+ fica ativo e passas a ter lugar nas próximas Commit Talks, Commit Sessions e iniciativas de Commit Career.',
+      },
+      {
+        type: 'p',
+        text: 'No Discord, o bot da comunidade trata da atribuição do teu novo estatuto e da criação dos canais associados ao Commit+.',
+      },
+      {
+        type: 'p',
+        text: 'A partir daí, a participação é contigo — nas sessões, nas discussões técnicas ou nas oportunidades de projetos que forem surgindo.',
       },
     ],
   },
@@ -143,29 +185,15 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'O objetivo não é monetizar o acesso à comunidade. O objetivo é **tornar o projeto sustentável** para que possa continuar a crescer.',
+        text: 'Organizar Commit Talks, Commit Sessions e iniciativas de Commit Career com qualidade, manter os recursos atualizados e continuar a desenvolver a comunidade tem custos reais.',
       },
       {
         type: 'p',
-        text: 'Organizar workshops com qualidade, manter recursos atualizados, desenvolver a plataforma e investir em iniciativas para a comunidade tem custos reais. O Commit+ é o que torna isso possível.',
+        text: 'O Commit+ é o que torna isso possível — e em troca, tens acesso direto a essas iniciativas, a profissionais da indústria e a oportunidades de participação em projetos.',
       },
       {
         type: 'p',
-        text: 'Nenhum membro paga para ter acesso a uma comunidade — paga para ajudar a construir algo que beneficia todos, incluindo ele próprio.',
-      },
-    ],
-  },
-  {
-    id: 'passou-a-ser-paga',
-    q: 'A CommitPT passou a ser paga?',
-    blocks: [
-      {
-        type: 'p',
-        text: 'Não. A comunidade no Discord continua — e vai continuar — completamente gratuita. Entrar, fazer perguntas, participar em discussões e fazer networking nunca teve nem vai ter custo.',
-      },
-      {
-        type: 'p',
-        text: 'O Commit+ não é uma versão "desbloqueada" da comunidade gratuita nem uma forma de cobrar por algo que antes era de graça. É uma camada adicional, opcional, para quem quer investir mais ativamente no seu desenvolvimento técnico e profissional.',
+        text: 'Não pagas para poderes fazer parte da comunidade. Pagas para ires mais além dentro dela.',
       },
     ],
   },
@@ -175,16 +203,16 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Não. O acesso ao Discord da comunidade é e continua gratuito, com ou sem Commit+.',
+        text: 'Não. O Commit+ não é uma subscrição para aceder ao Discord — a comunidade continua gratuita, com ou sem Commit+.',
       },
-      { type: 'p', text: 'Os 9,99€/mês não dão acesso a um "Discord privado". Dão acesso a:' },
+      { type: 'p', text: 'Os 19,99€/mês dão acesso a:' },
       {
         type: 'list',
         items: [
-          'Commit Talks — conversas e Q&A com pessoas da indústria',
-          'Commit Sessions — sessões técnicas em áreas específicas de Engenharia de Software',
-          'Commit Career — conteúdo e iniciativas de desenvolvimento profissional',
-          'Participação em projetos internos da comunidade',
+          'Commit Talks — conversas e Q&A com profissionais da indústria',
+          'Commit Sessions — sessões técnicas de Engenharia de Software',
+          'Commit Career — iniciativas de carreira, recrutamento e desenvolvimento profissional',
+          'Oportunidades de participação em projetos da comunidade',
           'Feedback técnico sobre código, arquitetura e decisões de projeto',
         ],
       },
@@ -196,11 +224,33 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Não existe qualquer garantia de emprego, entrevistas ou progressão profissional. Nenhuma comunidade pode prometer isso honestamente, e nós não o fazemos.',
+        text: 'Não há garantia de emprego, de entrevistas ou de progressão profissional — nenhuma comunidade pode prometer isso honestamente, e nós não o fazemos.',
       },
       {
         type: 'p',
-        text: 'O que o Commit+ oferece é contacto direto com profissionais da indústria, contexto real sobre o mercado e oportunidades de participar, contribuir e aprender. O que fazes com isso depende de ti.',
+        text: 'O que o Commit+ te dá é contacto direto com profissionais da indústria através das Commit Talks e Commit Career, contexto real sobre o mercado e espaço para participar e mostrar o que sabes fazer.',
+      },
+      {
+        type: 'p',
+        text: 'O que fazes com isso é contigo — os resultados dependem sempre da tua participação.',
+      },
+    ],
+  },
+  {
+    id: 'mensal-vs-anual',
+    q: 'Qual é a diferença entre o plano mensal e anual?',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Só o preço. As duas opções dão acesso exatamente às mesmas iniciativas — Commit Talks, Commit Sessions, Commit Career, oportunidades de participação em projetos e feedback técnico.',
+      },
+      {
+        type: 'list',
+        items: ['Mensal — 19,99€/mês', 'Anual — equivalente a 9,99€/mês, cobrado uma vez por ano'],
+      },
+      {
+        type: 'p',
+        text: 'O plano anual é a opção mais económica se já sabes que queres continuar por mais tempo.',
       },
     ],
   },
@@ -222,10 +272,13 @@ export const faqs: FaqItem[] = [
     id: 'cancelar',
     q: 'Posso cancelar quando quiser?',
     blocks: [
-      { type: 'p', text: 'Sim. Sem contratos, sem compromissos a longo prazo.' },
       {
         type: 'p',
-        text: 'O Commit+ funciona como uma **subscrição mensal simples**. Podes cancelar a qualquer momento, diretamente na plataforma, sem precisares de falar com ninguém.',
+        text: 'Sim. O Commit+ não tem contratos nem compromissos a longo prazo, seja no plano mensal ou anual.',
+      },
+      {
+        type: 'p',
+        text: 'O cancelamento é feito diretamente na plataforma de subscrição (Whop), a partir da tua conta.',
       },
     ],
   },
@@ -233,17 +286,10 @@ export const faqs: FaqItem[] = [
     id: 'e-se-nao-gostar',
     q: 'E se não gostar?',
     blocks: [
+      { type: 'p', text: 'Cancelas quando quiseres, sem pressão.' },
       {
         type: 'p',
-        text: 'Podes experimentar e sair quando quiseres. Não há pressão nem complicações.',
-      },
-      {
-        type: 'p',
-        text: 'Se entras, participas durante um mês e decides que não é para ti, cancelas e pronto. Não te pedimos justificações nem tentamos convencer-te a ficar.',
-      },
-      {
-        type: 'p',
-        text: 'Experimenta durante um mês. Fica se fizer sentido para ti.',
+        text: 'Experimenta um mês, participa nas sessões e nas discussões, e decide se faz sentido continuar. Se não fizer, sais sem complicações.',
       },
     ],
   },

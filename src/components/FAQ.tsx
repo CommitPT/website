@@ -8,6 +8,7 @@ import {
   type FAQItem as FAQAccordionItem,
 } from '@commitpt/design-system'
 import { blocksToPlainText, type Block, type FaqItem } from '@/src/data/faqs'
+import { trackEvent } from '@/src/lib/analytics'
 import { DISCORD_URL } from '@/src/lib/links'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -124,11 +125,8 @@ export default function FAQ({
               href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({
-                variant: 'outline',
-                size: 'lg',
-                className: 'gap-2 text-primary-300',
-              })}
+              className={buttonVariants({ size: 'lg', className: 'gap-2' })}
+              onClick={() => trackEvent('community_join_click', { location: 'faq' })}
             >
               <MessageCircle size={16} />
               Perguntar no Discord

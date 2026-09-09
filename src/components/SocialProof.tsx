@@ -1,4 +1,5 @@
 import ReviewScroll from '@/src/components/ReviewScroll'
+import { WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
 import { getWhopReviews } from '@/src/lib/whop'
 import fallbackReviews from '@/src/reviews.json'
 import { Typography } from '@commitpt/design-system'
@@ -46,21 +47,21 @@ export default async function SocialProof() {
   const items: ReviewItem[] = [...whopItems, ...hardcodedItems]
 
   return (
-    <section id="testimonials" className="border-y border-border">
+    <section id="results" className="border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            04 // O Que Dizem os Membros
+            07 // Resultados
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
-            Engenheiros reais. Resultados reais.
+            Pessoas reais. Resultados reais.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
             Não acredites só na nossa palavra. Isto é o que os membros dizem depois de deixarem de
-            programar sozinhos. Avaliações recolhidas via{' '}
+            evoluir sozinhos. Avaliações recolhidas via{' '}
             <a
-              href="https://whop.com/checkout/plan_LcwR053laq0aV"
+              href={WHOP_COMMIT_PLUS_URL}
               target="_blank"
               rel="noreferrer"
               className="text-primary underline underline-offset-2"

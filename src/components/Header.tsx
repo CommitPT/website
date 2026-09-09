@@ -1,5 +1,7 @@
 'use client'
 
+import { DISCORD_URL } from '@/src/lib/links'
+import { trackEvent } from '@/src/lib/analytics'
 import { Button, buttonVariants, Typography } from '@commitpt/design-system'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
@@ -15,10 +17,11 @@ interface NavLink {
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const navLinks: NavLink[] = [
-  { label: 'Início', href: '/' },
-  { label: 'Projetos', href: '/projects' },
-  { label: 'Contribuidores', href: '/contributors' },
-  { label: 'Commit+', href: '/commit-plus' },
+  { label: 'Comunidade', href: '/#community' },
+  { label: 'Projetos', href: '/#projects' },
+  { label: 'Eventos', href: '/#events' },
+  { label: 'Commit+', href: '/#commit-plus' },
+  { label: 'FAQ', href: '/#faq' },
 ]
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -56,12 +59,13 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="https://whop.com/checkout/plan_LcwR053laq0aV"
+            href={DISCORD_URL}
             target="_blank"
             rel="noreferrer"
             className={buttonVariants({})}
+            onClick={() => trackEvent('community_join_click', { location: 'header' })}
           >
-            Entrar Agora
+            Entrar Gratuitamente
           </a>
         </nav>
 
@@ -91,6 +95,18 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ className: 'justify-center' })}
+              onClick={() => {
+                trackEvent('community_join_click', { location: 'header_mobile' })
+                setOpen(false)
+              }}
+            >
+              Entrar Gratuitamente
+            </a>
           </div>
         </div>
       )}
