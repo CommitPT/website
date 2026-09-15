@@ -21,7 +21,7 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Não. A CommitPT tem membros em todos os níveis — de estudantes e programadores em início de carreira a engenheiros com anos de experiência em empresas internacionais.',
+        text: 'Não. A CommitPT tem membros em todos os níveis, de estudantes e programadores em início de carreira a engenheiros com anos de experiência em empresas internacionais.',
       },
       {
         type: 'p',
@@ -67,7 +67,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'Há membros que entram todos os dias, outros que aparecem algumas vezes por semana. O que retiras da comunidade está diretamente relacionado com o que investes — mas essa decisão é sempre tua.',
+        text: 'Há membros que entram todos os dias, outros que aparecem algumas vezes por semana. O que retiras da comunidade está diretamente relacionado com o que investes, mas essa decisão é sempre tua.',
       },
       {
         type: 'p',
@@ -81,7 +81,7 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'São sessões ao vivo, com foco em temas práticos. Não há apresentações genéricas — o objetivo é sempre aprender algo que possas aplicar.',
+        text: 'São sessões ao vivo, com foco em temas práticos. Não há apresentações genéricas. O objetivo é sempre aprender algo que possas aplicar.',
       },
       { type: 'p', text: 'Os temas variam consoante o que a comunidade precisa naquele momento:' },
       {
@@ -89,7 +89,7 @@ export const faqs: FaqItem[] = [
         items: [
           'Discussões técnicas e de arquitetura',
           'Revisões de código em projetos reais',
-          'Temas de carreira — entrevistas, negociação, progressão',
+          'Temas de carreira: entrevistas, negociação, progressão',
           'Sessões de Q&A com engenheiros experientes',
           'Walkthroughs de projetos dos próprios membros',
         ],
@@ -106,7 +106,7 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'A CommitPT não é para toda a gente — e isso é intencional. É para pessoas que gostam de aprender, de construir coisas, de fazer perguntas e de partilhar o que sabem.',
+        text: 'A CommitPT não é para toda a gente, e isso é intencional. É para pessoas que gostam de aprender, de construir coisas, de fazer perguntas e de partilhar o que sabem.',
       },
       {
         type: 'p',
@@ -130,9 +130,9 @@ export const faqs: FaqItem[] = [
       {
         type: 'list',
         items: [
-          'Commit Talks — conversas e Q&A com profissionais da indústria',
-          'Commit Sessions — sessões técnicas de Engenharia de Software',
-          'Commit Career — iniciativas de carreira, recrutamento e desenvolvimento profissional',
+          'Commit Talks: conversas e Q&A com profissionais da indústria',
+          'Commit Sessions: sessões técnicas de Engenharia de Software',
+          'Commit Career: iniciativas de carreira, recrutamento e desenvolvimento profissional',
           'Oportunidades de participação em projetos da comunidade',
           'Feedback técnico sobre código e decisões de arquitetura',
         ],
@@ -149,7 +149,7 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'O Commit+ dá acesso às oportunidades de participação nos projetos da comunidade — não a todos os projetos, e não de forma automática.',
+        text: 'O Commit+ dá acesso às oportunidades de participação nos projetos da comunidade. Não a todos os projetos, e não de forma automática.',
       },
       {
         type: 'p',
@@ -175,7 +175,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'A partir daí, a participação é contigo — nas sessões, nas discussões técnicas ou nas oportunidades de projetos que forem surgindo.',
+        text: 'A partir daí, a participação é contigo: nas sessões, nas discussões técnicas ou nas oportunidades de projetos que forem surgindo.',
       },
     ],
   },
@@ -189,7 +189,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'O Commit+ é o que torna isso possível — e em troca, tens acesso direto a essas iniciativas, a profissionais da indústria e a oportunidades de participação em projetos.',
+        text: 'O Commit+ é o que torna isso possível, e em troca tens acesso direto a essas iniciativas, a profissionais da indústria e a oportunidades de participação em projetos.',
       },
       {
         type: 'p',
@@ -203,15 +203,15 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Não. O Commit+ não é uma subscrição para aceder ao Discord — a comunidade continua gratuita, com ou sem Commit+.',
+        text: 'Não. O Commit+ não é uma subscrição para aceder ao Discord. A comunidade continua gratuita, com ou sem Commit+.',
       },
       { type: 'p', text: 'Os 19,99€/mês dão acesso a:' },
       {
         type: 'list',
         items: [
-          'Commit Talks — conversas e Q&A com profissionais da indústria',
-          'Commit Sessions — sessões técnicas de Engenharia de Software',
-          'Commit Career — iniciativas de carreira, recrutamento e desenvolvimento profissional',
+          'Commit Talks: conversas e Q&A com profissionais da indústria',
+          'Commit Sessions: sessões técnicas de Engenharia de Software',
+          'Commit Career: iniciativas de carreira, recrutamento e desenvolvimento profissional',
           'Oportunidades de participação em projetos da comunidade',
           'Feedback técnico sobre código, arquitetura e decisões de projeto',
         ],
@@ -224,7 +224,7 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Não há garantia de emprego, de entrevistas ou de progressão profissional — nenhuma comunidade pode prometer isso honestamente, e nós não o fazemos.',
+        text: 'Não há garantia de emprego, de entrevistas ou de progressão profissional. Nenhuma comunidade pode prometer isso honestamente, e nós não o fazemos.',
       },
       {
         type: 'p',
@@ -232,7 +232,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'O que fazes com isso é contigo — os resultados dependem sempre da tua participação.',
+        text: 'O que fazes com isso é contigo. Os resultados dependem sempre da tua participação.',
       },
     ],
   },
@@ -242,11 +242,11 @@ export const faqs: FaqItem[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Só o preço. As duas opções dão acesso exatamente às mesmas iniciativas — Commit Talks, Commit Sessions, Commit Career, oportunidades de participação em projetos e feedback técnico.',
+        text: 'Só o preço. As duas opções dão acesso exatamente às mesmas iniciativas: Commit Talks, Commit Sessions, Commit Career, oportunidades de participação em projetos e feedback técnico.',
       },
       {
         type: 'list',
-        items: ['Mensal — 19,99€/mês', 'Anual — equivalente a 9,99€/mês, cobrado uma vez por ano'],
+        items: ['Mensal: 19,99€/mês', 'Anual: equivalente a 9,99€/mês, cobrado uma vez por ano'],
       },
       {
         type: 'p',
@@ -264,7 +264,7 @@ export const faqs: FaqItem[] = [
       },
       {
         type: 'p',
-        text: 'Isso significa feedback e discussão em grupo, sessões abertas a todos os membros, e contacto com várias pessoas em vez de um único mentor. Nem todo o código submetido tem garantia de revisão individual — mas há espaço regular para pedir e receber feedback.',
+        text: 'Isso significa feedback e discussão em grupo, sessões abertas a todos os membros, e contacto com várias pessoas em vez de um único mentor. Nem todo o código submetido tem garantia de revisão individual, mas há espaço regular para pedir e receber feedback.',
       },
     ],
   },

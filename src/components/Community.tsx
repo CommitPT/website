@@ -10,14 +10,11 @@ import { ArrowRight } from 'lucide-react'
 
 export default function Community({ contributorsCount }: { contributorsCount: number }) {
   return (
-    <section id="community" className="border-b border-border">
+    <section id="community" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'02 // Comunidade'}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
+          <Typography variant="h2" className="sm:text-4xl">
             Já existe. Já está ativa.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
@@ -36,7 +33,7 @@ export default function Community({ contributorsCount }: { contributorsCount: nu
             className={buttonVariants({ size: 'lg', className: 'w-full sm:w-auto' }) + ' group'}
             onClick={() => trackEvent('community_join_click', { location: 'community' })}
           >
-            Entrar na Comunidade
+            Entrar Gratuitamente
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </a>
         </div>

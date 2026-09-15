@@ -2,9 +2,8 @@
 
 import { DISCORD_URL } from '@/src/lib/links'
 import { trackEvent } from '@/src/lib/analytics'
-import { Badge, buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, ChevronDown, GitBranch, MessageSquare, Mic, Users } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { buttonVariants, Typography } from '@commitpt/design-system'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -57,34 +56,40 @@ const LINES: Segment[][] = [
   ],
 ]
 
-const LINE_ENDS: number[] = (() => {
-  let acc = 0
+const CHAR_MS = 24
+const LINE_PAUSE_MS = 120
+// Espera que o terminal acabe de entrar antes de começar a escrever.
+const START_MS = 900
+
+// Cada linha revela-se com uma animação CSS `steps()` sobre a largura. O `ch`
+// só é exato porque o bloco usa fonte monoespaçada.
+const TIMELINE = (() => {
+  let start = START_MS
   return LINES.map((line) => {
-    acc += line.reduce((s, seg) => s + seg.text.length, 0)
-    return acc
+    const chars = line.reduce((sum, seg) => sum + seg.text.length, 0)
+    const entry = { chars, delay: start, duration: chars * CHAR_MS }
+    start += entry.duration + LINE_PAUSE_MS
+    return entry
   })
 })()
 
-const TOTAL_CHARS = LINE_ENDS[LINE_ENDS.length - 1]
+const TOTAL_MS = TIMELINE.reduce((sum, line) => sum + line.duration + LINE_PAUSE_MS, START_MS)
+
+const ARIA_SCRIPT = LINES.map((line) => line.map((seg) => seg.text).join('')).join(' ')
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Hero({ contributorsCount }: { contributorsCount: number }) {
+export default function Hero() {
   return (
-    <section id="hero" className="relative overflow-hidden">
+    <section id="hero" className="relative overflow-hidden scroll-mt-20">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-16 py-12 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-15 lg:items-center">
           {/* Main Content Area */}
           <div>
-            {/* Badge */}
-            <Badge variant="primary" className="hero-enter-1 mb-6">
-              550+ membros na comunidade
-            </Badge>
-
             {/* Headline */}
             <Typography
               variant="h1"
-              className="hero-enter-2 leading-[1.15] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
+              className="hero-enter-1 leading-[1.15] tracking-[-0.02em] sm:text-5xl lg:text-[46px] mb-7"
             >
               Junta-te à{' '}
               <span className="font-mono bg-linear-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
@@ -94,13 +99,13 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
             </Typography>
 
             {/* Description */}
-            <p className="hero-enter-3 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
+            <p className="hero-enter-2 max-w-[520px] text-base leading-relaxed text-muted-foreground mb-9">
               Junta-te a uma comunidade portuguesa de Engenharia de Software onde podes aprender com
               outros developers, participar em eventos, construir projetos e evoluir em conjunto.
             </p>
 
             {/* Action Buttons */}
-            <div className="hero-enter-4 flex flex-col items-center gap-4 sm:flex-row sm:items-center mb-8">
+            <div className="hero-enter-3 flex flex-col items-center gap-4 sm:flex-row sm:items-center">
               <a
                 href={DISCORD_URL}
                 target="_blank"
@@ -122,52 +127,10 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
                 />
               </a>
             </div>
-
-            {/* Metrics Grid */}
-            <div
-              className="hero-enter-5 grid grid-cols-2 gap-x-6 gap-y-3 text-[13px] font-semibold"
-              style={{ color: '#f1f5f9' }}
-            >
-              {[
-                { icon: Users, value: '550+', label: 'membros na comunidade' },
-                {
-                  icon: GitBranch,
-                  value: `${contributorsCount}+`,
-                  label: 'contribuidores de projetos',
-                },
-                { icon: Mic, value: '4+', label: 'sessões por mês' },
-                { icon: MessageSquare, value: '90 mil+', label: 'mensagens enviadas' },
-              ].map((m) => (
-                <div key={m.label} className="flex items-center gap-1.5">
-                  <m.icon
-                    size={13}
-                    className="text-muted-foreground/60 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span>
-                    <strong className="font-mono font-semibold text-foreground">{m.value}</strong>{' '}
-                    {m.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Commit+ mention — secondary, low emphasis */}
-            <p className="hero-enter-5 mt-6 text-sm text-muted-foreground">
-              Queres ir mais longe?{' '}
-              <a
-                href="#commit-plus"
-                className="text-primary underline underline-offset-2 hover:text-primary/80"
-                onClick={() => trackEvent('commit_plus_view', { location: 'hero' })}
-              >
-                Conhece o Commit+
-              </a>
-              , a experiência premium opcional.
-            </p>
           </div>
 
           {/* Terminal Container */}
-          <div className="hero-enter-6">
+          <div className="hero-enter-4">
             <Terminal />
           </div>
         </div>
@@ -179,85 +142,55 @@ export default function Hero({ contributorsCount }: { contributorsCount: number 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 function Terminal() {
-  const [displayedChars, setDisplayedChars] = useState(0)
-  const isDone = displayedChars >= TOTAL_CHARS
-
-  useEffect(() => {
-    if (isDone) return
-
-    const isLineEnd = LINE_ENDS.includes(displayedChars)
-    const delay = isLineEnd ? 80 + Math.random() * 100 : 15 + Math.random() * 30
-
-    const timer = setTimeout(() => setDisplayedChars((prev) => prev + 1), delay)
-    return () => clearTimeout(timer)
-  }, [displayedChars, isDone])
-
-  let remaining = displayedChars
-  const renderedLines = LINES.map((line, lineIdx) => {
-    if (remaining <= 0) return null
-
-    const lineLen = line.reduce((s, seg) => s + seg.text.length, 0)
-    const isActive = remaining < lineLen
-    const charsToShow = Math.min(remaining, lineLen)
-    remaining -= charsToShow
-
-    let charCount = 0
-    const segments = line.map((seg, segIdx) => {
-      if (charCount >= charsToShow) return null
-      const shown = seg.text.slice(0, charsToShow - charCount)
-      charCount += shown.length
-      return (
-        <span key={segIdx} className={seg.className}>
-          {shown}
-        </span>
-      )
-    })
-
-    return (
-      <div key={lineIdx} className="flex">
-        <span className="w-6 shrink-0 text-right text-muted-foreground select-none mr-4">
-          {lineIdx + 1}
-        </span>
-        <span>
-          {segments}
-          {isActive && (
-            <span className="inline-block w-[2px] h-[0.9em] bg-primary animate-pulse align-middle ml-px" />
-          )}
-        </span>
-      </div>
-    )
-  })
-
   return (
     <div
       className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden min-h-[300px]"
       role="img"
-      aria-label="Editor de código animado: const comunidade = new CommitPT(); + comunidade - isolamento + projetos - procrastinação + evolução await comunidade.entrar();"
-      data-animation-done={isDone ? 'true' : undefined}
+      aria-label={`Editor de código animado: ${ARIA_SCRIPT}`}
     >
       {/* Window Controls & Bar */}
       <div className="flex items-center gap-2 border-b border-border bg-elevated px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-destructive" />
         <div className="h-3 w-3 rounded-full bg-warning" />
         <div className="h-3 w-3 rounded-full bg-primary" />
-        <span className="ml-2 font-mono text-xs font-semibold" style={{ color: '#94a3b8' }}>
+        <span className="ml-2 font-mono text-xs font-semibold text-muted-foreground">
           ~ index.js
         </span>
       </div>
 
       {/* Editor Body */}
-      <div
-        className="p-4 text-sm leading-relaxed sm:p-6 space-y-1 bg-surface"
-        style={{ fontFamily: 'Consolas, monospace' }}
-      >
-        {renderedLines}
-        {isDone && (
-          <div className="flex items-center gap-2 mt-2">
-            <span className="w-6 shrink-0" />
-            <span className="text-primary">$</span>
-            <span className="inline-block w-[2px] h-[0.9em] bg-primary animate-pulse align-middle" />
+      <div className="p-4 font-mono text-sm leading-relaxed sm:p-6 space-y-1 bg-surface">
+        {LINES.map((line, lineIdx) => (
+          <div key={lineIdx} className="flex">
+            <span className="w-6 shrink-0 text-right text-muted-foreground select-none mr-4">
+              {lineIdx + 1}
+            </span>
+            <span
+              className="tw-line"
+              style={{
+                width: `${TIMELINE[lineIdx].chars}ch`,
+                animationDuration: `${TIMELINE[lineIdx].duration}ms`,
+                animationDelay: `${TIMELINE[lineIdx].delay}ms`,
+                animationTimingFunction: `steps(${TIMELINE[lineIdx].chars})`,
+              }}
+            >
+              {line.map((seg, segIdx) => (
+                <span key={segIdx} className={seg.className}>
+                  {seg.text}
+                </span>
+              ))}
+            </span>
           </div>
-        )}
+        ))}
+
+        <div
+          className="tw-prompt flex items-center gap-2 mt-2"
+          style={{ animationDelay: `${TOTAL_MS}ms` }}
+        >
+          <span className="w-6 shrink-0" />
+          <span className="text-primary">$</span>
+          <span className="inline-block w-[2px] h-[0.9em] bg-primary animate-pulse align-middle" />
+        </div>
       </div>
     </div>
   )

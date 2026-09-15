@@ -20,14 +20,11 @@ export default async function CommitPlusSection() {
   const annualPrice = planPrices.annual ?? FALLBACK_ANNUAL_PRICE
 
   return (
-    <section id="commit-plus" className="border-b border-border">
+    <section id="commit-plus" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'08 // Grátis vs Commit+'}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
+          <Typography variant="h2" className="sm:text-4xl">
             Participa à tua maneira.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">

@@ -40,7 +40,7 @@ export const projects: Project[] = [
     id: 'discord-bot',
     title: 'Discord Bot',
     description:
-      'O principal motor operacional da comunidade — automatiza accountability, XP, invites, tickets, private chats e onboarding com automatismos pouco comuns em comunidades de Discord.',
+      'O principal motor operacional da comunidade. Automatiza accountability, XP, invites, tickets, private chats e onboarding com automatismos pouco comuns em comunidades de Discord.',
     fullDescription:
       'O Discord Bot CommitPT é o principal motor operacional da comunidade, com automatismos pouco comuns em comunidades de Discord. Oferece um sistema completo de XP e levels, rastreamento de convites, seleção de roles por interesse e linguagem, sistema de tickets para suporte, criação de private chats para membros Commit+, relatórios de moderação e onboarding automático. Construído com TypeScript e discord.js v14, o bot gerencia integrações com SQLite para persistência de dados e integra alertas automáticos para staff.',
     image: '/discord-bot_800w.webp',
@@ -53,7 +53,7 @@ export const projects: Project[] = [
       problem:
         'Gerir uma comunidade ativa no Discord manualmente é impossível. Sem automação, o staff perde horas em tarefas repetitivas e os membros têm uma experiência inconsistente.',
       importance:
-        'O bot é o principal motor da comunidade em termos operacionais, com automatismos pouco comuns em comunidades de Discord. É ele que garante que cada membro é bem recebido, que o XP é registado, que os tickets são geridos e que os membros Commit+ têm acesso privilegiado — automaticamente.',
+        'O bot é o principal motor da comunidade em termos operacionais, com automatismos pouco comuns em comunidades de Discord. É ele que garante que cada membro é bem recebido, que o XP é registado, que os tickets são geridos e que os membros Commit+ têm acesso privilegiado, automaticamente.',
       impact:
         'Hoje, o bot serve mais de 550 membros em tempo real, sem intervenção manual. É o principal motor operacional da comunidade e liberta o staff para o que realmente importa: criar valor para a comunidade.',
     },
@@ -135,7 +135,7 @@ export const projects: Project[] = [
       {
         iconName: 'Layers',
         title: 'Componentes React',
-        description: 'Button, Typography, Avatar e mais — todos bem documentados e testados.',
+        description: 'Button, Typography, Avatar e mais, todos bem documentados e testados.',
       },
       {
         iconName: 'Palette',
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS v4'],
     status: 'active',
     link: 'https://github.com/commitpt/website',
-    tagline: 'A porta de entrada da CommitPT — o primeiro contacto de cada novo membro.',
+    tagline: 'A porta de entrada da CommitPT, o primeiro contacto de cada novo membro.',
     mission: {
       problem:
         'A CommitPT precisa de uma presença online que transmita profissionalismo e converta visitantes em membros. Um simples README não chega.',
@@ -260,22 +260,22 @@ export const projects: Project[] = [
     id: 'platform',
     title: 'Plataforma CommitPT',
     description:
-      'Plataforma didática com frontend em Next.js 15 e API em NestJS. Sistema de autenticação Discord, database PostgreSQL e progressão de aprendizado.',
+      'Plataforma didática com frontend em Next.js 15 e API em NestJS. Sistema de autenticação Discord, database PostgreSQL e progressão de aprendizagem.',
     fullDescription:
-      'A Plataforma CommitPT é um ecosistema completo de aprendizado para a comunidade portuguesa de programadores. Composta por duas partes: (1) platform-web — frontend em Next.js 15 com Auth.js v5 (Discord OAuth), Tailwind CSS e Drizzle ORM para acesso a Neon PostgreSQL; oferece dashboard de aprendizado, explorador de cursos, editor de código integrado, roadmap visual e perfil de utilizador com sistema de premium via roles Discord. (2) platform-api — REST API em NestJS com PostgreSQL via Prisma ORM, Redis para cache, Zod para validação e Swagger para documentação. O sistema permite rastrear progresso, gerenciar cursos e lições, e determinar acesso premium automaticamente baseado em roles do Discord.',
+      'A Plataforma CommitPT é um ecossistema completo de aprendizagem para a comunidade portuguesa de programadores. Composta por duas partes: (1) platform-web, frontend em Next.js 15 com Auth.js v5 (Discord OAuth), Tailwind CSS e Drizzle ORM para acesso a Neon PostgreSQL; oferece dashboard de aprendizagem, explorador de cursos, editor de código integrado, roadmap visual e perfil de utilizador com sistema de premium via roles Discord. (2) platform-api, REST API em NestJS com PostgreSQL via Prisma ORM, Redis para cache, Zod para validação e Swagger para documentação. O sistema permite acompanhar o progresso, gerir cursos e lições, e determinar acesso premium automaticamente com base nos roles do Discord.',
     image: '/projects/platform.svg',
     icon: '📚',
     tags: ['Next.js 15', 'NestJS', 'PostgreSQL', 'Auth.js'],
     status: 'coming-soon',
     link: 'https://github.com/commitpt/platform',
-    tagline: 'O ecosistema de aprendizado que vai definir o futuro da CommitPT.',
+    tagline: 'O ecossistema de aprendizagem que vai definir o futuro da CommitPT.',
     mission: {
       problem:
-        'A CommitPT precisa de uma plataforma própria para entregar conteúdo educativo, rastrear progresso e oferecer uma experiência de aprendizado estruturada — não dependente de ferramentas externas.',
+        'A CommitPT precisa de uma plataforma própria para entregar conteúdo educativo, acompanhar o progresso e oferecer uma experiência de aprendizagem estruturada, não dependente de ferramentas externas.',
       importance:
-        'A plataforma é o próximo passo da CommitPT. É aqui que os membros vão aceder a cursos, roadmaps e ferramentas de aprendizado exclusivas, integradas com o sistema de roles do Discord.',
+        'A plataforma é o próximo passo da CommitPT. É aqui que os membros vão aceder a cursos, roadmaps e ferramentas de aprendizagem exclusivas, integradas com o sistema de roles do Discord.',
       impact:
-        'Quando lançada, a plataforma vai ser o coração educativo da comunidade — o lugar onde os membros crescem de iniciantes a engenheiros.',
+        'Quando lançada, a plataforma vai ser o coração educativo da comunidade, o lugar onde os membros crescem de iniciantes a engenheiros.',
     },
     features: [
       {
@@ -287,7 +287,7 @@ export const projects: Project[] = [
         iconName: 'Map',
         title: 'Roadmap Visual',
         description:
-          'Percurso de aprendizado personalizado para diferentes áreas de especialização.',
+          'Percurso de aprendizagem personalizado para diferentes áreas de especialização.',
       },
       {
         iconName: 'Code2',
@@ -303,7 +303,7 @@ export const projects: Project[] = [
       {
         iconName: 'Database',
         title: 'PostgreSQL & Drizzle',
-        description: 'Base de dados robusta com ORM moderno para gestão de dados de aprendizado.',
+        description: 'Base de dados robusta com ORM moderno para gestão de dados de aprendizagem.',
       },
       {
         iconName: 'Server',

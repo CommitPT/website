@@ -29,15 +29,15 @@ const FAQ_IDS = [
 ]
 
 export default async function Home() {
-  // Fonte única para a contagem de contribuidores — Hero, Comunidade e Pessoas
-  // mostram sempre o mesmo número.
+  // Fonte única para a contagem de contribuidores: Comunidade e Pessoas mostram
+  // sempre o mesmo número.
   const contributors = await getContributors()
 
   return (
     <div className="min-h-screen">
       <Header />
       <main id="main-content">
-        <Hero contributorsCount={contributors.length} />
+        <Hero />
         <WhatHappens />
         <Community contributorsCount={contributors.length} />
         <Projects />
@@ -46,7 +46,6 @@ export default async function Home() {
         <SocialProof />
         <CommitPlusSection />
         <FAQ
-          eyebrow="09 // Perguntas Frequentes"
           heading="Tens dúvidas. Temos respostas."
           description="As perguntas que costumam aparecer antes de entrares."
           items={selectFaqs(FAQ_IDS)}

@@ -268,13 +268,36 @@
   animation: fade-in-up 0.7s ease 0.3s both;
 }
 .hero-enter-4 {
-  animation: fade-in-up 0.7s ease 0.42s both;
+  animation: fade-in-up 0.7s ease 0.45s both;
 }
-.hero-enter-5 {
-  animation: fade-in-up 0.7s ease 0.55s both;
+
+/* ── Terminal typewriter ──────────────────────────────────────────────── */
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
 }
-.hero-enter-6 {
-  animation: fade-in-up 0.7s ease 0.7s both;
+
+/* Largura, duração, atraso e steps() vêm do componente (ver Hero.tsx). */
+.tw-line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  animation-name: typing;
+  animation-fill-mode: backwards;
+}
+
+@keyframes prompt-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.tw-prompt {
+  opacity: 0;
+  animation: prompt-in 0.2s ease forwards;
 }
 
 /* ── Marquee pause on hover ───────────────────────────────────────────── */
@@ -293,8 +316,8 @@
   .hero-enter-2,
   .hero-enter-3,
   .hero-enter-4,
-  .hero-enter-5,
-  .hero-enter-6 {
+  .tw-line,
+  .tw-prompt {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

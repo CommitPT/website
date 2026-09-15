@@ -60,18 +60,18 @@ const visibleProjects = projects.filter((project) => project.status === 'active'
 
 export default function Projects() {
   return (
-    <section id="projects" className="border-b border-border">
+    <section id="projects" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'03 // Projetos'}
+            Projetos
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
             Não ficamos apenas pela conversa.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
-            Membros participam em projetos da comunidade com Git, pull requests e code review — a
+            Membros participam em projetos da comunidade com Git, pull requests e code review, a
             forma mais rápida de ganhar experiência prática.
           </Typography>
         </div>

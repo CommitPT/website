@@ -43,19 +43,16 @@ const happenings: Happening[] = [
 
 export default function WhatHappens() {
   return (
-    <section id="happens" className="border-b border-border">
+    <section id="happens" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {'01 // O Que É'}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
+          <Typography variant="h2" className="sm:text-4xl">
             Uma comunidade onde as coisas acontecem.
           </Typography>
           <Typography variant="p" color="muted" className="mt-4">
             A CommitPT é uma comunidade portuguesa de Engenharia de Software. Tudo o que se segue
-            acontece dentro dela — não são produtos separados.
+            acontece dentro dela, não são produtos separados.
           </Typography>
         </div>
 

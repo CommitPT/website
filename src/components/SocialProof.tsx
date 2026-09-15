@@ -47,12 +47,12 @@ export default async function SocialProof() {
   const items: ReviewItem[] = [...whopItems, ...hardcodedItems]
 
   return (
-    <section id="results" className="border-y border-border">
+    <section id="results" className="scroll-mt-20 border-y border-border">
       <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
           <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            07 // Resultados
+            Resultados
           </Typography>
           <Typography variant="h2" className="mt-3 sm:text-4xl">
             Pessoas reais. Resultados reais.

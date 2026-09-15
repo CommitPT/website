@@ -22,15 +22,12 @@ export default function ContributorsTeaser({ contributors }: { contributors: Con
   const remaining = contributors.length - preview.length
 
   return (
-    <section id="people" className="border-b border-border">
+    <section id="people" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
           {/* Content Left */}
           <div className="max-w-xl">
-            <Typography variant="overline" color="secondary" as="span" className="font-mono">
-              {'06 // Pessoas'}
-            </Typography>
-            <Typography variant="h2" className="mt-3 sm:text-4xl">
+            <Typography variant="h2" className="sm:text-4xl">
               Construído pela comunidade.
             </Typography>
             <Typography variant="p" color="muted" className="mt-4">

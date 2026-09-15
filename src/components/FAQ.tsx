@@ -14,8 +14,8 @@ import { DISCORD_URL } from '@/src/lib/links'
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 interface FaqSectionProps {
-  /** Section eyebrow label, including the page's own section number. */
-  eyebrow: string
+  /** Optional section eyebrow. Omit it unless the page is short on eyebrows. */
+  eyebrow?: string
   heading: string
   description: string
   /**
@@ -85,7 +85,7 @@ export default function FAQ({
   }))
 
   return (
-    <section id="faq" className="border-t border-border">
+    <section id="faq" className="scroll-mt-20 border-t border-border">
       {/* Schema Markup */}
       {withSchema && (
         <script
@@ -98,10 +98,12 @@ export default function FAQ({
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
         {/* Section Header */}
         <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            {eyebrow}
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
+          {eyebrow && (
+            <Typography variant="overline" color="secondary" as="span" className="font-mono">
+              {eyebrow}
+            </Typography>
+          )}
+          <Typography variant="h2" className={eyebrow ? 'mt-3 sm:text-4xl' : 'sm:text-4xl'}>
             {heading}
           </Typography>
           <Typography variant="p" color="muted" className="mt-5">
@@ -118,7 +120,7 @@ export default function FAQ({
             Não encontraste a tua resposta?
           </Typography>
           <Typography variant="p" color="muted" className="mx-auto mt-3 max-w-xl">
-            Entra no Discord e pergunta diretamente à comunidade respondemos rápido.
+            Entra no Discord e pergunta diretamente à comunidade. Respondemos rápido.
           </Typography>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
