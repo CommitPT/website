@@ -1,8 +1,8 @@
 import ReviewScroll from '@/src/components/ReviewScroll'
+import SectionHeader from '@/src/components/SectionHeader'
 import { WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
 import { getWhopReviews } from '@/src/lib/whop'
 import fallbackReviews from '@/src/reviews.json'
-import { Typography } from '@commitpt/design-system'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -48,29 +48,27 @@ export default async function SocialProof() {
 
   return (
     <section id="results" className="scroll-mt-20 border-y border-border">
-      <div className="mx-auto max-w-6xl px-6 pt-20 lg:pt-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            Resultados
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
-            Pessoas reais. Resultados reais.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Não acredites só na nossa palavra. Isto é o que os membros dizem depois de deixarem de
-            evoluir sozinhos. Avaliações recolhidas via{' '}
-            <a
-              href={WHOP_COMMIT_PLUS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary underline underline-offset-2"
-            >
-              Whop
-            </a>{' '}
-            e Comunidade.
-          </Typography>
-        </div>
+      <div className="mx-auto max-w-6xl px-6 pt-16 lg:pt-20">
+        <SectionHeader
+          eyebrow="Resultados"
+          title="Pessoas reais. Resultados reais."
+          description={
+            <>
+              Não acredites só na nossa palavra. Isto é o que os membros dizem depois de deixarem de
+              evoluir sozinhos. Avaliações recolhidas via{' '}
+              <a
+                href={WHOP_COMMIT_PLUS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline underline-offset-2"
+              >
+                Whop
+              </a>{' '}
+              e Comunidade.
+            </>
+          }
+          className="mb-12"
+        />
       </div>
 
       {/* Reviews Marquee / Scroll Component */}

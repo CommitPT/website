@@ -1,9 +1,10 @@
 'use client'
 
+import SectionHeader from '@/src/components/SectionHeader'
 import Stats from '@/src/components/Stats'
 import { trackEvent } from '@/src/lib/analytics'
 import { DISCORD_URL } from '@/src/lib/links'
-import { buttonVariants, Typography } from '@commitpt/design-system'
+import { buttonVariants } from '@commitpt/design-system'
 import { ArrowRight } from 'lucide-react'
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -11,17 +12,12 @@ import { ArrowRight } from 'lucide-react'
 export default function Community({ contributorsCount }: { contributorsCount: number }) {
   return (
     <section id="community" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="h2" className="sm:text-4xl">
-            Já existe. Já está ativa.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Isto não é uma promessa de comunidade que talvez venha a existir. Todos os dias há gente
-            a fazer perguntas, a partilhar o que está a construir e a ajudar-se mutuamente.
-          </Typography>
-        </div>
+      <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
+        <SectionHeader
+          title="Já existe. Já está ativa."
+          description="Isto não é uma promessa de comunidade que talvez venha a existir. Todos os dias há gente a fazer perguntas, a partilhar o que está a construir e a ajudar-se mutuamente."
+          className="mb-12"
+        />
 
         <Stats contributorsCount={contributorsCount} />
 

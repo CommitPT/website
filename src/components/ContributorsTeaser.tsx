@@ -1,14 +1,9 @@
 'use client'
 
 import ContributorCard from '@/src/components/ContributorCard'
+import SectionHeader from '@/src/components/SectionHeader'
 import type { Contributor } from '@/src/lib/contributors'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  buttonVariants,
-  Typography,
-} from '@commitpt/design-system'
+import { Avatar, AvatarFallback, AvatarImage, buttonVariants } from '@commitpt/design-system'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 
@@ -23,17 +18,14 @@ export default function ContributorsTeaser({ contributors }: { contributors: Con
 
   return (
     <section id="people" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
           {/* Content Left */}
           <div className="max-w-xl">
-            <Typography variant="h2" className="sm:text-4xl">
-              Construído pela comunidade.
-            </Typography>
-            <Typography variant="p" color="muted" className="mt-4">
-              A CommitPT é feita pelas pessoas que nela participam. Conhece quem está por trás dos
-              projetos, das revisões de código e das sessões.
-            </Typography>
+            <SectionHeader
+              title="Construído pela comunidade."
+              description="A CommitPT é feita pelas pessoas que nela participam. Conhece quem está por trás dos projetos, das revisões de código e das sessões."
+            />
             <button
               type="button"
               onClick={() => setExpanded(!expanded)}

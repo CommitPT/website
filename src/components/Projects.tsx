@@ -1,5 +1,6 @@
 'use client'
 
+import SectionHeader from '@/src/components/SectionHeader'
 import { trackEvent } from '@/src/lib/analytics'
 import { projects, type Project } from '@/src/data/projects'
 import { Typography } from '@commitpt/design-system'
@@ -62,19 +63,12 @@ export default function Projects() {
   return (
     <section id="projects" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="overline" color="secondary" as="span" className="font-mono">
-            Projetos
-          </Typography>
-          <Typography variant="h2" className="mt-3 sm:text-4xl">
-            Não ficamos apenas pela conversa.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Membros participam em projetos da comunidade com Git, pull requests e code review, a
-            forma mais rápida de ganhar experiência prática.
-          </Typography>
-        </div>
+        <SectionHeader
+          eyebrow="Projetos"
+          title="Não ficamos apenas pela conversa."
+          description="Membros participam em projetos da comunidade com Git, pull requests e code review, a forma mais rápida de ganhar experiência prática."
+          className="mb-12"
+        />
 
         {/* Project Cards Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

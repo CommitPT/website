@@ -1,4 +1,5 @@
 import CommitPlusCards from '@/src/components/CommitPlusCards'
+import SectionHeader from '@/src/components/SectionHeader'
 import { getWhopCustomerCount, getWhopPlanPrices } from '@/src/lib/whop'
 import { Typography } from '@commitpt/design-system'
 
@@ -22,16 +23,11 @@ export default async function CommitPlusSection() {
   return (
     <section id="commit-plus" className="scroll-mt-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="h2" className="sm:text-4xl">
-            Participa à tua maneira.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            A comunidade é sempre gratuita. O Commit+ é uma camada opcional para quem quer ir mais
-            fundo.
-          </Typography>
-        </div>
+        <SectionHeader
+          title="Participa à tua maneira."
+          description="A comunidade é sempre gratuita. O Commit+ é uma camada opcional para quem quer ir mais fundo."
+          className="mb-12"
+        />
 
         <CommitPlusCards monthlyPrice={monthlyPrice} annualPrice={annualPrice} />
 

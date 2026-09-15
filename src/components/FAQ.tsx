@@ -7,6 +7,7 @@ import {
   buttonVariants,
   type FAQItem as FAQAccordionItem,
 } from '@commitpt/design-system'
+import SectionHeader from '@/src/components/SectionHeader'
 import { blocksToPlainText, type Block, type FaqItem } from '@/src/data/faqs'
 import { trackEvent } from '@/src/lib/analytics'
 import { DISCORD_URL } from '@/src/lib/links'
@@ -96,20 +97,12 @@ export default function FAQ({
       )}
 
       <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          {eyebrow && (
-            <Typography variant="overline" color="secondary" as="span" className="font-mono">
-              {eyebrow}
-            </Typography>
-          )}
-          <Typography variant="h2" className={eyebrow ? 'mt-3 sm:text-4xl' : 'sm:text-4xl'}>
-            {heading}
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-5">
-            {description}
-          </Typography>
-        </div>
+        <SectionHeader
+          eyebrow={eyebrow}
+          title={heading}
+          description={description}
+          className="mb-12"
+        />
 
         {/* FAQ Accordion */}
         <FAQAccordion items={accordionItems} className="overflow-hidden" />

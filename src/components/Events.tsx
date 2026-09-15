@@ -1,4 +1,5 @@
-import { Typography } from '@commitpt/design-system'
+import SectionHeader from '@/src/components/SectionHeader'
+import { Separator, Typography } from '@commitpt/design-system'
 import { Briefcase, LucideIcon, Mic, Presentation } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -46,32 +47,32 @@ const formats: EventFormat[] = [
 export default function Events() {
   return (
     <section id="events" className="scroll-mt-20 border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        {/* Section Header */}
-        <div className="mb-12 max-w-2xl">
-          <Typography variant="h2" className="sm:text-4xl">
-            Aprende com quem já está no terreno.
-          </Typography>
-          <Typography variant="p" color="muted" className="mt-4">
-            Sessões ao vivo, pelo menos 4 vezes por mês, em três formatos recorrentes.
-          </Typography>
-        </div>
+      <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+        <SectionHeader
+          title="Aprende com quem já está no terreno."
+          description="Sessões ao vivo, pelo menos 4 vezes por mês, em três formatos recorrentes."
+          className="mb-12"
+        />
 
-        {/* Event Format Cards */}
-        <div className="grid gap-6 sm:grid-cols-3">
-          {formats.map((f) => (
-            <div
-              key={f.label}
-              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary/50"
-            >
-              <f.icon size={22} className={`mb-4 ${f.accent}`} aria-hidden="true" />
-              <span className={`font-mono text-xs ${f.accent}`}>{f.label}</span>
-              <Typography variant="h4" className="mt-2 text-lg">
-                {f.name}
-              </Typography>
-              <Typography variant="small" color="muted" className="mt-2 leading-relaxed">
-                {f.desc}
-              </Typography>
+        {/* Formatos de evento: lista vertical com hairlines, não cards */}
+        <div>
+          {formats.map((f, i) => (
+            <div key={f.label}>
+              {i > 0 && <Separator className="my-0" />}
+              <div className="flex flex-col gap-4 py-8 sm:flex-row sm:items-start sm:gap-8">
+                <div className="flex items-center gap-3 sm:w-56 sm:shrink-0">
+                  <f.icon size={22} className={`shrink-0 ${f.accent}`} aria-hidden="true" />
+                  <span className={`font-mono text-xs ${f.accent}`}>{f.label}</span>
+                </div>
+                <div>
+                  <Typography variant="h3" className="text-xl sm:text-2xl">
+                    {f.name}
+                  </Typography>
+                  <Typography variant="p" color="muted" className="mt-2 max-w-2xl leading-relaxed">
+                    {f.desc}
+                  </Typography>
+                </div>
+              </div>
             </div>
           ))}
         </div>
