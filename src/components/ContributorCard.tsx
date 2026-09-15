@@ -61,7 +61,7 @@ export default function ContributorCard({ contributor }: { contributor: Contribu
     contributor.website
 
   return (
-    <div className="group flex flex-col rounded-lg border border-border bg-surface p-6 hover:border-primary transition-colors">
+    <div className="group flex flex-col rounded-xl border border-border bg-surface p-6 hover:border-primary transition-colors">
       {/* Header / Avatar */}
       <div className="mb-4 flex items-center gap-4">
         <Avatar variant="secondary" className="h-14 w-14 flex-shrink-0">

@@ -108,7 +108,7 @@ export default function FAQ({
         <FAQAccordion items={accordionItems} className="overflow-hidden" />
 
         {/* Discord CTA Box */}
-        <div className="mt-12 rounded-lg border border-border bg-surface p-8 text-center lg:p-12">
+        <div className="mt-12 rounded-xl border border-border bg-surface p-8 text-center lg:p-12">
           <Typography variant="h3" className="sm:text-3xl">
             Não encontraste a tua resposta?
           </Typography>

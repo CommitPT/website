@@ -144,7 +144,7 @@ export default function Hero() {
 function Terminal() {
   return (
     <div
-      className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden min-h-[300px]"
+      className="rounded-xl border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden min-h-[300px]"
       role="img"
       aria-label={`Editor de código animado: ${ARIA_SCRIPT}`}
     >
