@@ -45,7 +45,7 @@ export const projects: Project[] = [
       'O Discord Bot CommitPT é o principal motor operacional da comunidade, com automatismos pouco comuns em comunidades de Discord. Oferece um sistema completo de XP e levels, rastreamento de convites, seleção de roles por interesse e linguagem, sistema de tickets para suporte, criação de private chats para membros Commit+, relatórios de moderação e onboarding automático. Construído com TypeScript e discord.js v14, o bot gerencia integrações com SQLite para persistência de dados e integra alertas automáticos para staff.',
     image: '/discord-bot_800w.webp',
     icon: '🤖',
-    tags: ['TypeScript', 'discord.js v14', 'SQLite'],
+    tags: ['TypeScript', 'discord.js v14', 'PostgreSQL'],
     status: 'active',
     link: 'https://github.com/commitpt/discord-bot',
     tagline: 'O sistema responsável por automatizar toda a operação da comunidade.',
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     learnings: [
       'TypeScript',
       'Discord.js v14',
-      'SQLite',
+      'PostgreSQL',
       'Arquitetura de aplicações',
       'Persistência de dados',
       'Sistema de eventos',
@@ -257,17 +257,17 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'platform',
-    title: 'Plataforma CommitPT',
+    id: 'platform-web',
+    title: 'Plataforma CommitPT (Web)',
     description:
-      'Plataforma didática com frontend em Next.js 15 e API em NestJS. Sistema de autenticação Discord, database PostgreSQL e progressão de aprendizagem.',
+      'Frontend da plataforma didática em Next.js 15, com autenticação Discord e progressão de aprendizagem.',
     fullDescription:
-      'A Plataforma CommitPT é um ecossistema completo de aprendizagem para a comunidade portuguesa de programadores. Composta por duas partes: (1) platform-web, frontend em Next.js 15 com Auth.js v5 (Discord OAuth), Tailwind CSS e Drizzle ORM para acesso a Neon PostgreSQL; oferece dashboard de aprendizagem, explorador de cursos, editor de código integrado, roadmap visual e perfil de utilizador com sistema de premium via roles Discord. (2) platform-api, REST API em NestJS com PostgreSQL via Prisma ORM, Redis para cache, Zod para validação e Swagger para documentação. O sistema permite acompanhar o progresso, gerir cursos e lições, e determinar acesso premium automaticamente com base nos roles do Discord.',
+      'O platform-web é o frontend da Plataforma CommitPT, construído em Next.js 15 com Auth.js v5 (Discord OAuth), Tailwind CSS e Drizzle ORM para acesso a Neon PostgreSQL. Oferece dashboard de aprendizagem, explorador de cursos, editor de código integrado, roadmap visual e perfil de utilizador com sistema de premium via roles Discord.',
     image: '/projects/platform.svg',
     icon: '📚',
-    tags: ['Next.js 15', 'NestJS', 'PostgreSQL', 'Auth.js'],
+    tags: ['Next.js 15', 'TypeScript', 'Drizzle ORM'],
     status: 'coming-soon',
-    link: 'https://github.com/commitpt/platform',
+    link: 'https://github.com/commitpt/platform-web',
     tagline: 'O ecossistema de aprendizagem que vai definir o futuro da CommitPT.',
     mission: {
       problem:
@@ -305,30 +305,144 @@ export const projects: Project[] = [
         title: 'PostgreSQL & Drizzle',
         description: 'Base de dados robusta com ORM moderno para gestão de dados de aprendizagem.',
       },
+    ],
+    learnings: [
+      'Next.js 15',
+      'TypeScript',
+      'Auth.js v5',
+      'Discord OAuth',
+      'Drizzle ORM',
+      'PostgreSQL',
+      'Code Reviews',
+    ],
+    workflow: ['Planeamento', 'Frontend', 'Auth', 'Review', 'Launch'],
+    impact: [
+      { value: '2026', label: 'ano de lançamento' },
+      { value: '97%', label: 'TypeScript / React' },
+      { value: 'Em breve', label: 'coming soon' },
+    ],
+  },
+  {
+    id: 'platform-api',
+    title: 'Plataforma CommitPT (API)',
+    description:
+      'API REST em NestJS que serve a plataforma didática: cursos, progresso e acesso premium via Discord.',
+    fullDescription:
+      'O platform-api é a REST API em NestJS que serve o platform-web, com PostgreSQL via Prisma ORM, Redis para cache, Zod para validação e Swagger para documentação. Permite acompanhar o progresso, gerir cursos e lições, e determinar acesso premium automaticamente com base nos roles do Discord.',
+    image: '/projects/platform.svg',
+    icon: '🛠️',
+    tags: ['NestJS', 'TypeScript', 'PostgreSQL'],
+    status: 'coming-soon',
+    link: 'https://github.com/commitpt/platform-api',
+    tagline: 'O motor por trás dos cursos, do progresso e do acesso premium da plataforma.',
+    mission: {
+      problem:
+        'O platform-web precisa de uma API robusta e desacoplada para gerir cursos, progresso e permissões sem depender de lógica espalhada pelo frontend.',
+      importance:
+        'É a API que decide quem tem acesso a quê, regista o progresso de cada membro e mantém a plataforma e o Discord sincronizados.',
+      impact:
+        'Quando lançada, garante que a progressão de aprendizagem é fiável e que o acesso premium reflete sempre o estado real de cada membro no Discord.',
+    },
+    features: [
       {
         iconName: 'Server',
         title: 'API NestJS',
         description: 'REST API modular em NestJS com Redis, Prisma, Zod e documentação Swagger.',
       },
+      {
+        iconName: 'Database',
+        title: 'PostgreSQL & Prisma',
+        description: 'Persistência de cursos, lições e progresso via Prisma ORM.',
+      },
+      {
+        iconName: 'Zap',
+        title: 'Cache com Redis',
+        description: 'Reduz latência em endpoints de leitura frequente.',
+      },
+      {
+        iconName: 'ShieldAlert',
+        title: 'Validação com Zod',
+        description: 'Contratos de entrada validados em runtime, não só em tipos.',
+      },
     ],
-    learnings: [
-      'Next.js 15',
-      'NestJS',
-      'PostgreSQL',
-      'Auth.js v5',
-      'Discord OAuth',
-      'Drizzle ORM',
-      'Redis',
-      'REST API Design',
-      'Monorepo',
-      'Code Reviews',
-    ],
-    workflow: ['Planeamento', 'API', 'Frontend', 'Auth', 'Review', 'Launch'],
+    learnings: ['NestJS', 'TypeScript', 'Prisma ORM', 'Redis', 'Zod', 'Swagger', 'Code Reviews'],
+    workflow: ['Planeamento', 'API', 'Review', 'Launch'],
     impact: [
       { value: '2026', label: 'ano de lançamento' },
-      { value: '2', label: 'aplicações (web + api)' },
-      { value: '∞', label: 'potencial de impacto' },
+      { value: '88.7%', label: 'TypeScript' },
       { value: 'Em breve', label: 'coming soon' },
+    ],
+  },
+  {
+    id: 'usm',
+    title: 'USM (User Statistics & Management)',
+    description:
+      'Serviço que gere perfis de membros: XP, streaks, links e achievements. Já em produção, alimenta os perfis públicos do site.',
+    fullDescription:
+      'O USM (usm.commitpt.com) é o serviço que centraliza os dados de cada membro: perfil, estatísticas (XP, mensagens enviadas, calls), streaks de participação, links pessoais e achievements desbloqueados. É consumido diretamente por este website para gerar os perfis públicos em /u/[username], com fallback gracioso quando algum endpoint secundário falha.',
+    image: '/projects/platform.svg',
+    icon: '📊',
+    tags: ['TypeScript', 'REST API', 'Docker'],
+    status: 'coming-soon',
+    link: 'https://github.com/commitpt/usm',
+    tagline: 'A fonte de verdade sobre quem é cada membro e o que já construiu.',
+    mission: {
+      problem:
+        'Sem um serviço central, os dados de cada membro (XP, streaks, achievements) ficariam espalhados entre o bot, a plataforma e o website, com risco de ficarem dessincronizados.',
+      importance:
+        'O USM é a fonte única de verdade sobre cada membro. Bot, website e futura plataforma consultam-no em vez de manterem cópias próprias dos mesmos dados.',
+      impact:
+        'Já alimenta os perfis públicos deste website em produção, com estatísticas, streaks e achievements reais de cada membro.',
+    },
+    features: [
+      {
+        iconName: 'UserPlus',
+        title: 'Perfis de Membro',
+        description: 'Dados agregados de cada membro: bio, GitHub, estatísticas e streak.',
+      },
+      {
+        iconName: 'Trophy',
+        title: 'Achievements',
+        description: 'Sistema de conquistas desbloqueadas por participação na comunidade.',
+      },
+      {
+        iconName: 'Zap',
+        title: 'Streaks',
+        description: 'Acompanha sequências de participação, com freezes incluídos.',
+      },
+    ],
+    learnings: ['TypeScript', 'REST API Design', 'Docker', 'Code Reviews'],
+    workflow: ['Planeamento', 'API', 'Review', 'Deploy'],
+    impact: [
+      { value: '94.5%', label: 'TypeScript' },
+      { value: '1', label: 'fonte de verdade' },
+      { value: 'Em produção', label: 'já em uso' },
+    ],
+  },
+  {
+    id: 'audit-logs',
+    title: 'Audit Logs',
+    description: 'Serviço interno que regista eventos de auditoria dos sistemas da CommitPT.',
+    fullDescription:
+      'O Audit Logs centraliza o registo de eventos de auditoria entre os sistemas internos da CommitPT, com PostgreSQL para persistência e Docker para deploy. Descrição a confirmar com a equipa.',
+    image: '/projects/platform.svg',
+    icon: '🗂️',
+    tags: ['TypeScript', 'PostgreSQL', 'Docker'],
+    status: 'coming-soon',
+    link: 'https://github.com/commitpt/audit-logs',
+    tagline: 'O registo do que acontece por trás dos outros sistemas.',
+    mission: {
+      problem:
+        'Sem um registo centralizado, é difícil investigar o que aconteceu entre os vários sistemas da CommitPT quando algo corre mal.',
+      importance: 'Garante rastreabilidade entre os sistemas internos da comunidade.',
+      impact: 'Descrição a confirmar com a equipa.',
+    },
+    features: [],
+    learnings: ['TypeScript', 'PostgreSQL', 'Docker', 'Code Reviews'],
+    workflow: ['Planeamento', 'API', 'Review', 'Deploy'],
+    impact: [
+      { value: '85%', label: 'TypeScript' },
+      { value: '5.2%', label: 'PLpgSQL' },
     ],
   },
 ]

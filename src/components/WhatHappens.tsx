@@ -57,8 +57,11 @@ export default function WhatHappens() {
           className="mb-12"
         />
 
-        {/* Bento: célula grande (2 col) + 4 cards, grelha 3x2 exata */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Bento: célula grande (2 col) + 4 cards, grelha 3x2 exata.
+            items-start evita que o grid estique a célula "Projetos" (curta)
+            até à altura da "Comunidade" (mais texto), o que deixava um vazio
+            dentro do próprio card. */}
+        <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-xl border border-border bg-surface p-6 sm:col-span-2 flex flex-col justify-center">
             <featured.icon size={28} className="mb-4 text-primary" aria-hidden="true" />
             <Typography variant="h3" className="mb-2">
