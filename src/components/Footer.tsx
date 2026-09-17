@@ -74,11 +74,11 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
           {/* Nav Links & Socials */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <a href="/#community" className="hover:text-primary transition-colors">
-              Comunidade
-            </a>
             <a href="/#projects" className="hover:text-primary transition-colors">
               Projetos
+            </a>
+            <a href="/#people" className="hover:text-primary transition-colors">
+              Pessoas
             </a>
             <a href="/#events" className="hover:text-primary transition-colors">
               Eventos

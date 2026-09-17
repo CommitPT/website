@@ -17,8 +17,8 @@ interface NavLink {
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const navLinks: NavLink[] = [
-  { label: 'Comunidade', href: '/#community' },
   { label: 'Projetos', href: '/#projects' },
+  { label: 'Pessoas', href: '/#people' },
   { label: 'Eventos', href: '/#events' },
   { label: 'Commit+', href: '/#commit-plus' },
   { label: 'FAQ', href: '/#faq' },

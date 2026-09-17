@@ -15,6 +15,12 @@ export interface ProjectImpactMetric {
   label: string
 }
 
+/** Distribuição de linguagens do repositório, tal como o GitHub a reporta. */
+export interface ProjectLanguage {
+  name: string
+  percent: number
+}
+
 export interface Project {
   id: string
   title: string
@@ -23,6 +29,7 @@ export interface Project {
   image: string
   icon: string
   tags: string[]
+  languages?: ProjectLanguage[]
   status: 'active' | 'coming-soon'
   link?: string
   storybookLink?: string
@@ -46,6 +53,11 @@ export const projects: Project[] = [
     image: '/discord-bot_800w.webp',
     icon: '🤖',
     tags: ['TypeScript', 'discord.js v14', 'PostgreSQL'],
+    languages: [
+      { name: 'TypeScript', percent: 98.7 },
+      { name: 'PLpgSQL', percent: 1.1 },
+      { name: 'Other', percent: 0.2 },
+    ],
     status: 'active',
     link: 'https://github.com/commitpt/discord-bot',
     tagline: 'O sistema responsável por automatizar toda a operação da comunidade.',
@@ -119,6 +131,11 @@ export const projects: Project[] = [
     image: '/storybook_800w.webp',
     icon: '🎨',
     tags: ['React', 'TypeScript', 'Tailwind CSS v4'],
+    languages: [
+      { name: 'TypeScript', percent: 97.7 },
+      { name: 'CSS', percent: 2.1 },
+      { name: 'Other', percent: 0.2 },
+    ],
     status: 'active',
     link: 'https://github.com/commitpt/design-system',
     storybookLink: 'https://storybook.commitpt.com',
@@ -194,6 +211,10 @@ export const projects: Project[] = [
     image: '/website_800w.webp',
     icon: '🌐',
     tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS v4'],
+    languages: [
+      { name: 'TypeScript', percent: 95.9 },
+      { name: 'CSS', percent: 4.1 },
+    ],
     status: 'active',
     link: 'https://github.com/commitpt/website',
     tagline: 'A porta de entrada da CommitPT, o primeiro contacto de cada novo membro.',
@@ -266,6 +287,11 @@ export const projects: Project[] = [
     image: '/projects/platform.svg',
     icon: '📚',
     tags: ['Next.js 15', 'TypeScript', 'Drizzle ORM'],
+    languages: [
+      { name: 'TypeScript', percent: 97 },
+      { name: 'CSS', percent: 1.9 },
+      { name: 'Other', percent: 1.1 },
+    ],
     status: 'coming-soon',
     link: 'https://github.com/commitpt/platform-web',
     tagline: 'O ecossistema de aprendizagem que vai definir o futuro da CommitPT.',
@@ -332,6 +358,10 @@ export const projects: Project[] = [
     image: '/projects/platform.svg',
     icon: '🛠️',
     tags: ['NestJS', 'TypeScript', 'PostgreSQL'],
+    languages: [
+      { name: 'TypeScript', percent: 88.7 },
+      { name: 'JavaScript', percent: 11.3 },
+    ],
     status: 'coming-soon',
     link: 'https://github.com/commitpt/platform-api',
     tagline: 'O motor por trás dos cursos, do progresso e do acesso premium da plataforma.',
@@ -383,6 +413,11 @@ export const projects: Project[] = [
     image: '/projects/platform.svg',
     icon: '📊',
     tags: ['TypeScript', 'REST API', 'Docker'],
+    languages: [
+      { name: 'TypeScript', percent: 94.5 },
+      { name: 'JavaScript', percent: 4.7 },
+      { name: 'Dockerfile', percent: 0.8 },
+    ],
     status: 'coming-soon',
     link: 'https://github.com/commitpt/usm',
     tagline: 'A fonte de verdade sobre quem é cada membro e o que já construiu.',
@@ -428,6 +463,12 @@ export const projects: Project[] = [
     image: '/projects/platform.svg',
     icon: '🗂️',
     tags: ['TypeScript', 'PostgreSQL', 'Docker'],
+    languages: [
+      { name: 'TypeScript', percent: 85 },
+      { name: 'JavaScript', percent: 6.5 },
+      { name: 'PLpgSQL', percent: 5.2 },
+      { name: 'Dockerfile', percent: 3.3 },
+    ],
     status: 'coming-soon',
     link: 'https://github.com/commitpt/audit-logs',
     tagline: 'O registo do que acontece por trás dos outros sistemas.',
