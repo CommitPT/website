@@ -7,23 +7,6 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-
-interface NavLink {
-  label: string
-  href: string
-}
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-const navLinks: NavLink[] = [
-  { label: 'Comunidade', href: '/#community' },
-  { label: 'Projetos', href: '/#projects' },
-  { label: 'Eventos', href: '/#events' },
-  { label: 'Commit+', href: '/#commit-plus' },
-  { label: 'FAQ', href: '/#faq' },
-]
-
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function Header() {
@@ -49,15 +32,6 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
           <a
             href={DISCORD_URL}
             target="_blank"
@@ -85,16 +59,6 @@ export default function Header() {
       {open && (
         <div className="md:hidden border-t border-border px-6 py-4">
           <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
             <a
               href={DISCORD_URL}
               target="_blank"

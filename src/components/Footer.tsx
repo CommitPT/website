@@ -53,7 +53,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="mb-12">
           <a
-            href="/#hero"
+            href="/"
             className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
           >
             <Image
@@ -74,21 +74,6 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
           {/* Nav Links & Socials */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <a href="/#community" className="hover:text-primary transition-colors">
-              Comunidade
-            </a>
-            <a href="/#projects" className="hover:text-primary transition-colors">
-              Projetos
-            </a>
-            <a href="/#events" className="hover:text-primary transition-colors">
-              Eventos
-            </a>
-            <a href="/#commit-plus" className="hover:text-primary transition-colors">
-              Commit+
-            </a>
-            <a href="/#faq" className="hover:text-primary transition-colors">
-              FAQ
-            </a>
             <a
               href="https://www.instagram.com/commitpt_/"
               target="_blank"

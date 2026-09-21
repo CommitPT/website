@@ -166,7 +166,7 @@
   }
 
   body {
-    background: var(--gradient-brand);
+    background: #0b1a2e;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -195,54 +195,6 @@
 
 .scrollbar-none::-webkit-scrollbar {
   display: none;
-}
-
-/* ── Background gradient orb animations ─────────────────────────────── */
-
-@keyframes orb-drift-1 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(60px, -45px) scale(1.08);
-  }
-  66% {
-    transform: translate(-35px, 30px) scale(0.94);
-  }
-}
-
-@keyframes orb-drift-2 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-55px, 40px) scale(1.06);
-  }
-  66% {
-    transform: translate(45px, -28px) scale(0.96);
-  }
-}
-
-@keyframes orb-drift-3 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(30px, 50px) scale(1.05);
-  }
-}
-
-.orb-1 {
-  animation: orb-drift-1 20s ease-in-out infinite;
-}
-.orb-2 {
-  animation: orb-drift-2 26s ease-in-out infinite;
-}
-.orb-3 {
-  animation: orb-drift-3 17s ease-in-out infinite;
 }
 
 /* ── Hero entry animations ────────────────────────────────────────────── */
@@ -286,9 +238,6 @@
 /* ── Reduced motion ───────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .orb-1,
-  .orb-2,
-  .orb-3,
   .hero-enter-1,
   .hero-enter-2,
   .hero-enter-3,
