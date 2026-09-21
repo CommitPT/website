@@ -21,6 +21,8 @@ export type AnalyticsEvent =
   | 'commit_plus_view'
   | 'commit_plus_checkout'
   | 'testimonial_interaction'
+  | 'pricing_anchor_click'
+  | 'vsl_play'
 
 // ── Helper ────────────────────────────────────────────────────────────────────
 

@@ -1,15 +1,33 @@
+import Footer from '@/src/components/Footer'
 import Header from '@/src/components/Header'
+import Benefits from '@/src/components/sections/Benefits'
+import Comparison from '@/src/components/sections/Comparison'
+import Faq from '@/src/components/sections/Faq'
+import FinalCta from '@/src/components/sections/FinalCta'
+import ForWho from '@/src/components/sections/ForWho'
+import Founder from '@/src/components/sections/Founder'
+import Hero from '@/src/components/sections/Hero'
+import Pricing from '@/src/components/sections/Pricing'
+import Testimonials from '@/src/components/sections/Testimonials'
+
+// Ordem do funil — ver docs/PLANO-REDESIGN.md. Texto em src/content/home.ts.
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col gap-4 justify-center ">
+    <>
       <Header />
-      {/* <div className="flex flex-col gap-4 w-2/3">
-        <main id="main-content" className="flex min-h-[60vh] items-center justify-center px-6">
-          <h1 className="font-mono text-3xl font-bold text-foreground">Hello, world.</h1>
-        </main>
-        <Footer />
-      </div> */}
-    </div>
+      <main id="main-content">
+        <Hero />
+        <ForWho />
+        <Benefits />
+        <Founder />
+        <Comparison />
+        <Testimonials />
+        <Pricing />
+        <Faq />
+        <FinalCta />
+      </main>
+      <Footer />
+    </>
   )
 }

@@ -1,111 +1,50 @@
-'use client'
-
-import { trackEvent } from '@/src/lib/analytics'
-import { DISCORD_URL, WHOP_COMMIT_PLUS_URL } from '@/src/lib/links'
-import { buttonVariants, Typography } from '@commitpt/design-system'
-import { ArrowRight, MessageCircle } from 'lucide-react'
+import { Typography } from '@commitpt/design-system'
 import Image from 'next/image'
 
 // ── Component ─────────────────────────────────────────────────────────────────
+//
+// Só marca e links legais. A chamada final (Discord + Commit+) é uma secção
+// própria da homepage, para não aparecer nas páginas legais.
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/50">
-      {/* Final CTA */}
-      <div className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:py-28">
-          <Typography variant="h2" className="sm:text-4xl">
-            Não evoluas sozinho.
-          </Typography>
-          <Typography variant="p" color="muted" className="mx-auto mt-4 max-w-xl">
-            Faz parte de uma comunidade portuguesa de developers que aprendem, constroem e evoluem
-            juntos.
-          </Typography>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className={buttonVariants({ size: 'lg' }) + ' group w-full sm:w-auto justify-center'}
-              onClick={() => trackEvent('community_join_click', { location: 'footer' })}
-            >
-              <MessageCircle size={16} />
-              Entrar Gratuitamente
-              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href={WHOP_COMMIT_PLUS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className={
-                buttonVariants({ variant: 'outline', size: 'lg' }) +
-                ' w-full sm:w-auto justify-center'
-              }
-              onClick={() => trackEvent('commit_plus_checkout', { location: 'footer' })}
-            >
-              Conhecer o Commit+
-            </a>
-          </div>
-        </div>
-      </div>
+    <footer className="mt-auto">
+      <div className="px-5 py-12 sm:px-8">
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
+        >
+          <Image
+            src="/commit_icon_256w.webp"
+            alt=""
+            width={24}
+            height={24}
+            className="shrink-0 rounded-md object-cover"
+          />
+          CommitPT
+        </a>
+        <Typography variant="small" color="muted" className="mt-3 max-w-sm">
+          A comunidade portuguesa de Engenharia de Software.
+        </Typography>
 
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        {/* Brand */}
-        <div className="mb-12">
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"
-          >
-            <Image
-              src="/commit_icon_256w.webp"
-              alt=""
-              width={28}
-              height={28}
-              className="shrink-0 rounded-md object-cover"
-            />
-            CommitPT
-          </a>
-          <Typography variant="small" color="muted" className="mt-4 max-w-sm">
-            A comunidade portuguesa de Engenharia de Software.
-          </Typography>
-        </div>
-
-        {/* Navigation & Legal Footer */}
-        <div className="flex flex-col items-start justify-between gap-6 border-t border-border pt-8 sm:flex-row sm:items-center">
-          {/* Nav Links & Socials */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+        <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="/privacy" className="transition-colors hover:text-foreground">
+              Política de Privacidade
+            </a>
+            <a href="/terms" className="transition-colors hover:text-foreground">
+              Termos e Condições
+            </a>
             <a
               href="https://www.instagram.com/commitpt_/"
               target="_blank"
               rel="noreferrer"
-              aria-label="Instagram"
-              className="hover:text-primary transition-colors"
+              className="transition-colors hover:text-foreground"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
+              Instagram
             </a>
           </div>
-
-          {/* Legal Links & Copyright */}
-          <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-            <a href="/privacy" className="hover:text-primary transition-colors">
-              Política de Privacidade
-            </a>
-            <a href="/terms" className="hover:text-primary transition-colors">
-              Termos e Condições
-            </a>
-            <Typography variant="caption" color="muted">
-              © 2025-{new Date().getFullYear()} CommitPT. Todos os direitos reservados
-            </Typography>
-          </div>
+          <span className="font-mono">© 2025-{new Date().getFullYear()} CommitPT</span>
         </div>
       </div>
     </footer>

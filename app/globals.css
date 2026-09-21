@@ -7,15 +7,18 @@
 
 @theme {
   /* ── @commitpt/design-system tokens (inlined from theme.css) ──────── */
+  /* As superfícies (background/surface/elevated/muted/card/border) estão em
+     cinzento neutro em vez do navy do DS: o navy chocava com as paletas
+     âmbar/verde do fundo. Se a direção aprovar, propor isto ao design-system. */
 
   /* Background scale */
-  --color-background: oklch(0.136 0.022 254); /* #0A0F1A */
-  --color-surface: oklch(0.184 0.025 254); /* #111827 */
-  --color-elevated: oklch(0.247 0.033 254); /* #1D293D */
+  --color-background: oklch(0.155 0.004 265); /* #0B0C0E — neutro (DS: navy #0A0F1A) */
+  --color-surface: oklch(0.185 0.004 265); /* neutro (DS: #111827) */
+  --color-elevated: oklch(0.235 0.005 265); /* neutro (DS: #1D293D) */
 
   /* Foreground */
   --color-foreground: oklch(0.983 0.004 247); /* #F8FAFC */
-  --color-muted-foreground: oklch(0.679 0.024 247); /* #94A3B8 */
+  --color-muted-foreground: oklch(0.7 0.008 265); /* neutro (DS: #94A3B8) */
 
   /* Primary (blue) */
   --color-primary-900: oklch(0.216 0.045 256.2);
@@ -52,7 +55,7 @@
   --color-accent-foreground: oklch(0.983 0.004 247);
 
   /* Muted */
-  --color-muted: oklch(0.214 0.029 254);
+  --color-muted: oklch(0.205 0.004 265);
 
   /* Semantic */
   --color-success: oklch(0.723 0.19 146);
@@ -60,14 +63,14 @@
   --color-destructive: oklch(0.637 0.237 25); /* #EF4444 */
 
   /* Card & Popover */
-  --color-card: oklch(0.214 0.029 254);
+  --color-card: oklch(0.205 0.004 265);
   --color-card-foreground: oklch(0.983 0.004 247);
-  --color-popover: oklch(0.214 0.029 254);
+  --color-popover: oklch(0.205 0.004 265);
   --color-popover-foreground: oklch(0.983 0.004 247);
 
   /* Border, Input, Ring */
-  --color-border: oklch(0.307 0.03 254); /* #2B3648 */
-  --color-input: oklch(0.184 0.025 254);
+  --color-border: oklch(0.27 0.005 265); /* neutro (DS: #2B3648) */
+  --color-input: oklch(0.185 0.004 265);
   --color-ring: var(--color-primary-500);
 
   /* Radius */
@@ -93,17 +96,9 @@
   --color-syntax-green: #8af29a;
   --color-syntax-blue: #93d5ff;
 
-  /* ── Marquee animation ───────────────────────────────────────────── */
-  --animate-marquee: marquee 45s linear infinite;
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
+  /* ── Frame widths (max-w-content / max-w-wide) ──────────────────── */
+  --container-content: 45rem; /* 720px — coluna entre as calhas interiores */
+  --container-wide: 70rem; /* 1120px — moldura exterior */
 }
 
 @utility icon-xxs {
@@ -165,12 +160,132 @@
     border-color: var(--color-border);
   }
 
+  html,
   body {
-    background: #0b1a2e;
+    /* FrameRule usa w-screen (inclui a scrollbar); clip evita scroll horizontal sem partir o sticky */
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Site background palettes ─────────────────────────────────────────────
+   `data-bg` é escolhido pelo BACKGROUND_SCRIPT (SiteBackground.tsx) antes do
+   primeiro paint. Sem JS fica a paleta 0. Só cores dos tokens do design
+   system. Se acrescentares uma paleta, atualiza PALETTE_COUNT. */
+
+:root,
+html[data-bg='0'] {
+  /* main — primary-500 → secondary-600 */
+  --bg-from: oklch(0.703 0.168 244.6);
+  --bg-to: oklch(0.406 0.191 294.5);
+  --bg-accent: oklch(0.703 0.168 244.6);
+}
+
+html[data-bg='1'] {
+  /* hotfix — warning → destructive */
+  --bg-from: oklch(0.771 0.162 79);
+  --bg-to: oklch(0.637 0.237 25);
+  --bg-accent: oklch(0.771 0.162 79);
+}
+
+html[data-bg='2'] {
+  /* merged — success → primary-600 */
+  --bg-from: oklch(0.723 0.19 146);
+  --bg-to: oklch(0.468 0.184 261.6);
+  --bg-accent: oklch(0.723 0.19 146);
+}
+
+html[data-bg='3'] {
+  /* release — secondary-500 → warning */
+  --bg-from: oklch(0.75 0.12 293);
+  --bg-to: oklch(0.771 0.162 79);
+  --bg-accent: oklch(0.75 0.12 293);
+}
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+/* Painel com o degradê da visita dentro da moldura (hero, fundador, CTA final).
+   Os filhos precisam de `relative z-10` para ficarem por cima. */
+.gradient-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+/* Manchas de cor — ligeiramente maiores que o contentor para poderem derivar */
+.site-bg::before,
+.gradient-panel::before {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  z-index: -1;
+  background:
+    radial-gradient(40% 60% at 5% 15%, var(--bg-from), transparent 70%),
+    radial-gradient(
+      35% 50% at 10% 90%,
+      color-mix(in oklch, var(--bg-from), var(--bg-to)),
+      transparent 70%
+    ),
+    radial-gradient(40% 60% at 95% 85%, var(--bg-to), transparent 70%),
+    radial-gradient(
+      35% 50% at 90% 10%,
+      color-mix(in oklch, var(--bg-from), var(--bg-to)),
+      transparent 70%
+    );
+  animation: bg-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.gradient-panel::before {
+  inset: -20%;
+  background:
+    radial-gradient(50% 55% at 25% 20%, var(--bg-from), transparent 70%),
+    radial-gradient(55% 60% at 80% 75%, var(--bg-to), transparent 70%),
+    radial-gradient(
+      40% 45% at 70% 15%,
+      color-mix(in oklch, var(--bg-from), var(--bg-to)),
+      transparent 70%
+    );
+  opacity: 0.85;
+  animation-duration: 18s;
+}
+
+/* Grão — tira as faixas ao degradê */
+.site-bg::after,
+.gradient-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes bg-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08) rotate(4deg);
+  }
+  100% {
+    transform: translate3d(-3%, 3%, 0) scale(1.04) rotate(-3deg);
   }
 }
 
@@ -197,64 +312,12 @@
   display: none;
 }
 
-/* ── Hero entry animations ────────────────────────────────────────────── */
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-enter-1 {
-  animation: fade-in-up 0.7s ease 0.05s both;
-}
-.hero-enter-2 {
-  animation: fade-in-up 0.7s ease 0.18s both;
-}
-.hero-enter-3 {
-  animation: fade-in-up 0.7s ease 0.3s both;
-}
-.hero-enter-4 {
-  animation: fade-in-up 0.7s ease 0.42s both;
-}
-.hero-enter-5 {
-  animation: fade-in-up 0.7s ease 0.55s both;
-}
-.hero-enter-6 {
-  animation: fade-in-up 0.7s ease 0.7s both;
-}
-
-/* ── Marquee pause on hover ───────────────────────────────────────────── */
-
-.pause-on-hover:hover {
-  animation-play-state: paused;
-}
-
 /* ── Reduced motion ───────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter-1,
-  .hero-enter-2,
-  .hero-enter-3,
-  .hero-enter-4,
-  .hero-enter-5,
-  .hero-enter-6 {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .pause-on-hover {
-    animation-play-state: paused !important;
-  }
-
-  .animate-marquee {
-    animation: none !important;
+  .site-bg::before,
+  .gradient-panel::before {
+    animation: none;
   }
 
   .animate-ping {

@@ -28,11 +28,11 @@ const nextConfig = {
 
   async redirects() {
     return [
-      { source: '/projects', destination: '/#projects', permanent: true },
-      { source: '/projects/:id', destination: '/#projects', permanent: true },
-      { source: '/contributors', destination: '/#people', permanent: true },
-      { source: '/pricing', destination: '/#commit-plus', permanent: true },
-      { source: '/commit-plus', destination: '/#commit-plus', permanent: true },
+      { source: '/projects', destination: '/#beneficios', permanent: true },
+      { source: '/projects/:id', destination: '/#beneficios', permanent: true },
+      { source: '/contributors', destination: '/#quem', permanent: true },
+      { source: '/pricing', destination: '/#precos', permanent: true },
+      { source: '/commit-plus', destination: '/#precos', permanent: true },
     ]
   },
 

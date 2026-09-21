@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import CookieConsent from '@/src/components/CookieConsent'
+import Frame from '@/src/components/layout/Frame'
+import SiteBackground, { BACKGROUND_SCRIPT } from '@/src/components/layout/SiteBackground'
 import './globals.css'
 
 const BASE_URL = 'https://www.commitpt.com'
@@ -74,23 +76,29 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt" className="scroll-smooth">
+    // suppressHydrationWarning: o BACKGROUND_SCRIPT acrescenta `data-bg` antes da hidratação
+    <html
+      lang="pt"
+      // As variáveis de fonte têm de estar no <html>: o --font-sans do @theme é resolvido em :root
+      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: BACKGROUND_SCRIPT }} />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#0A0F1A" />
+        <meta name="theme-color" content="#0B0C0E" />
         <link rel="preconnect" href="https://avatars.githubusercontent.com" />
       </head>
-      <body
-        className={`${GeistSans.variable} ${GeistMono.variable} bg-background text-foreground antialiased`}
-      >
+      <body className="bg-background text-foreground antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-hidden"
         >
           Saltar para o conteúdo principal
         </a>
-        {children}
+        <SiteBackground />
+        <Frame>{children}</Frame>
         <CookieConsent />
       </body>
     </html>
