@@ -204,8 +204,14 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 ### Links & tracking
 
 - All conversion URLs live in `src/lib/links.ts` — never hard-code them.
-- Use `CtaLink` (`src/components/ui/CtaLink.tsx`) for every CTA: it handles `target`/`rel`,
-  tracking and the `accent | outline | ghost` styles.
+- Use `CtaLink` (`src/components/ui/CtaLink.tsx`) for every CTA link, and `ctaClassName()` +
+  `CtaContent` (`src/components/ui/ctaStyles.tsx`) for `<button>`s. CtaLink handles `target`/`rel`,
+  tracking and the button styles. Don't use the DS `Button`/`buttonVariants` for CTAs.
+  - `accent` — **keycap**: palette color with a darker bottom edge (`btn-key` utility in
+    `globals.css`); lifts on hover, presses down on click. One per block — the main action.
+  - `outline` — plain rounded outline; the border turns palette-colored on hover. Secondary action.
+    (No `+` corner marks on buttons — those belong to the frame only.)
+  - `ghost` — text link with an underline that grows on hover (e.g. "Entrar grátis" in the header).
 - `target="_blank" rel="noreferrer"` on all external links.
 - Every CTA calls `trackEvent()` (`src/lib/analytics.ts`) with a `location` param:
   `community_join_click` (Discord), `commit_plus_checkout` (Whop), `pricing_anchor_click`,

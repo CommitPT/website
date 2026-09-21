@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Script from 'next/script'
-import { buttonVariants } from '@commitpt/design-system'
+import { CtaContent, ctaClassName } from '@/src/components/ui/ctaStyles'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -64,7 +64,7 @@ export default function CookieConsent() {
         <div
           role="dialog"
           aria-label="Consentimento de cookies"
-          className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-[#151922]"
+          className="fixed right-0 bottom-0 left-0 z-50 border-t border-border bg-surface/95 backdrop-blur-md"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
@@ -73,20 +73,21 @@ export default function CookieConsent() {
               consentimento e os cookies não são usados para publicidade.{' '}
               <a
                 href="/privacy"
-                className="text-foreground underline underline-offset-2 hover:text-primary transition-colors"
+                className="text-foreground underline underline-offset-2 transition-colors hover:text-(--bg-accent)"
               >
                 Política de Privacidade
               </a>
             </p>
             <div className="flex w-full shrink-0 justify-end gap-3 sm:w-auto">
               <button
+                type="button"
                 onClick={handleDecline}
-                className={buttonVariants({ variant: 'outline', size: 'sm' })}
+                className={ctaClassName('outline', 'sm')}
               >
-                Recusar
+                <CtaContent variant="outline">Recusar</CtaContent>
               </button>
-              <button onClick={handleAccept} className={buttonVariants({ size: 'sm' })}>
-                Aceitar
+              <button type="button" onClick={handleAccept} className={ctaClassName('accent', 'sm')}>
+                <CtaContent variant="accent">Aceitar</CtaContent>
               </button>
             </div>
           </div>

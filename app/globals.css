@@ -101,6 +101,38 @@
   --container-wide: 70rem; /* 1120px — moldura exterior */
 }
 
+/* ── Botão principal: tecla ───────────────────────────────────────────
+   Preenchido com a cor da paleta + "rebordo" inferior mais escuro. Sobe no
+   hover, afunda ao clicar. --key-depth muda por tamanho (CtaLink). */
+@utility btn-key {
+  --key-edge: color-mix(in oklch, var(--bg-accent), black 45%);
+  --key-shine: inset 0 1px 0 0 rgb(255 255 255 / 0.25);
+  background-color: var(--bg-accent);
+  color: var(--color-background);
+  box-shadow:
+    0 var(--key-depth, 3px) 0 0 var(--key-edge),
+    var(--key-shine);
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    filter 120ms ease;
+
+  &:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow:
+      0 calc(var(--key-depth, 3px) + 1px) 0 0 var(--key-edge),
+      var(--key-shine);
+  }
+
+  &:active {
+    transform: translateY(var(--key-depth, 3px));
+    box-shadow:
+      0 0 0 0 var(--key-edge),
+      var(--key-shine);
+  }
+}
+
 @utility icon-xxs {
   width: 0.75rem;
   height: 0.75rem;
@@ -315,6 +347,13 @@ html[data-bg='3'] {
 /* ── Reduced motion ───────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  .btn-key,
+  .btn-key:hover,
+  .btn-key:active {
+    transition: none;
+    transform: none;
+  }
+
   .site-bg::before,
   .gradient-panel::before {
     animation: none;
