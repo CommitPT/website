@@ -24,16 +24,27 @@ export default function Hero() {
     <Section width="wide" bleed>
       <div className="grid lg:grid-cols-[1.05fr_1fr]">
         {/* Texto */}
-        <div className="flex flex-col justify-center px-5 py-14 sm:px-8 lg:px-12 lg:py-24">
-          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
+        <div
+          data-reveal-group
+          className="flex flex-col justify-center px-5 py-14 sm:px-8 lg:px-12 lg:py-24"
+        >
+          <p
+            data-reveal
+            className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase"
+          >
             {hero.eyebrow}
           </p>
-          <h1 className="mt-5 text-4xl leading-[1.05] font-bold tracking-tight text-balance text-foreground sm:text-5xl lg:text-6xl">
+          <h1
+            data-hero-title
+            className="mt-5 text-4xl leading-[1.05] font-bold tracking-tight text-balance text-foreground sm:text-5xl lg:text-6xl"
+          >
             {hero.title}
           </h1>
-          <p className="mt-6 max-w-lg text-lg text-pretty text-muted-foreground">{hero.subtitle}</p>
+          <p data-reveal className="mt-6 max-w-lg text-lg text-pretty text-muted-foreground">
+            {hero.subtitle}
+          </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div data-reveal className="mt-8 flex flex-col gap-3 sm:flex-row">
             <CtaLink href={DISCORD_URL} event="community_join_click" location="hero" size="lg">
               {hero.primaryCta}
             </CtaLink>
@@ -49,13 +60,19 @@ export default function Hero() {
             </CtaLink>
           </div>
 
-          <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-4">
+          <dl
+            data-reveal
+            data-count-group
+            className="mt-12 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-4"
+          >
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col-reverse gap-1">
                 <dt className="font-mono text-[11px] tracking-[0.15em] whitespace-nowrap text-muted-foreground uppercase">
                   {stat.label}
                 </dt>
-                <dd className="font-mono text-2xl text-foreground">{stat.value}</dd>
+                <dd data-count className="font-mono text-2xl text-foreground">
+                  {stat.value}
+                </dd>
               </div>
             ))}
           </dl>

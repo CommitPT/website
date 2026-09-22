@@ -10,10 +10,18 @@ import { useEffect } from 'react'
 //
 //   data-reveal-group   contentor cujos [data-reveal] entram em cascata
 //   data-reveal         elemento que aparece ao entrar no ecrã (sozinho ou num grupo)
+//   data-count-group    contentor cujos [data-count] contam até ao valor final
+//   data-diff-group     contentor cujos [data-diff-line] entram como um diff aplicado
+//   data-hero-title     título do hero: só se move, nunca fica invisível (LCP)
 //
 // O anime.js é carregado aqui por import() — fica fora do "First Load JS".
 
-type Revert = () => void
+type Cleanup = () => void
+
+/** Seletores observados; cada um tem o seu efeito em `runEffect`. */
+const TRIGGERS = '[data-reveal-group], [data-reveal], [data-count-group], [data-diff-group]'
+
+const show = (el: Element) => ((el as HTMLElement).style.opacity = '1')
 
 export default function HomeMotion() {
   useEffect(() => {
@@ -32,67 +40,136 @@ export default function HomeMotion() {
     root.setAttribute('data-motion-ready', '')
 
     let cancelled = false
-    const cleanups: Revert[] = []
+    const cleanups: Cleanup[] = []
 
-    import(/* webpackExports: ["animate", "stagger"] */ 'animejs').then(({ animate, stagger }) => {
-      if (cancelled) return
+    import(/* webpackExports: ["animate", "stagger", "utils"] */ 'animejs').then(
+      ({ animate, stagger }) => {
+        if (cancelled) return
 
-      const reveal = (targets: Element[], cascade: boolean) => {
-        const animation = animate(targets, {
-          opacity: [0, 1],
-          y: [16, 0],
-          duration: 600,
-          delay: cascade ? stagger(70) : 0,
-          ease: 'out(3)',
-        })
-        cleanups.push(() => animation.revert())
-      }
+        const track = (animation: { revert: () => unknown }) =>
+          cleanups.push(() => animation.revert())
 
-      const groups = [...document.querySelectorAll<HTMLElement>('[data-reveal-group]')]
-      const singles = [...document.querySelectorAll<HTMLElement>('[data-reveal]')].filter(
-        (el) => !el.closest('[data-reveal-group]')
-      )
-      const pending = new Set<Element>([...groups, ...singles])
+        // ── Efeitos ──
 
-      const targetsOf = (el: Element) =>
-        el.hasAttribute('data-reveal-group') ? [...el.querySelectorAll('[data-reveal]')] : [el]
+        const reveal = (targets: Element[], cascade: boolean) =>
+          track(
+            animate(targets, {
+              opacity: [0, 1],
+              y: [16, 0],
+              duration: 600,
+              delay: cascade ? stagger(70) : 0,
+              ease: 'out(3)',
+            })
+          )
 
-      const show = (el: Element, animated: boolean) => {
-        pending.delete(el)
-        observer.unobserve(el)
-        const targets = targetsOf(el)
-        if (animated) reveal(targets, el.hasAttribute('data-reveal-group'))
-        else for (const target of targets) (target as HTMLElement).style.opacity = '1'
-      }
+        // Conta até ao valor que já está no HTML (o texto final nunca depende do JS).
+        const countUp = (el: Element) => {
+          const finalText = el.textContent ?? ''
+          const target = Number(finalText.replace(/\D/g, ''))
+          const suffix = finalText.replace(/[\d\s  ]/g, '')
+          if (!target) return
+          const counter = { value: 0 }
+          track(
+            animate(counter, {
+              value: target,
+              duration: 1200,
+              ease: 'out(4)',
+              onUpdate: () => {
+                const value = Math.round(counter.value).toLocaleString('pt-PT').replace(/ /g, ' ')
+                el.textContent = value + suffix
+              },
+              onComplete: () => {
+                el.textContent = finalText
+              },
+            })
+          )
+        }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) if (entry.isIntersecting) show(entry.target, true)
-        },
-        { rootMargin: '0px 0px -10% 0px' }
-      )
-      for (const el of pending) observer.observe(el)
+        // Linhas `+` do Commit+ a entrar como um diff a ser aplicado, com flash verde.
+        const applyDiff = (lines: Element[]) => {
+          track(
+            animate(lines, {
+              opacity: [0, 1],
+              x: [-10, 0],
+              duration: 450,
+              delay: stagger(80),
+              ease: 'out(3)',
+            })
+          )
+          track(
+            animate(lines, {
+              backgroundColor: ['rgba(126, 231, 135, 0.18)', 'rgba(126, 231, 135, 0)'],
+              duration: 900,
+              delay: stagger(80),
+              ease: 'out(2)',
+            })
+          )
+        }
 
-      // Saltos de âncora (menu) passam por cima de secções inteiras sem as fazer
-      // intersectar. O que já ficou acima do ecrã aparece de imediato, sem animação.
-      let scheduled = false
-      const onScroll = () => {
-        if (scheduled) return
-        scheduled = true
-        requestAnimationFrame(() => {
-          scheduled = false
-          for (const el of [...pending]) {
-            if (el.getBoundingClientRect().bottom < 0) show(el, false)
+        const runEffect = (el: Element, animated: boolean) => {
+          if (el.hasAttribute('data-reveal-group')) {
+            const targets = [...el.querySelectorAll('[data-reveal]')]
+            animated ? reveal(targets, true) : targets.forEach(show)
+          } else if (el.hasAttribute('data-count-group')) {
+            if (animated) el.querySelectorAll('[data-count]').forEach(countUp)
+          } else if (el.hasAttribute('data-diff-group')) {
+            const targets = [...el.querySelectorAll('[data-diff-line]')]
+            animated ? applyDiff(targets) : targets.forEach(show)
+          } else {
+            animated ? reveal([el], false) : show(el)
           }
-        })
-      }
-      window.addEventListener('scroll', onScroll, { passive: true })
+        }
 
-      cleanups.push(() => {
-        observer.disconnect()
-        window.removeEventListener('scroll', onScroll)
-      })
-    })
+        // ── Observação ──
+
+        // Um [data-reveal] dentro de um grupo é animado pelo grupo, a menos que tenha
+        // um efeito próprio (ex.: a lista de números é revelada pelo grupo e conta sozinha).
+        const ownEffect = '[data-reveal-group], [data-count-group], [data-diff-group]'
+        const pending = new Set<Element>(
+          [...document.querySelectorAll(TRIGGERS)].filter(
+            (el) => el.matches(ownEffect) || !el.closest('[data-reveal-group]')
+          )
+        )
+
+        const handle = (el: Element, animated: boolean) => {
+          pending.delete(el)
+          observer.unobserve(el)
+          runEffect(el, animated)
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) if (entry.isIntersecting) handle(entry.target, true)
+          },
+          { rootMargin: '0px 0px -10% 0px' }
+        )
+        for (const el of pending) observer.observe(el)
+
+        // Saltos de âncora (menu) passam por cima de secções inteiras sem as fazer
+        // intersectar. O que já ficou acima do ecrã aparece de imediato, sem animação.
+        let scheduled = false
+        const onScroll = () => {
+          if (scheduled) return
+          scheduled = true
+          requestAnimationFrame(() => {
+            scheduled = false
+            for (const el of [...pending]) {
+              if (el.getBoundingClientRect().bottom < 0) handle(el, false)
+            }
+          })
+        }
+        window.addEventListener('scroll', onScroll, { passive: true })
+
+        cleanups.push(() => {
+          observer.disconnect()
+          window.removeEventListener('scroll', onScroll)
+        })
+
+        // O título do hero nunca fica invisível (é o LCP): só acompanha a entrada.
+        const heroTitle = document.querySelector('[data-hero-title]')
+        if (heroTitle) track(animate(heroTitle, { y: [10, 0], duration: 700, ease: 'out(3)' }))
+      }
+    )
 
     return () => {
       cancelled = true

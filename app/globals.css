@@ -348,11 +348,13 @@ html[data-bg='3'] {
    Só escondemos com data-motion (movimento aceite + JS). Se o HomeMotion não
    arrancar a tempo, a animação de segurança revela tudo aos 2,5 s. */
 
-[data-motion] [data-reveal] {
+[data-motion] [data-reveal],
+[data-motion] [data-diff-line] {
   opacity: 0;
 }
 
-[data-motion]:not([data-motion-ready]) [data-reveal] {
+[data-motion]:not([data-motion-ready]) [data-reveal],
+[data-motion]:not([data-motion-ready]) [data-diff-line] {
   animation: reveal-fallback 0.4s ease 2.5s forwards;
 }
 
