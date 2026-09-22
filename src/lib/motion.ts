@@ -9,9 +9,6 @@
 
 export const MOTION_SCRIPT = `(function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.setAttribute('data-motion','')}catch(e){}})()`
 
-/** Tempo máximo (ms desde o início da navegação) para o HomeMotion assumir as animações. */
-export const MOTION_DEADLINE_MS = 2400
-
 export function motionEnabled(): boolean {
   return typeof document !== 'undefined' && document.documentElement.hasAttribute('data-motion')
 }

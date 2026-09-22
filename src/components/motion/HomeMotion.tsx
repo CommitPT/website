@@ -1,6 +1,6 @@
 'use client'
 
-import { MOTION_DEADLINE_MS, motionEnabled } from '@/src/lib/motion'
+import { motionEnabled } from '@/src/lib/motion'
 import { useEffect } from 'react'
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -20,9 +20,12 @@ export default function HomeMotion() {
     if (!motionEnabled()) return
 
     const root = document.documentElement
-    // Chegámos tarde: a animação CSS de segurança já revelou tudo. Desligar o movimento
-    // em vez de voltar a esconder o que o visitante já está a ver.
-    if (performance.now() > MOTION_DEADLINE_MS) {
+
+    // Chegámos tarde? A pergunta certa é se a animação CSS de segurança já revelou os
+    // elementos — não quanto tempo passou desde o início da navegação (em `yarn dev` a
+    // compilação sozinha ultrapassa qualquer prazo, e numa ligação lenta também).
+    const sample = document.querySelector('[data-reveal]')
+    if (sample && parseFloat(getComputedStyle(sample).opacity) > 0.99) {
       root.removeAttribute('data-motion')
       return
     }
