@@ -79,14 +79,14 @@ o painel fora do ecrã (IntersectionObserver) e com o separador escondido (`visi
 Limpeza completa ao desmontar.
 
 **Acceptance criteria:**
-- [ ] Animação contínua e suave (≈60 fps num portátil comum)
-- [ ] Sem render loop com o painel fora do ecrã ou o separador escondido
-- [ ] Ao desmontar: `renderer.dispose()`, geometrias e materiais libertados, listeners removidos
+- [x] Animação contínua e suave (≈60 fps num portátil comum)
+- [x] Sem render loop com o painel fora do ecrã ou o separador escondido
+- [x] Ao desmontar: `renderer.dispose()`, geometrias e materiais libertados, listeners removidos
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Auditoria: com scroll até ao fim da página, contar frames de `requestAnimationFrame` durante 1 s. Tem de dar ~0
-- [ ] Manual: sem saltos ao voltar ao separador e sem avisos de WebGL na consola
+- [x] Verificação comum
+- [x] Auditoria: com scroll até ao fim da página, contar frames de `requestAnimationFrame` durante 1 s. Tem de dar ~0
+- [x] Manual: sem saltos ao voltar ao separador e sem avisos de WebGL na consola
 
 **Dependencies:** Task 2
 
