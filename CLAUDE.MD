@@ -40,6 +40,8 @@ yarn lint           # next lint (ESLint)
 yarn format         # prettier --write . (auto-fix formatting)
 yarn format:check   # prettier --check . (CI-safe check)
 yarn build          # production build (also runs type check + lint)
+                    # NEXT_DIST_DIR=.next-audit yarn build builds to another folder, so a
+                    # running `yarn dev` does not corrupt it (and vice-versa)
 ```
 
 All four checks — `typecheck`, `lint`, `format:check`, and `build` — run in CI on every push and PR
@@ -199,7 +201,7 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 | After table    | Commit+ nudge strip                                                  |
 | Pricing        | Free + **Commit+ highlighted**, annual plan by default               |
 | Final CTA      | Both                                                                 |
-| Mobile         | Sticky bottom bar with both, after the hero                          |
+| Mobile         | `MobileCtaBar`: sticky bottom bar with both, between hero and pricing |
 
 ### Links & tracking
 
@@ -215,6 +217,9 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
   - CTAs are `inline-flex` in the base class, so a plain `hidden` does **not** hide them (same
     specificity, `inline-flex` wins). Hide with a variant instead: `max-sm:hidden`, not
     `hidden sm:inline-flex`.
+- `MobileCtaBar` (`< md` only) appears once the hero leaves the viewport and hides again at
+  `#precos`, where it would repeat what is on screen. It waits for the cookie decision, because
+  that banner is fixed to the bottom too — `src/lib/consent.ts` holds the shared key and event.
 - `target="_blank" rel="noreferrer"` on all external links.
 - Every CTA calls `trackEvent()` (`src/lib/analytics.ts`) with a `location` param:
   `community_join_click` (Discord), `commit_plus_checkout` (Whop), `pricing_anchor_click`,

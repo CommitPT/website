@@ -1,5 +1,6 @@
 import Footer from '@/src/components/Footer'
 import Header from '@/src/components/Header'
+import MobileCtaBar from '@/src/components/MobileCtaBar'
 import Benefits from '@/src/components/sections/Benefits'
 import Comparison from '@/src/components/sections/Comparison'
 import Faq from '@/src/components/sections/Faq'
@@ -28,6 +29,7 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
+      <MobileCtaBar />
     </>
   )
 }

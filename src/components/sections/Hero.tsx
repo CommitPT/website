@@ -20,7 +20,7 @@ const proofAvatars = contributors
 
 export default function Hero() {
   return (
-    <Section width="wide" bleed>
+    <Section id="hero" width="wide" bleed>
       <div className="grid lg:grid-cols-[1.05fr_1fr]">
         {/* Texto */}
         <div className="flex flex-col justify-center px-5 py-14 sm:px-8 lg:px-12 lg:py-24">

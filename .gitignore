@@ -53,3 +53,4 @@ LIGHTHOUSE_REPORT.md
 
 # Lock files (project uses yarn)
 package-lock.json
+.next*
