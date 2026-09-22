@@ -1,4 +1,5 @@
 import Section from '@/src/components/layout/Section'
+import HeroScene from '@/src/components/three/HeroScene'
 import CtaLink from '@/src/components/ui/CtaLink'
 import VideoPlayer from '@/src/components/ui/VideoPlayer'
 import { hero, stats } from '@/src/content/home'
@@ -60,8 +61,9 @@ export default function Hero() {
           </dl>
         </div>
 
-        {/* Painel: degradê + VSL */}
+        {/* Painel: degradê + commit graph + VSL */}
         <div className="gradient-panel flex flex-col items-center justify-center gap-5 px-5 py-12 sm:px-8 lg:border-l lg:border-border lg:px-10">
+          <HeroScene />
           <div className="relative z-10 w-full max-w-xl">
             <VideoPlayer videoId={hero.videoId} title={hero.videoTitle} />
           </div>

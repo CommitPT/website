@@ -49,14 +49,14 @@ painel do hero com `next/dynamic({ ssr: false })`, carregada só com o painel vi
 livre. Nesta tarefa renderiza **um só frame**, sem loop, para isolar o risco de bundle e fallback.
 
 **Acceptance criteria:**
-- [ ] Desktop com WebGL: o grafo aparece por trás do vídeo, com as cores da paleta da visita
-- [ ] Movimento reduzido, sem WebGL, `saveData`, `< 768px` ou `hardwareConcurrency <= 4`: o three.js nem é pedido e fica o degradê CSS
-- [ ] "First Load JS" de `/` continua em 132 kB ± 3 kB
+- [x] Desktop com WebGL: o grafo aparece por trás do vídeo, com as cores da paleta da visita
+- [x] Movimento reduzido, sem WebGL, `saveData`, `< 768px` ou `hardwareConcurrency <= 4`: o three.js nem é pedido e fica o degradê CSS
+- [x] "First Load JS" de `/` continua em 132 kB ± 3 kB
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Auditoria: a 1440px o chunk do three é pedido. A 320px e com movimento reduzido não é pedido (ver pedidos de rede no CDP)
-- [ ] Manual: 4 refreshes, e as cores do grafo mudam com a paleta
+- [x] Verificação comum
+- [x] Auditoria: a 1440px o chunk do three é pedido. A 320px e com movimento reduzido não é pedido (ver pedidos de rede no CDP)
+- [x] Manual: 4 refreshes, e as cores do grafo mudam com a paleta
 
 **Dependencies:** Task 1 (flag `data-motion`)
 

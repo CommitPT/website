@@ -49,23 +49,46 @@ export default function HomeMotion() {
       const singles = [...document.querySelectorAll<HTMLElement>('[data-reveal]')].filter(
         (el) => !el.closest('[data-reveal-group]')
       )
+      const pending = new Set<Element>([...groups, ...singles])
+
+      const targetsOf = (el: Element) =>
+        el.hasAttribute('data-reveal-group') ? [...el.querySelectorAll('[data-reveal]')] : [el]
+
+      const show = (el: Element, animated: boolean) => {
+        pending.delete(el)
+        observer.unobserve(el)
+        const targets = targetsOf(el)
+        if (animated) reveal(targets, el.hasAttribute('data-reveal-group'))
+        else for (const target of targets) (target as HTMLElement).style.opacity = '1'
+      }
 
       const observer = new IntersectionObserver(
         (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue
-            observer.unobserve(entry.target)
-            if (entry.target.hasAttribute('data-reveal-group')) {
-              reveal([...entry.target.querySelectorAll('[data-reveal]')], true)
-            } else {
-              reveal([entry.target], false)
-            }
-          }
+          for (const entry of entries) if (entry.isIntersecting) show(entry.target, true)
         },
         { rootMargin: '0px 0px -10% 0px' }
       )
-      for (const el of [...groups, ...singles]) observer.observe(el)
-      cleanups.push(() => observer.disconnect())
+      for (const el of pending) observer.observe(el)
+
+      // Saltos de âncora (menu) passam por cima de secções inteiras sem as fazer
+      // intersectar. O que já ficou acima do ecrã aparece de imediato, sem animação.
+      let scheduled = false
+      const onScroll = () => {
+        if (scheduled) return
+        scheduled = true
+        requestAnimationFrame(() => {
+          scheduled = false
+          for (const el of [...pending]) {
+            if (el.getBoundingClientRect().bottom < 0) show(el, false)
+          }
+        })
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
+
+      cleanups.push(() => {
+        observer.disconnect()
+        window.removeEventListener('scroll', onScroll)
+      })
     })
 
     return () => {

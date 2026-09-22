@@ -48,7 +48,7 @@ num telemóvel fraco ou sem WebGL.** As animações são uma camada por cima, nu
 - [x] T1: Base de movimento + secções a aparecer no scroll (anime.js)
 
 ### Fase 2: Cena 3D (o maior risco, por isso vem cedo)
-- [ ] T2: Commit graph estático no painel do hero, com fallback
+- [x] T2: Commit graph estático no painel do hero, com fallback
 - [ ] T3: Commit graph vivo (crescer, parallax, pausa fora do ecrã)
 
 ### Checkpoint A: auditoria + desempenho + revisão tua
