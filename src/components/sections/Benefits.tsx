@@ -12,11 +12,14 @@ export default function Benefits() {
   return (
     <Section id="beneficios">
       <SectionHeading label={benefits.label} title={benefits.title} />
-      <ul className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
+      <ul
+        data-reveal-group
+        className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2"
+      >
         {benefits.items.map((item) => {
           const tag = TIER_TAG[item.tier]
           return (
-            <li key={item.title} className="flex flex-col bg-background p-6">
+            <li key={item.title} data-reveal className="flex flex-col bg-background p-6">
               <span
                 className={cx(
                   'self-start rounded-full border px-2.5 py-0.5 font-mono text-[11px]',

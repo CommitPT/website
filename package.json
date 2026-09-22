@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@commitpt/design-system": "^0.3.3",
+    "animejs": "^4.5.0",
     "geist": "^1.7.2",
     "lucide-react": "^0.460.0",
     "next": "^14.2.5",
