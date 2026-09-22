@@ -54,14 +54,14 @@ num telemóvel fraco ou sem WebGL.** As animações são uma camada por cima, nu
 ### Checkpoint A: auditoria + desempenho + revisão tua
 
 ### Fase 3: Micro-animações
-- [ ] T4: Entrada do hero
-- [ ] T5: Números a contar
-- [ ] T6: Preços do Commit+ como diff de git
+- [x] T4: Entrada do hero
+- [x] T5: Números a contar
+- [x] T6: Preços do Commit+ como diff de git
 
 ### Checkpoint B: auditoria + revisão tua
 
 ### Fase 4: Fecho
-- [ ] T7: Documentação (CLAUDE.MD, PLANO-REDESIGN) e verificação final
+- [x] T7: Documentação (CLAUDE.MD, PLANO-REDESIGN) e verificação final
 
 ## Riscos e mitigação
 

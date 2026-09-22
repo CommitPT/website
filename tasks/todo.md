@@ -112,13 +112,13 @@ Limpeza completa ao desmontar.
 subir 12px). O `<h1>` sobe só em `transform`, sem começar invisível, para não atrasar o LCP.
 
 **Acceptance criteria:**
-- [ ] Cascata de ~600 ms no total, sem bounce
-- [ ] O `<h1>` nunca tem `opacity < 1`
-- [ ] Movimento reduzido: sem animação
+- [x] Cascata de ~600 ms no total, sem bounce
+- [x] O `<h1>` nunca tem `opacity < 1`
+- [x] Movimento reduzido: sem animação
 
 **Verification:**
-- [ ] Verificação comum + LCP igual ao do Checkpoint A (±100 ms)
-- [ ] Manual: carregar a página 3 vezes, sem flash de conteúdo
+- [x] Verificação comum + LCP igual ao do Checkpoint A (±100 ms)
+- [x] Manual: carregar a página 3 vezes, sem flash de conteúdo
 
 **Dependencies:** Task 1
 
@@ -137,13 +137,13 @@ entram no ecrã, com o formato pt-PT (espaço como separador de milhares). O HTM
 final, para SEO, sem JS e com movimento reduzido.
 
 **Acceptance criteria:**
-- [ ] Contagem de ~1,2 s, com easing a abrandar no fim, uma só vez
-- [ ] O valor final é idêntico ao texto original (incluindo o `+`)
-- [ ] Sem saltos de layout durante a contagem (largura fixa com `tabular-nums`)
+- [x] Contagem de ~1,2 s, com easing a abrandar no fim, uma só vez
+- [x] O valor final é idêntico ao texto original (incluindo o `+`)
+- [x] Sem saltos de layout durante a contagem (largura fixa com `tabular-nums`)
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Auditoria: CLS durante a contagem = 0
+- [x] Verificação comum
+- [x] Auditoria: CLS durante a contagem = 0
 
 **Dependencies:** Task 1
 
@@ -162,13 +162,13 @@ diff a ser aplicado: cada uma desliza e tem um flash verde breve no fundo. Refor
 Commit+ é "o Gratuito mais isto".
 
 **Acceptance criteria:**
-- [ ] Linhas `+` em cascata (~80 ms entre linhas), com flash verde que desvanece
-- [ ] O botão "Aderir" não é animado (clicável desde o início)
-- [ ] Movimento reduzido: sem animação
+- [x] Linhas `+` em cascata (~80 ms entre linhas), com flash verde que desvanece
+- [x] O botão "Aderir" não é animado (clicável desde o início)
+- [x] Movimento reduzido: sem animação
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Manual: ver no desktop e a 320px
+- [x] Verificação comum
+- [x] Manual: ver no desktop e a 320px
 
 **Dependencies:** Task 1
 
@@ -181,8 +181,8 @@ Commit+ é "o Gratuito mais isto".
 ---
 
 ## Checkpoint B: depois das Tasks 4–6
-- [ ] Verificação comum + auditoria completa
-- [ ] **Revisão tua**: a quantidade de movimento parece intencional e não "template"?
+- [x] Verificação comum + auditoria completa
+- [x] **Revisão tua**: a quantidade de movimento parece intencional e não "template"?
 
 ---
 
@@ -194,13 +194,13 @@ regras da cena, como adicionar uma animação nova) e marca a fase 7 como feita 
 `scripts/ui-audit.mjs`.
 
 **Acceptance criteria:**
-- [ ] O `CLAUDE.MD` explica como adicionar uma animação sem criar client components
-- [ ] O plano do redesign está atualizado
-- [ ] Auditoria final registada no PR
+- [x] O `CLAUDE.MD` explica como adicionar uma animação sem criar client components
+- [x] O plano do redesign está atualizado
+- [x] Auditoria final registada no PR
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Revisão de um PR `feat/motion` → `website/v2`
+- [x] Verificação comum
+- [x] Revisão de um PR `feat/motion` → `website/v2`
 
 **Dependencies:** Tasks 1–6
 
