@@ -24,7 +24,9 @@ export default function Pricing() {
           <ul className="mt-6 space-y-2 font-mono text-sm">
             {free.features.map((feature) => (
               <li key={feature} className="text-muted-foreground">
-                <span className="mr-2 text-foreground/50">✓</span>
+                <span aria-hidden className="mr-2 text-foreground/50">
+                  ✓
+                </span>
                 {feature}
               </li>
             ))}
@@ -52,12 +54,16 @@ export default function Pricing() {
           <p className="mt-1 text-sm text-muted-foreground">{plus.note}</p>
           <ul className="mt-6 space-y-2 font-mono text-sm">
             <li className="text-muted-foreground">
-              <span className="mr-2 text-foreground/50">✓</span>
+              <span aria-hidden className="mr-2 text-foreground/50">
+                ✓
+              </span>
               {plus.includes}
             </li>
             {plus.features.map((feature) => (
               <li key={feature} className="text-foreground">
-                <span className="mr-2 text-success">+</span>
+                <span aria-hidden className="mr-2 text-success">
+                  +
+                </span>
                 {feature}
               </li>
             ))}

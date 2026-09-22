@@ -8,7 +8,7 @@ import { cx } from '@/src/lib/cx'
 import { DISCORD_URL } from '@/src/lib/links'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // ── Scroll spy ────────────────────────────────────────────────────────────────
 
@@ -45,6 +45,19 @@ const NAV_IDS = nav.map((item) => item.id)
 export default function Header() {
   const [open, setOpen] = useState(false)
   const active = useActiveSection(NAV_IDS)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  // Escape fecha o menu mobile e devolve o foco ao botão que o abriu.
+  useEffect(() => {
+    if (!open) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setOpen(false)
+      menuButtonRef.current?.focus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
 
   return (
     <>
@@ -90,7 +103,9 @@ export default function Header() {
               location="header"
               variant="ghost"
               size="sm"
-              className="hidden sm:inline-flex"
+              // max-sm:hidden e não `hidden sm:inline-flex`: o CtaLink já traz `inline-flex`
+              // na base e ganhava ao `hidden`, empurrando o menu para fora do ecrã em 320px.
+              className="max-sm:hidden"
             >
               Entrar grátis
             </CtaLink>
@@ -98,9 +113,11 @@ export default function Header() {
               Juntar-me
             </CtaLink>
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
+              aria-controls="mobile-menu"
               aria-label={open ? 'Fechar menu' : 'Abrir menu'}
               className="ml-1 rounded-md p-2 text-muted-foreground hover:text-foreground lg:hidden"
             >
@@ -110,7 +127,11 @@ export default function Header() {
         </div>
 
         {open && (
-          <nav aria-label="Secções" className="relative border-t border-border px-5 py-4 lg:hidden">
+          <nav
+            id="mobile-menu"
+            aria-label="Secções"
+            className="relative border-t border-border px-5 py-4 lg:hidden"
+          >
             <ul className="flex flex-col">
               {nav.map((item) => (
                 <li key={item.id}>

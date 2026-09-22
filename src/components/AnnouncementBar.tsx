@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react'
 /** Faixa por cima do header com o próximo evento. Não é sticky — sai ao fazer scroll. */
 export default function AnnouncementBar() {
   return (
-    <div className="relative">
+    <aside aria-label="Próximo evento" className="relative">
       <a
         href={DISCORD_URL}
         target="_blank"
@@ -27,6 +27,6 @@ export default function AnnouncementBar() {
         />
       </a>
       <FrameRule />
-    </div>
+    </aside>
   )
 }

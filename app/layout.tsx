@@ -78,9 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     // suppressHydrationWarning: o BACKGROUND_SCRIPT acrescenta `data-bg` antes da hidratação
     <html
-      lang="pt"
+      lang="pt-PT"
       // As variáveis de fonte têm de estar no <html>: o --font-sans do @theme é resolvido em :root
-      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
+      className={`${GeistSans.variable} ${GeistMono.variable} motion-safe:scroll-smooth`}
       suppressHydrationWarning
     >
       <head>

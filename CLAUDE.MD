@@ -212,6 +212,9 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
   - `outline` — plain rounded outline; the border turns palette-colored on hover. Secondary action.
     (No `+` corner marks on buttons — those belong to the frame only.)
   - `ghost` — text link with an underline that grows on hover (e.g. "Entrar grátis" in the header).
+  - CTAs are `inline-flex` in the base class, so a plain `hidden` does **not** hide them (same
+    specificity, `inline-flex` wins). Hide with a variant instead: `max-sm:hidden`, not
+    `hidden sm:inline-flex`.
 - `target="_blank" rel="noreferrer"` on all external links.
 - Every CTA calls `trackEvent()` (`src/lib/analytics.ts`) with a `location` param:
   `community_join_click` (Discord), `commit_plus_checkout` (Whop), `pricing_anchor_click`,
