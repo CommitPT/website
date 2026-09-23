@@ -10,7 +10,10 @@ interface SectionHeadingProps {
 /** Pílula + título (+ subtítulo) centrados no topo de cada secção. */
 export default function SectionHeading({ label, title, subtitle }: SectionHeadingProps) {
   return (
-    <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center gap-4 text-center">
+    <div
+      data-reveal
+      className="mx-auto mb-12 flex max-w-2xl flex-col items-center gap-4 text-center"
+    >
       <SectionLabel>{label}</SectionLabel>
       <Typography variant="h2" className="tracking-tight text-balance">
         {title}

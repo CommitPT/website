@@ -15,15 +15,18 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "audit:ui": "node scripts/ui-audit.mjs",
     "prepare": "husky"
   },
   "dependencies": {
     "@commitpt/design-system": "^0.3.3",
+    "animejs": "^4.5.0",
     "geist": "^1.7.2",
     "lucide-react": "^0.460.0",
     "next": "^14.2.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.186.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
@@ -32,6 +35,7 @@
     "@types/node": "26.1.2",
     "@types/react": "19.2.18",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.186.0",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
     "eslint": "^8.57.0",

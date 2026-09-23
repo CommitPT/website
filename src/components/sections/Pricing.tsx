@@ -52,7 +52,7 @@ export default function Pricing() {
             <span className="text-base text-muted-foreground">{plus.period}</span>
           </p>
           <p className="mt-1 text-sm text-muted-foreground">{plus.note}</p>
-          <ul className="mt-6 space-y-2 font-mono text-sm">
+          <ul data-diff-group className="mt-6 space-y-2 font-mono text-sm">
             <li className="text-muted-foreground">
               <span aria-hidden className="mr-2 text-foreground/50">
                 ✓
@@ -60,7 +60,7 @@ export default function Pricing() {
               {plus.includes}
             </li>
             {plus.features.map((feature) => (
-              <li key={feature} className="text-foreground">
+              <li key={feature} data-diff-line className="rounded-sm text-foreground">
                 <span aria-hidden className="mr-2 text-success">
                   +
                 </span>
