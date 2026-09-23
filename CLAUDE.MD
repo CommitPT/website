@@ -140,14 +140,14 @@ they cross the frame borders. There are no inner rails.
 | Width     | Token                 | Utility         | Used for                                          |
 | --------- | --------------------- | --------------- | ------------------------------------------------- |
 | `content` | `--container-content` | `max-w-content` | Text-heavy sections (benefits, pricing, FAQ)      |
-| `wide`    | `--container-wide`    | `max-w-wide`    | Frame, hero, grids, comparison table, testimonials |
+| `wide`    | `--container-wide`    | `max-w-wide`    | Frame, hero, grids, the rituals table, testimonials |
 
 Layout primitives in `src/components/layout/`:
 
 - `Frame` — outer frame (mounted once in `app/layout.tsx`)
 - `SiteBackground` — fixed gradient + grain behind the frame, plus `BACKGROUND_SCRIPT`
 - `Section` — `<Section width="content" | "wide" id=… bleed?>`; draws the `+` marks and the
-  full-bleed bottom line. `bleed` removes padding (hero, final CTA).
+  full-bleed bottom line. `bleed` removes padding (the hero).
 - `SectionHeading` — centered pill + title (+ subtitle) for each section
 - `SectionLabel` — mono pill above each section heading
 - `FrameRule`, `CrossMark` — used by the above
@@ -187,11 +187,18 @@ hydration mismatches).
 3. **Para quem é** — 4 profiles
 4. **O que ganhas** — 4 benefits, each tagged `Grátis` or `Commit+`
 5. **Quem está por trás** — founder + contributors
-6. **Compara as alternativas** — `wide` comparison table (stacked cards on mobile)
-7. **Testemunhos**
+6. **Como funciona** — `wide` table comparing **the two plans only**, Gratuito against Commit+,
+   row by row (stacked cards on mobile). It never measures CommitPT against a CTESP, a degree or a
+   bootcamp: those give different results. The closing line states the limits in professional
+   terms — no curriculum, no certification, no guaranteed placement. This section carries the
+   detail; the pricing section carries the decision.
+7. **Testemunhos** — real reviews only: Whop (`getWhopReviews()`) merged with `src/reviews.json`,
+   deduped by the first 60 characters. Marquee on desktop, snap-scroll on mobile (`ReviewScroll`).
+   Without `WHOP_API_KEY` the section still renders the local ones — it must never be empty.
 8. **Gratuito vs Commit+** — `id="precos"`
 9. **FAQ**
-10. **Final CTA** + Footer
+10. **Footer** — the closing gradient band; there is no final CTA section (the two paths already
+    appear in the header, hero, benefit tags, the strip after the table, pricing and the mobile bar)
 
 Build status per phase: see `docs/PLANO-REDESIGN.md`.
 
@@ -204,9 +211,8 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 | Header         | "Entrar grátis" (ghost, Discord) + "Juntar-me" → `/#precos`          |
 | Under the VSL  | **"Entrar grátis no Discord"** (primary) + "Ver o Commit+" (outline) |
 | Benefits       | `Grátis` / `Commit+` tags per benefit                                |
-| After table    | Commit+ nudge strip                                                  |
+| After table    | Commit+ nudge strip (`location: 'how_it_works'`)                     |
 | Pricing        | Free + **Commit+ highlighted**, annual plan by default               |
-| Final CTA      | Both                                                                 |
 | Mobile         | `MobileCtaBar`: sticky bottom bar with both, between hero and pricing |
 
 ### Links & tracking
@@ -240,9 +246,20 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 - **Tone**: direct, builder-to-builder. No hype.
 - **Copy lives in `src/content/home.ts`**, not inside JSX. Placeholders are marked `// TODO(copy)`.
 - **Honesty**: real numbers, names, photos and testimonials only. Inspiration sites provide
-  structure, never content — don't copy their text or claims.
+  structure, never content — don't copy their text or claims. Nothing on the page may promise a
+  job, a salary or any guaranteed outcome, and the site does not compare itself to degrees,
+  CTESPs or bootcamps — those give different results; the community adds to them.
+- **Reviews are never written by us.** They come from Whop and from `src/reviews.json`, published
+  as they were written. Naming a company (an employer, a guest's workplace) needs their permission.
 - Current facts: 550+ members, 90 000+ messages, 4+ sessions/month, 14+ contributors.
-  Commit+: €19.99/month or €119.88/year.
+  Commit+: €19.99/month or €119.88/year. Meets run on Tuesdays and Thursdays; Talks happen when
+  there is a guest — don't invent a cadence.
+
+### Environment
+
+`WHOP_API_KEY`, `WHOP_COMPANY_ID` and `WHOP_PRODUCT_ID` power the Whop reviews (and the plan
+prices). Everything degrades gracefully without them: `src/lib/whop.ts` returns empty and the last
+good response is reused, so the build never fails on a missing key.
 
 ---
 
@@ -252,8 +269,14 @@ Three layers, all optional extras — the page must be complete and usable witho
 
 ### 1. CSS/Tailwind
 
-`transition-*`, `animate-ping`, and the `bg-drift` keyframes on the background gradients. Disabled
-under `prefers-reduced-motion`.
+`transition-*`, `animate-ping`, the `bg-drift` keyframes on the background gradients, and the
+testimonials `marquee` (paused on hover via `.pause-on-hover`). All disabled under
+`prefers-reduced-motion`.
+
+**Careful with the design system in client components.** `@commitpt/design-system` is a barrel and
+`optimizePackageImports` is off for it (see `next.config.js`), so importing a single component into
+a client component pulls the whole package — `ExpandableText` alone added 17 kB to the first load.
+That is why `ReviewScroll` has its own small "Ver mais" instead.
 
 ### 2. anime.js — `HomeMotion`
 
@@ -311,8 +334,8 @@ app/
 src/
   components/
     layout/              # Frame, Section, SectionHeading, SectionLabel, SiteBackground, FrameRule, CrossMark
-    sections/            # Hero, ForWho, Benefits, Founder, Comparison, Testimonials, Pricing, Faq, FinalCta
-    ui/                  # CtaLink, VideoPlayer ('use client')
+    sections/            # Hero, ForWho, Benefits, Founder, HowItWorks, Testimonials, Pricing, Faq
+    ui/                  # CtaLink, VideoPlayer, ReviewScroll ('use client')
     AnnouncementBar.tsx  # next-event bar above the header
     Header.tsx           # sticky nav + CTAs ('use client': scroll spy, mobile menu)
     Footer.tsx           # brand + legal links

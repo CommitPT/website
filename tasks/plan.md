@@ -1,83 +1,83 @@
-# Plano de implementação: animações (anime.js) + cena 3D (three.js)
+# Plano de implementação: conteúdo real e honestidade da página
 
-Branch: `feat/motion`, criada a partir de `website/v2`. Tarefas em [`tasks/todo.md`](todo.md).
+Branch sugerida: `feat/content-pass`, a partir de `website/v2`. Tarefas em [`todo.md`](todo.md).
+O plano das animações, já concluído, está em [`done/motion-plan.md`](done/motion-plan.md).
 
 ## Visão geral
 
-Dar vida ao site sem o tornar mais lento nem mais difícil de usar. Duas camadas:
+Quatro mudanças que tiram lorem ipsum e ruído da página, e trocam a única secção que fazia uma
+afirmação que não queremos fazer. Nenhuma delas é técnica ao ponto de precisar de infraestrutura
+nova, exceto os testemunhos, que passam a vir da Whop.
 
-1. **anime.js**: movimento pequeno e com propósito. Entrada do hero, secções a aparecer ao
-   fazer scroll, números a contar e os preços do Commit+ a entrarem como um diff de git.
-2. **three.js**: uma única cena, o **"commit graph"**. Um grafo de git em 3D, com a linha
-   `main`, branches que saem e fazem merge e commits novos a aparecer na ponta, em loop. Fica no
-   painel do hero, por trás do vídeo, com as cores da paleta da visita. É a imagem da própria
-   comunidade: pessoas a fazer commits em conjunto.
+1. **Hero** com texto real, em vez de lorem ipsum.
+2. **Chamada final sai.** Os botões já aparecem no header, no hero, nos preços, na faixa depois da
+   tabela e na barra do telemóvel. Repetir outra vez antes do rodapé é ruído.
+3. **"Compara as alternativas" passa a "Como funciona o Commit+".** Deixa de comparar e passa a
+   explicar.
+4. **Testemunhos reais**, vindos da Whop, com o layout deslizante que já existe no `master`.
 
-Regra de ouro: **o site tem de continuar perfeito sem JavaScript, com "reduzir movimento" ativo,
-num telemóvel fraco ou sem WebGL.** As animações são uma camada por cima, nunca uma dependência.
+**Fora de âmbito:** a secção "Quem está por trás". O texto e as fotos são do CEO, e não se mexe.
 
 ## Decisões de arquitetura
 
-- **Nenhuma secção passa a client component.** As secções continuam Server Components e marcam
-  o que anima com atributos `data-*` (`data-reveal`, `data-count-to`, `data-diff-line`). Um só
-  componente cliente, `HomeMotion`, lê esses atributos e aplica o anime.js. Menos JS e o markup
-  continua a ser a fonte de verdade.
-- **As duas bibliotecas carregam depois do conteúdo.** O `animejs` entra por `import()` dentro de
-  um `useEffect`, e o `three` por `next/dynamic({ ssr: false })` só quando o painel do hero está
-  visível e o browser está livre (`requestIdleCallback`). Critério mensurável: o "First Load JS"
-  de `/` no `yarn build` fica em **132 kB ± 3 kB**.
-- **Movimento opcional.** O `BACKGROUND_SCRIPT` (já corre no `<head>`) passa também a pôr
-  `data-motion` no `<html>` quando **não** há `prefers-reduced-motion`. O CSS só esconde os
-  elementos a animar quando esse atributo existe, e há uma animação CSS de segurança que os mostra
-  ao fim de ~2,5 s se o anime.js não chegar. Assim nunca há conteúdo preso invisível.
-- **O LCP não é tocado.** O `<h1>` do hero nunca começa invisível. Anima só em `transform`,
-  a partir de um estado visível. Os restantes elementos podem fazer fade.
-- **Cores da cena vêm da paleta.** O `--bg-from`/`--bg-to` estão em `oklch()`, que o
-  `THREE.Color` não entende. Um utilitário converte-os para RGB desenhando 1 píxel num canvas 2D
-  e lendo-o com `getImageData`.
-- **A cena desiste cedo.** Não carrega se: movimento reduzido, sem WebGL, `saveData`, ecrã
-  `< 768px` ou `hardwareConcurrency <= 4`. Nesses casos fica o degradê CSS atual, que já é bonito.
-  Quando carrega, faz pausa fora do ecrã e com o separador escondido, e limita o
-  `devicePixelRatio` a 1,5.
-- **Geometria barata.** `Points` + `LineSegments` com ~150 nós, sem texturas nem luzes. O círculo
-  dos pontos é feito no shader. O canvas é transparente, com mistura aditiva por cima do degradê.
+- **A tabela deixa de comparar percursos.** Comparar o Commit+ com um CTESP, uma licenciatura ou um
+  bootcamp é uma comparação falsa: dão coisas diferentes (canudo, estágio e avaliação, contra
+  prática, revisão de código e rede). E nada na página pode sugerir emprego garantido. A tabela
+  passa a descrever os quatro rituais — o que é, com que ritmo, e com o que o membro fica — e
+  fecha com uma linha a assumir o que a CommitPT **não** é.
+- **Testemunhos: Whop primeiro, ficheiro como rede de segurança.** O padrão do `master` mantém-se:
+  `getWhopReviews()` (já existe em `src/lib/whop.ts`) mais as avaliações locais de
+  `src/reviews.json`. Sem chave de API, ou com a API em baixo, a secção mostra na mesma as locais.
+  Nunca pode ficar vazia nem rebentar o build.
+- **O componente de testemunhos é portado, não reinventado.** O `ReviewScroll` do `master` já
+  resolve marquee no desktop, scroll com snap no telemóvel, "Ver mais" por cartão e a metade
+  duplicada escondida dos leitores de ecrã. Traz-se para dentro da nossa `Section`, com os tokens
+  atuais.
+- **A secção fica Server Component**; só o carrossel é cliente, como no `master`.
+- **O movimento respeita as regras que já temos:** o marquee tem de parar com
+  `prefers-reduced-motion`, tal como tudo o resto.
 
 ## Tarefas
 
-### Fase 1: Base
-- [x] T1: Base de movimento + secções a aparecer no scroll (anime.js)
+### Fase 1: Texto e limpeza
+- [x] T1: Texto real no hero
+- [x] T2: Remover a chamada final
 
-### Fase 2: Cena 3D (o maior risco, por isso vem cedo)
-- [x] T2: Commit graph estático no painel do hero, com fallback
-- [x] T3: Commit graph vivo (crescer, parallax, pausa fora do ecrã)
+### Checkpoint A: revisão tua do texto
 
-### Checkpoint A: auditoria + desempenho + revisão tua
+### Fase 2: A tabela
+- [x] T3: "Como funciona" no lugar da comparação
 
-### Fase 3: Micro-animações
-- [x] T4: Entrada do hero
-- [x] T5: Números a contar
-- [x] T6: Preços do Commit+ como diff de git
+### Fase 3: Testemunhos (o maior risco)
+- [x] T4: Carrossel de testemunhos reais, com dados da Whop
 
 ### Checkpoint B: auditoria + revisão tua
 
 ### Fase 4: Fecho
-- [x] T7: Documentação (CLAUDE.MD, PLANO-REDESIGN) e verificação final
+- [x] T5: Documentação e auditoria final
 
 ## Riscos e mitigação
 
 | Risco | Impacto | Mitigação |
 |---|---|---|
-| three.js pesado no primeiro carregamento | Alto | Chunk à parte, carregado só no idle e com o painel visível. Verificado pelo "First Load JS" no build |
-| LCP pior por causa da animação de entrada | Alto | O `<h1>` nunca começa invisível. LCP medido na auditoria antes/depois |
-| Conteúdo preso invisível se o JS falhar | Alto | CSS só esconde com `data-motion`, mais a animação de segurança de 2,5 s |
-| Cena a gastar bateria/CPU | Médio | Pausa fora do ecrã e com o separador escondido, DPR ≤ 1,5, ~150 nós, desativada em mobile e hardware fraco |
-| `oklch` não suportado pelo three | Médio | Conversão via canvas 2D. Se falhar, usa cores fixas da paleta 0 |
-| Movimento a mais a parecer "template" | Médio | Uma animação por secção, no máximo. Durações 400–700 ms, sem bounce. Revisão tua nos checkpoints |
-| React Strict Mode monta os efeitos duas vezes | Baixo | Todos os efeitos limpam-se (`revert()` no anime, `dispose()` no three) |
+| Sem `WHOP_API_KEY` o build não traz avaliações | Alto | `src/reviews.json` é sempre incluído; a secção nunca fica vazia |
+| API da Whop lenta ou em baixo a travar a página | Alto | Pedido em cache (`unstable_cache`), com falha silenciosa para o ficheiro local |
+| Testemunhos muito compridos (há um com 12 linhas) | Médio | `ExpandableText` com 3 linhas e "Ver mais"; altura do cartão fixa |
+| Marquee a consumir CPU e a ignorar movimento reduzido | Médio | CSS puro, `pause-on-hover`, e desligado em `prefers-reduced-motion` |
+| Metade duplicada do marquee lida pelos leitores de ecrã | Médio | `aria-hidden` + tirar os botões da cópia (o `inert` como booleano não funciona no React 18) |
+| Texto real mais comprido que o lorem a partir o layout | Médio | `yarn audit:ui` a 320/768/1024/1440 depois de cada tarefa |
+| A tabela nova voltar a sugerir garantias | Alto | Revisão tua no Checkpoint A e linha explícita do que a CommitPT não é |
 
-## Decisões tomadas (2026-09-22)
+## Decisões tomadas (2026-09-23)
 
-1. **Cena 3D:** painel do hero, por trás do vídeo.
-2. **Conceito:** commit graph.
-3. **Telemóvel:** sem cena 3D abaixo de 768px, fica o degradê.
-4. **Auditoria:** o script vai para `scripts/ui-audit.mjs` com `yarn audit:ui` (Task 7).
+1. **Tabela:** "Como funciona o Commit+" — rituais, ritmo e o que o membro leva.
+2. **Hero:** direção "problema" — "Programar sozinho tem limite."
+3. **Chamada final:** sai da página.
+4. **Planos:** o das animações foi arquivado em `tasks/done/`.
+
+## Perguntas em aberto
+
+- O `.env` de produção já tem `WHOP_API_KEY`, `WHOP_COMPANY_ID` e `WHOP_PRODUCT_ID`? Sem isso, a
+  T4 entrega só as 5 avaliações locais (o que é aceitável para lançar).
+- Os números do ritmo na tabela ("~1×/mês", "2–3×/mês") têm de ser confirmados por ti. Os que estão
+  no plano são a minha leitura do site atual.

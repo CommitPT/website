@@ -1,211 +1,158 @@
-# Tarefas: animações + cena 3D
+# Tarefas: conteúdo real e honestidade da página
 
-Plano e decisões: [`tasks/plan.md`](plan.md). Branch: `feat/motion`.
+Plano e decisões: [`plan.md`](plan.md). Branch: `feat/content-pass`.
 
-**Verificação comum a todas as tarefas** (a definition of done deste projeto):
-`yarn typecheck`, `yarn lint`, `yarn format:check` e `yarn build` a passar. "First Load JS" de `/`
-em 132 kB ± 3 kB. Auditoria de UI sem regressões: 0 erros na consola, 0 violações axe, sem overflow
-a 320/768/1024/1440px.
+**Verificação comum a todas as tarefas:** `yarn typecheck`, `yarn lint`, `yarn format:check` e
+`yarn build` a passar; "First Load JS" de `/` dentro de 132 kB ± 5 kB; `yarn audit:ui` sem erros de
+consola, sem violações axe e sem overflow a 320/768/1024/1440px.
 
 ---
 
-## Task 1: Base de movimento + secções a aparecer no scroll
+## Task 1: Texto real no hero
 
-**Description:** Instala o `animejs` e cria a infraestrutura que as outras tarefas usam: a flag
-`data-motion` no `<html>` (definida no script do `<head>` quando não há movimento reduzido), o
-CSS que esconde `[data-reveal]` só com essa flag, a animação de segurança, e o componente cliente
-`HomeMotion`, que importa o anime.js de forma dinâmica. Primeiro uso real: o título de cada secção e
-as células das grelhas (Para quem, O que ganhas, Testemunhos) aparecem em cascata ao entrar no ecrã.
+**Description:** Troca o lorem ipsum do hero pelo texto definitivo, na direção "problema":
+título curto sobre o limite de programar sozinho, subtítulo que diz o que é a comunidade com os
+números reais, e a pílula de prova social por baixo do vídeo. Só toca em conteúdo — a estrutura e
+as animações ficam como estão.
 
 **Acceptance criteria:**
-- [x] Com movimento: títulos e células aparecem em cascata ao fazer scroll, uma só vez
-- [x] Com `prefers-reduced-motion: reduce` ou sem JS: tudo visível de imediato, sem animação
-- [x] O `animejs` não entra no "First Load JS" de `/` (chunk à parte)
+- [x] Nenhum `TODO(copy)` no bloco `hero` de `src/content/home.ts`
+- [x] Nada no texto promete emprego, salário ou resultado garantido
+- [x] Título quebra em 2–3 linhas conforme a largura, sem cortar palavras (3 linhas a 1300px)
 
 **Verification:**
 - [x] Verificação comum
-- [x] Auditoria com emulação de `prefers-reduced-motion: reduce`: nenhum elemento com `opacity: 0`
-- [x] Manual: scroll pela página, e ver que recarregar a meio da página não deixa secções invisíveis
+- [x] Manual: ler em voz alta e confirmar que não há frase de brochura ("desbloqueia o teu potencial")
+- [x] Screenshot a 320 e 1440px
 
 **Dependencies:** Nenhuma
 
 **Files likely touched:**
-- `package.json`, `yarn.lock`
-- `src/components/layout/SiteBackground.tsx` (flag `data-motion` no script)
-- `app/globals.css` (regras `[data-motion] [data-reveal]` + animação de segurança)
-- `src/components/motion/HomeMotion.tsx` (novo)
-- `src/components/layout/SectionHeading.tsx`, `app/page.tsx`
+- `src/content/home.ts`
+
+**Estimated scope:** XS
+
+---
+
+## Task 2: Remover a chamada final
+
+**Description:** A secção "Não evoluas sozinho" sai. Os dois caminhos já aparecem no header, no
+hero, nas etiquetas dos benefícios, na faixa a seguir à tabela, nos preços e na barra do telemóvel.
+A página passa a fechar no FAQ e no rodapé.
+
+**Acceptance criteria:**
+- [x] `FinalCta` deixa de ser montado e o componente é removido
+- [x] A barra do telemóvel continua visível no FAQ e no fim da página (deixa de haver secção depois dos preços a escondê-la)
+- [x] `CLAUDE.MD` deixa de listar a chamada final na estrutura da página e na tabela de CTAs
+
+**Verification:**
+- [x] Verificação comum
+- [x] `yarn audit:ui`: sem regressões, e o rodapé continua a fechar a página com o degradê
+- [x] Manual a 390px: chegar ao fim da página e ver a barra com os dois botões
+
+**Dependencies:** Nenhuma
+
+**Files likely touched:**
+- `app/page.tsx`
+- `src/components/sections/FinalCta.tsx` (apagado)
+- `src/content/home.ts` (bloco `finalCta`)
+- `CLAUDE.MD`
+
+**Estimated scope:** S
+
+---
+
+## Checkpoint A: depois das Tasks 1–2
+- [x] Verificação comum passa
+- [ ] **Revisão tua do texto do hero** antes de escrever o resto do conteúdo
+
+---
+
+## Task 3: "Como funciona o Commit+" no lugar da comparação
+
+**Description:** A secção deixa de comparar percursos e passa a explicar os quatro rituais do
+Commit+: o que é, com que ritmo acontece e com o que o membro fica. Fecha com uma linha a assumir o
+que a CommitPT não é. Mantém-se `wide`, com tabela no desktop e cartões empilhados no telemóvel, e
+mantém-se a faixa de CTA por baixo.
+
+**Acceptance criteria:**
+- [x] Nenhuma linha compara a CommitPT com curso, licenciatura, bootcamp ou aprender sozinho
+- [x] Existe uma linha visível com o que a CommitPT não é (não é curso, não dá certificado, não garante emprego)
+- [x] O id da secção e o link do menu continuam a funcionar
+
+**Verification:**
+- [x] Verificação comum
+- [x] `yarn audit:ui`: sem overflow a 320px (a tabela é o sítio onde isso rebenta primeiro)
+- [x] Manual: ler as 4 linhas e confirmar que nenhuma promete resultado
+
+**Dependencies:** Checkpoint A
+
+**Files likely touched:**
+- `src/content/home.ts` (modelo de dados da secção muda)
+- `src/components/sections/Comparison.tsx` (renomeado)
+- `app/page.tsx`, `CLAUDE.MD`
 
 **Estimated scope:** M
 
 ---
 
-## Task 2: Commit graph estático no painel do hero, com fallback
+## Task 4: Carrossel de testemunhos reais, com dados da Whop
 
-**Description:** Instala `three` + `@types/three`. Cria a cena `CommitGraph`: um grafo de git
-(linha `main` + 3–4 branches que saem e fazem merge, ~150 nós em `Points` e as ligações em
-`LineSegments`), com as cores `--bg-from`/`--bg-to` convertidas de `oklch` para RGB. Monta-a no
-painel do hero com `next/dynamic({ ssr: false })`, carregada só com o painel visível e o browser
-livre. Nesta tarefa renderiza **um só frame**, sem loop, para isolar o risco de bundle e fallback.
+**Description:** Substitui os três cartões de lorem ipsum pelo carrossel do site atual: avaliações
+da Whop (`getWhopReviews()`, já em `src/lib/whop.ts`) juntas às locais de `src/reviews.json`,
+marquee no desktop, scroll com snap no telemóvel e "Ver mais" por cartão. Porta o `ReviewScroll` do
+`master` para dentro da nossa `Section`, com os tokens e o estilo atuais.
 
 **Acceptance criteria:**
-- [x] Desktop com WebGL: o grafo aparece por trás do vídeo, com as cores da paleta da visita
-- [x] Movimento reduzido, sem WebGL, `saveData`, `< 768px` ou `hardwareConcurrency <= 4`: o three.js nem é pedido e fica o degradê CSS
-- [x] "First Load JS" de `/` continua em 132 kB ± 3 kB
+- [x] Com chave de API: aparecem as avaliações da Whop e as locais, sem repetidos
+- [x] Sem chave, ou com a API a falhar: aparecem só as locais, sem erro e sem secção vazia
+- [x] Com `prefers-reduced-motion`: o marquee não anda e os cartões continuam acessíveis por scroll
+- [x] A cópia duplicada do marquee não é lida pelos leitores de ecrã nem apanha o teclado
 
 **Verification:**
 - [x] Verificação comum
-- [x] Auditoria: a 1440px o chunk do three é pedido. A 320px e com movimento reduzido não é pedido (ver pedidos de rede no CDP)
-- [x] Manual: 4 refreshes, e as cores do grafo mudam com a paleta
+- [x] `yarn audit:ui`: 0 violações axe (atenção à ordem de tabulação com a cópia do marquee)
+- [x] Manual: testar com a variável de ambiente apagada, para ver o fallback
+- [x] Manual a 390px: arrastar os cartões e abrir um "Ver mais"
 
-**Dependencies:** Task 1 (flag `data-motion`)
+**Dependencies:** Checkpoint A
 
 **Files likely touched:**
-- `package.json`, `yarn.lock`
-- `src/components/three/CommitGraph.tsx` (novo, cena)
-- `src/components/three/HeroScene.tsx` (novo, dynamic import + condições de fallback)
-- `src/lib/cssColor.ts` (novo, conversão oklch → RGB)
-- `src/components/sections/Hero.tsx`
+- `src/components/sections/Testimonials.tsx`
+- `src/components/ui/ReviewScroll.tsx` (novo, portado)
+- `src/reviews.json` (novo, copiado do `master`)
+- `app/globals.css` (keyframes do marquee, removidos no redesign)
+- `src/content/home.ts`
 
 **Estimated scope:** M
 
 ---
 
-## Task 3: Commit graph vivo
+## Checkpoint B: depois das Tasks 3–4
+- [x] Verificação comum + `yarn audit:ui` completo
+- [x] Screenshots das duas secções a 320 e 1440px
+- [x] **Revisão tua**: a tabela diz o que querias, e os testemunhos estão com os dados certos?
 
-**Description:** Põe a cena a mexer: commits novos a aparecer na ponta do `main` e o grafo a
-deslizar lentamente (loop infinito), branches a fazer merge, e um parallax leve do rato. Pausa com
-o painel fora do ecrã (IntersectionObserver) e com o separador escondido (`visibilitychange`).
-Limpeza completa ao desmontar.
+---
+
+## Task 5: Documentação e auditoria final
+
+**Description:** Atualiza o `CLAUDE.MD` (estrutura da página sem a chamada final, secção nova,
+fonte dos testemunhos e variáveis de ambiente necessárias) e o `docs/PLANO-REDESIGN.md`. Marca no
+`tasks/backlog.md` o que ficou feito.
 
 **Acceptance criteria:**
-- [x] Animação contínua e suave (≈60 fps num portátil comum)
-- [x] Sem render loop com o painel fora do ecrã ou o separador escondido
-- [x] Ao desmontar: `renderer.dispose()`, geometrias e materiais libertados, listeners removidos
-
-**Verification:**
-- [x] Verificação comum
-- [x] Auditoria: com scroll até ao fim da página, contar frames de `requestAnimationFrame` durante 1 s. Tem de dar ~0
-- [x] Manual: sem saltos ao voltar ao separador e sem avisos de WebGL na consola
-
-**Dependencies:** Task 2
-
-**Files likely touched:**
-- `src/components/three/CommitGraph.tsx`
-- `src/components/three/HeroScene.tsx`
-
-**Estimated scope:** S
-
----
-
-## Checkpoint A: depois das Tasks 1–3
-- [ ] Verificação comum passa
-- [ ] LCP medido antes/depois, sem piorar mais de 100 ms
-- [ ] Screenshots a 320/1440px com e sem movimento reduzido
-- [ ] **Revisão tua antes de continuar** (conceito e intensidade da cena)
-
----
-
-## Task 4: Entrada do hero
-
-**Description:** Ao carregar: etiqueta, subtítulo, botões e números entram em cascata (fade +
-subir 12px). O `<h1>` sobe só em `transform`, sem começar invisível, para não atrasar o LCP.
-
-**Acceptance criteria:**
-- [x] Cascata de ~600 ms no total, sem bounce
-- [x] O `<h1>` nunca tem `opacity < 1`
-- [x] Movimento reduzido: sem animação
-
-**Verification:**
-- [x] Verificação comum + LCP igual ao do Checkpoint A (±100 ms)
-- [x] Manual: carregar a página 3 vezes, sem flash de conteúdo
-
-**Dependencies:** Task 1
-
-**Files likely touched:**
-- `src/components/sections/Hero.tsx` (atributos `data-*`)
-- `src/components/motion/HomeMotion.tsx`
-
-**Estimated scope:** S
-
----
-
-## Task 5: Números a contar
-
-**Description:** Os números do hero (550+, 90 000+, 4+, 14+) contam de 0 até ao valor quando
-entram no ecrã, com o formato pt-PT (espaço como separador de milhares). O HTML traz sempre o valor
-final, para SEO, sem JS e com movimento reduzido.
-
-**Acceptance criteria:**
-- [x] Contagem de ~1,2 s, com easing a abrandar no fim, uma só vez
-- [x] O valor final é idêntico ao texto original (incluindo o `+`)
-- [x] Sem saltos de layout durante a contagem (largura fixa com `tabular-nums`)
-
-**Verification:**
-- [x] Verificação comum
-- [x] Auditoria: CLS durante a contagem = 0
-
-**Dependencies:** Task 1
-
-**Files likely touched:**
-- `src/components/sections/Hero.tsx`
-- `src/components/motion/HomeMotion.tsx`
-
-**Estimated scope:** S
-
----
-
-## Task 6: Preços do Commit+ como diff de git
-
-**Description:** Quando o cartão do Commit+ entra no ecrã, as linhas `+` entram uma a uma, como um
-diff a ser aplicado: cada uma desliza e tem um flash verde breve no fundo. Reforça a ideia de que o
-Commit+ é "o Gratuito mais isto".
-
-**Acceptance criteria:**
-- [x] Linhas `+` em cascata (~80 ms entre linhas), com flash verde que desvanece
-- [x] O botão "Aderir" não é animado (clicável desde o início)
-- [x] Movimento reduzido: sem animação
-
-**Verification:**
-- [x] Verificação comum
-- [x] Manual: ver no desktop e a 320px
-
-**Dependencies:** Task 1
-
-**Files likely touched:**
-- `src/components/sections/Pricing.tsx`
-- `src/components/motion/HomeMotion.tsx`
-
-**Estimated scope:** S
-
----
-
-## Checkpoint B: depois das Tasks 4–6
-- [x] Verificação comum + auditoria completa
-- [x] **Revisão tua**: a quantidade de movimento parece intencional e não "template"?
-
----
-
-## Task 7: Documentação e verificação final
-
-**Description:** Atualiza a secção "Animations" do `CLAUDE.MD` (atributos `data-*`, `HomeMotion`,
-regras da cena, como adicionar uma animação nova) e marca a fase 7 como feita no
-`docs/PLANO-REDESIGN.md`. Se aprovares a pergunta 4 do plano, move o script de auditoria para
-`scripts/ui-audit.mjs`.
-
-**Acceptance criteria:**
-- [x] O `CLAUDE.MD` explica como adicionar uma animação sem criar client components
-- [x] O plano do redesign está atualizado
+- [x] O `CLAUDE.MD` explica de onde vêm os testemunhos e o que acontece sem chave de API
+- [x] O documento do CEO reflete a página como ela fica
 - [x] Auditoria final registada no PR
 
 **Verification:**
 - [x] Verificação comum
-- [x] Revisão de um PR `feat/motion` → `website/v2`
+- [x] Revisão de um PR `feat/content-pass` → `website/v2`
 
-**Dependencies:** Tasks 1–6
+**Dependencies:** Tasks 1–4
 
 **Files likely touched:**
-- `CLAUDE.MD`, `docs/PLANO-REDESIGN.md`
-- `scripts/ui-audit.mjs` e `package.json` (opcional)
+- `CLAUDE.MD`, `docs/PLANO-REDESIGN.md`, `tasks/backlog.md`
 
 **Estimated scope:** S

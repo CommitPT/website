@@ -94,11 +94,11 @@ sempre **fora** da zona de texto.
 | 2   | **Para quem é**              | O visitante reconhece-se num dos 4 perfis                                     |
 | 3   | **O que ganhas**             | Benefícios concretos, cada um com prova real                                  |
 | 4   | **Quem está por trás**       | Confiança: pessoas reais, fotos de sessões reais                              |
-| 5   | **Compara as alternativas**  | Mostrar porque a CommitPT faz sentido face a outras opções                    |
+| 5   | **Como funciona**            | O que acontece na prática: encontros, Sessions, Talks e projetos, com o ritmo de cada um |
 | 6   | **Testemunhos**              | Prova social de membros reais                                                 |
 | 7   | **Gratuito vs Commit+**      | A decisão: duas opções lado a lado                                            |
 | 8   | **Perguntas frequentes**     | Tirar as últimas dúvidas (preço, cancelamento, nível necessário)              |
-| 9   | **Chamada final + rodapé**   | Última oportunidade para as duas ações                                        |
+| 9   | **Rodapé**                   | Fecha a página com a cor da visita; os botões já apareceram seis vezes acima  |
 
 ### Conteúdo de cada secção (versão CommitPT)
 
@@ -108,7 +108,7 @@ sempre **fora** da zona de texto.
 | Para quem é             | **Estudantes · À procura do 1.º emprego · Developers que querem subir de nível · Em mudança de carreira** |
 | O que ganhas            | **Talks com recrutadores · Sessions técnicas · Projetos reais com code review · Rede de 550+ devs em PT** |
 | Quem está por trás      | Fundador + contribuidores, com fotos de sessões                                                           |
-| Tabela comparativa      | **Ensino tradicional · Bootcamps · Aprender sozinho · CommitPT**                                          |
+| Como funciona           | **Encontros (terças e quintas) · Commit Sessions · Commit Talks · Projetos com code review**              |
 
 ---
 
@@ -130,7 +130,7 @@ da primeira conversão; o Commit+ é vendido a quem já está convencido.
 | **O que ganhas**             | Cada benefício com etiqueta `Grátis` ou `Commit+`                             | Mostra o que fica de fora sem pagar — cria vontade antes de chegar aos preços  |
 | **Depois da tabela**         | Faixa: "Queres o ritmo completo? Commit+ desde 9,99 €/mês"                   | Momento em que o visitante está mais convencido                                 |
 | **Preços**                   | Gratuito + **Commit+ em destaque** (plano anual por defeito)                  | Aqui o Commit+ é o protagonista                                                |
-| **Chamada final**            | Os dois: "Começa grátis. Sobe quando quiseres."                               | Fecha o caminho                                                                |
+| **Preços (fecho)**           | Os dois, lado a lado, logo antes do FAQ                                       | É onde a decisão se toma; não há secção extra de fecho, seria a sétima repetição |
 | **Telemóvel**                | Barra fixa em baixo: `Entrar grátis` · `Commit+`                              | As duas ações sempre a um toque                                                |
 
 ### Preços apresentados como "o que ganhas a mais"
@@ -190,7 +190,7 @@ computadores fracos fica o degradê. O peso inicial da página subiu 3 kB.
 | 2    | Título + vídeo + botões + prova social                                |
 | 3    | Para quem é · O que ganhas · Quem está por trás                        |
 | 4    | Tabela comparativa (computador e telemóvel)                           |
-| 5    | Testemunhos · Preços · Perguntas frequentes · Chamada final            |
+| 5    | Testemunhos · Preços · Perguntas frequentes                           |
 | 6    | Conteúdo real: vídeo, fotos, textos, números                          |
 | 7    | ✅ Animações (anime.js, three.js)                                      |
 

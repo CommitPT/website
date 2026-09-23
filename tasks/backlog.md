@@ -1,8 +1,9 @@
 # Backlog do website
 
 O que vem a seguir, por ordem de prioridade. Cada item diz **porquê** e o **tamanho**.
-O plano do redesign está em [`docs/PLANO-REDESIGN.md`](../docs/PLANO-REDESIGN.md); as animações
-(feitas) estão em [`plan.md`](plan.md) e [`todo.md`](todo.md).
+O plano do redesign está em [`docs/PLANO-REDESIGN.md`](../docs/PLANO-REDESIGN.md); o plano em curso
+em [`plan.md`](plan.md) e [`todo.md`](todo.md); as animações, já feitas, em
+[`done/motion-plan.md`](done/motion-plan.md).
 
 ---
 
@@ -23,9 +24,10 @@ preços.
 
 ---
 
-## 2. Conteúdo real
+## 2. Conteúdo real — parcialmente feito
 
-18 marcadores `TODO(copy)` em `src/content/home.ts`, mais o vídeo, as fotos e os testemunhos.
+Feito: hero, tabela "Como funciona", testemunhos reais (Whop + `src/reviews.json`) e FAQ.
+Falta: os perfis de "Para quem é", os benefícios, o texto do fundador, o vídeo e as fotos.
 Enquanto houver lorem ipsum, nada do resto interessa: é isto que decide se o visitante fica.
 
 Atenção: texto real é mais comprido que lorem e pode partir o layout. Correr `yarn audit:ui` depois.
