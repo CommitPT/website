@@ -250,16 +250,45 @@ export const pricing = {
 export const faq = {
   label: 'FAQ',
   title: 'Perguntas frequentes',
-  // TODO(copy): respostas finais — ver FAQ do commitpt.com atual
   items: [
-    'Preciso de experiência para entrar?',
-    'Qual a diferença entre o Gratuito e o Commit+?',
-    'Como funcionam as sessões?',
-    'Posso cancelar quando quiser?',
-    'O Commit+ garante emprego?',
-  ].map((question): FaqItem => ({
-    question,
-    answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  })),
+    {
+      question: 'Preciso de ter experiência para entrar?',
+      answer:
+        'Não. Há membros em todos os níveis, de quem está a aprender os primeiros conceitos a profissionais no ativo. Os canais e os encontros de terças e quintas são abertos a todos, e participas ao teu ritmo.',
+    },
+    {
+      question: 'Qual é a diferença entre o Gratuito e o Commit+?',
+      answer:
+        'O Gratuito dá acesso à comunidade toda: Discord, discussões técnicas e os encontros abertos de terças e quintas. O Commit+ acrescenta as Commit Sessions (workshops técnicos), as Commit Talks (conversas com recrutadores e profissionais), o Commit Career (CV, entrevistas e progressão) e acesso a projetos da comunidade com code review.',
+    },
+    {
+      question: 'Como funcionam os encontros e as Commit Sessions?',
+      answer:
+        'Os encontros de terças e quintas são conversas abertas sobre o que cada um anda a construir e dúvidas técnicas. As Commit Sessions são workshops técnicos dados por membros da comunidade sobre temas que dominam — já houve, por exemplo, sessões de cibersegurança. Acontecem ao vivo, no Discord.',
+    },
+    {
+      question: 'Posso cancelar o Commit+ quando quiser?',
+      answer:
+        'Sim. A subscrição é processada pela Whop e podes cancelar a qualquer momento, sem contrato nem fidelização. O acesso mantém-se até ao fim do período já pago.',
+    },
+    {
+      question: 'O Commit+ garante emprego?',
+      answer:
+        'Não, e nenhuma comunidade o pode garantir com seriedade. O Commit+ dá-te prática, code review de pares e contacto direto com quem recruta e trabalha na área. Não é um curso, não emite certificado e não substitui a tua formação académica ou profissional — soma-se a ela.',
+    },
+    {
+      question: 'Tenho de pagar para entrar no Discord?',
+      answer:
+        'Não. O Discord é gratuito e aberto. O Commit+ é uma camada opcional por cima, não um requisito para participar na comunidade.',
+    },
+    {
+      question: 'Quem dá as Commit Sessions e as Commit Talks?',
+      answer:
+        'As Commit Sessions são dadas por membros da própria comunidade, sobre temas que dominam no dia a dia. As Commit Talks juntam recrutadores e profissionais da indústria dispostos a responder a perguntas reais sobre o mercado.',
+    },
+    {
+      question: 'Não encontrei resposta à minha pergunta. O que faço?',
+      answer: 'Entra no Discord e pergunta diretamente nos canais da comunidade.',
+    },
+  ] satisfies FaqItem[],
 }

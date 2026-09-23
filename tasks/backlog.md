@@ -26,9 +26,8 @@ preços.
 
 ## 2. Conteúdo real — parcialmente feito
 
-Feito: hero, tabela "Como funciona" e testemunhos reais (Whop + `src/reviews.json`).
-Falta: os perfis de "Para quem é", os benefícios, o texto do fundador, as respostas do FAQ, o vídeo
-e as fotos.
+Feito: hero, tabela "Como funciona", testemunhos reais (Whop + `src/reviews.json`) e FAQ.
+Falta: os perfis de "Para quem é", os benefícios, o texto do fundador, o vídeo e as fotos.
 Enquanto houver lorem ipsum, nada do resto interessa: é isto que decide se o visitante fica.
 
 Atenção: texto real é mais comprido que lorem e pode partir o layout. Correr `yarn audit:ui` depois.
