@@ -250,9 +250,11 @@ html[data-bg='3'] {
   background: var(--color-background);
 }
 
-/* Painel com o degradê da visita dentro da moldura (hero, fundador, CTA final).
-   Os filhos precisam de `relative z-10` para ficarem por cima. */
+/* Painel com o degradê da visita dentro da moldura (hero, fundador, rodapé).
+   Os filhos precisam de `relative z-10` para ficarem por cima. A intensidade
+   ajusta-se por --panel-opacity (ex.: [--panel-opacity:0.45] no rodapé). */
 .gradient-panel {
+  --panel-opacity: 0.85;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -293,7 +295,7 @@ html[data-bg='3'] {
       color-mix(in oklch, var(--bg-from), var(--bg-to)),
       transparent 70%
     );
-  opacity: 0.85;
+  opacity: var(--panel-opacity);
   animation-duration: 18s;
 }
 
@@ -345,11 +347,12 @@ html[data-bg='3'] {
 }
 
 /* ── Linhas adicionadas do diff (preços do Commit+) ───────────────────────
-   O fundo fica permanente: a animação de entrada só aplica o diff, não é ela
-   que dá o destaque. O HomeMotion anima até exatamente este valor. */
+   Seguem a paleta da visita, como o resto dos acentos. O fundo é permanente: a
+   animação de entrada só aplica o diff, e o HomeMotion aterra neste valor
+   (converte --bg-accent para rgba, porque o anime.js não lê oklch). */
 
 [data-diff-line] {
-  background-color: rgb(126 231 135 / 0.1);
+  background-color: color-mix(in srgb, var(--bg-accent) 12%, transparent);
 }
 
 /* ── Scroll reveals (HomeMotion) ──────────────────────────────────────────

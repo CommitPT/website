@@ -4,11 +4,14 @@ import { finalCta } from '@/src/content/home'
 import { DISCORD_URL } from '@/src/lib/links'
 import { Typography } from '@commitpt/design-system'
 
+// Sem degradê aqui: encostada ao degradê que está fora da moldura, ficavam dois
+// degradês a competir. O fecho visual da página é o rodapé.
+
 export default function FinalCta() {
   return (
     <Section width="wide" bleed>
-      <div className="gradient-panel px-5 py-20 text-center sm:px-8 md:py-28">
-        <div className="relative z-10 mx-auto max-w-xl">
+      <div className="px-5 py-20 text-center sm:px-8 md:py-28">
+        <div className="mx-auto max-w-xl">
           <Typography variant="h2" className="tracking-tight text-balance">
             {finalCta.title}
           </Typography>
@@ -23,7 +26,6 @@ export default function FinalCta() {
               location="final"
               variant="outline"
               size="lg"
-              className="bg-background/60 backdrop-blur"
             >
               Ver o Commit+
             </CtaLink>

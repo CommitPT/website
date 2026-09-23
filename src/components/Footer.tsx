@@ -5,11 +5,17 @@ import Image from 'next/image'
 //
 // Só marca e links legais. A chamada final (Discord + Commit+) é uma secção
 // própria da homepage, para não aparecer nas páginas legais.
+//
+// É aqui que o degradê da visita fecha a página, a metade da intensidade dos
+// painéis do hero, para não competir com os links.
 
 export default function Footer() {
   return (
-    <footer className="mt-auto">
-      <div className="px-5 py-12 sm:px-8">
+    <footer className="gradient-panel mt-auto [--panel-opacity:0.32]">
+      {/* Véu escuro: o degradê fecha a página, mas o texto do rodapé tem de continuar
+          legível em cima das zonas claras de qualquer paleta. */}
+      <div aria-hidden className="absolute inset-0 bg-background/55" />
+      <div className="relative z-10 px-5 py-12 sm:px-8">
         <a
           href="/"
           className="inline-flex items-center gap-2 font-mono text-lg font-bold text-foreground"

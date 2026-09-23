@@ -51,7 +51,7 @@ export default function Pricing() {
           </p>
           <p className="mt-1 text-sm text-muted-foreground">{plus.note}</p>
           {/* Cabeçalho de hunk: decoração, por isso escondida do leitor de ecrã. */}
-          <p aria-hidden className="mt-6 font-mono text-xs text-success/70">
+          <p aria-hidden className="mt-6 font-mono text-xs text-(--bg-accent)/70">
             @@ o que o Commit+ acrescenta @@
           </p>
           <ul data-diff-group className="mt-2 space-y-1 font-mono text-sm">
@@ -60,10 +60,10 @@ export default function Pricing() {
               <li
                 key={feature}
                 data-diff-line
-                className="flex gap-2 rounded-r-sm border-l-2 border-success/60 py-1 pr-2 pl-2 text-foreground"
+                className="flex gap-2 rounded-r-sm border-l-2 border-(--bg-accent)/60 py-1 pr-2 pl-2 text-foreground"
               >
                 {/* Marca fixa: o texto que passa para a linha seguinte alinha, como num diff. */}
-                <span aria-hidden className="shrink-0 text-success">
+                <span aria-hidden className="shrink-0 text-(--bg-accent)">
                   +
                 </span>
                 <span>{feature}</span>

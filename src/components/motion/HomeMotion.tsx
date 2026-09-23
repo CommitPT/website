@@ -1,5 +1,6 @@
 'use client'
 
+import { cssVarToRgb } from '@/src/lib/cssColor'
 import { motionEnabled } from '@/src/lib/motion'
 import { useEffect } from 'react'
 
@@ -85,7 +86,14 @@ export default function HomeMotion() {
           )
         }
 
-        // Linhas `+` do Commit+ a entrar como um diff a ser aplicado, com flash verde.
+        // Linhas `+` do Commit+ a entrar como um diff a ser aplicado, com um flash na cor
+        // da paleta. O anime.js não lê oklch nem `rgb(r g b / a)`, por isso convertemos
+        // --bg-accent para rgba() — o valor final é o mesmo que o CSS dá em repouso.
+        const [r, g, b] = cssVarToRgb('--bg-accent', [0.42, 0.65, 1]).map((channel) =>
+          Math.round(channel * 255)
+        )
+        const accent = (alpha: number) => `rgba(${r}, ${g}, ${b}, ${alpha})`
+
         const applyDiff = (lines: Element[]) => {
           track(
             animate(lines, {
@@ -100,8 +108,7 @@ export default function HomeMotion() {
           // [data-diff-line]): o flash acende e assenta, em vez de desaparecer.
           track(
             animate(lines, {
-              // Sintaxe antiga de propósito: o anime.js não faz parse de `rgb(r g b / a)`.
-              backgroundColor: ['rgba(126, 231, 135, 0.32)', 'rgba(126, 231, 135, 0.1)'],
+              backgroundColor: [accent(0.34), accent(0.12)],
               duration: 900,
               delay: stagger(80),
               ease: 'out(2)',
