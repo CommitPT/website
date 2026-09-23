@@ -65,17 +65,19 @@ export const nav: NavItem[] = [
 ]
 
 export const announcement = {
-  tag: 'NOVO',
-  text: 'Próxima Commit Talk: 00 de mês, 21h00', // TODO(copy)
+  tag: 'AO VIVO',
+  // TODO(copy): confirmar a hora dos encontros, e trocar por um evento concreto
+  // quando houver data marcada (ex.: "Commit Talk com <convidado>: 12 de outubro").
+  text: 'Encontros abertos às terças e quintas, no Discord',
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
 export const hero = {
   eyebrow: 'Comunidade portuguesa · Engenharia de Software',
-  title: 'Lorem ipsum dolor sit amet consectetur.', // TODO(copy)
+  title: 'Programar sozinho tem limite.',
   subtitle:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', // TODO(copy)
+    'Uma comunidade portuguesa de engenharia de software: partilhar código, rever o trabalho uns dos outros e construir projetos em conjunto. Entrar é grátis.',
   primaryCta: 'Entrar grátis no Discord',
   secondaryCta: 'Ver o Commit+',
   /** ID do vídeo no YouTube. `null` mostra "Vídeo em breve". */
@@ -240,11 +242,4 @@ export const faq = {
     answer:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   })),
-}
-
-// ── Chamada final ─────────────────────────────────────────────────────────────
-
-export const finalCta = {
-  title: 'Não evoluas sozinho.',
-  subtitle: 'Começa grátis no Discord. Sobe para o Commit+ quando quiseres.',
 }

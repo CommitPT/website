@@ -40,8 +40,8 @@ nova, exceto os testemunhos, que passam a vir da Whop.
 ## Tarefas
 
 ### Fase 1: Texto e limpeza
-- [ ] T1: Texto real no hero
-- [ ] T2: Remover a chamada final
+- [x] T1: Texto real no hero
+- [x] T2: Remover a chamada final
 
 ### Checkpoint A: revisão tua do texto
 

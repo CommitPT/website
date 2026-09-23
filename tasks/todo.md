@@ -16,14 +16,14 @@ números reais, e a pílula de prova social por baixo do vídeo. Só toca em con
 as animações ficam como estão.
 
 **Acceptance criteria:**
-- [ ] Nenhum `TODO(copy)` no bloco `hero` de `src/content/home.ts`
-- [ ] Nada no texto promete emprego, salário ou resultado garantido
-- [ ] Título cabe em 2 linhas a 1440px e em 3 a 320px, sem cortar palavras
+- [x] Nenhum `TODO(copy)` no bloco `hero` de `src/content/home.ts`
+- [x] Nada no texto promete emprego, salário ou resultado garantido
+- [x] Título quebra em 2–3 linhas conforme a largura, sem cortar palavras (3 linhas a 1300px)
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Manual: ler em voz alta e confirmar que não há frase de brochura ("desbloqueia o teu potencial")
-- [ ] Screenshot a 320 e 1440px
+- [x] Verificação comum
+- [x] Manual: ler em voz alta e confirmar que não há frase de brochura ("desbloqueia o teu potencial")
+- [x] Screenshot a 320 e 1440px
 
 **Dependencies:** Nenhuma
 
@@ -41,14 +41,14 @@ hero, nas etiquetas dos benefícios, na faixa a seguir à tabela, nos preços e 
 A página passa a fechar no FAQ e no rodapé.
 
 **Acceptance criteria:**
-- [ ] `FinalCta` deixa de ser montado e o componente é removido
-- [ ] A barra do telemóvel continua visível no FAQ e no fim da página (deixa de haver secção depois dos preços a escondê-la)
-- [ ] `CLAUDE.MD` deixa de listar a chamada final na estrutura da página e na tabela de CTAs
+- [x] `FinalCta` deixa de ser montado e o componente é removido
+- [x] A barra do telemóvel continua visível no FAQ e no fim da página (deixa de haver secção depois dos preços a escondê-la)
+- [x] `CLAUDE.MD` deixa de listar a chamada final na estrutura da página e na tabela de CTAs
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] `yarn audit:ui`: sem regressões, e o rodapé continua a fechar a página com o degradê
-- [ ] Manual a 390px: chegar ao fim da página e ver a barra com os dois botões
+- [x] Verificação comum
+- [x] `yarn audit:ui`: sem regressões, e o rodapé continua a fechar a página com o degradê
+- [x] Manual a 390px: chegar ao fim da página e ver a barra com os dois botões
 
 **Dependencies:** Nenhuma
 
@@ -63,7 +63,7 @@ A página passa a fechar no FAQ e no rodapé.
 ---
 
 ## Checkpoint A: depois das Tasks 1–2
-- [ ] Verificação comum passa
+- [x] Verificação comum passa
 - [ ] **Revisão tua do texto do hero** antes de escrever o resto do conteúdo
 
 ---

@@ -5,7 +5,6 @@ import HomeMotion from '@/src/components/motion/HomeMotion'
 import Benefits from '@/src/components/sections/Benefits'
 import Comparison from '@/src/components/sections/Comparison'
 import Faq from '@/src/components/sections/Faq'
-import FinalCta from '@/src/components/sections/FinalCta'
 import ForWho from '@/src/components/sections/ForWho'
 import Founder from '@/src/components/sections/Founder'
 import Hero from '@/src/components/sections/Hero'
@@ -27,7 +26,6 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <Faq />
-        <FinalCta />
       </main>
       <Footer />
       <MobileCtaBar />

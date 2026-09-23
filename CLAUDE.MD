@@ -147,7 +147,7 @@ Layout primitives in `src/components/layout/`:
 - `Frame` — outer frame (mounted once in `app/layout.tsx`)
 - `SiteBackground` — fixed gradient + grain behind the frame, plus `BACKGROUND_SCRIPT`
 - `Section` — `<Section width="content" | "wide" id=… bleed?>`; draws the `+` marks and the
-  full-bleed bottom line. `bleed` removes padding (hero, final CTA).
+  full-bleed bottom line. `bleed` removes padding (the hero).
 - `SectionHeading` — centered pill + title (+ subtitle) for each section
 - `SectionLabel` — mono pill above each section heading
 - `FrameRule`, `CrossMark` — used by the above
@@ -191,7 +191,8 @@ hydration mismatches).
 7. **Testemunhos**
 8. **Gratuito vs Commit+** — `id="precos"`
 9. **FAQ**
-10. **Final CTA** + Footer
+10. **Footer** — the closing gradient band; there is no final CTA section (the two paths already
+    appear in the header, hero, benefit tags, the strip after the table, pricing and the mobile bar)
 
 Build status per phase: see `docs/PLANO-REDESIGN.md`.
 
@@ -206,7 +207,6 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 | Benefits       | `Grátis` / `Commit+` tags per benefit                                |
 | After table    | Commit+ nudge strip                                                  |
 | Pricing        | Free + **Commit+ highlighted**, annual plan by default               |
-| Final CTA      | Both                                                                 |
 | Mobile         | `MobileCtaBar`: sticky bottom bar with both, between hero and pricing |
 
 ### Links & tracking
@@ -311,7 +311,7 @@ app/
 src/
   components/
     layout/              # Frame, Section, SectionHeading, SectionLabel, SiteBackground, FrameRule, CrossMark
-    sections/            # Hero, ForWho, Benefits, Founder, Comparison, Testimonials, Pricing, Faq, FinalCta
+    sections/            # Hero, ForWho, Benefits, Founder, Comparison, Testimonials, Pricing, Faq
     ui/                  # CtaLink, VideoPlayer ('use client')
     AnnouncementBar.tsx  # next-event bar above the header
     Header.tsx           # sticky nav + CTAs ('use client': scroll spy, mobile menu)
