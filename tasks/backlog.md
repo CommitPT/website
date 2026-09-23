@@ -24,9 +24,11 @@ preços.
 
 ---
 
-## 2. Conteúdo real
+## 2. Conteúdo real — parcialmente feito
 
-18 marcadores `TODO(copy)` em `src/content/home.ts`, mais o vídeo, as fotos e os testemunhos.
+Feito: hero, tabela "Como funciona" e testemunhos reais (Whop + `src/reviews.json`).
+Falta: os perfis de "Para quem é", os benefícios, o texto do fundador, as respostas do FAQ, o vídeo
+e as fotos.
 Enquanto houver lorem ipsum, nada do resto interessa: é isto que decide se o visitante fica.
 
 Atenção: texto real é mais comprido que lorem e pode partir o layout. Correr `yarn audit:ui` depois.

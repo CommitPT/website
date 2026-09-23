@@ -42,12 +42,6 @@ export interface Ritual {
   outcome: string
 }
 
-export interface Testimonial {
-  name: string
-  role: string
-  quote: string
-}
-
 export interface FaqItem {
   question: string
   answer: string
@@ -205,16 +199,12 @@ export const howItWorks = {
 
 // ── Testemunhos ───────────────────────────────────────────────────────────────
 
+// As avaliações vêm da Whop (`getWhopReviews`) e de `src/reviews.json`; nada aqui
+// é escrito por nós.
 export const testimonials = {
   label: 'Resultados',
   title: 'O que dizem os membros',
-  // TODO(copy): só testemunhos reais, com autorização
-  items: [1, 2, 3].map((n): Testimonial => ({
-    name: `Membro ${n}`,
-    role: 'Lorem ipsum',
-    quote:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
-  })),
+  note: 'Avaliações recolhidas na Whop e no Discord, publicadas como foram escritas.',
 }
 
 // ── Preços ────────────────────────────────────────────────────────────────────

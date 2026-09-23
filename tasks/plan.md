@@ -49,12 +49,12 @@ nova, exceto os testemunhos, que passam a vir da Whop.
 - [x] T3: "Como funciona" no lugar da comparação
 
 ### Fase 3: Testemunhos (o maior risco)
-- [ ] T4: Carrossel de testemunhos reais, com dados da Whop
+- [x] T4: Carrossel de testemunhos reais, com dados da Whop
 
 ### Checkpoint B: auditoria + revisão tua
 
 ### Fase 4: Fecho
-- [ ] T5: Documentação e auditoria final
+- [x] T5: Documentação e auditoria final
 
 ## Riscos e mitigação
 

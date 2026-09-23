@@ -192,7 +192,9 @@ hydration mismatches).
    It **describes, never compares**: measuring CommitPT against a CTESP, a degree or a bootcamp
    compares things that give different results. The closing line says plainly that it is not a
    course, gives no certificate and guarantees no job.
-7. **Testemunhos**
+7. **Testemunhos** — real reviews only: Whop (`getWhopReviews()`) merged with `src/reviews.json`,
+   deduped by the first 60 characters. Marquee on desktop, snap-scroll on mobile (`ReviewScroll`).
+   Without `WHOP_API_KEY` the section still renders the local ones — it must never be empty.
 8. **Gratuito vs Commit+** — `id="precos"`
 9. **FAQ**
 10. **Footer** — the closing gradient band; there is no final CTA section (the two paths already
@@ -244,9 +246,20 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 - **Tone**: direct, builder-to-builder. No hype.
 - **Copy lives in `src/content/home.ts`**, not inside JSX. Placeholders are marked `// TODO(copy)`.
 - **Honesty**: real numbers, names, photos and testimonials only. Inspiration sites provide
-  structure, never content — don't copy their text or claims.
+  structure, never content — don't copy their text or claims. Nothing on the page may promise a
+  job, a salary or any guaranteed outcome, and the site does not compare itself to degrees,
+  CTESPs or bootcamps — those give different results; the community adds to them.
+- **Reviews are never written by us.** They come from Whop and from `src/reviews.json`, published
+  as they were written. Naming a company (an employer, a guest's workplace) needs their permission.
 - Current facts: 550+ members, 90 000+ messages, 4+ sessions/month, 14+ contributors.
-  Commit+: €19.99/month or €119.88/year.
+  Commit+: €19.99/month or €119.88/year. Meets run on Tuesdays and Thursdays; Talks happen when
+  there is a guest — don't invent a cadence.
+
+### Environment
+
+`WHOP_API_KEY`, `WHOP_COMPANY_ID` and `WHOP_PRODUCT_ID` power the Whop reviews (and the plan
+prices). Everything degrades gracefully without them: `src/lib/whop.ts` returns empty and the last
+good response is reused, so the build never fails on a missing key.
 
 ---
 
@@ -256,8 +269,14 @@ Three layers, all optional extras — the page must be complete and usable witho
 
 ### 1. CSS/Tailwind
 
-`transition-*`, `animate-ping`, and the `bg-drift` keyframes on the background gradients. Disabled
-under `prefers-reduced-motion`.
+`transition-*`, `animate-ping`, the `bg-drift` keyframes on the background gradients, and the
+testimonials `marquee` (paused on hover via `.pause-on-hover`). All disabled under
+`prefers-reduced-motion`.
+
+**Careful with the design system in client components.** `@commitpt/design-system` is a barrel and
+`optimizePackageImports` is off for it (see `next.config.js`), so importing a single component into
+a client component pulls the whole package — `ExpandableText` alone added 17 kB to the first load.
+That is why `ReviewScroll` has its own small "Ver mais" instead.
 
 ### 2. anime.js — `HomeMotion`
 
@@ -316,7 +335,7 @@ src/
   components/
     layout/              # Frame, Section, SectionHeading, SectionLabel, SiteBackground, FrameRule, CrossMark
     sections/            # Hero, ForWho, Benefits, Founder, HowItWorks, Testimonials, Pricing, Faq
-    ui/                  # CtaLink, VideoPlayer ('use client')
+    ui/                  # CtaLink, VideoPlayer, ReviewScroll ('use client')
     AnnouncementBar.tsx  # next-event bar above the header
     Header.tsx           # sticky nav + CTAs ('use client': scroll spy, mobile menu)
     Footer.tsx           # brand + legal links

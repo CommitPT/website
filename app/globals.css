@@ -96,6 +96,18 @@
   --color-syntax-green: #8af29a;
   --color-syntax-blue: #93d5ff;
 
+  /* ── Marquee dos testemunhos ─────────────────────────────────────── */
+  --animate-marquee: marquee 60s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   /* ── Frame widths (max-w-content / max-w-wide) ──────────────────── */
   --container-content: 45rem; /* 720px — coluna entre as calhas interiores */
   --container-wide: 70rem; /* 1120px — moldura exterior */
@@ -344,6 +356,11 @@ html[data-bg='3'] {
   display: none;
 }
 
+/* Marquee: pára com o rato em cima, para dar tempo de ler e de clicar em "Ver mais". */
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
 /* ── Scroll reveals (HomeMotion) ──────────────────────────────────────────
    Só escondemos com data-motion (movimento aceite + JS). Se o HomeMotion não
    arrancar a tempo, a animação de segurança revela tudo aos 2,5 s. */
@@ -367,6 +384,10 @@ html[data-bg='3'] {
 /* ── Reduced motion ───────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+
   .btn-key,
   .btn-key:hover,
   .btn-key:active {

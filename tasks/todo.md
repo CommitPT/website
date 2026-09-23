@@ -104,16 +104,16 @@ marquee no desktop, scroll com snap no telemóvel e "Ver mais" por cartão. Port
 `master` para dentro da nossa `Section`, com os tokens e o estilo atuais.
 
 **Acceptance criteria:**
-- [ ] Com chave de API: aparecem as avaliações da Whop e as locais, sem repetidos
-- [ ] Sem chave, ou com a API a falhar: aparecem só as locais, sem erro e sem secção vazia
-- [ ] Com `prefers-reduced-motion`: o marquee não anda e os cartões continuam acessíveis por scroll
-- [ ] A cópia duplicada do marquee não é lida pelos leitores de ecrã nem apanha o teclado
+- [x] Com chave de API: aparecem as avaliações da Whop e as locais, sem repetidos
+- [x] Sem chave, ou com a API a falhar: aparecem só as locais, sem erro e sem secção vazia
+- [x] Com `prefers-reduced-motion`: o marquee não anda e os cartões continuam acessíveis por scroll
+- [x] A cópia duplicada do marquee não é lida pelos leitores de ecrã nem apanha o teclado
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] `yarn audit:ui`: 0 violações axe (atenção à ordem de tabulação com a cópia do marquee)
-- [ ] Manual: testar com a variável de ambiente apagada, para ver o fallback
-- [ ] Manual a 390px: arrastar os cartões e abrir um "Ver mais"
+- [x] Verificação comum
+- [x] `yarn audit:ui`: 0 violações axe (atenção à ordem de tabulação com a cópia do marquee)
+- [x] Manual: testar com a variável de ambiente apagada, para ver o fallback
+- [x] Manual a 390px: arrastar os cartões e abrir um "Ver mais"
 
 **Dependencies:** Checkpoint A
 
@@ -129,9 +129,9 @@ marquee no desktop, scroll com snap no telemóvel e "Ver mais" por cartão. Port
 ---
 
 ## Checkpoint B: depois das Tasks 3–4
-- [ ] Verificação comum + `yarn audit:ui` completo
-- [ ] Screenshots das duas secções a 320 e 1440px
-- [ ] **Revisão tua**: a tabela diz o que querias, e os testemunhos estão com os dados certos?
+- [x] Verificação comum + `yarn audit:ui` completo
+- [x] Screenshots das duas secções a 320 e 1440px
+- [x] **Revisão tua**: a tabela diz o que querias, e os testemunhos estão com os dados certos?
 
 ---
 
@@ -142,13 +142,13 @@ fonte dos testemunhos e variáveis de ambiente necessárias) e o `docs/PLANO-RED
 `tasks/backlog.md` o que ficou feito.
 
 **Acceptance criteria:**
-- [ ] O `CLAUDE.MD` explica de onde vêm os testemunhos e o que acontece sem chave de API
-- [ ] O documento do CEO reflete a página como ela fica
-- [ ] Auditoria final registada no PR
+- [x] O `CLAUDE.MD` explica de onde vêm os testemunhos e o que acontece sem chave de API
+- [x] O documento do CEO reflete a página como ela fica
+- [x] Auditoria final registada no PR
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] Revisão de um PR `feat/content-pass` → `website/v2`
+- [x] Verificação comum
+- [x] Revisão de um PR `feat/content-pass` → `website/v2`
 
 **Dependencies:** Tasks 1–4
 
