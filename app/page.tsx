@@ -3,7 +3,7 @@ import Header from '@/src/components/Header'
 import MobileCtaBar from '@/src/components/MobileCtaBar'
 import HomeMotion from '@/src/components/motion/HomeMotion'
 import Benefits from '@/src/components/sections/Benefits'
-import Comparison from '@/src/components/sections/Comparison'
+import HowItWorks from '@/src/components/sections/HowItWorks'
 import Faq from '@/src/components/sections/Faq'
 import ForWho from '@/src/components/sections/ForWho'
 import Founder from '@/src/components/sections/Founder'
@@ -22,7 +22,7 @@ export default function Home() {
         <ForWho />
         <Benefits />
         <Founder />
-        <Comparison />
+        <HowItWorks />
         <Testimonials />
         <Pricing />
         <Faq />

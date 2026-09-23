@@ -76,14 +76,14 @@ que a CommitPT não é. Mantém-se `wide`, com tabela no desktop e cartões empi
 mantém-se a faixa de CTA por baixo.
 
 **Acceptance criteria:**
-- [ ] Nenhuma linha compara a CommitPT com curso, licenciatura, bootcamp ou aprender sozinho
-- [ ] Existe uma linha visível com o que a CommitPT não é (não é curso, não dá certificado, não garante emprego)
-- [ ] O id da secção e o link do menu continuam a funcionar
+- [x] Nenhuma linha compara a CommitPT com curso, licenciatura, bootcamp ou aprender sozinho
+- [x] Existe uma linha visível com o que a CommitPT não é (não é curso, não dá certificado, não garante emprego)
+- [x] O id da secção e o link do menu continuam a funcionar
 
 **Verification:**
-- [ ] Verificação comum
-- [ ] `yarn audit:ui`: sem overflow a 320px (a tabela é o sítio onde isso rebenta primeiro)
-- [ ] Manual: ler as 4 linhas e confirmar que nenhuma promete resultado
+- [x] Verificação comum
+- [x] `yarn audit:ui`: sem overflow a 320px (a tabela é o sítio onde isso rebenta primeiro)
+- [x] Manual: ler as 4 linhas e confirmar que nenhuma promete resultado
 
 **Dependencies:** Checkpoint A
 

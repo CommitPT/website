@@ -140,7 +140,7 @@ they cross the frame borders. There are no inner rails.
 | Width     | Token                 | Utility         | Used for                                          |
 | --------- | --------------------- | --------------- | ------------------------------------------------- |
 | `content` | `--container-content` | `max-w-content` | Text-heavy sections (benefits, pricing, FAQ)      |
-| `wide`    | `--container-wide`    | `max-w-wide`    | Frame, hero, grids, comparison table, testimonials |
+| `wide`    | `--container-wide`    | `max-w-wide`    | Frame, hero, grids, the rituals table, testimonials |
 
 Layout primitives in `src/components/layout/`:
 
@@ -187,7 +187,11 @@ hydration mismatches).
 3. **Para quem é** — 4 profiles
 4. **O que ganhas** — 4 benefits, each tagged `Grátis` or `Commit+`
 5. **Quem está por trás** — founder + contributors
-6. **Compara as alternativas** — `wide` comparison table (stacked cards on mobile)
+6. **Como funciona** — `wide` table describing the four rituals, each tagged `Grátis` or
+   `Commit+`, with the cadence and what the member walks away with (stacked cards on mobile).
+   It **describes, never compares**: measuring CommitPT against a CTESP, a degree or a bootcamp
+   compares things that give different results. The closing line says plainly that it is not a
+   course, gives no certificate and guarantees no job.
 7. **Testemunhos**
 8. **Gratuito vs Commit+** — `id="precos"`
 9. **FAQ**
@@ -205,7 +209,7 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 | Header         | "Entrar grátis" (ghost, Discord) + "Juntar-me" → `/#precos`          |
 | Under the VSL  | **"Entrar grátis no Discord"** (primary) + "Ver o Commit+" (outline) |
 | Benefits       | `Grátis` / `Commit+` tags per benefit                                |
-| After table    | Commit+ nudge strip                                                  |
+| After table    | Commit+ nudge strip (`location: 'how_it_works'`)                     |
 | Pricing        | Free + **Commit+ highlighted**, annual plan by default               |
 | Mobile         | `MobileCtaBar`: sticky bottom bar with both, between hero and pricing |
 
@@ -311,7 +315,7 @@ app/
 src/
   components/
     layout/              # Frame, Section, SectionHeading, SectionLabel, SiteBackground, FrameRule, CrossMark
-    sections/            # Hero, ForWho, Benefits, Founder, Comparison, Testimonials, Pricing, Faq
+    sections/            # Hero, ForWho, Benefits, Founder, HowItWorks, Testimonials, Pricing, Faq
     ui/                  # CtaLink, VideoPlayer ('use client')
     AnnouncementBar.tsx  # next-event bar above the header
     Header.tsx           # sticky nav + CTAs ('use client': scroll spy, mobile menu)

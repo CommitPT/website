@@ -32,15 +32,14 @@ export interface Benefit {
   proof: string
 }
 
-export interface ComparisonColumn {
+export interface Ritual {
   name: string
-  highlight?: boolean
-}
-
-export interface ComparisonRow {
-  criterion: string
-  /** Uma célula por coluna, pela mesma ordem de `comparison.columns`. */
-  cells: Array<{ title: string; desc: string }>
+  tier: Tier
+  what: string
+  /** Com que frequência acontece, em linguagem honesta ("Quando há convidado"). */
+  cadence: string
+  /** O que o membro leva de lá — nunca uma promessa de resultado. */
+  outcome: string
 }
 
 export interface Testimonial {
@@ -59,7 +58,7 @@ export interface FaqItem {
 export const nav: NavItem[] = [
   { label: 'Para quem', id: 'para-quem' },
   { label: 'O que ganhas', id: 'beneficios' },
-  { label: 'Comparar', id: 'comparar' },
+  { label: 'Como funciona', id: 'como-funciona' },
   { label: 'Commit+', id: 'precos' },
   { label: 'FAQ', id: 'faq' },
 ]
@@ -159,26 +158,48 @@ export const founder = {
   ],
 }
 
-// ── Compara as alternativas ───────────────────────────────────────────────────
+// ── Como funciona ─────────────────────────────────────────────────────────────
+//
+// Esta secção descreve, não compara. Medir a CommitPT contra um CTESP, uma
+// licenciatura ou um bootcamp seria comparar coisas que dão resultados
+// diferentes — e nada aqui pode sugerir emprego garantido.
 
-const LOREM_CELL = { title: 'Lorem ipsum', desc: 'Dolor sit amet, consectetur adipiscing elit.' } // TODO(copy)
-
-export const comparison = {
-  label: 'A escolha certa',
-  title: 'Compara as alternativas',
-  columns: [
-    { name: 'Ensino tradicional' },
-    { name: 'Bootcamps' },
-    { name: 'Aprender sozinho' },
-    { name: 'CommitPT', highlight: true },
-  ] satisfies ComparisonColumn[],
-  rows: ['Custo', 'Aplicação prática', 'Empregabilidade', 'Ritmo'].map(
-    (criterion): ComparisonRow => ({
-      criterion,
-      cells: [LOREM_CELL, LOREM_CELL, LOREM_CELL, LOREM_CELL],
-    })
-  ),
-  nudge: 'Queres o ritmo completo? Commit+ desde 9,99 €/mês.',
+export const howItWorks = {
+  label: 'Como funciona',
+  title: 'O que acontece na prática',
+  rituals: [
+    {
+      name: 'Encontros',
+      tier: 'free',
+      what: 'Tópicos gerais, dúvidas e o que cada um anda a fazer.',
+      cadence: 'Terças e quintas',
+      outcome: 'Gente a par do que andas a construir',
+    },
+    {
+      name: 'Commit Session',
+      tier: 'plus',
+      what: 'Workshop técnico dado por um membro, sobre o que domina (ex.: cibersegurança).',
+      cadence: 'Regular',
+      outcome: 'Uma coisa nova, feita por ti',
+    },
+    {
+      name: 'Commit Talk',
+      tier: 'plus',
+      what: 'Conversa com recrutadores e profissionais da indústria, com perguntas tuas.',
+      cadence: 'Quando há convidado',
+      outcome: 'Saber como é do lado de quem contrata',
+    },
+    {
+      name: 'Projetos',
+      tier: 'plus',
+      what: 'Código real da comunidade, com PRs e code review de quem já trabalha na área.',
+      cadence: 'Contínuo',
+      outcome: 'Trabalho teu, revisto por outros',
+    },
+  ] satisfies Ritual[],
+  disclaimer:
+    'A CommitPT não é um curso, não dá certificado e não garante emprego. Não substitui a tua licenciatura, o teu CTESP nem o curso que estás a tirar — soma-se.',
+  nudge: 'Queres as Sessions, as Talks e os projetos? Commit+ desde 9,99 €/mês.',
   nudgeCta: 'Ver o Commit+',
 }
 

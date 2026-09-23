@@ -46,7 +46,7 @@ nova, exceto os testemunhos, que passam a vir da Whop.
 ### Checkpoint A: revisão tua do texto
 
 ### Fase 2: A tabela
-- [ ] T3: "Como funciona o Commit+" no lugar da comparação
+- [x] T3: "Como funciona" no lugar da comparação
 
 ### Fase 3: Testemunhos (o maior risco)
 - [ ] T4: Carrossel de testemunhos reais, com dados da Whop
