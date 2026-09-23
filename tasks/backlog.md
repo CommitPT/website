@@ -1,8 +1,9 @@
 # Backlog do website
 
 O que vem a seguir, por ordem de prioridade. Cada item diz **porquê** e o **tamanho**.
-O plano do redesign está em [`docs/PLANO-REDESIGN.md`](../docs/PLANO-REDESIGN.md); as animações
-(feitas) estão em [`plan.md`](plan.md) e [`todo.md`](todo.md).
+O plano do redesign está em [`docs/PLANO-REDESIGN.md`](../docs/PLANO-REDESIGN.md); o plano em curso
+em [`plan.md`](plan.md) e [`todo.md`](todo.md); as animações, já feitas, em
+[`done/motion-plan.md`](done/motion-plan.md).
 
 ---
 
