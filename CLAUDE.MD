@@ -277,6 +277,11 @@ attributes:
 `runEffect` when none of the above fits, and add its hidden state to the `[data-motion] …` rules in
 `globals.css`.
 
+The green of the Commit+ lines is **permanent**, set in `globals.css` on `[data-diff-line]`; the
+entrance only applies the diff and lands on that same value, so the block still reads as added lines
+once the animation is over. Colours passed to anime.js must use the legacy `rgba(r, g, b, a)` form —
+it cannot parse `rgb(r g b / a)` and throws.
+
 Rules that keep it safe: a CSS fallback reveals everything after 2.5s; `HomeMotion` checks whether
 that fallback already ran (never a clock — in `yarn dev` the compile alone beats any deadline) and
 turns motion off if so; anchor jumps reveal skipped sections instantly; anime.js is loaded with

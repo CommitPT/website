@@ -344,6 +344,14 @@ html[data-bg='3'] {
   display: none;
 }
 
+/* ── Linhas adicionadas do diff (preços do Commit+) ───────────────────────
+   O fundo fica permanente: a animação de entrada só aplica o diff, não é ela
+   que dá o destaque. O HomeMotion anima até exatamente este valor. */
+
+[data-diff-line] {
+  background-color: rgb(126 231 135 / 0.1);
+}
+
 /* ── Scroll reveals (HomeMotion) ──────────────────────────────────────────
    Só escondemos com data-motion (movimento aceite + JS). Se o HomeMotion não
    arrancar a tempo, a animação de segurança revela tudo aos 2,5 s. */

@@ -21,12 +21,10 @@ export default function Pricing() {
           <h3 className="font-semibold text-foreground">{free.name}</h3>
           <p className="mt-4 font-mono text-4xl text-foreground">{free.price}</p>
           <p className="mt-1 text-sm text-muted-foreground">{free.note}</p>
+          {/* Linhas de contexto do diff: sem marca, é a base sobre a qual o Commit+ acrescenta. */}
           <ul className="mt-6 space-y-2 font-mono text-sm">
             {free.features.map((feature) => (
-              <li key={feature} className="text-muted-foreground">
-                <span aria-hidden className="mr-2 text-foreground/50">
-                  ✓
-                </span>
+              <li key={feature} className="pl-4 text-muted-foreground">
                 {feature}
               </li>
             ))}
@@ -52,19 +50,23 @@ export default function Pricing() {
             <span className="text-base text-muted-foreground">{plus.period}</span>
           </p>
           <p className="mt-1 text-sm text-muted-foreground">{plus.note}</p>
-          <ul data-diff-group className="mt-6 space-y-2 font-mono text-sm">
-            <li className="text-muted-foreground">
-              <span aria-hidden className="mr-2 text-foreground/50">
-                ✓
-              </span>
-              {plus.includes}
-            </li>
+          {/* Cabeçalho de hunk: decoração, por isso escondida do leitor de ecrã. */}
+          <p aria-hidden className="mt-6 font-mono text-xs text-success/70">
+            @@ o que o Commit+ acrescenta @@
+          </p>
+          <ul data-diff-group className="mt-2 space-y-1 font-mono text-sm">
+            <li className="py-1 pl-4 text-muted-foreground">{plus.includes}</li>
             {plus.features.map((feature) => (
-              <li key={feature} data-diff-line className="rounded-sm text-foreground">
-                <span aria-hidden className="mr-2 text-success">
+              <li
+                key={feature}
+                data-diff-line
+                className="flex gap-2 rounded-r-sm border-l-2 border-success/60 py-1 pr-2 pl-2 text-foreground"
+              >
+                {/* Marca fixa: o texto que passa para a linha seguinte alinha, como num diff. */}
+                <span aria-hidden className="shrink-0 text-success">
                   +
                 </span>
-                {feature}
+                <span>{feature}</span>
               </li>
             ))}
           </ul>

@@ -96,9 +96,12 @@ export default function HomeMotion() {
               ease: 'out(3)',
             })
           )
+          // Acaba no mesmo verde que o CSS dá às linhas em repouso (globals.css,
+          // [data-diff-line]): o flash acende e assenta, em vez de desaparecer.
           track(
             animate(lines, {
-              backgroundColor: ['rgba(126, 231, 135, 0.18)', 'rgba(126, 231, 135, 0)'],
+              // Sintaxe antiga de propósito: o anime.js não faz parse de `rgb(r g b / a)`.
+              backgroundColor: ['rgba(126, 231, 135, 0.32)', 'rgba(126, 231, 135, 0.1)'],
               duration: 900,
               delay: stagger(80),
               ease: 'out(2)',
