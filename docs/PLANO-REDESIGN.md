@@ -168,15 +168,17 @@ próxima Talk, etc.
 
 ---
 
-## 7. Animações (fase futura)
+## 7. Animações (feito)
 
-Depois de o site estar completo e com conteúdo real:
-
-- **anime.js** — entradas suaves das secções e números a contar ao aparecerem no ecrã.
-- **three.js** — o degradê do fundo passa a ser animado em 3D, com as mesmas 4 combinações de cor.
+- **anime.js** — as secções aparecem ao entrar no ecrã, o hero entra em cascata, os números contam
+  (550+, 90 000+…) e as vantagens do Commit+ entram como um diff de git a ser aplicado.
+- **three.js** — o painel do vídeo tem o **commit graph**: um histórico de git em 3D, com a linha
+  principal, branches que saem e voltam a juntar-se, e um ponto a percorrer a linha. Usa as cores do
+  degradê da visita.
 
 Ambos só são carregados depois do conteúdo, e o site funciona igual sem eles. Quem tem "reduzir
-movimento" ativo no sistema não vê animações.
+movimento" ativo no sistema não vê animações, e o 3D nem chega a ser descarregado. No telemóvel e em
+computadores fracos fica o degradê. O peso inicial da página subiu 3 kB.
 
 ---
 
@@ -190,7 +192,7 @@ movimento" ativo no sistema não vê animações.
 | 4    | Tabela comparativa (computador e telemóvel)                           |
 | 5    | Testemunhos · Preços · Perguntas frequentes · Chamada final            |
 | 6    | Conteúdo real: vídeo, fotos, textos, números                          |
-| 7    | Animações (anime.js, three.js)                                        |
+| 7    | ✅ Animações (anime.js, three.js)                                      |
 
 As fases 1–5 usam texto provisório onde ainda não há conteúdo final.
 

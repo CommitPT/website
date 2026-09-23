@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import CookieConsent from '@/src/components/CookieConsent'
 import Frame from '@/src/components/layout/Frame'
 import SiteBackground, { BACKGROUND_SCRIPT } from '@/src/components/layout/SiteBackground'
+import { MOTION_SCRIPT } from '@/src/lib/motion'
 import './globals.css'
 
 const BASE_URL = 'https://www.commitpt.com'
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // suppressHydrationWarning: o BACKGROUND_SCRIPT acrescenta `data-bg` antes da hidratação
+    // suppressHydrationWarning: os scripts do <head> acrescentam `data-bg`/`data-motion` antes da hidratação
     <html
       lang="pt-PT"
       // As variáveis de fonte têm de estar no <html>: o --font-sans do @theme é resolvido em :root
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: BACKGROUND_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: MOTION_SCRIPT }} />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#0B0C0E" />

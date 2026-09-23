@@ -42,7 +42,13 @@ yarn format:check   # prettier --check . (CI-safe check)
 yarn build          # production build (also runs type check + lint)
                     # NEXT_DIST_DIR=.next-audit yarn build builds to another folder, so a
                     # running `yarn dev` does not corrupt it (and vice-versa)
+yarn audit:ui       # local UI audit against a running server (see below)
 ```
+
+`yarn audit:ui` drives a headless Chromium over `http://localhost:3000` (pass another URL as an
+argument) and checks console errors, horizontal overflow at 320/768/1024/1440, axe-core (WCAG 2.1
+AA), tab order, the mobile menu, that no animated element stays invisible, and that the 3D scene
+loads only where it should and stops off-screen. Local only — it is not part of CI.
 
 All four checks — `typecheck`, `lint`, `format:check`, and `build` — run in CI on every push and PR
 via `.github/workflows/ci.yml`.
@@ -242,12 +248,53 @@ Build status per phase: see `docs/PLANO-REDESIGN.md`.
 
 ## Animations
 
-- Now: CSS/Tailwind only (`transition-*`, `animate-ping`, the `bg-drift` keyframes on the
-  background gradients — disabled under `prefers-reduced-motion`).
-- Planned (phase 7): **anime.js** (entrances, count-up) and **three.js** (animated background
-  replacing the static gradient). Only in isolated `'use client'` components, loaded after content
-  (`next/dynamic`, `ssr: false`), with a static fallback, and always respecting
-  `prefers-reduced-motion`. No other animation libraries.
+Three layers, all optional extras — the page must be complete and usable without any of them.
+
+### 1. CSS/Tailwind
+
+`transition-*`, `animate-ping`, and the `bg-drift` keyframes on the background gradients. Disabled
+under `prefers-reduced-motion`.
+
+### 2. anime.js — `HomeMotion`
+
+`MOTION_SCRIPT` (`src/lib/motion.ts`, runs in `<head>`) sets `<html data-motion>` when
+`prefers-reduced-motion` is **not** set. Only then does the CSS hide the elements that animate, so
+there is never a flash, and without JS everything is visible.
+
+`HomeMotion` (`src/components/motion/HomeMotion.tsx`, mounted once in `app/page.tsx`) is the **only
+client component** involved. Sections stay Server Components and declare what animates with
+attributes:
+
+| Attribute | Effect |
+| --- | --- |
+| `data-reveal-group` | its `[data-reveal]` children rise and fade in, staggered |
+| `data-reveal` | rises and fades in when it enters the viewport (alone or inside a group) |
+| `data-count-group` | its `[data-count]` children count up to the number already in the HTML |
+| `data-diff-group` | its `[data-diff-line]` children enter one by one with a green flash, like an applied diff |
+| `data-hero-title` | moves only — never starts invisible, because it is the LCP element |
+
+**To add an animation**, put one of these attributes on the markup. Only add a new effect to
+`runEffect` when none of the above fits, and add its hidden state to the `[data-motion] …` rules in
+`globals.css`.
+
+Rules that keep it safe: a CSS fallback reveals everything after 2.5s; `HomeMotion` checks whether
+that fallback already ran (never a clock — in `yarn dev` the compile alone beats any deadline) and
+turns motion off if so; anchor jumps reveal skipped sections instantly; anime.js is loaded with
+`import()` so it stays out of the first load.
+
+### 3. three.js — the commit graph
+
+`HeroScene` (`src/components/three/`) mounts `CommitGraph` in the hero panel: a git history built in
+`commitGraphData.ts` (main, branches, merges), drawn as points and lines in the visit's palette
+(`cssVarToRgb` converts `oklch`, which `THREE.Color` cannot parse).
+
+It only loads when the device can afford it — motion allowed, ≥ 768px, WebGL, no `saveData`, more
+than 4 cores — and only once the panel is visible and the browser is idle. Everywhere else the CSS
+gradient stays. It pauses off-screen and on a hidden tab, caps DPR at 1.5, and disposes everything
+on unmount. Use `performance.now()`, not `THREE.Clock` (deprecated in three 0.186).
+
+Budget: First Load JS for `/` must stay within **132 kB ± 3 kB**; both libraries live in lazy chunks.
+No other animation libraries.
 
 ---
 
@@ -272,11 +319,21 @@ src/
     CookieConsent.tsx
   content/
     home.ts              # all homepage copy, typed
+    motion/HomeMotion.tsx  # the only client component behind the anime.js animations
+    three/               # HeroScene + CommitGraph (the 3D commit graph)
   lib/
     links.ts             # Discord / Whop URLs
     analytics.ts         # trackEvent + event names
     cx.ts                # class name helper
+    motion.ts            # MOTION_SCRIPT + motionEnabled()
+    cssColor.ts          # oklch -> RGB for three.js
   types/declarations.d.ts
+
+scripts/
+  ui-audit.mjs           # local UI audit (yarn audit:ui)
+
+tasks/
+  plan.md, todo.md       # current work plan and task list
 
 docs/
   PLANO-REDESIGN.md      # redesign plan (shared with leadership)
