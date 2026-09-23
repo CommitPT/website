@@ -32,14 +32,14 @@ export interface Benefit {
   proof: string
 }
 
-export interface Ritual {
-  name: string
-  tier: Tier
-  what: string
-  /** Com que frequência acontece, em linguagem honesta ("Quando há convidado"). */
-  cadence: string
-  /** O que o membro leva de lá — nunca uma promessa de resultado. */
-  outcome: string
+export interface PlanRow {
+  /** O que se compara (ex.: "Commit Sessions"). */
+  criterion: string
+  /** Uma linha a explicar o que é. */
+  detail: string
+  /** `null` = não está incluído no plano gratuito. */
+  free: string | null
+  plus: string
 }
 
 export interface FaqItem {
@@ -160,39 +160,48 @@ export const founder = {
 
 export const howItWorks = {
   label: 'Como funciona',
-  title: 'O que acontece na prática',
-  rituals: [
+  title: 'O que está incluído',
+  columns: ['Gratuito', 'Commit+'],
+  rows: [
     {
-      name: 'Encontros',
-      tier: 'free',
-      what: 'Tópicos gerais, dúvidas e o que cada um anda a fazer.',
-      cadence: 'Terças e quintas',
-      outcome: 'Gente a par do que andas a construir',
+      criterion: 'Encontros',
+      detail: 'Tópicos gerais, dúvidas e o que cada um anda a fazer.',
+      free: 'Terças e quintas',
+      plus: 'Terças e quintas',
     },
     {
-      name: 'Commit Session',
-      tier: 'plus',
-      what: 'Workshop técnico dado por um membro, sobre o que domina (ex.: cibersegurança).',
-      cadence: 'Regular',
-      outcome: 'Uma coisa nova, feita por ti',
+      criterion: 'Discussões técnicas',
+      detail: 'Perguntas, código e decisões debatidas nos canais.',
+      free: 'Sim',
+      plus: 'Sim',
     },
     {
-      name: 'Commit Talk',
-      tier: 'plus',
-      what: 'Conversa com recrutadores e profissionais da indústria, com perguntas tuas.',
-      cadence: 'Quando há convidado',
-      outcome: 'Saber como é do lado de quem contrata',
+      criterion: 'Commit Sessions',
+      detail: 'Workshop técnico dado por um membro, sobre o que domina.',
+      free: null,
+      plus: 'Regular',
     },
     {
-      name: 'Projetos',
-      tier: 'plus',
-      what: 'Código real da comunidade, com PRs e code review de quem já trabalha na área.',
-      cadence: 'Contínuo',
-      outcome: 'Trabalho teu, revisto por outros',
+      criterion: 'Commit Talks',
+      detail: 'Conversa com recrutadores e profissionais da indústria.',
+      free: null,
+      plus: 'Quando há convidado',
     },
-  ] satisfies Ritual[],
+    {
+      criterion: 'Commit Career',
+      detail: 'CV, processos de entrevista, salários e progressão.',
+      free: null,
+      plus: 'Contínuo',
+    },
+    {
+      criterion: 'Projetos da comunidade',
+      detail: 'Código real, com PRs e code review de quem já trabalha na área.',
+      free: null,
+      plus: 'Contínuo',
+    },
+  ] satisfies PlanRow[],
   disclaimer:
-    'A CommitPT não é um curso, não dá certificado e não garante emprego. Não substitui a tua licenciatura, o teu CTESP nem o curso que estás a tirar — soma-se.',
+    'Comunidade de prática entre pares: complementa formação e experiência, não as substitui. Não há programa curricular, certificação nem garantia de colocação profissional.',
   nudge: 'Queres as Sessions, as Talks e os projetos? Commit+ desde 9,99 €/mês.',
   nudgeCta: 'Ver o Commit+',
 }

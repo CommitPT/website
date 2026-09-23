@@ -1,35 +1,33 @@
 import Section from '@/src/components/layout/Section'
 import SectionHeading from '@/src/components/layout/SectionHeading'
 import CtaLink from '@/src/components/ui/CtaLink'
-import { howItWorks, type Tier } from '@/src/content/home'
+import { howItWorks } from '@/src/content/home'
 import { cx } from '@/src/lib/cx'
 
-const TIER_TAG: Record<Tier, { label: string; className: string }> = {
-  free: { label: 'Grátis', className: 'border-border text-muted-foreground' },
-  plus: { label: 'Commit+', className: 'border-(--bg-accent)/40 text-(--bg-accent)' },
-}
+const [FREE_COLUMN, PLUS_COLUMN] = howItWorks.columns
 
-function TierTag({ tier }: { tier: Tier }) {
-  const tag = TIER_TAG[tier]
-  return (
-    <span
-      className={cx(
-        'inline-flex shrink-0 rounded-full border px-2 py-0.5 font-mono text-[11px]',
-        tag.className
-      )}
-    >
-      {tag.label}
-    </span>
-  )
+/** Célula de um plano: `null` = não incluído, e lê-se como tal (não só um traço). */
+function PlanCell({ value, highlight }: { value: string | null; highlight?: boolean }) {
+  if (!value) {
+    return (
+      <>
+        <span aria-hidden className="text-muted-foreground">
+          —
+        </span>
+        <span className="sr-only">Não incluído</span>
+      </>
+    )
+  }
+  return <span className={highlight ? 'text-foreground' : 'text-muted-foreground'}>{value}</span>
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
 //
-// Descreve, não compara: o que é cada ritual, com que ritmo acontece e com o que
-// o membro fica. A linha final assume o que a CommitPT não é — isso ganha mais
-// confiança do que qualquer comparação com cursos ou licenciaturas.
+// Compara os dois planos entre si — nunca a CommitPT com cursos, licenciaturas ou
+// bootcamps, que dão resultados diferentes. A secção de preços fica com a decisão;
+// esta fica com o detalhe.
 //
-// Desktop: tabela. Telemóvel: um cartão por ritual (4 colunas não cabem em 375px).
+// Desktop: tabela com a coluna do Commit+ destacada. Telemóvel: um cartão por linha.
 
 export default function HowItWorks() {
   return (
@@ -41,35 +39,33 @@ export default function HowItWorks() {
         <table className="w-full table-fixed text-left text-sm">
           <thead>
             <tr className="border-b border-border">
-              {['Ritual', 'O que é', 'Ritmo', 'Sais com'].map((heading, i) => (
-                <th
-                  key={heading}
-                  scope="col"
-                  className={cx(
-                    'p-4 font-mono text-xs font-normal text-muted-foreground',
-                    i === 0 && 'w-48',
-                    i === 2 && 'w-44'
-                  )}
-                >
-                  {heading}
-                </th>
-              ))}
+              <th scope="col" className="p-4 font-mono text-xs font-normal text-muted-foreground">
+                O que é
+              </th>
+              <th scope="col" className="w-44 p-4 font-semibold text-foreground">
+                {FREE_COLUMN}
+              </th>
+              <th
+                scope="col"
+                className="w-48 bg-(--bg-accent)/10 p-4 font-semibold text-(--bg-accent)"
+              >
+                {PLUS_COLUMN}
+              </th>
             </tr>
           </thead>
           <tbody>
-            {howItWorks.rituals.map((ritual) => (
-              <tr key={ritual.name} className="border-b border-border last:border-b-0">
-                <th scope="row" className="p-4 align-top font-medium text-foreground">
-                  <span className="flex flex-col items-start gap-2">
-                    {ritual.name}
-                    <TierTag tier={ritual.tier} />
-                  </span>
+            {howItWorks.rows.map((row) => (
+              <tr key={row.criterion} className="border-b border-border last:border-b-0">
+                <th scope="row" className="p-4 align-top font-normal">
+                  <span className="block font-medium text-foreground">{row.criterion}</span>
+                  <span className="mt-1 block text-muted-foreground">{row.detail}</span>
                 </th>
-                <td className="p-4 align-top text-muted-foreground">{ritual.what}</td>
-                <td className="p-4 align-top font-mono text-xs text-foreground">
-                  {ritual.cadence}
+                <td className="p-4 align-top font-mono text-xs">
+                  <PlanCell value={row.free} />
                 </td>
-                <td className="p-4 align-top text-foreground">{ritual.outcome}</td>
+                <td className="bg-(--bg-accent)/10 p-4 align-top font-mono text-xs">
+                  <PlanCell value={row.plus} highlight />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -78,28 +74,34 @@ export default function HowItWorks() {
 
       {/* Telemóvel */}
       <ul className="space-y-4 md:hidden">
-        {howItWorks.rituals.map((ritual) => (
-          <li key={ritual.name} className="rounded-lg border border-border p-5">
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="font-medium text-foreground">{ritual.name}</h3>
-              <TierTag tier={ritual.tier} />
-            </div>
-            <p className="mt-2 text-sm text-muted-foreground">{ritual.what}</p>
-            <dl className="mt-4 space-y-1 font-mono text-xs">
-              <div className="flex gap-2">
-                <dt className="text-muted-foreground">Ritmo:</dt>
-                <dd className="text-foreground">{ritual.cadence}</dd>
+        {howItWorks.rows.map((row) => (
+          <li key={row.criterion} className="rounded-lg border border-border p-5">
+            <h3 className="font-medium text-foreground">{row.criterion}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{row.detail}</p>
+            <dl className="mt-4 grid grid-cols-2 gap-3 font-mono text-xs">
+              <div className="rounded-md border border-border p-3">
+                <dt className="text-muted-foreground">{FREE_COLUMN}</dt>
+                <dd className="mt-1">
+                  <PlanCell value={row.free} />
+                </dd>
               </div>
-              <div className="flex gap-2">
-                <dt className="shrink-0 text-muted-foreground">Sais com:</dt>
-                <dd className="text-foreground">{ritual.outcome}</dd>
+              <div
+                className={cx(
+                  'rounded-md border border-(--bg-accent)/40 bg-(--bg-accent)/10 p-3',
+                  !row.plus && 'opacity-60'
+                )}
+              >
+                <dt className="text-(--bg-accent)">{PLUS_COLUMN}</dt>
+                <dd className="mt-1">
+                  <PlanCell value={row.plus} highlight />
+                </dd>
               </div>
             </dl>
           </li>
         ))}
       </ul>
 
-      {/* O que a CommitPT não é — dito por nós, antes de alguém perguntar. */}
+      {/* Os limites, ditos por nós, antes de alguém perguntar. */}
       <p className="mt-6 text-pretty text-muted-foreground">{howItWorks.disclaimer}</p>
 
       {/* Empurrão para o Commit+ */}

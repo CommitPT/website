@@ -187,11 +187,11 @@ hydration mismatches).
 3. **Para quem é** — 4 profiles
 4. **O que ganhas** — 4 benefits, each tagged `Grátis` or `Commit+`
 5. **Quem está por trás** — founder + contributors
-6. **Como funciona** — `wide` table describing the four rituals, each tagged `Grátis` or
-   `Commit+`, with the cadence and what the member walks away with (stacked cards on mobile).
-   It **describes, never compares**: measuring CommitPT against a CTESP, a degree or a bootcamp
-   compares things that give different results. The closing line says plainly that it is not a
-   course, gives no certificate and guarantees no job.
+6. **Como funciona** — `wide` table comparing **the two plans only**, Gratuito against Commit+,
+   row by row (stacked cards on mobile). It never measures CommitPT against a CTESP, a degree or a
+   bootcamp: those give different results. The closing line states the limits in professional
+   terms — no curriculum, no certification, no guaranteed placement. This section carries the
+   detail; the pricing section carries the decision.
 7. **Testemunhos** — real reviews only: Whop (`getWhopReviews()`) merged with `src/reviews.json`,
    deduped by the first 60 characters. Marquee on desktop, snap-scroll on mobile (`ReviewScroll`).
    Without `WHOP_API_KEY` the section still renders the local ones — it must never be empty.
