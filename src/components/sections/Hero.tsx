@@ -21,7 +21,7 @@ const proofAvatars = contributors
 
 export default function Hero() {
   return (
-    <Section width="wide" bleed>
+    <Section id="hero" width="wide" bleed>
       <div className="grid lg:grid-cols-[1.05fr_1fr]">
         {/* Texto */}
         <div

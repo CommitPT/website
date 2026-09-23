@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Script from 'next/script'
+import { CONSENT_EVENT, CONSENT_STORAGE_KEY } from '@/src/lib/consent'
 import { CtaContent, ctaClassName } from '@/src/components/ui/ctaStyles'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -10,7 +11,7 @@ type ConsentState = 'accepted' | 'declined' | null
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const STORAGE_KEY = 'cookie_consent'
+const STORAGE_KEY = CONSENT_STORAGE_KEY
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -22,14 +23,11 @@ export default function CookieConsent() {
     if (stored) setConsent(stored)
   }, [])
 
-  function handleAccept() {
-    localStorage.setItem(STORAGE_KEY, 'accepted')
-    setConsent('accepted')
-  }
-
-  function handleDecline() {
-    localStorage.setItem(STORAGE_KEY, 'declined')
-    setConsent('declined')
+  function decide(choice: Exclude<ConsentState, null>) {
+    localStorage.setItem(STORAGE_KEY, choice)
+    setConsent(choice)
+    // A MobileCtaBar espera por esta decisão para não aparecer por baixo do aviso.
+    window.dispatchEvent(new Event(CONSENT_EVENT))
   }
 
   return (
@@ -81,12 +79,16 @@ export default function CookieConsent() {
             <div className="flex w-full shrink-0 justify-end gap-3 sm:w-auto">
               <button
                 type="button"
-                onClick={handleDecline}
+                onClick={() => decide('declined')}
                 className={ctaClassName('outline', 'sm')}
               >
                 <CtaContent variant="outline">Recusar</CtaContent>
               </button>
-              <button type="button" onClick={handleAccept} className={ctaClassName('accent', 'sm')}>
+              <button
+                type="button"
+                onClick={() => decide('accepted')}
+                className={ctaClassName('accent', 'sm')}
+              >
                 <CtaContent variant="accent">Aceitar</CtaContent>
               </button>
             </div>

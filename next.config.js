@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Permite compilar para outra pasta (ex.: NEXT_DIST_DIR=.next-audit yarn build && ... yarn start)
+  // sem partir um `yarn dev` que esteja a correr ao mesmo tempo sobre `.next`.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
+
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
